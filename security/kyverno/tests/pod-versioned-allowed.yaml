@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: policy-positive-versioned
+  namespace: edl-data
+spec:
+  restartPolicy: Never
+  containers:
+    - name: nginx
+      image: nginx:1.27.5
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 50m
+          memory: 64Mi
