@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: data-product-quota
+  namespace: data-product-demo
+spec:
+  hard:
+    requests.cpu: "2"
+    requests.memory: 4Gi
+    limits.cpu: "4"
+    limits.memory: 8Gi
+    requests.storage: 10Gi
+    persistentvolumeclaims: "8"
+    pods: "20"
+    services: "20"
