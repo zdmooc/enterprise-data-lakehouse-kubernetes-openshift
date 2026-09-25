@@ -1,0 +1,15 @@
+envFrom:
+  - secretRef:
+      name: polaris-client
+
+catalogs:
+  polaris: |
+    connector.name=iceberg
+    iceberg.catalog.type=rest
+    iceberg.rest-catalog.uri=http://edl-polaris.edl-data.svc:8181/api/catalog
+    iceberg.rest-catalog.security=OAUTH2
+    iceberg.rest-catalog.oauth2.credential=${ENV:CLIENT_ID}:${ENV:CLIENT_SECRET}
+    iceberg.rest-catalog.oauth2.scope=PRINCIPAL_ROLE:ALL
+    iceberg.rest-catalog.warehouse=quickstart_catalog
+    iceberg.rest-catalog.vended-credentials-enabled=true
+    fs.native-s3.enabled=true
