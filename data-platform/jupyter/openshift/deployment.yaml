@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edl-jupyter
+  namespace: edl-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edl-jupyter
+  template:
+    metadata:
+      labels:
+        app: edl-jupyter
+    spec:
+      containers:
+        - name: jupyter
+          image: image-registry.openshift-image-registry.svc:5000/edl-data/edl-jupyter:lab
+          imagePullPolicy: Always
+          args:
+            - start-notebook.py
+            - --ServerApp.ip=0.0.0.0
+            - --ServerApp.port=8888
+            - --ServerApp.open_browser=False
+          env:
+            - name: JUPYTER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: jupyter-auth
+                  key: token
+            - name: TRINO_HOST
+              value: edl-trino.edl-data.svc
+            - name: TRINO_PORT
+              value: "8080"
+          ports:
+            - containerPort: 8888
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 2Gi
+          volumeMounts:
+            - name: workspace
+              mountPath: /home/jovyan/work
+      volumes:
+        - name: workspace
+          persistentVolumeClaim:
+            claimName: jupyter-workspace
