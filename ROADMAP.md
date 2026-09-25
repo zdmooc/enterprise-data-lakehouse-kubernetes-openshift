@@ -41,7 +41,7 @@ Exit criteria:
 
 ## I1 — Cluster contracts & prerequisites
 
-**Status:** IN PROGRESS
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Define the contract expected from a target cluster.
 
@@ -81,6 +81,8 @@ Exit criteria:
 
 ## I2 — Platform baseline
 
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
+
 Deliver:
 - namespaces/projects;
 - ResourceQuota / LimitRange;
@@ -99,6 +101,8 @@ Exit criteria:
 ---
 
 ## I3 — GitOps foundation
+
+**Status:** NEXT
 
 Deliver:
 - Argo CD;
