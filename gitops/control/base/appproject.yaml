@@ -6,6 +6,7 @@ spec:
   description: Enterprise Data Lakehouse platform and Data workloads
   sourceRepos:
     - https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+    - https://trinodb.github.io/charts/
   destinations:
     - server: https://kubernetes.default.svc
       namespace: edl-platform
