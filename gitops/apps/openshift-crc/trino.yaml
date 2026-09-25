@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: edl-trino
+  namespace: openshift-gitops
+spec:
+  project: enterprise-data-lakehouse
+  sources:
+    - repoURL: https://trinodb.github.io/charts/
+      chart: trino
+      targetRevision: 1.42.2
+      helm:
+        releaseName: edl-trino
+        valueFiles:
+          - $values/data-platform/trino/values-crc.yaml
+    - repoURL: https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: edl-data
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
