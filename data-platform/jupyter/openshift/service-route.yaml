@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: edl-jupyter
+  namespace: edl-data
+spec:
+  selector:
+    app: edl-jupyter
+  ports:
+    - name: http
+      port: 8888
+      targetPort: http
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: edl-jupyter
+  namespace: edl-data
+spec:
+  to:
+    kind: Service
+    name: edl-jupyter
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
