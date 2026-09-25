@@ -156,18 +156,17 @@ Technology choices remain subject to ADR and compatibility validation before imp
 │   ├── 02-mission-alignment.md
 │   ├── 03-reuse-existing-repositories.md
 │   ├── 04-lab-strategy.md
-│   └── 05-data-product-demo.md
+│   ├── 05-data-product-demo.md
+│   ├── 06-cluster-contract.md
+│   └── adr/
 ├── platform/
 │   └── profiles/
 │       ├── kthw/
 │       └── openshift-crc/
+├── scripts/
+│   └── preflight-cluster.sh
 ├── gitops/
 ├── data-platform/
-│   ├── kafka/
-│   ├── minio/
-│   ├── spark/
-│   ├── trino/
-│   └── jupyter/
 ├── security/
 ├── observability/
 ├── runbooks/
@@ -196,8 +195,8 @@ Directories are populated progressively. Empty implementation areas are intentio
 The project is developed in progressive iterations:
 
 ```text
-I0  Architecture & scope
-I1  Cluster contracts and prerequisites
+I0  Architecture & scope                         DONE
+I1  Cluster contracts and prerequisites          IN PROGRESS
 I2  Platform baseline
 I3  GitOps
 I4  Object storage
@@ -235,19 +234,25 @@ See [docs/03-reuse-existing-repositories.md](docs/03-reuse-existing-repositories
 
 ## Current status
 
-**Iteration I0 — STARTED**
+**Iteration I0 — COMPLETED**
 
-Current focus:
-
-- architecture;
-- scope;
-- mission-to-capability mapping;
+Completed:
+- scope and architecture;
+- mission capability mapping;
 - reuse matrix;
 - lab strategy;
 - end-to-end Data Product scenario;
-- implementation backlog.
+- prioritized backlog;
+- platform profiles;
+- evidence rules.
 
-No Data stack component is claimed as deployed in this repository yet.
+**Iteration I1 — IN PROGRESS**
+
+Started:
+- cluster contract;
+- generic Kubernetes/OpenShift preflight script.
+
+The next runtime step is to execute the preflight on an actual target cluster and capture evidence. No cluster validation is claimed yet.
 
 ---
 
