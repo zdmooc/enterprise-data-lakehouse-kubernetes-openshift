@@ -196,9 +196,9 @@ The project is developed in progressive iterations:
 
 ```text
 I0  Architecture & scope                         DONE
-I1  Cluster contracts and prerequisites          IN PROGRESS
-I2  Platform baseline
-I3  GitOps
+I1  Cluster contracts and prerequisites          IMPLEMENTED / RUNTIME PENDING
+I2  Platform baseline                             IMPLEMENTED / RUNTIME PENDING
+I3  GitOps                                        NEXT
 I4  Object storage
 I5  Kafka streaming
 I6  Spark processing
@@ -246,13 +246,15 @@ Completed:
 - platform profiles;
 - evidence rules.
 
-**Iteration I1 — IN PROGRESS**
+**Iterations I1 and I2 — IMPLEMENTED / RUNTIME VALIDATION PENDING**
 
-Started:
+Implemented:
 - cluster contract;
-- generic Kubernetes/OpenShift preflight script.
+- full preflight suite: connectivity, DNS, PVC, RBAC, NetworkPolicy;
+- platform baseline with namespaces, quotas, limits, RBAC and deny-by-default networking;
+- Kubernetes/OpenShift overlays and verification scripts.
 
-The next runtime step is to execute the preflight on an actual target cluster and capture evidence. No cluster validation is claimed yet.
+The next runtime step is to execute I1/I2 on an actual target cluster and capture evidence. I3 GitOps is the next implementation iteration. No cluster validation is claimed yet.
 
 ---
 
