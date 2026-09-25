@@ -1,0 +1,48 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: edl-data-platform-rules
+  namespace: edl-data
+  labels:
+    app.kubernetes.io/part-of: enterprise-data-lakehouse
+spec:
+  groups:
+    - name: edl-kafka
+      rules:
+        - alert: EDLKafkaConsumerLagHigh
+          expr: max(kafka_consumergroup_lag{namespace="edl-data"}) > 1000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: Kafka consumer lag is high
+            description: A consumer group in edl-data has lag above 1000 for 5 minutes.
+        - alert: EDLKafkaUnderReplicatedPartition
+          expr: max(kafka_topic_partition_under_replicated_partition{namespace="edl-data"}) > 0
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Kafka has an under-replicated partition
+            description: One or more Kafka partitions are under-replicated.
+    - name: edl-kubernetes
+      rules:
+        - alert: EDLPodRestartBurst
+          expr: increase(kube_pod_container_status_restarts_total{namespace="edl-data"}[10m]) > 3
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: Repeated container restarts in edl-data
+            description: A workload restarted more than three times over ten minutes.
+        - alert: EDLPVCNearlyFull
+          expr: |
+            kubelet_volume_stats_available_bytes{namespace="edl-data"}
+              /
+            kubelet_volume_stats_capacity_bytes{namespace="edl-data"} < 0.15
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: Data Platform PVC nearly full
+            description: A PVC in edl-data has less than 15 percent free capacity.
