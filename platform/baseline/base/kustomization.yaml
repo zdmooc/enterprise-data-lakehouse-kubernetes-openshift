@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespaces.yaml
+  - serviceaccounts.yaml
+  - quotas.yaml
+  - limitranges.yaml
+  - rbac.yaml
+  - networkpolicies.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: enterprise-data-lakehouse
+  platform.maya.example/managed-by: gitops
