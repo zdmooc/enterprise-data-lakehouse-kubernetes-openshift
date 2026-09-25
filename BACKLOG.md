@@ -4,28 +4,31 @@
 
 - [x] Initialize repository.
 - [x] Define repository purpose and truth rules.
-- [ ] Write target architecture.
-- [ ] Write mission capability mapping.
-- [ ] Write reuse matrix.
-- [ ] Write lab resource strategy.
-- [ ] Define end-to-end Data Product.
-- [ ] Define ADR template.
-- [ ] Define evidence template.
-- [ ] Add cluster preflight contract.
+- [x] Write target architecture.
+- [x] Write mission capability mapping.
+- [x] Write reuse matrix.
+- [x] Write lab resource strategy.
+- [x] Define end-to-end Data Product.
+- [x] Define ADR template.
+- [x] Define evidence template.
+- [x] Add cluster preflight contract.
 
 ## P1 — Kubernetes/OpenShift platform
 
-- [ ] Kubernetes target profile: KTHW/Vagrant.
-- [ ] OpenShift target profile: CRC.
+- [x] Kubernetes target profile: KTHW/Vagrant.
+- [x] OpenShift target profile: CRC.
+- [ ] Execute connectivity/readiness preflight on target cluster.
+- [ ] Validate cluster DNS with workload.
+- [ ] Validate dynamic PVC write/read/restart.
+- [ ] Validate namespace-scoped RBAC with negative test.
+- [ ] Validate default-deny NetworkPolicy with allow exception.
 - [ ] Namespace/project baseline.
 - [ ] ResourceQuota.
 - [ ] LimitRange.
-- [ ] RBAC.
-- [ ] default-deny NetworkPolicy.
 - [ ] OpenShift SCC/PSS mapping.
 - [ ] ingress / route abstraction.
 - [ ] CSI/storage abstraction.
-- [ ] healthcheck script.
+- [ ] expanded healthcheck script.
 
 ## P1 — GitOps
 
