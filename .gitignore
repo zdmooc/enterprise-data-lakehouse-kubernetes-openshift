@@ -1,0 +1,34 @@
+# Secrets and local environment
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+kubeconfig
+kubeconfig.*
+pull-secret*
+credentials*
+secrets.local.*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build/runtime
+target/
+build/
+dist/
+__pycache__/
+*.pyc
+
+# Evidence raw exports that may contain sensitive data
+evidence/raw/
