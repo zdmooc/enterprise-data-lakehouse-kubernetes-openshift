@@ -1,0 +1,63 @@
+{
+  "title": "Enterprise Data Lakehouse - Platform Overview",
+  "uid": "edl-platform-overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Kafka Consumer Lag",
+      "targets": [
+        {
+          "expr": "sum(kafka_consumergroup_lag{namespace=\"edl-data\"})",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 7, "w": 6, "x": 0, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "Kafka Under Replicated Partitions",
+      "targets": [
+        {
+          "expr": "sum(kafka_topic_partition_under_replicated_partition{namespace=\"edl-data\"})",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 7, "w": 6, "x": 6, "y": 0}
+    },
+    {
+      "type": "timeseries",
+      "title": "Trino Running Queries",
+      "targets": [
+        {
+          "expr": "max(trino_execution_name_QueryManager_RunningQueries)",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 7, "w": 6, "x": 12, "y": 0}
+    },
+    {
+      "type": "timeseries",
+      "title": "edl-data Container Restarts",
+      "targets": [
+        {
+          "expr": "sum by (pod) (increase(kube_pod_container_status_restarts_total{namespace=\"edl-data\"}[10m]))",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 7, "w": 6, "x": 18, "y": 0}
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "templating": {
+    "list": []
+  }
+}
