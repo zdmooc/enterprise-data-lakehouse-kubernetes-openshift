@@ -1,0 +1,58 @@
+name: validate-platform
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Shell syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find scripts tests -type f -name '*.sh' -print0 | while IFS= read -r -d '' f; do
+            echo "checking $f"
+            bash -n "$f"
+          done
+
+      - name: Install kubectl
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(curl -L -s https://dl.k8s.io/release/stable.txt)"
+          curl -L --fail -o kubectl "https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/kubectl
+          kubectl version --client
+
+      - name: Render Kubernetes baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize platform/baseline/overlays/kubernetes > /tmp/kubernetes-baseline.yaml
+          test -s /tmp/kubernetes-baseline.yaml
+
+      - name: Render OpenShift baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize platform/baseline/overlays/openshift-crc > /tmp/openshift-baseline.yaml
+          test -s /tmp/openshift-baseline.yaml
+
+      - name: Reject obvious secret files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f \( -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name 'kubeconfig' -o -name 'pull-secret*' \) -not -path './.git/*' | grep -q .; then
+            echo "Sensitive-looking file detected"
+            exit 1
+          fi
