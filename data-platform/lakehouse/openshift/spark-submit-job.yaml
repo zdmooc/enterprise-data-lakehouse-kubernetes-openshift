@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: edl-lakehouse-submit
+  namespace: edl-data
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 1800
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: edl-lakehouse-submit
+        app.kubernetes.io/part-of: enterprise-data-lakehouse
+    spec:
+      restartPolicy: Never
+      serviceAccountName: spark-runner
+      containers:
+        - name: spark-submit
+          image: image-registry.openshift-image-registry.svc:5000/edl-data/edl-spark-lakehouse:4.1.3-iceberg1.11
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: polaris-client
+          env:
+            - name: KAFKA_BOOTSTRAP
+              value: edl-kafka-kafka-bootstrap.edl-data.svc:9092
+            - name: KAFKA_TOPIC
+              value: transactions.raw
+            - name: POLARIS_URI
+              value: http://edl-polaris.edl-data.svc:8181/api/catalog
+            - name: POLARIS_WAREHOUSE
+              value: quickstart_catalog
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              exec /opt/spark/bin/spark-submit                 --master k8s://https://kubernetes.default.svc:443                 --deploy-mode cluster                 --name edl-transactions-lakehouse                 --conf spark.kubernetes.namespace=edl-data                 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark-runner                 --conf spark.kubernetes.container.image=image-registry.openshift-image-registry.svc:5000/edl-data/edl-spark-lakehouse:4.1.3-iceberg1.11                 --conf spark.executor.instances=1                 --conf spark.driver.cores=1                 --conf spark.driver.memory=1024m                 --conf spark.executor.cores=1                 --conf spark.executor.memory=1024m                 --conf spark.kubernetes.driverEnv.POLARIS_CREDENTIAL="$POLARIS_CREDENTIAL"                 --conf spark.kubernetes.driverEnv.KAFKA_BOOTSTRAP="$KAFKA_BOOTSTRAP"                 --conf spark.kubernetes.driverEnv.KAFKA_TOPIC="$KAFKA_TOPIC"                 --conf spark.kubernetes.driverEnv.POLARIS_URI="$POLARIS_URI"                 --conf spark.kubernetes.driverEnv.POLARIS_WAREHOUSE="$POLARIS_WAREHOUSE"                 local:///opt/spark/work-dir/jobs/transactions_to_iceberg.py
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
