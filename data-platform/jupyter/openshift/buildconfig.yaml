@@ -1,0 +1,28 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: edl-jupyter
+  namespace: edl-data
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: edl-jupyter
+  namespace: edl-data
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+      ref: main
+    contextDir: data-platform/jupyter/image
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: edl-jupyter:lab
+  triggers:
+    - type: ConfigChange
