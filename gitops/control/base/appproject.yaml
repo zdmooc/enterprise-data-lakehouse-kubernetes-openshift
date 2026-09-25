@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: enterprise-data-lakehouse
+spec:
+  description: Enterprise Data Lakehouse platform and Data workloads
+  sourceRepos:
+    - https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: edl-platform
+    - server: https://kubernetes.default.svc
+      namespace: edl-data
+    - server: https://kubernetes.default.svc
+      namespace: edl-observability
+    - server: https://kubernetes.default.svc
+      namespace: openshift-gitops
+    - server: https://kubernetes.default.svc
+      namespace: argocd
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
