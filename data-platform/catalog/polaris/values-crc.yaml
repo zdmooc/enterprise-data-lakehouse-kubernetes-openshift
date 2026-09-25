@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: apache/polaris
+  tag: "1.7.0"
+  pullPolicy: IfNotPresent
+
+persistence:
+  type: in-memory
+
+podSecurityContext: {}
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  capabilities:
+    drop:
+      - ALL
+  seccompProfile:
+    type: RuntimeDefault
+
+extraServices: []
+
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: "1"
+    memory: 1536Mi
+
+extraEnv:
+  - name: POLARIS_BOOTSTRAP_CREDENTIALS
+    valueFrom:
+      secretKeyRef:
+        name: polaris-bootstrap
+        key: credentials
+  - name: POLARIS_REALM_CONTEXT_REALMS
+    value: POLARIS
+  - name: AWS_REGION
+    valueFrom:
+      secretKeyRef:
+        name: polaris-s3
+        key: region
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom:
+      secretKeyRef:
+        name: polaris-s3
+        key: accessKeyId
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom:
+      secretKeyRef:
+        name: polaris-s3
+        key: secretAccessKey
