@@ -19,25 +19,29 @@ Documentation alone never upgrades a status beyond `DESIGNED`.
 
 ## I0 — Architecture & scope
 
-**Status:** IN PROGRESS
+**Status:** COMPLETED
 
-Objectives:
-- define mission-aligned scope;
-- define target architecture;
-- define reuse strategy;
-- define Data Product demo;
-- define local and multi-node execution profiles;
-- create implementation backlog.
+Delivered:
+- mission-aligned scope;
+- target architecture;
+- reuse strategy;
+- Data Product demo;
+- local and multi-node execution profiles;
+- prioritized implementation backlog;
+- ADR template;
+- evidence rules.
 
 Exit criteria:
-- architecture documented;
-- backlog prioritized;
-- no duplicated Kubernetes-from-scratch implementation;
-- resource constraints explicitly documented.
+- [x] architecture documented;
+- [x] backlog prioritized;
+- [x] no duplicated Kubernetes-from-scratch implementation;
+- [x] resource constraints explicitly documented.
 
 ---
 
 ## I1 — Cluster contracts & prerequisites
+
+**Status:** IN PROGRESS
 
 Define the contract expected from a target cluster.
 
@@ -55,10 +59,23 @@ Targets:
 - KTHW/Vagrant Kubernetes;
 - OpenShift Local / CRC.
 
-Exit criteria:
-- preflight script;
+Delivered so far:
 - target profile documentation;
-- evidence template.
+- evidence template;
+- generic connectivity/readiness preflight.
+
+Remaining:
+- runtime execution on a real target;
+- DNS workload test;
+- PVC write/read/restart test;
+- RBAC negative test;
+- NetworkPolicy negative/positive test;
+- ingress/route validation.
+
+Exit criteria:
+- preflight suite;
+- target profile documentation;
+- runtime evidence.
 
 ---
 
