@@ -1,0 +1,23 @@
+apiVersion: policies.kyverno.io/v1
+kind: NamespacedValidatingPolicy
+metadata:
+  name: disallow-latest-images
+  namespace: edl-data
+spec:
+  validationActions:
+    - Deny
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        operations: ["CREATE", "UPDATE"]
+        resources: ["pods"]
+  variables:
+    - name: images
+      expression: >-
+        object.spec.containers.map(c, image(c.image))
+        + object.spec.?initContainers.orValue([]).map(c, image(c.image))
+  validations:
+    - expression: >-
+        variables.images.all(i, i.tag() != "latest")
+      message: Container images must not use the latest tag.
