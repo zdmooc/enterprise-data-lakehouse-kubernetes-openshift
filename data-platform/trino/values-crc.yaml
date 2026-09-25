@@ -1,0 +1,66 @@
+image:
+  repository: trinodb/trino
+  tag: "480"
+  pullPolicy: IfNotPresent
+
+server:
+  workers: 1
+  node:
+    environment: lab
+  config:
+    query:
+      maxMemory: "512MB"
+
+coordinator:
+  jvm:
+    maxHeapSize: "512M"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 768Mi
+    limits:
+      cpu: "1"
+      memory: 1536Mi
+
+worker:
+  jvm:
+    maxHeapSize: "512M"
+  config:
+    query:
+      maxMemoryPerNode: "256MB"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 768Mi
+    limits:
+      cpu: "1"
+      memory: 1536Mi
+
+# OpenShift restricted SCC should assign the runtime UID.
+# Do not force the chart default UID/GID 1000.
+securityContext: null
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
+catalogs:
+  tpch: |
+    connector.name=tpch
+    tpch.splits-per-node=2
+  tpcds: |
+    connector.name=tpcds
+    tpcds.splits-per-node=2
+
+service:
+  type: ClusterIP
+
+networkPolicy:
+  enabled: true
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: edl-data
