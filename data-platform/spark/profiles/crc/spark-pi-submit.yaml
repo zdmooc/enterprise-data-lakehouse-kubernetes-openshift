@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-pi-submit
+  namespace: edl-data
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: spark-submit
+        app.kubernetes.io/part-of: enterprise-data-lakehouse
+    spec:
+      restartPolicy: Never
+      serviceAccountName: spark-runner
+      containers:
+        - name: spark-submit
+          image: spark:4.2.0-python3
+          imagePullPolicy: IfNotPresent
+          command:
+            - /opt/spark/bin/spark-submit
+          args:
+            - --master
+            - k8s://https://kubernetes.default.svc:443
+            - --deploy-mode
+            - cluster
+            - --name
+            - edl-spark-pi
+            - --conf
+            - spark.kubernetes.namespace=edl-data
+            - --conf
+            - spark.kubernetes.authenticate.driver.serviceAccountName=spark-runner
+            - --conf
+            - spark.kubernetes.container.image=spark:4.2.0-python3
+            - --conf
+            - spark.executor.instances=1
+            - --conf
+            - spark.driver.cores=1
+            - --conf
+            - spark.driver.memory=768m
+            - --conf
+            - spark.executor.cores=1
+            - --conf
+            - spark.executor.memory=768m
+            - local:///opt/spark/examples/src/main/python/pi.py
+            - "20"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
