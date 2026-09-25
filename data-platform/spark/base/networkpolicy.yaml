@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-executor-to-driver
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      spark-role: driver
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              spark-role: executor
