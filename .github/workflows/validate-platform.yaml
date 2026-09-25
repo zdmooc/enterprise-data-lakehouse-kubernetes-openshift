@@ -48,6 +48,15 @@ jobs:
           kubectl kustomize platform/baseline/overlays/openshift-crc > /tmp/openshift-baseline.yaml
           test -s /tmp/openshift-baseline.yaml
 
+      - name: Render GitOps control overlays
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize gitops/control/overlays/kubernetes > /tmp/gitops-kubernetes.yaml
+          kubectl kustomize gitops/control/overlays/openshift > /tmp/gitops-openshift.yaml
+          test -s /tmp/gitops-kubernetes.yaml
+          test -s /tmp/gitops-openshift.yaml
+
       - name: Reject obvious secret files
         shell: bash
         run: |
