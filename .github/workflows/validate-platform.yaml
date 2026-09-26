@@ -57,6 +57,32 @@ jobs:
           test -s /tmp/gitops-kubernetes.yaml
           test -s /tmp/gitops-openshift.yaml
 
+
+      - name: Render Data Platform manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in \
+            data-platform/networking/base \
+            data-platform/kafka/profiles/crc \
+            data-platform/spark/profiles/crc \
+            data-platform/spark/openshift \
+            data-platform/jupyter/openshift \
+            data-platform/lakehouse/openshift \
+            observability/openshift; do
+            echo "rendering $path"
+            kubectl kustomize "$path" > "/tmp/$(echo "$path" | tr '/' '-').yaml"
+          done
+
+      - name: Validate dashboard JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          find observability/grafana -type f -name '*.json' -print0 | while IFS= read -r -d '' f; do
+            echo "checking $f"
+            python -m json.tool "$f" >/dev/null
+          done
+
       - name: Reject obvious secret files
         shell: bash
         run: |
