@@ -1,0 +1,52 @@
+{
+  "title": "EDL Data Pipeline",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Ready pods - edl-data",
+      "targets": [
+        {
+          "expr": "sum(kube_pod_status_ready{namespace=\"edl-data\",condition=\"true\"})",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 6, "w": 6, "x": 0, "y": 0}
+    },
+    {
+      "type": "timeseries",
+      "title": "Container restarts",
+      "targets": [
+        {
+          "expr": "sum(rate(kube_pod_container_status_restarts_total{namespace=\"edl-data\"}[5m]))",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 9, "x": 6, "y": 0}
+    },
+    {
+      "type": "timeseries",
+      "title": "Kafka consumer lag",
+      "targets": [
+        {
+          "expr": "sum(kafka_consumergroup_lag)",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 8, "w": 9, "x": 15, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "Bound PVCs - edl-data",
+      "targets": [
+        {
+          "expr": "sum(kube_persistentvolumeclaim_status_phase{namespace=\"edl-data\",phase=\"Bound\"})",
+          "refId": "A"
+        }
+      ],
+      "gridPos": {"h": 6, "w": 6, "x": 0, "y": 6}
+    }
+  ]
+}
