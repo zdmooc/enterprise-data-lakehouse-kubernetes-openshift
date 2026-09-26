@@ -22,23 +22,23 @@
 - [ ] Validate dynamic PVC write/read/restart.
 - [ ] Validate namespace-scoped RBAC with negative test.
 - [ ] Validate default-deny NetworkPolicy with allow exception.
-- [ ] Namespace/project baseline.
-- [ ] ResourceQuota.
-- [ ] LimitRange.
+- [x] Namespace/project baseline.
+- [x] ResourceQuota.
+- [x] LimitRange.
 - [ ] OpenShift SCC/PSS mapping.
 - [ ] ingress / route abstraction.
 - [ ] CSI/storage abstraction.
-- [ ] expanded healthcheck script.
+- [x] expanded healthcheck script.
 
 ## P1 — GitOps
 
-- [ ] Argo CD bootstrap.
-- [ ] AppProject model.
-- [ ] ApplicationSet vs App-of-Apps ADR.
-- [ ] Helm conventions.
-- [ ] Kustomize overlays.
-- [ ] drift demo.
-- [ ] rollback demo.
+- [x] Argo CD bootstrap.
+- [x] AppProject model.
+- [x] ApplicationSet vs App-of-Apps ADR.
+- [x] Helm conventions.
+- [x] Kustomize overlays.
+- [ ] Execute drift/self-heal demo on target cluster.
+- [ ] Execute Git revert/rollback demo on target cluster.
 
 ## P1 — Data Platform
 
