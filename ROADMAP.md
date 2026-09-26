@@ -102,20 +102,29 @@ Exit criteria:
 
 ## I3 — GitOps foundation
 
-**Status:** NEXT
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
-Deliver:
-- Argo CD;
-- AppProject model;
-- ApplicationSet or App-of-Apps decision;
+Delivered:
+- OpenShift GitOps/Argo CD bootstrap path;
+- constrained AppProject model;
+- explicit Application model for initial platform ownership;
+- ADR deciding Application first, ApplicationSet when real multi-target scale exists;
 - Helm/Kustomize conventions;
-- dev/preprod/prod-like overlays;
-- secrets integration strategy.
+- logical dev/preprod/prod-like promotion model without fake multi-cluster claims;
+- secrets integration contract and Vault target pattern;
+- read-only GitOps status check;
+- drift/self-heal/Git-revert rollback lab.
+
+Runtime remaining:
+- execute bootstrap on a validated target;
+- capture Synced/Healthy evidence;
+- execute controlled drift/self-heal;
+- execute Git change and revert reconciliation.
 
 Exit criteria:
 - Git-driven deployment;
 - drift detection;
-- rollback/reconciliation lab.
+- rollback/reconciliation evidence.
 
 ---
 
