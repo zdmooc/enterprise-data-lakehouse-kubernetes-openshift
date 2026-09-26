@@ -130,8 +130,11 @@ Exit criteria:
 
 ## I4 — Object storage
 
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
+
 Lab target:
-- S3-compatible MinIO.
+- provider-neutral S3-compatible object storage contract;
+- current provider selected at runtime; MinIO/AIStor or another maintained S3-compatible implementation may satisfy the contract.
 
 Learn and prove:
 - object storage concepts;
@@ -142,6 +145,17 @@ Learn and prove:
 - access from Data workloads;
 - backup/restore considerations.
 
+Implemented:
+- S3 contract test;
+- raw/curated/checkpoints/evidence zone layout;
+- provider-neutral bootstrap/verification scripts;
+- provider decision ADR and OpenShift compatibility guardrails.
+
+Runtime remaining:
+- select/start an approved provider;
+- validate persistence, TLS and metrics;
+- capture evidence.
+
 Exit criteria:
 - Data zone bucket structure;
 - smoke tests;
@@ -150,6 +164,8 @@ Exit criteria:
 ---
 
 ## I5 — Kafka streaming
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Lab target:
 - Apache Kafka through Strimzi where supported.
@@ -164,12 +180,28 @@ Deliver:
 - observability;
 - incident runbook.
 
+Implemented:
+- Strimzi install path;
+- CRC KRaft profile and future multi-node profile;
+- topics;
+- producer/consumer smoke test;
+- persistence configuration;
+- explicit NetworkPolicy flows;
+- monitoring resources and Kafka incident runbook.
+
+Runtime remaining:
+- operator/cluster reconciliation on target;
+- producer/consumer evidence;
+- multi-node HA deferred to I11 target.
+
 Reuse:
 - `kafka-data-engineer-kafkaops-topic-service-crc`.
 
 ---
 
 ## I6 — Spark processing
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Deliver:
 - Spark execution model on Kubernetes/OpenShift;
@@ -180,12 +212,26 @@ Deliver:
 - event/stream processing comparison;
 - troubleshooting runbook.
 
+Implemented:
+- native Spark Kubernetes execution model;
+- driver/executor RBAC and NetworkPolicy;
+- CRC engine smoke test;
+- custom image build path;
+- synthetic transaction transformation job;
+- Lakehouse Spark/Iceberg profile for I12.
+
+Runtime remaining:
+- OpenShift SCC/arbitrary-UID validation;
+- engine and transformation evidence.
+
 Exit criteria:
 - reproducible transformation from raw to curated data.
 
 ---
 
 ## I7 — Trino query layer
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Deliver:
 - Trino;
@@ -195,12 +241,25 @@ Deliver:
 - authentication pattern;
 - query observability.
 
+Implemented:
+- pinned Trino Helm profile;
+- CRC coordinator/worker values;
+- TPCH smoke query;
+- Polaris/Iceberg catalog profile;
+- explicit network flows and monitoring integration.
+
+Runtime remaining:
+- Helm deployment and query evidence;
+- Lakehouse catalog query evidence.
+
 Exit criteria:
 - SQL query validated against lakehouse data.
 
 ---
 
 ## I8 — Jupyter / Data user experience
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Deliver:
 - Jupyter;
@@ -210,12 +269,27 @@ Deliver:
 - persistent workspace pattern;
 - user authentication model.
 
+Implemented:
+- OpenShift BuildConfig and image;
+- PVC-backed workspace;
+- Route and NetworkPolicy;
+- runtime-generated token;
+- Trino smoke query;
+- Lakehouse query example;
+- pod-recreation persistence test.
+
+Runtime remaining:
+- build/deploy on CRC;
+- PVC persistence and Trino/Lakehouse query evidence.
+
 Exit criteria:
 - notebook can query or analyze the sample Data Product.
 
 ---
 
 ## I9 — Security & secrets
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Deliver:
 - Vault integration pattern;
@@ -227,12 +301,27 @@ Deliver:
 - image scanning;
 - signed-image verification design.
 
+Implemented:
+- Vault and OIDC/Keycloak patterns;
+- RBAC and SCC/PSS mapping;
+- deny-by-default networking plus explicit flows;
+- Kyverno policies;
+- Trivy configuration scan and Cosign design;
+- five-case negative security suite.
+
+Runtime remaining:
+- execute the five negative tests;
+- capture scan/admission evidence;
+- validate secret rotation/integration when Vault runtime exists.
+
 Exit criteria:
 - at least five negative security tests documented and executed.
 
 ---
 
 ## I10 — Observability
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Deliver:
 - Prometheus;
@@ -242,6 +331,19 @@ Deliver:
 - platform + Data workload dashboard;
 - SLI/SLO proposal.
 
+Implemented:
+- OpenShift User Workload Monitoring reuse model;
+- Kafka PodMonitor and Trino ServiceMonitors;
+- PrometheusRule alerts;
+- platform overview and Data pipeline dashboards;
+- logging strategy;
+- SLI/SLO proposal.
+
+Runtime remaining:
+- apply monitoring resources;
+- verify metrics queries/alerts on target;
+- tune thresholds from observed data.
+
 Exit criteria:
 - one dashboard for platform health;
 - one dashboard for Data pipeline health;
@@ -250,6 +352,8 @@ Exit criteria:
 ---
 
 ## I11 — Resilience & N3 operations
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Scenarios:
 - worker unavailable;
@@ -263,6 +367,19 @@ Scenarios:
 - Spark job failure;
 - Trino degraded query path.
 
+Implemented:
+- N3 incident runbooks for GitOps, Kafka, Spark, Trino, storage, nodes/API, scheduling/OOM/image, DNS/NetworkPolicy and secret/certificate;
+- read-only N3 diagnostics;
+- guarded pod-deletion recovery script;
+- RCA template;
+- resilience test matrix;
+- upgrade/migration strategy;
+- evidence template.
+
+Runtime remaining:
+- execute selected CRC-safe scenarios;
+- execute node/broker/storage HA only on a real multi-node target.
+
 Deliver:
 - runbooks;
 - evidence;
@@ -272,6 +389,8 @@ Deliver:
 ---
 
 ## I12 — End-to-end Data Product
+
+**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
 
 Target flow:
 
@@ -295,6 +414,22 @@ Synthetic transactions/events
 ```
 
 The same logical product must be deployable through GitOps on both supported platform profiles, subject to local resource constraints.
+
+Implemented:
+- HLD and LLD;
+- architecture ADRs;
+- synthetic Kafka transaction producer;
+- Spark/Iceberg/Polaris/Trino/Jupyter integration path;
+- explicit Data Product networking;
+- guarded one-command CRC E2E orchestrator;
+- security, observability and N3 integration;
+- evidence template;
+- interview/demo walkthrough.
+
+Runtime remaining:
+- execute the full flow on CRC after resource/capacity check;
+- record evidence;
+- validate portability/multi-node behavior separately.
 
 Final deliverables:
 - HLD;
