@@ -11,14 +11,14 @@ MESSAGE="edl-smoke-$(date -u +%Y%m%dT%H%M%SZ)-$$"
 
 "$CLI" -n "$NS" delete pod kafka-smoke-producer kafka-smoke-consumer --ignore-not-found=true --wait=true >/dev/null 2>&1 || true
 
-"$CLI" -n "$NS" run kafka-smoke-producer   --image="$IMAGE"   --restart=Never   --command -- bash -c "printf '%s\n' '$MESSAGE' | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC'" >/dev/null
+"$CLI" -n "$NS" run kafka-smoke-producer   --labels='edl.network/kafka-client=true'   --image="$IMAGE"   --restart=Never   --command -- bash -c "printf '%s\n' '$MESSAGE' | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC'" >/dev/null
 
 "$CLI" -n "$NS" wait pod/kafka-smoke-producer --for=jsonpath='{.status.phase}'=Succeeded --timeout=180s >/dev/null || {
   "$CLI" -n "$NS" logs kafka-smoke-producer || true
   exit 1
 }
 
-"$CLI" -n "$NS" run kafka-smoke-consumer   --image="$IMAGE"   --restart=Never   --command -- bash -c "/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC' --from-beginning --timeout-ms 30000" >/dev/null
+"$CLI" -n "$NS" run kafka-smoke-consumer   --labels='edl.network/kafka-client=true'   --image="$IMAGE"   --restart=Never   --command -- bash -c "/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC' --from-beginning --timeout-ms 30000" >/dev/null
 
 "$CLI" -n "$NS" wait pod/kafka-smoke-consumer --for=jsonpath='{.status.phase}'=Succeeded --timeout=180s >/dev/null 2>&1 || true
 
