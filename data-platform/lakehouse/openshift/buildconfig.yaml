@@ -15,11 +15,11 @@ spec:
     git:
       uri: https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
       ref: main
-    contextDir: data-platform/lakehouse/image
+    contextDir: data-platform/lakehouse
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile
+      dockerfilePath: image/Dockerfile
       buildArgs:
         - name: ICEBERG_VERSION
           value: "1.11.0"
