@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: edl-transactions-submit
+  namespace: edl-data
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 1800
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: spark-submit
+        app.kubernetes.io/part-of: enterprise-data-lakehouse
+    spec:
+      restartPolicy: Never
+      serviceAccountName: spark-runner
+      containers:
+        - name: spark-submit
+          image: image-registry.openshift-image-registry.svc:5000/edl-data/edl-spark:4.2.0
+          imagePullPolicy: Always
+          command: ["/opt/spark/bin/spark-submit"]
+          args:
+            - --master
+            - k8s://https://kubernetes.default.svc:443
+            - --deploy-mode
+            - cluster
+            - --name
+            - edl-transactions-aggregate
+            - --conf
+            - spark.kubernetes.namespace=edl-data
+            - --conf
+            - spark.kubernetes.authenticate.driver.serviceAccountName=spark-runner
+            - --conf
+            - spark.kubernetes.container.image=image-registry.openshift-image-registry.svc:5000/edl-data/edl-spark:4.2.0
+            - --conf
+            - spark.executor.instances=1
+            - --conf
+            - spark.driver.memory=768m
+            - --conf
+            - spark.executor.memory=768m
+            - local:///opt/spark/work-dir/jobs/transactions_aggregate.py
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
