@@ -25,9 +25,9 @@
 - [x] Namespace/project baseline.
 - [x] ResourceQuota.
 - [x] LimitRange.
-- [ ] OpenShift SCC/PSS mapping.
-- [ ] ingress / route abstraction.
-- [ ] CSI/storage abstraction.
+- [x] OpenShift SCC/PSS mapping.
+- [x] ingress / route pattern for OpenShift workloads.
+- [x] storage contract/profile abstraction; provider runtime validation pending.
 - [x] expanded healthcheck script.
 
 ## P1 — GitOps
@@ -42,12 +42,12 @@
 
 ## P1 — Data Platform
 
-- [ ] MinIO.
-- [ ] Kafka / Strimzi.
-- [ ] Spark.
-- [ ] Trino.
-- [ ] Jupyter.
-- [ ] sample Data Product.
+- [x] S3-compatible object-storage contract and zone layout; provider runtime pending.
+- [x] Kafka / Strimzi implementation; runtime pending.
+- [x] Spark implementation; runtime pending.
+- [x] Trino implementation; runtime pending.
+- [x] Jupyter implementation; runtime pending.
+- [x] sample Data Product implementation; E2E runtime pending.
 
 ## P2 — Extended Data services
 
@@ -58,36 +58,36 @@ Only add when a use case requires them:
 - [ ] Redis.
 - [ ] RabbitMQ.
 - [ ] Flink.
-- [ ] Iceberg catalog/metastore option.
+- [x] Iceberg REST Catalog / Polaris reference implementation; runtime pending.
 
 The repository must not become a tool catalogue.
 
 ## P1 — Security
 
-- [ ] OIDC.
-- [ ] Keycloak lab integration.
-- [ ] Vault pattern.
-- [ ] Kyverno policies.
-- [ ] OPA Gatekeeper comparison.
-- [ ] Trivy scan.
+- [x] OIDC identity architecture.
+- [x] Keycloak/OIDC integration pattern; runtime integration pending.
+- [x] Vault pattern.
+- [x] Kyverno policies.
+- [x] OPA Gatekeeper positioning/comparison.
+- [x] Trivy scan command/workflow; runtime result pending.
 - [ ] Grype comparison.
-- [ ] Cosign signing/verification.
+- [x] Cosign signing/verification design; signed artifact evidence pending.
 - [ ] Falco runtime-security assessment.
 - [ ] NeuVector positioning note.
 - [ ] secret rotation scenario.
 
 ## P1 — Observability / N3
 
-- [ ] Prometheus metrics.
-- [ ] Grafana dashboards.
-- [ ] Alertmanager.
-- [ ] Loki.
-- [ ] OpenSearch positioning.
-- [ ] platform health SLI/SLO.
-- [ ] Data pipeline SLI/SLO.
-- [ ] RCA template.
-- [ ] upgrade checklist.
-- [ ] incident runbooks.
+- [x] Prometheus/OpenShift user-workload metrics resources.
+- [x] Grafana dashboard assets.
+- [x] PrometheusRule alerts; Alertmanager routing remains platform-owned.
+- [x] Loki/OpenShift logging strategy.
+- [x] OpenSearch positioning.
+- [x] platform health SLI/SLO.
+- [x] Data pipeline SLI/SLO.
+- [x] RCA template.
+- [x] upgrade/migration strategy.
+- [x] incident runbooks.
 
 ## P2 — Networking
 
@@ -97,7 +97,7 @@ The repository must not become a tool catalogue.
 - [ ] Canal positioning.
 - [ ] BGP concepts and enterprise use.
 - [ ] F5 north-south integration pattern.
-- [ ] egress control.
+- [x] deny-by-default egress plus explicit Data Product flows.
 
 ## P2 — Storage
 
