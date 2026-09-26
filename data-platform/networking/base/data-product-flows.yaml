@@ -1,0 +1,135 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-kafka-same-namespace-egress
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      strimzi.io/cluster: edl-kafka
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-data-services
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      spark-role: driver
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              strimzi.io/cluster: edl-kafka
+      ports:
+        - protocol: TCP
+          port: 9092
+    - to:
+        - podSelector: {}
+      ports:
+        - protocol: TCP
+          port: 8181
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 443
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-submit-api
+  namespace: edl-data
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app.kubernetes.io/name
+        operator: In
+        values: [spark-submit, edl-lakehouse-submit]
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 443
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-trino-internal-and-catalog
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: trino
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: trino
+      ports:
+        - protocol: TCP
+          port: 8080
+    - to:
+        - podSelector: {}
+      ports:
+        - protocol: TCP
+          port: 8181
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 443
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-jupyter-to-trino
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      app: edl-jupyter
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: trino
+      ports:
+        - protocol: TCP
+          port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-polaris-object-storage
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: polaris
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector: {}
+      ports:
+        - protocol: TCP
+          port: 9000
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+      ports:
+        - protocol: TCP
+          port: 443
