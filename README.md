@@ -198,7 +198,7 @@ The project is developed in progressive iterations:
 I0  Architecture & scope                         DONE
 I1  Cluster contracts and prerequisites          IMPLEMENTED / RUNTIME PENDING
 I2  Platform baseline                             IMPLEMENTED / RUNTIME PENDING
-I3  GitOps                                        NEXT
+I3  GitOps                                        IMPLEMENTED / RUNTIME PENDING
 I4  Object storage
 I5  Kafka streaming
 I6  Spark processing
@@ -254,7 +254,9 @@ Implemented:
 - platform baseline with namespaces, quotas, limits, RBAC and deny-by-default networking;
 - Kubernetes/OpenShift overlays and verification scripts.
 
-The next runtime step is to execute I1/I2 on an actual target cluster and capture evidence. I3 GitOps is the next implementation iteration. No cluster validation is claimed yet.
+I3 GitOps is also implemented in Git: bootstrap, AppProject, Applications, operating conventions, environment strategy, secrets contract and drift/rollback lab.
+
+The next runtime step is to execute I1/I2/I3 on an actual target cluster and capture evidence. No cluster validation is claimed yet.
 
 ---
 
