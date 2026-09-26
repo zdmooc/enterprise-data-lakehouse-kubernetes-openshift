@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: edl-data-networking
+  namespace: openshift-gitops
+spec:
+  project: enterprise-data-lakehouse
+  source:
+    repoURL: https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+    targetRevision: main
+    path: data-platform/networking/base
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: edl-data
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
