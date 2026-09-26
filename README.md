@@ -199,15 +199,15 @@ I0  Architecture & scope                         DONE
 I1  Cluster contracts and prerequisites          IMPLEMENTED / RUNTIME PENDING
 I2  Platform baseline                             IMPLEMENTED / RUNTIME PENDING
 I3  GitOps                                        IMPLEMENTED / RUNTIME PENDING
-I4  Object storage
-I5  Kafka streaming
-I6  Spark processing
-I7  Trino query layer
-I8  Jupyter / Data user experience
-I9  Security & secrets
-I10 Observability
-I11 Resilience / N3 operations
-I12 End-to-end Data Product demonstration
+I4  Object storage                               IMPLEMENTED / RUNTIME PENDING
+I5  Kafka streaming                              IMPLEMENTED / RUNTIME PENDING
+I6  Spark processing                             IMPLEMENTED / RUNTIME PENDING
+I7  Trino query layer                            IMPLEMENTED / RUNTIME PENDING
+I8  Jupyter / Data user experience               IMPLEMENTED / RUNTIME PENDING
+I9  Security & secrets                           IMPLEMENTED / RUNTIME PENDING
+I10 Observability                                IMPLEMENTED / RUNTIME PENDING
+I11 Resilience / N3 operations                   IMPLEMENTED / RUNTIME PENDING
+I12 End-to-end Data Product demonstration        IMPLEMENTED / RUNTIME PENDING
 ```
 
 See [ROADMAP.md](ROADMAP.md).
@@ -256,7 +256,9 @@ Implemented:
 
 I3 GitOps is also implemented in Git: bootstrap, AppProject, Applications, operating conventions, environment strategy, secrets contract and drift/rollback lab.
 
-The next runtime step is to execute I1/I2/I3 on an actual target cluster and capture evidence. No cluster validation is claimed yet.
+I4 through I12 are now implemented in Git as executable/design assets: S3 contract, Kafka/Strimzi, Spark, Trino, Jupyter, security, observability, N3/resilience and the final Kafka -> Spark/Iceberg -> S3/Polaris -> Trino -> Jupyter Data Product.
+
+The repository therefore has **I0 complete and I1-I12 implemented**. Runtime validation remains deliberately pending. The next operational phase is to execute the iterations on CRC in controlled order, capture evidence, then move HA-only scenarios to a multi-node target. No unexecuted capability is claimed as tested.
 
 ---
 
