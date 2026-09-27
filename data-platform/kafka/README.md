@@ -47,9 +47,11 @@ or later through Argo CD.
 bash scripts/test-kafka.sh
 ```
 
-Expected flow:
+Expected smoke-test flow:
 
-`producer -> transactions.raw -> consumer`
+`producer -> transactions.smoke -> consumer`
+
+The dedicated smoke topic prevents plain-text probe messages from contaminating the JSON-only E2E topic `transactions.raw`.
 
 ## Future multi-node profile
 

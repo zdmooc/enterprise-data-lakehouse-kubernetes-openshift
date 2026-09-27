@@ -13,7 +13,9 @@ Base image:
 Derived image adds:
 - Trino Python client 0.340.0;
 - OpenShift arbitrary-UID-oriented permissions;
-- sample Trino query.
+- immutable sample queries under `/opt/edl/examples`.
+
+The sample code is intentionally kept outside `/home/jovyan/work`, because that path is replaced by the workspace PVC at runtime.
 
 The image is built inside OpenShift using a BuildConfig and stored in the integrated image registry.
 
@@ -46,7 +48,7 @@ Runtime validation must prove that the OpenShift-assigned UID can write to the P
 Inside the notebook terminal:
 
 ```bash
-python /home/jovyan/work/trino_query.py
+python /opt/edl/examples/trino_query.py
 ```
 
 ## Security boundary
