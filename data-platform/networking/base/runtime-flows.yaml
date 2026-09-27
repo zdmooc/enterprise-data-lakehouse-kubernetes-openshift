@@ -1,0 +1,104 @@
+# CRC portability allowances. Replace public API CIDRs with approved targets
+# before deployment outside a disposable lab. No allowance for other namespaces.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-rpc-ingress
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels: {spark-role: driver}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {spark-role: executor}
+      ports:
+        - {protocol: TCP, port: 7078}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-edl-operator-api
+  namespace: edl-data
+spec:
+  podSelector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values: [strimzi-cluster-operator, strimzi-entity-operator]
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}
+      ports:
+        - {protocol: TCP, port: 443}
+        - {protocol: TCP, port: 6443}
+    - to:
+        - podSelector:
+            matchLabels: {strimzi.io/cluster: edl-kafka}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-api-target-port
+  namespace: edl-data
+spec:
+  podSelector:
+    matchExpressions:
+      - key: edl.network/api-client
+        operator: In
+        values: ["true"]
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}
+      ports:
+        - {protocol: TCP, port: 443}
+        - {protocol: TCP, port: 6443}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-blockmanager
+  namespace: edl-data
+spec:
+  podSelector:
+    matchExpressions:
+      - key: spark-role
+        operator: In
+        values: [driver, executor]
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - key: spark-role
+                operator: In
+                values: [driver, executor]
+      ports:
+        - {protocol: TCP, port: 7079}
+  egress:
+    - to:
+        - podSelector:
+            matchExpressions:
+              - key: spark-role
+                operator: In
+                values: [driver, executor]
+      ports:
+        - {protocol: TCP, port: 7079}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-spark-executor-s3
+  namespace: edl-data
+spec:
+  podSelector:
+    matchLabels: {spark-role: executor}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock: {cidr: 0.0.0.0/0}
+      ports:
+        - {protocol: TCP, port: 443}

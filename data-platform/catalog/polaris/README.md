@@ -39,7 +39,24 @@ Name:
 
 Default base location:
 
-`s3://$S3_BUCKET`
+`s3://$S3_BUCKET/curated/`
+
+## CRC storage contract
+
+This profile uses `stsUnavailable: true` for an S3-compatible provider without
+STS. Credential vending is disabled. Polaris, Spark driver/executor and Trino
+receive the dedicated bucket credentials through Secret references. Both
+`S3_ENDPOINT` (clients) and `S3_ENDPOINT_INTERNAL` (Polaris) must be reachable
+from the corresponding pods over HTTPS/443 with a trusted certificate.
+An HTTP/9000 provider needs a reviewed destination-specific network overlay;
+the existing driver/executor/Trino profile does not allow that path.
+
+Use credentials restricted to the disposable EDL bucket. The CRC profile shares
+the bootstrap root Polaris identity; separate least-privilege catalog identities
+and persistent metadata remain enterprise design work. Reinstall reuses the
+client secret. Secret rotation and consumer restart require a dedicated procedure.
+An existing catalog with a different storage contract causes bootstrap to stop;
+review its migration rather than deleting its metadata.
 
 ## Important limitation
 

@@ -11,6 +11,7 @@ polaris_credential = os.environ["POLARIS_CREDENTIAL"]
 
 spark = (
     SparkSession.builder.appName("edl-transactions-to-iceberg")
+    .config("spark.redaction.regex", "(?i)secret|password|token|access[.]?key|credential")
     .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions")
     .config("spark.sql.catalog.polaris", "org.apache.iceberg.spark.SparkCatalog")
     .config("spark.sql.catalog.polaris.type", "rest")
@@ -19,7 +20,9 @@ spark = (
     .config("spark.sql.catalog.polaris.scope", "PRINCIPAL_ROLE:ALL")
     .config("spark.sql.catalog.polaris.credential", polaris_credential)
     .config("spark.sql.catalog.polaris.token-refresh-enabled", "false")
-    .config("spark.sql.catalog.polaris.header.X-Iceberg-Access-Delegation", "vended-credentials")
+    .config("spark.sql.catalog.polaris.s3.endpoint", os.environ["S3_ENDPOINT"])
+    .config("spark.sql.catalog.polaris.s3.path-style-access", "true")
+    .config("spark.sql.catalog.polaris.client.region", os.environ["AWS_REGION"])
     .config("spark.sql.catalog.polaris.io-impl", "org.apache.iceberg.io.ResolvingFileIO")
     .getOrCreate()
 )

@@ -1,3 +1,5 @@
+fullnameOverride: edl-trino
+
 image:
   repository: trinodb/trino
   tag: "480"
@@ -12,6 +14,9 @@ server:
       maxMemory: "512MB"
 
 coordinator:
+  config:
+    query:
+      maxMemoryPerNode: "256MB"
   jvm:
     maxHeapSize: "512M"
   resources:
