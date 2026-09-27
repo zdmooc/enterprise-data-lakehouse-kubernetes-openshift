@@ -38,8 +38,12 @@ Secret-pattern scan at initial revision:
 git diff --check: no whitespace errors.
 GitHub Actions for INITIAL revision: success
   https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/actions/runs/36262684555
-Updated GitHub Actions workflow: edited locally, not run remotely.
-The branch has not been pushed; main has not been changed.
+Updated GitHub Actions workflow: success on b295a15737076866d447a7f66678d4293179aa17
+  https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/actions/runs/36342921185
+Published review branch / draft PR:
+  https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/pull/2
+Main remains unchanged. No automatic merge: Argo CD Applications track main.
+The separate audit/static-hardening-2026-09-27 branch remains untouched.
 
 No cluster runtime, server dry-run, operator installation, container build,
 application execution, chaos or workload deletion was performed.

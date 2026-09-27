@@ -30,7 +30,9 @@ La CI initiale est verte : [run 36262684555](https://github.com/zdmooc/enterpris
 | P1 | Preuve de reprise | [scripts/chaos-delete-pod.sh:40](https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/blob/80c2014c939c783593e6f9a825640f4fb6257089/scripts/chaos-delete-pod.sh#L40) |
 | P1 | Réplication multi-node | [data-platform/kafka/profiles/multinode/kustomization.yaml:5](https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/blob/80c2014c939c783593e6f9a825640f4fb6257089/data-platform/kafka/profiles/multinode/kustomization.yaml#L5) |
 
-Chaque entrée ci-dessous est corrigée dans la branche locale ; « corrigée » décrit les fichiers, jamais une preuve cluster.
+Chaque entrée ci-dessous est corrigée dans la branche `codex/static-audit-lakehouse`, publiée dans la [PR #2](https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/pull/2) ; « corrigée » décrit les fichiers, jamais une preuve cluster.
+
+La [CI enrichie a réussi](https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/actions/runs/36342921185) sur `b295a15737076866d447a7f66678d4293179aa17`. Aucune fusion automatique : des Applications Argo CD suivent `main`, donc une fusion pourrait déclencher une réconciliation sur CRC. La branche d'audit distincte `audit/static-hardening-2026-09-27` reste intacte.
 
 ### P0 — DNS OpenShift
 
