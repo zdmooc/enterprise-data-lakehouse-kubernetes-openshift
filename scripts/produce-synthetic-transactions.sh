@@ -18,7 +18,7 @@ payload='
 '
 
 encoded="$(printf '%s' "$payload" | base64 | tr -d '\n')"
-"$CLI" -n "$NS" run edl-transaction-producer   --image="$IMAGE" --restart=Never --command -- bash -c   "printf '%s' '$encoded' | base64 -d | sed '/^[[:space:]]*$/d' | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC'" >/dev/null
+"$CLI" -n "$NS" run edl-transaction-producer   --labels='edl.network/kafka-client=true'   --image="$IMAGE" --restart=Never --command -- bash -c   "printf '%s' '$encoded' | base64 -d | sed '/^[[:space:]]*$/d' | /opt/kafka/bin/kafka-console-producer.sh --bootstrap-server '$BOOTSTRAP' --topic '$TOPIC'" >/dev/null
 
 "$CLI" -n "$NS" wait pod/edl-transaction-producer --for=jsonpath='{.status.phase}'=Succeeded --timeout=180s >/dev/null || {
   "$CLI" -n "$NS" logs edl-transaction-producer || true
