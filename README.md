@@ -212,6 +212,9 @@ I12 End-to-end Data Product demonstration        IMPLEMENTED / RUNTIME PENDING
 
 See [ROADMAP.md](ROADMAP.md).
 
+Static audit and known remaining gates: [2026-09-27 audit](docs/audit/2026-09-27-static-audit.md).
+Deferred CRC commands: [runtime sequence](docs/audit/CRC-validation-sequence.md).
+
 ---
 
 ## Reuse instead of duplication

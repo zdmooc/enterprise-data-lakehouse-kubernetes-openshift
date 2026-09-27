@@ -23,6 +23,8 @@ crash.log
 .DS_Store
 Thumbs.db
 
+.audit/
+
 # Build/runtime
 target/
 build/

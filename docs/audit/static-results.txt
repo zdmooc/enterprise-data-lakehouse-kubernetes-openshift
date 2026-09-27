@@ -1,0 +1,48 @@
+Audit date: 2026-09-27
+Initial Git revision: 80c2014c939c783593e6f9a825640f4fb6257089
+Audit branch: codex/static-audit-lakehouse
+
+Final offline contract suite:
+  Initial revision exported with git archive: 212 checks, 34 failures.
+  Corrected working tree: 218 checks, 0 failures.
+  The extra checks are derived from added files and the new smoke KafkaTopic.
+
+Reproduction from a Linux/Bash environment, after obtaining the pinned charts:
+  python -m pip install PyYAML==6.0.2
+  mkdir -p .audit
+  helm pull trino --repo https://trinodb.github.io/charts/ --version 1.42.2 --destination .audit
+  helm pull polaris --repo https://downloads.apache.org/polaris/helm-chart --version 1.7.0 --destination .audit
+  tar -xf .audit/trino-1.42.2.tgz -C .audit
+  tar -xf .audit/polaris-1.7.0.tgz -C .audit
+  python tests/static/audit_contracts.py --charts .audit
+  python tests/static/scan_secrets.py
+
+Local versions used:
+  Python 3.12 (bundled runtime)
+  PyYAML 6.0.2
+  Bash 5.2.37 (Git for Windows)
+  Helm v3.15.2+g1a500d5
+  kubectl client v1.33.3 / Kustomize v5.6.0
+
+Downloaded chart archive SHA256 (content identity, not signature verification):
+  trino-1.42.2.tgz
+    0b33da82a36becd8913fef23d99f470bb6b87bce29bbc219089a5bbd4159266d
+  polaris-1.7.0.tgz
+    da9b67decf4dd5a86a5ad990a8610df3889c10881828f6503c48dc173810c8ed
+
+Secret-pattern scan at initial revision:
+  221 reachable commits / 218 unique blobs / 0 candidate matches.
+  Patterns cover recognizable tokens, private keys and literal credentials.
+  Not an exhaustive secret audit; no claim about other repositories.
+
+git diff --check: no whitespace errors.
+GitHub Actions for INITIAL revision: success
+  https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift/actions/runs/36262684555
+Updated GitHub Actions workflow: edited locally, not run remotely.
+The branch has not been pushed; main has not been changed.
+
+No cluster runtime, server dry-run, operator installation, container build,
+application execution, chaos or workload deletion was performed.
+Shell probes were executed only with generated fake oc/kubectl programs.
+Real kubectl was used only for local kustomize rendering and client version.
+Real Helm was used only for chart download, rendering and version display.

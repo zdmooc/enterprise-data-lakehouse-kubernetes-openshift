@@ -28,4 +28,4 @@ Status vocabulary:
 
 ## Important
 
-Iterations I1-I12 are implementation-complete in Git but are not marked TESTED/RUNTIME_VALIDATED until their procedures are actually executed against the selected cluster and evidence is committed. CRC single-node results never prove multi-node HA.
+Iterations I1-I12 contain implementation/design assets in Git (IMPLEMENTED); this is not a claim that every path is executable but are not marked TESTED/RUNTIME_VALIDATED until their procedures are actually executed against the selected cluster and evidence is committed. CRC single-node results never prove multi-node HA.
