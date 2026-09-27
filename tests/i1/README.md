@@ -33,4 +33,8 @@ All runtime resources use the temporary namespace:
 
 `edl-i1-contract-test`
 
+The shared NetworkPolicy probe uses a second temporary namespace,
+`data-platform-preflight`, and cleans it up only after successfully creating it.
+The exposure step checks API/host allocation only, not HTTP reachability.
+
 No Data Platform component is installed during I1.

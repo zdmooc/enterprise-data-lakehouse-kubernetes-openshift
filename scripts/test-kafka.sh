@@ -6,7 +6,7 @@ if command -v oc >/dev/null 2>&1; then CLI=oc; else CLI=kubectl; fi
 NS=edl-data
 IMAGE="quay.io/strimzi/kafka@sha256:e90a1a74af4226f3ca4d1ebef3ab13bdb09754ae17ca4c1444f7fcbb0ca8ea9a"
 BOOTSTRAP="edl-kafka-kafka-bootstrap:9092"
-TOPIC="transactions.raw"
+TOPIC="edl.smoke"
 MESSAGE="edl-smoke-$(date -u +%Y%m%dT%H%M%SZ)-$$"
 
 "$CLI" -n "$NS" delete pod kafka-smoke-producer kafka-smoke-consumer --ignore-not-found=true --wait=true >/dev/null 2>&1 || true

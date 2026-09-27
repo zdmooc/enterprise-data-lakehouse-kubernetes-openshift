@@ -3,6 +3,8 @@ set -euo pipefail
 command -v oc >/dev/null 2>&1 || { echo "[FAIL] oc required"; exit 1; }
 
 oc get ns edl-data >/dev/null 2>&1 || { echo "[FAIL] apply I2 first"; exit 1; }
+bash scripts/apply-data-networking.sh
+oc apply -k data-platform/spark/base
 oc apply -f data-platform/spark/openshift/buildconfig.yaml
 oc -n edl-data start-build edl-spark --follow --wait
 
@@ -13,7 +15,7 @@ oc -n edl-data wait --for=condition=complete job/edl-transactions-submit --timeo
   exit 1
 }
 
-driver="$(oc -n edl-data get pods -l spark-app-name=edl-transactions-aggregate -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
+driver="$(oc -n edl-data get pods -l spark-role=driver,spark-app-name=edl-transactions-aggregate -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
 [ -n "$driver" ] || { echo "[FAIL] Spark transaction driver not found"; exit 1; }
 
 logs="$(oc -n edl-data logs "$driver" 2>/dev/null || true)"

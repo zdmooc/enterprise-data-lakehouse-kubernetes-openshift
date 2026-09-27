@@ -11,6 +11,8 @@ oc get ns edl-data >/dev/null 2>&1 || {
   exit 1
 }
 
+bash scripts/apply-data-networking.sh
+oc -n edl-data delete job spark-pi-submit --ignore-not-found=true --wait=true
 oc apply -k data-platform/spark/profiles/crc
 
 echo "[INFO] waiting for spark-submit Job"
@@ -22,7 +24,7 @@ oc -n edl-data wait --for=condition=complete job/spark-pi-submit --timeout=600s 
 
 oc -n edl-data logs job/spark-pi-submit || true
 
-driver="$(oc -n edl-data get pods -l spark-role=driver -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
+driver="$(oc -n edl-data get pods -l spark-role=driver,spark-app-name=edl-spark-pi -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
 if [ -z "$driver" ]; then
   echo "[FAIL] Spark driver pod not found"
   exit 1

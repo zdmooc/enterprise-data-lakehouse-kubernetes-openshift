@@ -20,7 +20,7 @@ spec:
 YAML
   host=$("$CLI" -n "$NS" get route np-server -o jsonpath='{.spec.host}' 2>/dev/null || true)
   [ -n "$host" ] || fail "OpenShift Route was created but no host was assigned"
-  pass "OpenShift Route API works; host assigned: $host"
+  pass "OpenShift Route API creates a host: $host (HTTP reachability not checked)"
   exit 0
 fi
 

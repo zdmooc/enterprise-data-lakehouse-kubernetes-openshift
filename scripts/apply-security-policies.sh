@@ -3,7 +3,7 @@ set -euo pipefail
 
 if command -v oc >/dev/null 2>&1; then CLI=oc; else CLI=kubectl; fi
 
-"$CLI" get crd validatingpolicies.policies.kyverno.io >/dev/null 2>&1 || {
+"$CLI" get crd namespacedvalidatingpolicies.policies.kyverno.io >/dev/null 2>&1 || {
   echo "[FAIL] Kyverno CEL CRDs missing; run scripts/install-kyverno.sh"
   exit 1
 }

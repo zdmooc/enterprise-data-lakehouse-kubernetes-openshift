@@ -18,7 +18,11 @@ oc get ns "$NS" >/dev/null 2>&1 || {
   exit 1
 }
 
-if command -v openssl >/dev/null 2>&1; then
+# Reuse credentials: updating Secrets alone does not restart a running catalog.
+existing="$(oc -n "$NS" get secret polaris-client --ignore-not-found -o jsonpath='{.data.CLIENT_SECRET}')"
+if [ -n "$existing" ]; then
+  secret="$(printf '%s' "$existing" | base64 --decode)"
+elif command -v openssl >/dev/null 2>&1; then
   secret="$(openssl rand -hex 24)"
 else
   secret="$(python - <<'PY'
@@ -32,7 +36,7 @@ oc -n "$NS" create secret generic polaris-bootstrap   --from-literal=credentials
 
 oc -n "$NS" create secret generic polaris-client   --from-literal=CLIENT_ID=root   --from-literal=CLIENT_SECRET="$secret"   --from-literal=POLARIS_CREDENTIAL="root:$secret"   --dry-run=client -o yaml | oc apply -f -
 
-oc -n "$NS" create secret generic polaris-s3   --from-literal=region="$S3_REGION"   --from-literal=accessKeyId="$AWS_ACCESS_KEY_ID"   --from-literal=secretAccessKey="$AWS_SECRET_ACCESS_KEY"   --dry-run=client -o yaml | oc apply -f -
+oc -n "$NS" create secret generic polaris-s3   --from-literal=endpoint="$S3_ENDPOINT" --from-literal=region="$S3_REGION"   --from-literal=accessKeyId="$AWS_ACCESS_KEY_ID"   --from-literal=secretAccessKey="$AWS_SECRET_ACCESS_KEY"   --dry-run=client -o yaml | oc apply -f -
 
 helm repo add polaris https://downloads.apache.org/polaris/helm-chart --force-update >/dev/null
 helm repo update >/dev/null

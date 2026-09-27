@@ -31,7 +31,7 @@ for i in $(seq 1 60); do
   sync=$("$CLI" -n "$ARGO_NS" get application edl-platform-baseline -o jsonpath='{.status.sync.status}' 2>/dev/null || true)
   health=$("$CLI" -n "$ARGO_NS" get application edl-platform-baseline -o jsonpath='{.status.health.status}' 2>/dev/null || true)
   echo "[INFO] sync=${sync:-unknown} health=${health:-unknown}"
-  if [ "$sync" = "Synced" ] && { [ "$health" = "Healthy" ] || [ "$health" = "Missing" ]; }; then
+  if [ "$sync" = "Synced" ] && [ "$health" = "Healthy" ]; then
     echo "[PASS] GitOps baseline application is reconciled"
     exit 0
   fi

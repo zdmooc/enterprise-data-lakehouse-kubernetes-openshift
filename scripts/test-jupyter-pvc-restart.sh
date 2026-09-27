@@ -12,10 +12,12 @@ pod="$(oc -n "$NS" get pod -l app=edl-jupyter -o jsonpath='{.items[0].metadata.n
 
 marker="pvc-persist-$(date -u +%Y%m%dT%H%M%SZ)"
 oc -n "$NS" exec "$pod" -- sh -c "printf '%s' '$marker' > /home/jovyan/work/.persistence-proof"
-oc -n "$NS" delete pod "$pod" --wait=false >/dev/null
+oc -n "$NS" delete pod "$pod" --wait=true >/dev/null
 oc -n "$NS" rollout status deployment/edl-jupyter --timeout=300s
 
 newpod="$(oc -n "$NS" get pod -l app=edl-jupyter -o jsonpath='{.items[0].metadata.name}')"
+[ "$newpod" != "$pod" ] || { echo "[FAIL] replacement pod not observed"; exit 1; }
+oc -n "$NS" wait --for=condition=Ready "pod/$newpod" --timeout=300s >/dev/null
 observed="$(oc -n "$NS" exec "$newpod" -- cat /home/jovyan/work/.persistence-proof)"
 [ "$observed" = "$marker" ] || { echo "[FAIL] workspace marker not preserved"; exit 1; }
 echo "[PASS] Jupyter workspace survived pod recreation"

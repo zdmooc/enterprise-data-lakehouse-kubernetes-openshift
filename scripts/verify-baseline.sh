@@ -17,7 +17,7 @@ done
 "$CLI" get networkpolicy allow-dns-egress -n edl-data >/dev/null
 
 yes=$("$CLI" auth can-i list pods -n edl-data --as=system:serviceaccount:edl-data:data-workload)
-no=$("$CLI" auth can-i delete pods -n edl-data --as=system:serviceaccount:edl-data:data-workload)
+no=$("$CLI" auth can-i delete pods -n edl-data --as=system:serviceaccount:edl-data:data-workload || true)
 [ "$yes" = "yes" ] || { echo "[FAIL] data-workload cannot list pods"; exit 1; }
 [ "$no" = "no" ] || { echo "[FAIL] data-workload can delete pods"; exit 1; }
 

@@ -17,6 +17,8 @@ pass() { printf '[PASS] %s\n' "$*"; }
 warn() { printf '[WARN] %s\n' "$*"; }
 fail() { printf '[FAIL] %s\n' "$*" >&2; exit 1; }
 
+[ "$NS" = "edl-i1-contract-test" ] || fail "I1 is restricted to edl-i1-contract-test"
+
 ensure_namespace() {
   "$CLI" get ns "$NS" >/dev/null 2>&1 || "$CLI" create ns "$NS" >/dev/null
 }

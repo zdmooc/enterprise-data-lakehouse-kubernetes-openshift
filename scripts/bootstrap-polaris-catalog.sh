@@ -39,9 +39,11 @@ payload={
     "name":"quickstart_catalog",
     "type":"INTERNAL",
     "readOnly":False,
-    "properties":{"default-base-location":f"s3://{bucket}"},
+    "properties":{"default-base-location":f"s3://{bucket}/curated/"},
     "storageConfigInfo":{
       "storageType":"S3",
+      "allowedLocations":[f"s3://{bucket}/curated/"],
+      "stsUnavailable":True,
       "endpoint":os.environ["S3_ENDPOINT"],
       "endpointInternal":os.environ["S3_ENDPOINT_INTERNAL"],
       "pathStyleAccess":True,
@@ -55,7 +57,20 @@ PY
 
 status="$(curl -s -o /tmp/edl-polaris-catalog.out -w '%{http_code}'   -H "Authorization: Bearer $token"   -H 'Polaris-Realm: POLARIS'   -H 'Content-Type: application/json'   -X POST   "http://127.0.0.1:$LOCAL_PORT/api/management/v1/catalogs"   -d "$payload")"
 
-if [ "$status" != "200" ] && [ "$status" != "201" ] && [ "$status" != "409" ]; then
+if [ "$status" = "409" ]; then
+  # Existing catalog is acceptable only when its storage contract matches.
+  current="$(curl --fail --silent --show-error -H "Authorization: Bearer $token" -H 'Polaris-Realm: POLARIS' "http://127.0.0.1:$LOCAL_PORT/api/management/v1/catalogs/quickstart_catalog")"
+  EXPECTED="$payload" CURRENT="$current" python - <<'PY'
+import json, os
+expected = json.loads(os.environ['EXPECTED'])['catalog']
+response = json.loads(os.environ['CURRENT'])
+actual = response.get('catalog', response)
+for section in ('properties', 'storageConfigInfo'):
+    for key, value in expected[section].items():
+        if actual.get(section, {}).get(key) != value:
+            raise SystemExit(f'[FAIL] existing catalog differs at {section}.{key}; review migration, do not delete automatically')
+PY
+elif [ "$status" != "200" ] && [ "$status" != "201" ]; then
   cat /tmp/edl-polaris-catalog.out
   echo "[FAIL] Polaris catalog creation returned HTTP $status"
   exit 1
@@ -63,10 +78,16 @@ fi
 
 grant_status="$(curl -s -o /tmp/edl-polaris-grant.out -w '%{http_code}'   -H "Authorization: Bearer $token"   -H 'Polaris-Realm: POLARIS'   -H 'Content-Type: application/json'   -X PUT   "http://127.0.0.1:$LOCAL_PORT/api/management/v1/catalogs/quickstart_catalog/catalog-roles/catalog_admin/grants"   -d '{"type":"catalog","privilege":"CATALOG_MANAGE_CONTENT"}')"
 
-if [ "$grant_status" != "200" ] && [ "$grant_status" != "201" ] && [ "$grant_status" != "204" ] && [ "$grant_status" != "409" ]; then
+if [ "$grant_status" != "200" ] && [ "$grant_status" != "201" ] && [ "$grant_status" != "204" ]; then
   cat /tmp/edl-polaris-grant.out
   echo "[FAIL] Polaris grant returned HTTP $grant_status"
   exit 1
 fi
+
+curl --fail --silent --show-error \
+  -H "Authorization: Bearer $token" -H 'Polaris-Realm: POLARIS' \
+  -H 'Content-Type: application/json' -X PUT \
+  "http://127.0.0.1:$LOCAL_PORT/api/management/v1/principal-roles/service_admin/catalog-roles/quickstart_catalog" \
+  -d '{"catalogRole":{"name":"catalog_admin"}}' >/dev/null
 
 echo "[PASS] Polaris catalog quickstart_catalog is available for s3://$S3_BUCKET"

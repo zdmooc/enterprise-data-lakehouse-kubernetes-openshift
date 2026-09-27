@@ -5,9 +5,8 @@ command -v oc >/dev/null 2>&1 && CLI=oc
 
 NS=data-platform-preflight
 cleanup() { "$CLI" delete ns "$NS" --ignore-not-found >/dev/null 2>&1 || true; }
-trap cleanup EXIT
-
 "$CLI" create ns "$NS" >/dev/null
+trap cleanup EXIT
 
 cat <<'EOF' | "$CLI" apply -n "$NS" -f - >/dev/null
 apiVersion: apps/v1
@@ -36,20 +35,30 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
----
+EOF
+
+"$CLI" rollout status deploy/target -n "$NS" --timeout=120s >/dev/null
+"$CLI" run network-client -n "$NS" --labels=access=allowed --image=curlimages/curl:8.10.1 --restart=Never --command -- sh -c 'sleep 600' >/dev/null
+"$CLI" wait --for=condition=Ready pod/network-client -n "$NS" --timeout=120s >/dev/null
+"$CLI" exec -n "$NS" network-client -- curl -fsS --max-time 10 http://target >/dev/null
+
+cat <<'EOF' | "$CLI" apply -n "$NS" -f - >/dev/null
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: default-deny-ingress
 spec:
   podSelector: {}
-  policyTypes: ["Ingress"]
+  policyTypes: [Ingress]
 EOF
-
-"$CLI" rollout status deploy/target -n "$NS" --timeout=120s >/dev/null
-
-"$CLI" run denied-client -n "$NS" --image=curlimages/curl:8.10.1 --restart=Never --command -- sh -c 'curl -fsS --max-time 5 http://target' >/dev/null 2>&1 || true
-"$CLI" wait --for=jsonpath='{.status.phase}'=Failed pod/denied-client -n "$NS" --timeout=30s >/dev/null 2>&1 || true
+sleep 3
+# A successful exec transport plus curl timeout is required. DNS, HTTP, RBAC,
+# image-pull and API errors must not be mistaken for NetworkPolicy enforcement.
+denied="$("$CLI" exec -n "$NS" network-client -- sh -c 'curl -fsS --max-time 5 http://target >/dev/null 2>&1; printf "EDL_CURL_EXIT=%s\n" "$?"')"
+[ "$denied" = "EDL_CURL_EXIT=28" ] || {
+  echo "[FAIL] expected a network timeout; got: $denied"
+  exit 1
+}
 
 cat <<'EOF' | "$CLI" apply -n "$NS" -f - >/dev/null
 apiVersion: networking.k8s.io/v1
@@ -70,6 +79,6 @@ spec:
           port: 8080
 EOF
 
-"$CLI" run allowed-client -n "$NS" --labels=access=allowed --image=curlimages/curl:8.10.1 --restart=Never --command -- sh -c 'curl -fsS --max-time 10 http://target' >/dev/null
-"$CLI" wait --for=jsonpath='{.status.phase}'=Succeeded pod/allowed-client -n "$NS" --timeout=60s >/dev/null
-echo "[PASS] NetworkPolicy deny/allow behavior validated"
+sleep 3
+"$CLI" exec -n "$NS" network-client -- curl -fsS --max-time 10 http://target >/dev/null
+echo "[PASS] NetworkPolicy baseline, timeout and restored connectivity observed"

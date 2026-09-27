@@ -5,6 +5,16 @@ command -v helm >/dev/null 2>&1 || { echo "[FAIL] helm required"; exit 1; }
 
 if command -v oc >/dev/null 2>&1; then CLI=oc; else CLI=kubectl; fi
 
+if "$CLI" get crd applications.argoproj.io >/dev/null 2>&1; then
+  for argo_ns in openshift-gitops argocd; do
+    if "$CLI" -n "$argo_ns" get application edl-trino >/dev/null 2>&1; then
+      echo "[FAIL] edl-trino is managed by Argo CD; add values-lakehouse.yaml to its valueFiles and reconcile through Git"
+      exit 1
+    fi
+  done
+fi
+bash scripts/apply-data-networking.sh
+
 "$CLI" -n edl-data get secret polaris-client >/dev/null 2>&1 || {
   echo "[FAIL] polaris-client secret missing; install Polaris first"
   exit 1

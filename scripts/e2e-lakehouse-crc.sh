@@ -53,7 +53,7 @@ oc -n "$NS" wait --for=condition=complete job/edl-lakehouse-submit --timeout=900
   exit 1
 }
 
-driver="$(oc -n "$NS" get pod -l spark-app-name=edl-transactions-lakehouse -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
+driver="$(oc -n "$NS" get pod -l spark-role=driver,spark-app-name=edl-transactions-lakehouse -o jsonpath='{.items[-1:].metadata.name}' 2>/dev/null || true)"
 [ -n "$driver" ] || { echo "[FAIL] lakehouse Spark driver not found"; exit 1; }
 spark_logs="$(oc -n "$NS" logs "$driver" 2>/dev/null || true)"
 printf '%s\n' "$spark_logs"
@@ -86,8 +86,8 @@ bash scripts/test-jupyter-lakehouse.sh
 
 echo "=== I10 Observability status ==="
 if oc get crd servicemonitors.monitoring.coreos.com >/dev/null 2>&1; then
-  bash scripts/apply-observability-openshift.sh || true
-  bash scripts/test-observability-openshift.sh || true
+  bash scripts/apply-observability-openshift.sh || echo "[WARN] I10 apply failed; observability remains pending"
+  bash scripts/test-observability-openshift.sh || echo "[WARN] I10 checks failed; observability remains pending"
 else
   echo "[WARN] Prometheus Operator CRDs unavailable; observability runtime remains pending"
 fi
@@ -98,5 +98,5 @@ bash scripts/gitops-status.sh || true
 echo "=== Evidence snapshot ==="
 bash scripts/collect-runtime-evidence.sh
 
-echo "[PASS] EDL end-to-end CRC flow completed"
+echo "[PASS] EDL data path completed; I3/I10/I11 acceptance is separate"
 echo "[WARN] CRC single-node success is functional interoperability evidence, not HA evidence"
