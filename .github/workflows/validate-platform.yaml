@@ -24,6 +24,12 @@ jobs:
             bash -n "$f"
           done
 
+      - name: Static cross-component contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tests/static/contracts.sh
+
       - name: Install kubectl
         shell: bash
         run: |
@@ -33,6 +39,95 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/kubectl
           kubectl version --client
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Render Trino Helm contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          helm repo add trino https://trinodb.github.io/charts/
+          helm repo update
+
+          helm template edl-trino trino/trino \
+            --version 1.42.2 \
+            --namespace edl-data \
+            -f data-platform/trino/values-crc.yaml \
+            > /tmp/trino-crc.yaml
+
+          grep -A6 '^kind: Service
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize platform/baseline/overlays/kubernetes > /tmp/kubernetes-baseline.yaml
+          test -s /tmp/kubernetes-baseline.yaml
+
+      - name: Render OpenShift baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize platform/baseline/overlays/openshift-crc > /tmp/openshift-baseline.yaml
+          test -s /tmp/openshift-baseline.yaml
+
+      - name: Render GitOps control overlays
+        shell: bash
+        run: |
+          set -euo pipefail
+          kubectl kustomize gitops/control/overlays/kubernetes > /tmp/gitops-kubernetes.yaml
+          kubectl kustomize gitops/control/overlays/openshift > /tmp/gitops-openshift.yaml
+          test -s /tmp/gitops-kubernetes.yaml
+          test -s /tmp/gitops-openshift.yaml
+
+
+      - name: Render Data Platform manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in \
+            data-platform/networking/base \
+            data-platform/kafka/profiles/crc \
+            data-platform/spark/profiles/crc \
+            data-platform/spark/openshift \
+            data-platform/jupyter/openshift \
+            data-platform/lakehouse/openshift \
+            observability/openshift; do
+            echo "rendering $path"
+            kubectl kustomize "$path" > "/tmp/$(echo "$path" | tr '/' '-').yaml"
+          done
+
+      - name: Validate dashboard JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          find observability/grafana -type f -name '*.json' -print0 | while IFS= read -r -d '' f; do
+            echo "checking $f"
+            python -m json.tool "$f" >/dev/null
+          done
+
+      - name: Reject obvious secret files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f \( -name '*.key' -o -name '*.p12' -o -name '*.pfx' -o -name 'kubeconfig' -o -name 'pull-secret*' \) -not -path './.git/*' | grep -q .; then
+            echo "Sensitive-looking file detected"
+            exit 1
+          fi
+ /tmp/trino-crc.yaml | grep -q 'name: edl-trino'
+          if grep -q 'name: edl-trino-trino' /tmp/trino-crc.yaml; then
+            echo "[FAIL] unexpected Trino coordinator service name"
+            exit 1
+          fi
+          grep -q 'query.max-memory-per-node=256MB' /tmp/trino-crc.yaml
+
+          helm template edl-trino trino/trino \
+            --version 1.42.2 \
+            --namespace edl-data \
+            -f data-platform/trino/values-crc.yaml \
+            -f data-platform/trino/values-lakehouse.yaml \
+            > /tmp/trino-lakehouse.yaml
+
+          grep -q 'iceberg.rest-catalog.uri=http://edl-polaris.edl-data.svc:8181/api/catalog' /tmp/trino-lakehouse.yaml
 
       - name: Render Kubernetes baseline
         shell: bash
