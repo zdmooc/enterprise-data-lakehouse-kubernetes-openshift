@@ -1,0 +1,7 @@
+node/edl-lab-control-plane condition met
+node/edl-lab-worker condition met
+node/edl-lab-worker2 condition met
+NAME                    STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   7m      v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          6m45s   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          6m45s   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1

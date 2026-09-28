@@ -1,0 +1,34 @@
+NAME                           REQUEST                                                                    LIMIT                                     AGE
+resourcequota/edl-data-quota   persistentvolumeclaims: 0/10, requests.cpu: 0/6, requests.memory: 0/16Gi   limits.cpu: 0/16, limits.memory: 0/24Gi   2s
+
+NAME                                  CREATED AT
+limitrange/default-container-limits   2026-09-28T11:36:15Z
+
+NAME                           SECRETS   AGE
+serviceaccount/data-workload   0         2s
+serviceaccount/default         0         2s
+
+NAME                                                  CREATED AT
+role.rbac.authorization.k8s.io/data-workload-reader   2026-09-28T11:36:15Z
+
+NAME                                                         ROLE                        AGE
+rolebinding.rbac.authorization.k8s.io/data-workload-reader   Role/data-workload-reader   2s
+
+NAME                                                                    POD-SELECTOR                                                    AGE
+networkpolicy.networking.k8s.io/allow-data-catalog-ingress              <none>                                                          1s
+networkpolicy.networking.k8s.io/allow-dns-egress                        <none>                                                          2s
+networkpolicy.networking.k8s.io/allow-edl-operator-api                  name in (strimzi-cluster-operator,strimzi-entity-operator)      1s
+networkpolicy.networking.k8s.io/allow-jupyter-to-trino                  app=edl-jupyter                                                 1s
+networkpolicy.networking.k8s.io/allow-kafka-same-namespace-egress       strimzi.io/cluster=edl-kafka                                    1s
+networkpolicy.networking.k8s.io/allow-labeled-kafka-clients             edl.network/kafka-client=true                                   1s
+networkpolicy.networking.k8s.io/allow-polaris-object-storage            app.kubernetes.io/name=polaris                                  1s
+networkpolicy.networking.k8s.io/allow-spark-api-target-port             edl.network/api-client in (true)                                1s
+networkpolicy.networking.k8s.io/allow-spark-blockmanager                spark-role in (driver,executor)                                 1s
+networkpolicy.networking.k8s.io/allow-spark-data-services               spark-role=driver                                               1s
+networkpolicy.networking.k8s.io/allow-spark-executor-s3                 spark-role=executor                                             1s
+networkpolicy.networking.k8s.io/allow-spark-executor-to-driver-egress   spark-role=executor                                             1s
+networkpolicy.networking.k8s.io/allow-spark-rpc-ingress                 spark-role=driver                                               1s
+networkpolicy.networking.k8s.io/allow-spark-submit-api                  app.kubernetes.io/name in (edl-lakehouse-submit,spark-submit)   1s
+networkpolicy.networking.k8s.io/allow-trino-internal-and-catalog        app.kubernetes.io/name=trino                                    1s
+networkpolicy.networking.k8s.io/default-deny-egress                     <none>                                                          2s
+networkpolicy.networking.k8s.io/default-deny-ingress                    <none>                                                          2s

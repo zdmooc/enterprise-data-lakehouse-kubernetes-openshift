@@ -1,0 +1,2 @@
+Client Version: v1.33.3
+Kustomize Version: v5.6.0

@@ -1,0 +1,13 @@
+Initial inventory observed 2026-09-28 before Kind creation:
+Git: clean codex/static-audit-lakehouse at ccbb114fb219a4d58d668be3717116670c4bc081
+Main: 80c2014c939c783593e6f9a825640f4fb6257089; audit PR #2 unmerged
+Runtime branch: runtime/kind-edl-lab created from audited ccbb114
+Docker: Linux engine, 8 CPUs, 33592397824 bytes memory
+Containers: 0; images: 0; volumes: 0; Kind clusters: 0
+Networks: bridge, host, none
+Initial context: crc-admin; CRC Running (OpenShift 4.22.7)
+Action authorized by task: crc stop; completed cleanly before Kind creation
+No CRC namespace or workload write was performed.
+Kind: edl-lab, one control-plane plus two workers, Kubernetes 1.33.1
+NetworkPolicy implementation: Calico 3.30.3
+LOCAL LAB / NOT PRODUCTION HA

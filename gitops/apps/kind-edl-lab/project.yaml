@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kind-edl-lab
+spec:
+  description: Kind-only local lab; no external cluster destination
+  sourceRepos:
+    - https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+  destinations:
+    - {server: 'https://kubernetes.default.svc', namespace: edl-data}
+    - {server: 'https://kubernetes.default.svc', namespace: edl-platform}
+    - {server: 'https://kubernetes.default.svc', namespace: edl-observability}
+  clusterResourceWhitelist:
+    - {group: '', kind: Namespace}
+  namespaceResourceWhitelist:
+    - {group: '', kind: ResourceQuota}
+    - {group: '', kind: LimitRange}
+    - {group: '', kind: ServiceAccount}
+    - {group: rbac.authorization.k8s.io, kind: Role}
+    - {group: rbac.authorization.k8s.io, kind: RoleBinding}
+    - {group: networking.k8s.io, kind: NetworkPolicy}
+---

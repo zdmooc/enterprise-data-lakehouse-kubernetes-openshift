@@ -25,7 +25,7 @@ YAML
 fi
 
 if "$CLI" api-resources 2>/dev/null | grep -q '^ingresses[[:space:]]'; then
-  controllers=$("$CLI" get pods -A 2>/dev/null | grep -Ei 'ingress|traefik|nginx' | wc -l | tr -d ' ')
+  controllers=$("$CLI" get pods -A 2>/dev/null | awk 'tolower($0) ~ /ingress|traefik|nginx/ {n++} END {print n+0}')
   if [ "${controllers:-0}" -gt 0 ]; then
     pass "Ingress API and at least one probable ingress controller detected"
   else

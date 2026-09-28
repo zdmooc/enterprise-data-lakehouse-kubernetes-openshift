@@ -1,0 +1,56 @@
+
+============================================================
+RUNNING I1 TEST: 00-preflight.sh
+============================================================
+[INFO] CLI: oc
+[ OK ] CLI client available
+[ OK ] cluster API reachable
+[INFO] OpenShift Route API not detected; treating target as Kubernetes
+[INFO] Platform profile detected: kubernetes
+[ OK ] 3 node(s) visible
+[ OK ] all visible nodes are Ready
+[ OK ] 1 StorageClass(es) found
+[ OK ] kube-system namespace visible
+
+[PASS] cluster satisfies the initial connectivity/readiness preflight.
+Next checks: ingress/route, DNS workload test, dynamic PVC test, RBAC and NetworkPolicy.
+
+============================================================
+RUNNING I1 TEST: 10-dns.sh
+============================================================
+[INFO] Testing in-cluster DNS in namespace edl-i1-contract-test
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1
+
+
+[PASS] cluster DNS resolves kubernetes.default.svc.cluster.local
+
+============================================================
+RUNNING I1 TEST: 20-pvc.sh
+============================================================
+[INFO] Testing dynamic PVC provisioning and persistence
+enterprise-data-lakehouse
+[PASS] PVC data survived pod recreation
+
+============================================================
+RUNNING I1 TEST: 30-rbac.sh
+============================================================
+[INFO] Testing namespace-scoped RBAC
+[PASS] RBAC allows required pod read access and denies secrets/cluster-node access
+
+============================================================
+RUNNING I1 TEST: 40-networkpolicy.sh
+============================================================
+[PASS] NetworkPolicy baseline, timeout and restored connectivity observed
+
+============================================================
+RUNNING I1 TEST: 50-exposure.sh
+============================================================
+[INFO] Checking workload exposure capability
+[WARN] Ingress API exists but no ingress controller was confidently detected
+
+[PASS] I1 executable test suite completed.
+Run 'bash tests/i1/cleanup.sh' when evidence capture is complete.

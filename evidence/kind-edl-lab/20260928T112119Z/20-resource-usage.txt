@@ -1,0 +1,59 @@
+NAMESPACE            NAME                                            READY   STATUS    RESTARTS   AGE
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp        1/1     Running   0          10m
+kube-system          calico-node-9c92x                               1/1     Running   0          10m
+kube-system          calico-node-kxn5h                               1/1     Running   0          10m
+kube-system          calico-node-r2fjv                               1/1     Running   0          10m
+kube-system          coredns-674b8bbfcf-rlc6x                        1/1     Running   0          10m
+kube-system          coredns-674b8bbfcf-z6qc6                        1/1     Running   0          10m
+kube-system          etcd-edl-lab-control-plane                      1/1     Running   0          10m
+kube-system          kube-apiserver-edl-lab-control-plane            1/1     Running   0          10m
+kube-system          kube-controller-manager-edl-lab-control-plane   1/1     Running   0          10m
+kube-system          kube-proxy-ntlfp                                1/1     Running   0          10m
+kube-system          kube-proxy-t4mkz                                1/1     Running   0          10m
+kube-system          kube-proxy-vvwp5                                1/1     Running   0          10m
+kube-system          kube-scheduler-edl-lab-control-plane            1/1     Running   0          10m
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn         1/1     Running   0          10m
+[INFO] node metrics unavailable
+[INFO] pod metrics unavailable
+CONTAINER ID   NAME                    CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O         PIDS
+0b1373e18e98   edl-lab-worker2         6.98%     569.4MiB / 31.29GiB   1.78%     313MB / 6.85MB   258kB / 1.33GB    148
+2ae0f7f06247   edl-lab-control-plane   32.06%    912.9MiB / 31.29GiB   2.85%     243MB / 17.4MB   1.83MB / 1.57GB   265
+a5000f4a3d06   edl-lab-worker          4.32%     644.2MiB / 31.29GiB   2.01%     299MB / 6.73MB   659kB / 1.4GB     261
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          1         1         1.071GB   0B (0%)
+Containers      3         3         542.1MB   0B (0%)
+Local Volumes   3         3         4.523GB   0B (0%)
+Build Cache     0         0         0B        0B
+NAMESPACE            NAME                                                READY   STATUS      RESTARTS   AGE
+argocd               argocd-application-controller-0                     1/1     Running     0          28s
+argocd               argocd-applicationset-controller-7f77c467d8-trjz8   1/1     Running     0          28s
+argocd               argocd-redis-5fb8cdb75b-l25jg                       1/1     Running     0          28s
+argocd               argocd-redis-secret-init-xmsp9                      0/1     Completed   0          2m15s
+argocd               argocd-repo-server-7c69999875-6k97k                 1/1     Running     0          28s
+argocd               argocd-server-5b845b4458-jfqcl                      1/1     Running     0          28s
+edl-data             kind-contract                                       1/1     Running     0          3m10s
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp            1/1     Running     0          15m
+kube-system          calico-node-9c92x                                   1/1     Running     0          15m
+kube-system          calico-node-kxn5h                                   1/1     Running     0          15m
+kube-system          calico-node-r2fjv                                   1/1     Running     0          15m
+kube-system          coredns-674b8bbfcf-rlc6x                            1/1     Running     0          15m
+kube-system          coredns-674b8bbfcf-z6qc6                            1/1     Running     0          15m
+kube-system          etcd-edl-lab-control-plane                          1/1     Running     0          15m
+kube-system          kube-apiserver-edl-lab-control-plane                1/1     Running     0          15m
+kube-system          kube-controller-manager-edl-lab-control-plane       1/1     Running     0          15m
+kube-system          kube-proxy-ntlfp                                    1/1     Running     0          15m
+kube-system          kube-proxy-t4mkz                                    1/1     Running     0          15m
+kube-system          kube-proxy-vvwp5                                    1/1     Running     0          15m
+kube-system          kube-scheduler-edl-lab-control-plane                1/1     Running     0          15m
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn             1/1     Running     0          15m
+[INFO] node metrics unavailable
+[INFO] pod metrics unavailable
+CONTAINER ID   NAME                    CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O         PIDS
+0b1373e18e98   edl-lab-worker2         9.74%     893.2MiB / 31.29GiB   2.79%     586MB / 13.5MB   262kB / 2.44GB    281
+2ae0f7f06247   edl-lab-control-plane   22.97%    1.127GiB / 31.29GiB   3.60%     249MB / 34.9MB   1.83MB / 1.61GB   265
+a5000f4a3d06   edl-lab-worker          6.52%     647.1MiB / 31.29GiB   2.02%     302MB / 6.97MB   659kB / 1.4GB     263
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          1         1         1.071GB   0B (0%)
+Containers      3         3         542.1MB   0B (0%)
+Local Volumes   3         3         5.454GB   0B (0%)
+Build Cache     0         0         0B        0B
