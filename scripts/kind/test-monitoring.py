@@ -4,6 +4,7 @@ import json
 import subprocess
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 if subprocess.check_output(['kubectl', 'config', 'current-context'], text=True).strip() != 'kind-edl-lab':
@@ -28,7 +29,8 @@ try:
                 pool = target['scrapePool']
                 if target['health'] != 'up':
                     continue
-                if '/edl-kafka-metrics/' in pool: found.add('kafka')
+                if '/edl-kafka-metrics/' in pool and target.get('labels', {}).get('pod') == 'edl-kafka-dual-role-0':
+                    found.add('kafka')
                 if '/edl-kafka-exporter/' in pool: found.add('kafka-exporter')
                 if '/edl-trino-coordinator/' in pool: found.add('trino-coordinator')
                 if '/edl-trino-worker/' in pool: found.add('trino-worker')
@@ -50,6 +52,18 @@ try:
                 'EDLPodRestartBurst', 'EDLPVCNearlyFull'}
     assert expected <= names, f'Missing rules: {expected - names}'
     print('Loaded application rules:', ', '.join(sorted(expected)))
+    for group in groups:
+        for rule in group['rules']:
+            if rule['name'] in expected:
+                print('Rule:', rule['name'], 'health=' + rule.get('health', 'unknown'),
+                      'state=' + rule.get('state', 'unknown'))
+    for metric in ('kube_pod_status_ready', 'kube_pod_container_status_restarts_total',
+                   'kafka_consumergroup_lag', 'kafka_topic_partition_under_replicated_partition',
+                   'trino_execution_name_QueryManager_RunningQueries',
+                   'kubelet_volume_stats_capacity_bytes'):
+        series = get('query?' + urllib.parse.urlencode({'query': metric}))['result']
+        print('Metric series:', metric, len(series))
+    assert get('query?' + urllib.parse.urlencode({'query': 'kube_pod_status_ready{namespace="edl-data"}'}))['result'], 'No workload metrics available'
     print('[PASS] Kafka, exporter, Trino coordinator and worker targets UP; alert rules loaded')
 finally:
     pf.terminate()
@@ -74,7 +88,15 @@ try:
             with urllib.request.urlopen(req, timeout=10) as response:
                 titles = {item['title'] for item in json.load(response)}
             if expected <= titles:
-                print('[PASS] Grafana authenticated API and both repository dashboards available')
+                req = urllib.request.Request('http://127.0.0.1:13000/api/datasources', headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    sources = json.load(response)
+                source = next(s for s in sources if s['type'] == 'prometheus' and s['isDefault'])
+                req = urllib.request.Request('http://127.0.0.1:13000/api/datasources/uid/' + source['uid'] + '/health', headers=headers)
+                with urllib.request.urlopen(req, timeout=15) as response:
+                    health = json.load(response)
+                assert health['status'] == 'OK', 'Grafana Prometheus datasource is unhealthy'
+                print('[PASS] Grafana authenticated API, healthy Prometheus datasource and both repository dashboards available')
                 break
         except urllib.error.URLError:
             if pf.poll() is not None:

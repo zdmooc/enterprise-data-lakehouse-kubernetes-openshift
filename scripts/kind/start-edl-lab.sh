@@ -11,4 +11,7 @@ docker start "${nodes[@]}"
 kind export kubeconfig --name "$CLUSTER"
 kubectl config use-context "$CONTEXT"
 ready_nodes
+if k -n edl-data get deployment edl-polaris >/dev/null 2>&1; then
+  bash scripts/kind/resume-data.sh
+fi
 resource_check

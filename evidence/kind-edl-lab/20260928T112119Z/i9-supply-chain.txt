@@ -1,0 +1,727 @@
+files scan completed: {'LOW': 249, 'MEDIUM': 25, 'HIGH': 28}
+Finding classes: {'Misconfigurations': 302}
+Misconfigurations data-platform/jupyter/openshift/deployment.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/jupyter/openshift/deployment.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/jupyter/openshift/deployment.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/lakehouse/openshift/spark-submit-job.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/lakehouse/openshift/spark-submit-job.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/lakehouse/openshift/spark-submit-job.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/base/rbac.yaml KSV-0056 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/openshift/transactions-submit.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/openshift/transactions-submit.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/openshift/transactions-submit.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/profiles/crc/spark-pi-submit.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/profiles/crc/spark-pi-submit.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations data-platform/spark/profiles/crc/spark-pi-submit.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations platform/kind/contract-probe.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations platform/kind/s3-contract-job.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations platform/kind/s3-reader.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations platform/kind/spark-job.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations security/kyverno/tests/pod-latest-denied.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations security/kyverno/tests/pod-versioned-allowed.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations security/tests/hostnetwork-pod-denied.yaml KSV-0009 HIGH  installed= fixed=
+Misconfigurations security/tests/hostnetwork-pod-denied.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations security/tests/hostnetwork-pod-denied.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations security/tests/hostnetwork-pod-denied.yaml KSV-0118 HIGH  installed= fixed=
+Misconfigurations security/tests/privileged-pod-denied.yaml KSV-0014 HIGH  installed= fixed=
+Misconfigurations security/tests/privileged-pod-denied.yaml KSV-0017 HIGH  installed= fixed=
+Misconfigurations security/tests/privileged-pod-denied.yaml KSV-0118 HIGH  installed= fixed=
+spark scan completed: {'MEDIUM': 3567, 'LOW': 336, 'CRITICAL': 10, 'HIGH': 276}
+Finding classes: {'Vulnerabilities': 4189}
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37777 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53398 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63940 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64535 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64564 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74394 CRITICAL linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-1205 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-49359 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-49910 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-49935 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-50095 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-50212 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-50213 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2022-50234 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-52926 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-53382 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-53781 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-53785 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-54035 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2023-54125 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2024-53147 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2024-53179 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2024-56692 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2024-57857 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-10263 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-21759 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-21812 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-21947 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-22040 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-22041 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37899 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37920 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37926 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37952 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-37956 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-38349 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-38437 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-38552 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-38615 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-38717 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-39726 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-39863 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-39931 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-39952 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-39977 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40025 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40039 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40064 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40075 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40158 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-40190 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-68315 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-71073 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2025-71315 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23004 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23171 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23191 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23208 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23226 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23240 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23271 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23378 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23393 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-23449 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31403 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31432 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31449 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31502 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31516 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31536 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31548 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31663 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31678 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31700 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31706 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31708 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31709 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31712 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-31729 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43009 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43016 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43049 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43091 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43116 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43153 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43214 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43437 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43456 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-43490 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-45850 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-46320 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-52909 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-52910 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53033 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53036 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53090 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53148 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53159 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53178 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53185 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53186 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53196 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53198 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53239 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53254 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53256 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53262 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53264 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53266 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53269 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53270 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53275 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53356 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53357 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53388 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-53399 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63801 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63809 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63815 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63823 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63917 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63926 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63954 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63971 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-63976 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64002 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64005 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64015 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64091 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64093 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64123 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64188 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64191 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64266 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64269 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64276 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64361 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64380 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64390 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64393 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64396 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64423 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64432 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64440 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64441 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64442 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64543 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64548 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64554 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64557 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64562 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-64567 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68085 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68098 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68117 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68121 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68162 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68196 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68198 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68199 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68204 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68236 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68257 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68284 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68323 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68329 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68399 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68446 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68451 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-68470 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72024 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72110 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72123 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72124 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72135 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72195 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72288 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72338 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72390 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72472 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-72478 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74268 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74317 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74334 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74341 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74363 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74378 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74390 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74427 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74438 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74465 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74470 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74506 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-74510 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80631 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80634 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80637 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80644 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80671 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80681 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80710 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80714 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80716 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities edl-spark-lakehouse:kind-4.1.3-iceberg1.11 (ubuntu 22.04) CVE-2026-80718 HIGH linux-libc-dev installed=5.15.0-194.204 fixed=
+Vulnerabilities Java CVE-2025-52999 HIGH com.fasterxml.jackson.core:jackson-core installed=2.12.7 fixed=2.15.0
+Vulnerabilities Java GHSA-r7wm-3cxj-wff9 HIGH com.fasterxml.jackson.core:jackson-core installed=2.12.7 fixed=2.18.8, 2.21.4
+Vulnerabilities Java GHSA-r7wm-3cxj-wff9 HIGH com.fasterxml.jackson.core:jackson-core installed=2.15.2 fixed=2.18.8, 2.21.4
+Vulnerabilities Java GHSA-r7wm-3cxj-wff9 HIGH com.fasterxml.jackson.core:jackson-core installed=2.19.2 fixed=2.18.8, 2.21.4
+Vulnerabilities Java GHSA-r7wm-3cxj-wff9 HIGH com.fasterxml.jackson.core:jackson-core installed=2.21.2 fixed=2.18.8, 2.21.4
+Vulnerabilities Java CVE-2026-54512 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.12.7.1 fixed=2.18.8, 3.1.4, 2.21.4
+Vulnerabilities Java CVE-2026-54513 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.12.7.1 fixed=2.18.8, 2.21.4, 3.1.4
+Vulnerabilities Java CVE-2026-54512 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.15.2 fixed=2.18.8, 3.1.4, 2.21.4
+Vulnerabilities Java CVE-2026-54513 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.15.2 fixed=2.18.8, 2.21.4, 3.1.4
+Vulnerabilities Java CVE-2026-68497 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.15.2 fixed=2.18.10, 2.21.6, 2.22.2
+Vulnerabilities Java CVE-2026-54512 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.19.2 fixed=2.18.8, 3.1.4, 2.21.4
+Vulnerabilities Java CVE-2026-54513 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.19.2 fixed=2.18.8, 2.21.4, 3.1.4
+Vulnerabilities Java CVE-2026-68497 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.19.2 fixed=2.18.10, 2.21.6, 2.22.2
+Vulnerabilities Java CVE-2026-54512 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.21.2 fixed=2.18.8, 3.1.4, 2.21.4
+Vulnerabilities Java CVE-2026-54513 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.21.2 fixed=2.18.8, 2.21.4, 3.1.4
+Vulnerabilities Java CVE-2026-68497 HIGH com.fasterxml.jackson.core:jackson-databind installed=2.21.2 fixed=2.18.10, 2.21.6, 2.22.2
+Vulnerabilities Java CVE-2026-44894 HIGH io.netty:netty-codec-classes-quic installed=4.2.7.Final fixed=4.2.15.Final
+Vulnerabilities Java CVE-2026-59901 HIGH io.netty:netty-codec-compression installed=4.2.13.Final fixed=4.2.16.Final
+Vulnerabilities Java CVE-2026-42583 HIGH io.netty:netty-codec-compression installed=4.2.7.Final fixed=4.2.13.Final
+Vulnerabilities Java CVE-2026-42583 HIGH io.netty:netty-codec-compression installed=4.2.7.Final fixed=4.2.13.Final
+Vulnerabilities Java CVE-2026-59901 HIGH io.netty:netty-codec-compression installed=4.2.7.Final fixed=4.2.16.Final
+Vulnerabilities Java CVE-2026-59901 HIGH io.netty:netty-codec-compression installed=4.2.7.Final fixed=4.2.16.Final
+Vulnerabilities Java CVE-2026-42579 HIGH io.netty:netty-codec-dns installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-55831 HIGH io.netty:netty-codec-http installed=4.2.13.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-55833 HIGH io.netty:netty-codec-http installed=4.2.13.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-56745 HIGH io.netty:netty-codec-http installed=4.2.13.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-33870 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.1.132.Final, 4.2.10.Final
+Vulnerabilities Java CVE-2026-33870 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.1.132.Final, 4.2.10.Final
+Vulnerabilities Java CVE-2026-42584 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-42584 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-42587 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-42587 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-55831 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-55831 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-55833 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-55833 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-56745 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-56745 HIGH io.netty:netty-codec-http installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-56819 HIGH io.netty:netty-codec-http2 installed=4.2.13.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-33871 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.1.132.Final, 4.2.11.Final
+Vulnerabilities Java CVE-2026-33871 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.1.132.Final, 4.2.11.Final
+Vulnerabilities Java CVE-2026-42587 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-42587 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.2.13.Final, 4.1.133.Final
+Vulnerabilities Java CVE-2026-56819 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-56819 HIGH io.netty:netty-codec-http2 installed=4.2.7.Final fixed=4.2.16.Final, 4.1.136.Final
+Vulnerabilities Java CVE-2026-42582 HIGH io.netty:netty-codec-http3 installed=4.2.7.Final fixed=4.2.13.Final
+Vulnerabilities Java CVE-2026-44892 HIGH io.netty:netty-codec-http3 installed=4.2.7.Final fixed=4.2.15.Final
+Vulnerabilities Java CVE-2026-48748 HIGH io.netty:netty-codec-http3 installed=4.2.7.Final fixed=4.2.15.Final
+Vulnerabilities Java CVE-2026-56816 HIGH io.netty:netty-codec-http3 installed=4.2.7.Final fixed=4.2.16.Final
+Vulnerabilities Java CVE-2026-75595 CRITICAL io.netty:netty-handler installed=4.2.13.Final fixed=4.2.17.Final, 4.1.137.Final
+Vulnerabilities Java CVE-2026-44249 HIGH io.netty:netty-handler installed=4.2.13.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-45416 HIGH io.netty:netty-handler installed=4.2.13.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-50010 HIGH io.netty:netty-handler installed=4.2.13.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-75595 CRITICAL io.netty:netty-handler installed=4.2.7.Final fixed=4.2.17.Final, 4.1.137.Final
+Vulnerabilities Java CVE-2026-75595 CRITICAL io.netty:netty-handler installed=4.2.7.Final fixed=4.2.17.Final, 4.1.137.Final
+Vulnerabilities Java CVE-2026-44249 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-44249 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-45416 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-45416 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-50010 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-50010 HIGH io.netty:netty-handler installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-45674 HIGH io.netty:netty-resolver-dns installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-47691 HIGH io.netty:netty-resolver-dns installed=4.2.7.Final fixed=4.2.15.Final, 4.1.135.Final
+Vulnerabilities Java CVE-2026-42577 HIGH io.netty:netty-transport-classes-epoll installed=4.2.7.Final fixed=4.2.13.Final
+Vulnerabilities Java CVE-2022-46337 CRITICAL org.apache.derby:derby installed=10.16.1.1 fixed=10.14.2.1, 10.16.1.2, 10.15.2.1
+Vulnerabilities Java CVE-2026-54399 HIGH org.apache.httpcomponents.core5:httpcore5 installed=5.4 fixed=5.4.3, 5.5-beta2
+Vulnerabilities Java CVE-2026-54428 HIGH org.apache.httpcomponents.core5:httpcore5-h2 installed=5.4 fixed=5.4.3, 5.5-beta2
+Vulnerabilities Java CVE-2026-43869 HIGH org.apache.thrift:libthrift installed=0.16.0 fixed=0.23.0
+Vulnerabilities Java CVE-2026-43871 HIGH org.apache.thrift:libthrift installed=0.16.0 fixed=0.24.0
+Vulnerabilities Java CVE-2026-24281 HIGH org.apache.zookeeper:zookeeper installed=3.9.4 fixed=3.8.6, 3.9.5
+Vulnerabilities Java CVE-2026-24308 HIGH org.apache.zookeeper:zookeeper installed=3.9.4 fixed=3.9.5, 3.8.6
+Vulnerabilities Java CVE-2026-2332 HIGH org.eclipse.jetty:jetty-http installed=11.0.26 fixed=12.1.7, 12.0.33, 11.0.29, 10.0.28, 9.4.60
+Vulnerabilities Java CVE-2026-2332 HIGH org.eclipse.jetty:jetty-http installed=9.4.57.v20241219 fixed=12.1.7, 12.0.33, 11.0.29, 10.0.28, 9.4.60
+Vulnerabilities Java CVE-2026-10050 HIGH org.eclipse.jetty:jetty-security installed=11.0.26 fixed=9.4.63, 10.0.31, 11.0.31, 12.0.36, 12.1.10
+Vulnerabilities Java CVE-2026-77422 HIGH org.jline:jline-builtins installed=3.29.0 fixed=4.3.1, 3.30.15
+Vulnerabilities Java CVE-2026-77422 HIGH org.jline:jline-builtins installed=3.9.0 fixed=4.3.1, 3.30.15
+Vulnerabilities Java CVE-2026-56740 HIGH org.jline:jline-remote-telnet installed=3.29.0 fixed=4.2.1, 4.0.16, 3.30.14
+Vulnerabilities Java CVE-2026-56741 HIGH org.jline:jline-remote-telnet installed=3.29.0 fixed=4.2.1, 4.0.16, 3.30.14
+Vulnerabilities Java CVE-2026-56740 HIGH org.jline:jline-remote-telnet installed=3.9.0 fixed=4.2.1, 4.0.16, 3.30.14
+Vulnerabilities Java CVE-2026-56741 HIGH org.jline:jline-remote-telnet installed=3.9.0 fixed=4.2.1, 4.0.16, 3.30.14
+Vulnerabilities Java CVE-2025-12183 HIGH org.lz4:lz4-java installed=1.8.0 fixed=1.8.1
+Vulnerabilities Java CVE-2025-66566 HIGH org.lz4:lz4-java installed=1.8.0 fixed=
+jupyter scan completed: {'MEDIUM': 3916, 'LOW': 306, 'CRITICAL': 7, 'HIGH': 198}
+Finding classes: {'Vulnerabilities': 4427}
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53215 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53398 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63940 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64535 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64564 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74394 CRITICAL linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2024-57857 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-10263 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-142.142
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-37906 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-38187 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-38563 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-38717 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-40025 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-40064 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-40075 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-40158 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-40190 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-68304 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-68360 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-71073 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2025-71315 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-23208 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-23240 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-23393 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-31536 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-31663 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-43009 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-43083 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-43116 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-43198 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-43263 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-45850 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-46242 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-46275 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-46320 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-46330 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-46331 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-52908 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-52909 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-52910 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-52914 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-52924 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53090 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53148 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53151 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53159 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53176 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53178 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53182 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53183 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53185 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53186 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-142.142
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53196 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53198 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53212 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53224 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-138.138
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53239 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53250 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53254 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53256 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53262 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53264 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53266 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53269 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53270 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53275 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53356 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53357 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53359 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-137.137
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53362 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53365 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53388 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-53399 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63801 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63809 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63815 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63823 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63884 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63917 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63926 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63946 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63954 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63971 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63974 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-63976 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64002 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64005 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64015 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64018 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64032 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64073 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64091 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-142.142
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64093 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64115 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-139.139
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64123 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64188 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64191 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64266 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64269 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64276 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64361 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64380 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64383 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64385 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64386 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64387 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64390 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64393 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64396 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64423 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64432 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64440 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64441 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64442 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64531 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=6.8.0-138.138
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64543 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64548 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64554 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64557 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64562 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64567 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-64597 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68085 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68098 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68117 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68121 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68147 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68162 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68189 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68196 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68198 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68199 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68204 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68236 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68257 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68284 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68323 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68329 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68399 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68442 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68446 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68451 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-68470 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72024 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72110 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72111 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72123 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72124 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72135 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72195 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72288 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72338 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72390 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72472 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-72478 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74268 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74317 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74334 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74341 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74363 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74378 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74390 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74411 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74427 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74438 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74446 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74465 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74470 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74506 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74510 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74534 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-74535 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80631 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80634 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80637 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80644 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80668 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80671 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80681 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80691 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80692 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80693 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80700 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80702 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80710 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80714 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80716 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80718 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80721 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities edl-jupyter:kind-2026-07-28 (ubuntu 24.04) CVE-2026-80725 HIGH linux-libc-dev installed=6.8.0-136.136 fixed=
+Vulnerabilities Node.js CVE-2023-39663 HIGH mathjax installed=2.7.9 fixed=
+Vulnerabilities Node.js CVE-2026-27601 HIGH underscore installed=1.13.7 fixed=1.13.8
+Vulnerabilities Python CVE-2026-78676 CRITICAL GitPython installed=3.1.57 fixed=3.1.59
+Vulnerabilities Python CVE-2026-76218 HIGH GitPython installed=3.1.57 fixed=3.1.58
+Vulnerabilities Python CVE-2026-76219 HIGH GitPython installed=3.1.57 fixed=3.1.58
+Vulnerabilities Python CVE-2026-76220 HIGH GitPython installed=3.1.57 fixed=3.1.58
+Vulnerabilities Python CVE-2026-76222 HIGH GitPython installed=3.1.57 fixed=3.1.58
+Vulnerabilities Python CVE-2026-78675 HIGH GitPython installed=3.1.57 fixed=3.1.59
+Vulnerabilities Python CVE-2026-78677 HIGH GitPython installed=3.1.57 fixed=3.1.59
+Vulnerabilities Python GHSA-jm78-9fvv-mhgr HIGH GitPython installed=3.1.57 fixed=3.1.58
+Vulnerabilities Python CVE-2026-69247 HIGH cryptography installed=49.0.0 fixed=50.0.0
+Vulnerabilities Python CVE-2026-86049 HIGH jupyter_server installed=2.20.0 fixed=2.21.0
+Vulnerabilities Python CVE-2026-82397 HIGH tornado installed=6.5.7 fixed=6.5.8
+Vulnerabilities opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so GHSA-36hh-v3qg-5jq4 HIGH pyo3 installed=0.25.1 fixed=0.29.0
+Vulnerabilities opt/conda/lib/python3.13/site-packages/rattler/rattler.abi3.so GHSA-4w2j-m93h-cj5j HIGH quinn-proto installed=0.11.14 fixed=0.11.15
+s3 scan completed: {'MEDIUM': 127, 'HIGH': 199, 'LOW': 10}
+Finding classes: {'Vulnerabilities': 336}
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-59375 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.6.3-1.amzn2023.0.3
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-50219 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56131 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56132 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.6.3-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56403 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.6.3-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56404 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56405 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56406 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.6.3-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56407 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.6.3-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56408 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56409 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56410 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56411 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-56412 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-66046 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-76957 HIGH expat installed=2.6.3-1.amzn2023.0.2 fixed=2.8.3-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-40467 HIGH gawk installed=5.1.0-3.amzn2023.0.3 fixed=5.1.0-3.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-40468 HIGH gawk installed=5.1.0-3.amzn2023.0.3 fixed=5.1.0-3.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-40553 HIGH gawk installed=5.1.0-3.amzn2023.0.3 fixed=5.1.0-3.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-13601 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-767.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-14087 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-769.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-16118 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-771.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58010 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58011 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58012 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58013 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58014 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58015 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-58016 HIGH glib2 installed=2.82.2-766.amzn2023 fixed=2.82.2-770.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4046 HIGH glibc installed=2.34-231.amzn2023.0.1 fixed=2.34-231.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4046 HIGH glibc-common installed=2.34-231.amzn2023.0.1 fixed=2.34-231.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4046 HIGH glibc-minimal-langpack installed=2.34-231.amzn2023.0.1 fixed=2.34-231.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-68973 HIGH gnupg2-minimal installed=2.3.7-1.amzn2023.0.5 fixed=2.3.7-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-24882 HIGH gnupg2-minimal installed=2.3.7-1.amzn2023.0.5 fixed=2.3.7-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-49839 HIGH jq installed=1.7.1-51.amzn2023 fixed=1.8.1-60.amzn2023
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-54369 HIGH libacl installed=2.3.1-2.amzn2023.0.2 fixed=2.4.0-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-54370 HIGH libacl installed=2.3.1-2.amzn2023.0.2 fixed=2.4.0-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-53615 HIGH libblkid installed=2.37.4-1.amzn2023.0.4 fixed=2.37.4-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-47912 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58183 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58185 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58186 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58187 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58188 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-58189 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61723 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61724 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61725 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61726 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61727 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61728 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61729 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-61730 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-27142 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-33811 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-33814 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-39820 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-39823 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42499 HIGH libcap installed=2.73-1.amzn2023.0.3 fixed=2.73-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-53615 HIGH libmount installed=2.37.4-1.amzn2023.0.4 fixed=2.37.4-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-27135 HIGH libnghttp2 installed=1.59.0-3.amzn2023.0.1 fixed=1.59.0-3.amzn2023.0.2
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-53615 HIGH libsmartcols installed=2.37.4-1.amzn2023.0.4 fixed=2.37.4-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-48863 HIGH libsolv installed=0.7.22-1.amzn2023.0.2 fixed=0.7.22-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-48864 HIGH libsolv installed=0.7.22-1.amzn2023.0.2 fixed=0.7.22-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9149 HIGH libsolv installed=0.7.22-1.amzn2023.0.2 fixed=0.7.22-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9150 HIGH libsolv installed=0.7.22-1.amzn2023.0.2 fixed=0.7.22-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-13151 HIGH libtasn1 installed=4.19.0-1.amzn2023.0.5 fixed=4.19.0-1.amzn2023.0.6
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-53615 HIGH libuuid installed=2.37.4-1.amzn2023.0.4 fixed=2.37.4-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15467 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15468 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-66199 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-68160 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69418 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69419 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69420 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69421 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-14456 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.7-2.amzn2023.0.2
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-14457 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-18798 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-22795 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-22796 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28387 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28388 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28389 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28390 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-31790 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34180 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34181 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34182 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34183 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42764 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42766 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42767 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42768 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42769 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42770 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45445 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45446 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45447 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-54874 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63072 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63073 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63074 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63075 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63076 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-7383 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-75803 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9076 HIGH openssl-fips-provider-latest installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15467 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15468 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-66199 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-68160 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69418 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69419 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69420 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-69421 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-14456 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.7-2.amzn2023.0.2
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-14457 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-18798 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-22795 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-22796 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.2.2-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28387 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28388 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28389 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-28390 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-31790 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34180 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34181 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34182 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-34183 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42764 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42766 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42767 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42768 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42769 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-42770 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45445 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45446 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-45447 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-54874 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63072 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63073 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63074 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63075 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-63076 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-7383 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-75803 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.8-1.amzn2023.0.1
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9076 HIGH openssl-libs installed=1:3.2.2-1.amzn2023.0.1 fixed=1:3.5.5-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-11468 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-13462 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15282 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0672 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0864 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0865 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11940 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11972 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-1299 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-15308 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-3276 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-3644 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4224 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4360 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4519 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4786 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-6100 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-7774 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9669 HIGH python3 installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-11468 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-13462 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-15282 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0672 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0864 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-0865 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11940 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11972 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-1299 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-15308 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-3276 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-3644 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4224 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4360 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4519 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.4
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-4786 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-6100 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.5
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-7774 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.9
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-9669 HIGH python3-libs installed=3.9.23-1.amzn2023.0.3 fixed=3.9.25-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-66418 HIGH python3-pip-wheel installed=21.3.1-2.amzn2023.0.13 fixed=21.3.1-2.amzn2023.0.15
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2025-66471 HIGH python3-pip-wheel installed=21.3.1-2.amzn2023.0.13 fixed=21.3.1-2.amzn2023.0.15
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-21441 HIGH python3-pip-wheel installed=21.3.1-2.amzn2023.0.13 fixed=21.3.1-2.amzn2023.0.16
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-6357 HIGH python3-pip-wheel installed=21.3.1-2.amzn2023.0.13 fixed=21.3.1-2.amzn2023.0.19
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-8643 HIGH python3-pip-wheel installed=21.3.1-2.amzn2023.0.13 fixed=21.3.1-2.amzn2023.0.20
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-44605 HIGH python3-rpm installed=4.16.1.3-29.amzn2023.0.6 fixed=4.16.1.3-29.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-44605 HIGH rpm installed=4.16.1.3-29.amzn2023.0.6 fixed=4.16.1.3-29.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-44605 HIGH rpm-build-libs installed=4.16.1.3-29.amzn2023.0.6 fixed=4.16.1.3-29.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-44605 HIGH rpm-libs installed=4.16.1.3-29.amzn2023.0.6 fixed=4.16.1.3-29.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-44605 HIGH rpm-sign-libs installed=4.16.1.3-29.amzn2023.0.6 fixed=4.16.1.3-29.amzn2023.0.7
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11822 HIGH sqlite-libs installed=3.40.0-1.amzn2023.0.6 fixed=3.40.0-1.amzn2023.0.8
+Vulnerabilities edl-s3-client:kind-2.31.0 (amazon 2023.8.20250915 (Amazon Linux)) CVE-2026-11824 HIGH sqlite-libs installed=3.40.0-1.amzn2023.0.6 fixed=3.40.0-1.amzn2023.0.8
+Vulnerabilities Python CVE-2026-24049 HIGH wheel installed=0.45.1 fixed=0.46.2
+Scanner execution is not proof of absence of vulnerabilities; findings require explicit review.

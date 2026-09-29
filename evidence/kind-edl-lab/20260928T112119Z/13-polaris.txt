@@ -1,0 +1,3 @@
+[PASS] Polaris authentication, catalog storage contract and grants verified
+Catalog: quickstart_catalog; storage: s3://edl-lab/curated/
+LAB ONLY / IN-MEMORY METADATA / NOT DURABLE / NOT PRODUCTION HA

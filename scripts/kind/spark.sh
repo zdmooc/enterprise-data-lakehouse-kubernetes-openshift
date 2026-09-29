@@ -20,7 +20,7 @@ if ! wait_job "kind-spark-$mode-submit" 900; then
   fail "Spark $mode failed"
 fi
 k -n edl-data wait --for=jsonpath='{.status.phase}'=Succeeded pod/"kind-spark-$mode-driver" --timeout=60s
-k -n edl-data logs "kind-spark-$mode-driver" > "$EVIDENCE_DIR/spark-$mode.txt"
+k -n edl-data logs "kind-spark-$mode-driver" | sed 's/[[:space:]]*$//' > "$EVIDENCE_DIR/spark-$mode.txt"
 if [ "$mode" = smoke ]; then
   grep 'Pi is roughly' "$EVIDENCE_DIR/spark-$mode.txt"
 else

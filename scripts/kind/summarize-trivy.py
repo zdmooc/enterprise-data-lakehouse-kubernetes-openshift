@@ -9,12 +9,13 @@ for name in ('files', 'spark', 'jupyter', 's3'):
     for result in report.get('Results', []):
         for kind in ('Vulnerabilities', 'Misconfigurations', 'Secrets'):
             for finding in result.get(kind, []) or []:
-                findings.append((kind, finding))
-    print(name, 'scan completed:', dict(Counter(f.get('Severity', 'UNKNOWN') for _, f in findings)))
-    for kind, finding in findings:
+                findings.append((kind, result.get('Target', ''), finding))
+    print(name, 'scan completed:', dict(Counter(f.get('Severity', 'UNKNOWN') for _, _, f in findings)))
+    print('Finding classes:', dict(Counter(kind for kind, _, _ in findings)))
+    for kind, target, finding in findings:
         if finding.get('Severity') not in ('HIGH', 'CRITICAL'):
             continue
-        print(kind, finding.get('VulnerabilityID', finding.get('ID', finding.get('RuleID', 'unknown'))),
+        print(kind, target, finding.get('VulnerabilityID', finding.get('ID', finding.get('RuleID', 'unknown'))),
               finding.get('Severity'), finding.get('PkgName', ''),
               'installed=' + finding.get('InstalledVersion', ''),
               'fixed=' + finding.get('FixedVersion', ''))

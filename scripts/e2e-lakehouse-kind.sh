@@ -7,6 +7,12 @@ for deployment in $(k -n edl-data get deployment -o name); do
   k -n edl-data rollout status "$deployment" --timeout=180s
 done
 k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=180s
+export PATH="$ROOT/scripts/kind/portable-cli:$PATH"
+# A fresh probe does not depend on yesterday's temporary sleep process.
+k -n edl-data delete pod kind-kafka-client --ignore-not-found --wait=true
+oc -n edl-data run kind-kafka-client --labels=edl.network/kafka-client=true \
+  --image=quay.io/strimzi/kafka:1.2.0-kafka-4.3.1 --restart=Always --command -- bash -c 'sleep 86400'
+k -n edl-data wait --for=condition=Ready pod/kind-kafka-client --timeout=300s
 marker="kind-e2e-$(date -u +%s)-$$"
 payload="{\"eventId\":\"$marker\",\"eventTime\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"transactionId\":\"$marker\",\"amount\":17.42,\"currency\":\"EUR\",\"status\":\"ACCEPTED\",\"channel\":\"E2E\",\"country\":\"FR\",\"latencyMs\":7}"
 exec > >(tee "$EVIDENCE_DIR/19-e2e-output.txt") 2>&1
@@ -20,6 +26,7 @@ rows="$(k -n edl-data exec "$coordinator" -- trino --server http://localhost:808
 echo '[PASS] Trino read the exact fresh Kafka event from Iceberg'
 k -n edl-data exec deployment/edl-jupyter -- python -c 'import os,sys,trino; c=trino.dbapi.connect(host=os.environ["TRINO_HOST"],port=8080,user="data-analyst",catalog="polaris",schema="analytics"); cur=c.cursor(); cur.execute("SELECT eventId, amount, channel FROM transactions WHERE eventId = ?",[sys.argv[1]]); rows=cur.fetchall(); assert len(rows)==1 and rows[0][0]==sys.argv[1] and rows[0][2]=="E2E", rows; print("[PASS] Jupyter read the same fresh event:",rows)' "$marker"
 guard
+k -n edl-data delete pod kind-s3-reader --ignore-not-found --wait=true
 k apply -f platform/kind/s3-reader.yaml
 k -n edl-data wait --for=condition=Ready pod/kind-s3-reader --timeout=120s
 objects="$(k -n edl-data exec kind-s3-reader -- bash -ec 'aws --endpoint-url "$S3_ENDPOINT" s3 ls "s3://$S3_BUCKET/curated/" --recursive')"

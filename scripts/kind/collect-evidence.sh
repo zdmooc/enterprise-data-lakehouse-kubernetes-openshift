@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 source "$(dirname "$0")/common.sh"
 guard
+py scripts/kind/check-health.py | tee "$EVIDENCE_DIR/final-health.txt"
 ready_nodes > "$EVIDENCE_DIR/04-nodes.txt"
 k get namespaces > "$EVIDENCE_DIR/05-namespaces.txt"
 k get pods -A -o wide > "$EVIDENCE_DIR/06-pods-all.txt"
@@ -8,6 +9,7 @@ k get services -A > "$EVIDENCE_DIR/07-services.txt"
 k get pvc -A > "$EVIDENCE_DIR/08-pvc.txt"
 k get storageclasses > "$EVIDENCE_DIR/09-storageclasses.txt"
 k -n argocd get applications -o wide > "$EVIDENCE_DIR/argocd-final.txt"
+h list -A > "$EVIDENCE_DIR/helm-releases.txt"
 k -n edl-data get resourcequota,limitrange,networkpolicy > "$EVIDENCE_DIR/16-networkpolicies.txt"
 {
   k -n edl-data get jobs

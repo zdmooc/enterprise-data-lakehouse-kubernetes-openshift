@@ -1,0 +1,10 @@
+[PASS] service account cannot read Secrets
+[PASS] service account cannot delete Pods
+[PASS] versioned pod accepted and latest tag rejected by the expected policy
+[PASS] privileged workload rejected
+[PASS] hostNetwork workload rejected
+[PASS] five negative security cases validated
+[PASS] CPU and memory requests/limits present on every edl-data pod container; Kyverno resource policy is Audit
+NAME                           AGE     READY
+disallow-latest-images         6m10s   true
+require-cpu-memory-resources   6m10s   true

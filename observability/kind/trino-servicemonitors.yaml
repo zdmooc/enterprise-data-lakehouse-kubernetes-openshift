@@ -19,10 +19,13 @@ spec:
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
-      httpHeaders:
-        X-Trino-User:
-          values:
-            - prometheus
+      basicAuth:
+        username:
+          name: kind-trino-metrics
+          key: username
+        password:
+          name: kind-trino-metrics
+          key: password
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -45,7 +48,10 @@ spec:
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
-      httpHeaders:
-        X-Trino-User:
-          values:
-            - prometheus
+      basicAuth:
+        username:
+          name: kind-trino-metrics
+          key: username
+        password:
+          name: kind-trino-metrics
+          key: password

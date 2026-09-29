@@ -1,0 +1,31 @@
+2026-09-29T18:37:05Z
+kind-edl-lab
+NAME                    STATUS   ROLES           AGE   VERSION
+edl-lab-control-plane   Ready    control-plane   31h   v1.33.1
+edl-lab-worker          Ready    <none>          31h   v1.33.1
+edl-lab-worker2         Ready    <none>          31h   v1.33.1
+deployment "edl-jupyter" successfully rolled out
+pod/edl-jupyter-6c67748ccb-mlz4d condition met
+persistentvolumeclaim/jupyter-workspace condition met
+NAME                           READY   STATUS    RESTARTS   AGE     IP                NODE              NOMINATED NODE   READINESS GATES
+edl-jupyter-6c67748ccb-mlz4d   1/1     Running   0          6h47m   192.168.169.222   edl-lab-worker2   <none>           <none>
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+jupyter-workspace   Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 6h47m
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+edl-jupyter   ClusterIP   10.96.156.67   <none>        8888/TCP   6h47m
+sha256:a54e134013fbf00f591451f7a701c855d91188b9d0b1c07cfcf1ac30282a432c
+JUPYTER_HTTP_STATUS=200
+['ACCEPTED', 'MOBILE', 1, 125.4]
+['ACCEPTED', 'POS', 1, 19.99]
+['ACCEPTED', 'WEB', 1, 90.0]
+['PENDING', 'WEB', 1, 800.0]
+['REJECTED', 'MOBILE', 1, 250.1]
+EDL_JUPYTER_LAKEHOUSE_ROWS=5
+EDL_JUPYTER_ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+[PASS] Jupyter PVC proof retained
+[PASS] I8 Jupyter: Ready pod, Bound PVC, authenticated HTTP, Trino connection and real Iceberg transactions

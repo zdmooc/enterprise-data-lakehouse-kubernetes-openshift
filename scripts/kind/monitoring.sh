@@ -12,6 +12,8 @@ h upgrade --install edl-monitoring kube-prometheus-stack --version 91.8.1 --name
   --repo https://prometheus-community.github.io/helm-charts --repository-config .audit/kind/repos.yaml \
   --repository-cache .audit/kind/helm-cache -f platform/kind/monitoring-values.yaml --wait --timeout=15m
 guard
+k -n edl-data create secret generic kind-trino-metrics --from-literal=username=prometheus \
+  --dry-run=client -o yaml | k apply -f -
 k apply -k observability/kind
 k -n edl-observability create configmap edl-grafana-dashboards \
   --from-file=observability/grafana/edl-overview-dashboard.json \
