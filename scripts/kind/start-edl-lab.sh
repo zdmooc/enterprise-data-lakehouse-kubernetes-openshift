@@ -8,6 +8,7 @@ fi
 mapfile -t nodes < <(lab_nodes)
 [ "${#nodes[@]}" = 3 ] || fail 'expected existing 3 edl-lab containers; use create script for a new lab'
 docker start "${nodes[@]}"
+kind export kubeconfig --name "$CLUSTER"
 kubectl config use-context "$CONTEXT"
 ready_nodes
 resource_check

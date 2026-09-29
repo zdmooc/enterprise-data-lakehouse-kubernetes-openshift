@@ -1,0 +1,51 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: edl-trino-coordinator
+  namespace: edl-data
+  labels:
+    app.kubernetes.io/part-of: enterprise-data-lakehouse
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: trino
+      app.kubernetes.io/instance: edl-trino
+      app.kubernetes.io/component: coordinator
+  namespaceSelector:
+    matchNames:
+      - edl-data
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+      httpHeaders:
+        X-Trino-User:
+          values:
+            - prometheus
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: edl-trino-worker
+  namespace: edl-data
+  labels:
+    app.kubernetes.io/part-of: enterprise-data-lakehouse
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: trino
+      app.kubernetes.io/instance: edl-trino
+      app.kubernetes.io/component: worker
+  namespaceSelector:
+    matchNames:
+      - edl-data
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      scrapeTimeout: 10s
+      httpHeaders:
+        X-Trino-User:
+          values:
+            - prometheus

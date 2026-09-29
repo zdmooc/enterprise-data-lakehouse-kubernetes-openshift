@@ -46,3 +46,26 @@ ready_nodes() {
 lab_nodes() {
   docker ps -aq --filter 'label=io.x-k8s.kind.cluster=edl-lab'
 }
+py() {
+  local executable="${EDL_PYTHON:-}"
+  if [ -z "$executable" ] && [ -n "${USERPROFILE:-}" ]; then
+    executable="$(cygpath -u "$USERPROFILE")/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe"
+  fi
+  if [ -n "$executable" ] && [ -f "$executable" ]; then
+    "$executable" "$@"
+  else
+    python3 "$@"
+  fi
+}
+wait_job() {
+  local name="$1" timeout="${2:-900}" deadline status failed
+  deadline=$((SECONDS + timeout))
+  while [ "$SECONDS" -lt "$deadline" ]; do
+    status="$(k -n edl-data get job "$name" -o jsonpath='{.status.succeeded}:{.status.failed}')"
+    [[ "$status" = 1:* ]] && return 0
+    failed="${status#*:}"
+    [ "${failed:-0}" -gt 0 ] && return 1
+    sleep 5
+  done
+  return 1
+}

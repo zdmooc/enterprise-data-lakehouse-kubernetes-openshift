@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Kind-only adapter for legacy portable probes that prefer oc and use `run`.
+# It calls kubectl, never the real OpenShift CLI, and adds restricted PSS fields.
+set -euo pipefail
+[ "$(kubectl config current-context)" = kind-edl-lab ] || exit 90
+args=("$@")
+for ((i=0; i<${#args[@]}; i++)); do
+  if [ "${args[$i]}" = run ]; then
+    name="${args[$((i+1))]}"
+    [[ "$name" =~ ^[a-z0-9-]+$ ]] || exit 91
+    overrides="{\"spec\":{\"securityContext\":{\"runAsNonRoot\":true,\"runAsUser\":1001,\"seccompProfile\":{\"type\":\"RuntimeDefault\"}},\"containers\":[{\"name\":\"$name\",\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]}},\"resources\":{\"requests\":{\"cpu\":\"50m\",\"memory\":\"128Mi\"},\"limits\":{\"cpu\":\"500m\",\"memory\":\"512Mi\"}}}]}}"
+    # Options must be before the `--` separating the container command.
+    exec kubectl --context=kind-edl-lab "${args[@]:0:$((i+2))}" --override-type=strategic --overrides="$overrides" "${args[@]:$((i+2))}"
+  fi
+done
+exec kubectl --context=kind-edl-lab "${args[@]}"

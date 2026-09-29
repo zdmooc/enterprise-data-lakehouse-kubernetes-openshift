@@ -1,0 +1,68 @@
+# LOCAL LAB / NOT HA: one combined controller and broker, replication factor one.
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaNodePool
+metadata:
+  name: dual-role
+  namespace: edl-data
+  labels:
+    strimzi.io/cluster: edl-kafka
+spec:
+  replicas: 1
+  roles: [controller, broker]
+  resources:
+    requests: {cpu: 250m, memory: 768Mi}
+    limits: {cpu: '2', memory: 1536Mi}
+  jvmOptions:
+    '-Xms': 512m
+    '-Xmx': 512m
+  storage:
+    type: jbod
+    volumes:
+      - id: 0
+        type: persistent-claim
+        size: 2Gi
+        kraftMetadata: shared
+  template:
+    pod:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 0
+        fsGroup: 0
+        seccompProfile: {type: RuntimeDefault}
+---
+apiVersion: kafka.strimzi.io/v1
+kind: Kafka
+metadata:
+  name: edl-kafka
+  namespace: edl-data
+spec:
+  kafka:
+    version: 4.3.1
+    metadataVersion: 4.3-IV0
+    listeners:
+      - {name: plain, port: 9092, type: internal, tls: false}
+      - {name: tls, port: 9093, type: internal, tls: true}
+    metricsConfig:
+      type: strimziMetricsReporter
+    config:
+      offsets.topic.replication.factor: 1
+      transaction.state.log.replication.factor: 1
+      transaction.state.log.min.isr: 1
+      default.replication.factor: 1
+      min.insync.replicas: 1
+  entityOperator:
+    topicOperator:
+      resources:
+        requests: {cpu: 50m, memory: 256Mi}
+        limits: {cpu: 500m, memory: 384Mi}
+    userOperator:
+      resources:
+        requests: {cpu: 50m, memory: 256Mi}
+        limits: {cpu: 500m, memory: 384Mi}
+  kafkaExporter:
+    topicRegex: '.*'
+    groupRegex: '.*'
+    resources:
+      requests: {cpu: 50m, memory: 64Mi}
+      limits: {cpu: 250m, memory: 128Mi}

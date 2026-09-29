@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kind-s3-reader
+  namespace: edl-data
+  labels: {edl.s3-client: 'true'}
+spec:
+  restartPolicy: Never
+  serviceAccountName: data-workload
+  automountServiceAccountToken: false
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    seccompProfile: {type: RuntimeDefault}
+  containers:
+    - name: reader
+      image: edl-s3-client:kind-2.31.0
+      imagePullPolicy: IfNotPresent
+      command: [bash, -c, 'sleep 86400']
+      envFrom:
+        - secretRef: {name: kind-s3}
+      env:
+        - {name: HOME, value: /tmp}
+        - {name: AWS_PAGER, value: ''}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities: {drop: [ALL]}
+      resources:
+        requests: {cpu: 10m, memory: 32Mi}
+        limits: {cpu: 250m, memory: 128Mi}

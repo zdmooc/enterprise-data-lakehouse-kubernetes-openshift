@@ -4,5 +4,5 @@ inventory
 guard
 mapfile -t nodes < <(lab_nodes)
 [ "${#nodes[@]}" = 3 ] || fail 'expected exactly the 3 edl-lab node containers'
-docker stop "${nodes[@]}"
+docker stop --time 60 "${nodes[@]}"
 echo '[PASS] edl-lab stopped; containers, images and volumes preserved'

@@ -1,0 +1,10 @@
+NAME                  SYNC STATUS   HEALTH STATUS   REVISION                                   PROJECT
+kind-edl-baseline     Synced        Healthy         1aea52377f759e0245c5598d0a78145c46dd96ea   kind-edl-lab
+kind-edl-networking   Synced        Healthy         1aea52377f759e0245c5598d0a78145c46dd96ea   kind-edl-lab
+NAME                                                READY   STATUS    RESTARTS   AGE
+argocd-application-controller-0                     1/1     Running   0          2m45s
+argocd-applicationset-controller-7f77c467d8-trjz8   1/1     Running   0          2m45s
+argocd-redis-5fb8cdb75b-l25jg                       1/1     Running   0          2m45s
+argocd-repo-server-7c69999875-6k97k                 1/1     Running   0          2m45s
+argocd-server-5b845b4458-jfqcl                      1/1     Running   0          2m45s
+[PASS] baseline and networking synced/healthy; namespace label drift automatically healed

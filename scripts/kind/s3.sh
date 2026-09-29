@@ -16,12 +16,14 @@ fi
 k apply -k data-platform/object-storage/profiles/kind
 k -n edl-data rollout status deployment/edl-s3 --timeout=600s
 guard
+docker build -t edl-s3-client:kind-2.31.0 platform/kind/s3-client
+kind load docker-image edl-s3-client:kind-2.31.0 --name "$CLUSTER"
 k -n edl-data create configmap kind-s3-contract-scripts \
   --from-file=scripts/bootstrap-s3-layout.sh --from-file=scripts/verify-s3-layout.sh \
   --from-file=scripts/s3-contract-check.sh --dry-run=client -o yaml | k apply -f -
 k -n edl-data delete job kind-s3-contract --ignore-not-found --wait=true
 k apply -f platform/kind/s3-contract-job.yaml
-if ! k -n edl-data wait --for=condition=Complete job/kind-s3-contract --timeout=600s; then
+if ! wait_job kind-s3-contract 600; then
   k -n edl-data logs job/kind-s3-contract
   fail 'S3 contract failed'
 fi

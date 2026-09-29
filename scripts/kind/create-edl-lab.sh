@@ -8,6 +8,7 @@ fi
 if ! kind get clusters | grep -qx "$CLUSTER"; then
   kind create cluster --config platform/kind/kind-edl-lab.yaml
 fi
+kind export kubeconfig --name "$CLUSTER"
 kubectl config use-context "$CONTEXT"
 guard
 # kindnet does not enforce NetworkPolicy; install an enforcing CNI before I1.

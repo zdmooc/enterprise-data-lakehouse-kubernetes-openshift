@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    edl.s3-client: 'true'
+spec:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 185
+    runAsGroup: 0
+    fsGroup: 0
+    seccompProfile: {type: RuntimeDefault}
+  containers:
+    - name: spark-kubernetes
+      volumeMounts:
+        - name: edl-templates
+          mountPath: /opt/edl-templates
+          readOnly: true
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities: {drop: [ALL]}
+  volumes:
+    - name: edl-templates
+      configMap:
+        name: kind-spark-templates

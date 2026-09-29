@@ -1,0 +1,8 @@
+[PASS] S3 Data Product zones are available in bucket edl-lab
+[PASS] S3 PUT/GET/integrity/DELETE contract validated
+[PASS] S3 contract and logical zone layout validated
+2026-09-28 11:52:02         21 checkpoints/.edl-zone
+2026-09-28 11:46:42         38 contract-tests/20260928T114638Z-53.txt
+2026-09-28 11:52:00         17 curated/.edl-zone
+2026-09-28 11:52:05         18 evidence/.edl-zone
+2026-09-28 11:51:58         13 raw/.edl-zone
