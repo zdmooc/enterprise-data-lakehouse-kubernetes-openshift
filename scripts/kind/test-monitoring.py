@@ -1,5 +1,6 @@
 """Require live Kafka/Trino scrape targets and loaded application alert rules."""
 import base64
+from datetime import datetime, timezone
 import json
 import subprocess
 import time
@@ -9,6 +10,26 @@ import urllib.request
 
 if subprocess.check_output(['kubectl', 'config', 'current-context'], text=True).strip() != 'kind-edl-lab':
     raise SystemExit('Wrong Kubernetes context')
+print('I10 validation:', datetime.now(timezone.utc).isoformat(), 'context=kind-edl-lab')
+pods = json.loads(subprocess.check_output(['kubectl', '--context=kind-edl-lab',
+    '-n', 'edl-observability', 'get', 'pods', '-o', 'json'], text=True))['items']
+assert pods, 'No observability pods found'
+for pod in pods:
+    if pod['status']['phase'] == 'Succeeded':
+        continue
+    ready = any(c['type'] == 'Ready' and c['status'] == 'True'
+                for c in pod['status'].get('conditions', []))
+    assert ready and pod['status']['phase'] == 'Running', pod['metadata']['name'] + ' is not Ready'
+    print('Ready pod:', pod['metadata']['name'])
+for kind, required_names in (
+    ('servicemonitor', {'edl-trino-coordinator', 'edl-trino-worker'}),
+    ('podmonitor', {'edl-kafka-metrics', 'edl-kafka-exporter'}),
+    ('prometheusrule', {'edl-data-platform-rules'}),
+):
+    items = json.loads(subprocess.check_output(['kubectl', '--context=kind-edl-lab',
+        '-n', 'edl-data', 'get', kind, '-o', 'json'], text=True))['items']
+    assert required_names <= {item['metadata']['name'] for item in items}, 'Missing ' + kind
+    print('Loaded resource:', kind, ', '.join(sorted(required_names)))
 pf = subprocess.Popen(['kubectl', '--context=kind-edl-lab', '-n', 'edl-observability',
     'port-forward', 'svc/edl-monitoring-prometheus', '19090:9090', '--address=127.0.0.1'],
     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -34,7 +55,8 @@ try:
                 if '/edl-kafka-exporter/' in pool: found.add('kafka-exporter')
                 if '/edl-trino-coordinator/' in pool: found.add('trino-coordinator')
                 if '/edl-trino-worker/' in pool: found.add('trino-worker')
-            if found == required:
+            broker_targets = [t for t in targets if '/edl-kafka-metrics/' in t['scrapePool']]
+            if found == required and len(broker_targets) == 1 and all(t['health'] == 'up' for t in targets):
                 break
         except urllib.error.URLError:
             if pf.poll() is not None:
@@ -43,9 +65,11 @@ try:
     else:
         for target in targets:
             print(target['scrapePool'], target['health'], target.get('lastError', ''))
-        raise SystemExit('Required application scrape targets are missing or DOWN')
+        raise SystemExit('Missing/DOWN scrape targets or duplicate Kafka broker monitor targets')
     for target in targets:
-        print(target['scrapePool'], target['health'], target.get('lastError', ''))
+        print(target['scrapePool'], target.get('labels', {}).get('pod', ''),
+              'instance=' + target.get('labels', {}).get('instance', ''), target['health'])
+    print('TARGETS_UP=' + str(len(targets)) + '; TARGETS_TOTAL=' + str(len(targets)))
     groups = get('rules')['groups']
     names = {rule['name'] for group in groups for rule in group['rules']}
     expected = {'EDLKafkaConsumerLagHigh', 'EDLKafkaUnderReplicatedPartition',
@@ -55,6 +79,7 @@ try:
     for group in groups:
         for rule in group['rules']:
             if rule['name'] in expected:
+                assert rule.get('health') == 'ok', 'Unhealthy rule: ' + rule['name']
                 print('Rule:', rule['name'], 'health=' + rule.get('health', 'unknown'),
                       'state=' + rule.get('state', 'unknown'))
     for metric in ('kube_pod_status_ready', 'kube_pod_container_status_restarts_total',
@@ -63,8 +88,11 @@ try:
                    'kubelet_volume_stats_capacity_bytes'):
         series = get('query?' + urllib.parse.urlencode({'query': metric}))['result']
         print('Metric series:', metric, len(series))
+        if not series:
+            print('NOT AVAILABLE:', metric, '- no active series; dependent panels/alerts are not validated')
     assert get('query?' + urllib.parse.urlencode({'query': 'kube_pod_status_ready{namespace="edl-data"}'}))['result'], 'No workload metrics available'
     print('[PASS] Kafka, exporter, Trino coordinator and worker targets UP; alert rules loaded')
+    print('Scope: only listed scrape targets; no metric coverage claimed for other components.')
 finally:
     pf.terminate()
     pf.wait(timeout=15)

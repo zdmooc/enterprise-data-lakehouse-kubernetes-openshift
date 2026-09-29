@@ -489,3 +489,64 @@ Images          4         1         8.757GB   7.686GB (87%)
 Containers      3         3         542.1MB   0B (0%)
 Local Volumes   3         3         59.56GB   0B (0%)
 Build Cache     69        0         5.905kB   5.905kB
+NAMESPACE            NAME                                                  READY   STATUS      RESTARTS        AGE
+argocd               argocd-application-controller-0                       1/1     Running     0               31h
+argocd               argocd-applicationset-controller-7f77c467d8-trjz8     1/1     Running     0               31h
+argocd               argocd-redis-5fb8cdb75b-l25jg                         1/1     Running     0               31h
+argocd               argocd-repo-server-7c69999875-6k97k                   1/1     Running     0               31h
+argocd               argocd-server-5b845b4458-jfqcl                        1/1     Running     0               31h
+edl-data             edl-jupyter-6c67748ccb-mlz4d                          1/1     Running     0               6h55m
+edl-data             edl-kafka-dual-role-0                                 1/1     Running     0               23h
+edl-data             edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0               23h
+edl-data             edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0               23h
+edl-data             edl-polaris-7f765cd5fc-df6q5                          1/1     Running     0               13h
+edl-data             edl-s3-86454754dc-sv7v7                               1/1     Running     0               31h
+edl-data             edl-transaction-producer                              0/1     Completed   0               23h
+edl-data             edl-transactions-to-iceberg-6add86a0ebb33f6e-exec-1   0/1     Completed   0               12h
+edl-data             edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0               12h
+edl-data             edl-trino-worker-fd7d84897-ppvg9                      1/1     Running     0               12h
+edl-data             kind-contract                                         1/1     Running     0               31h
+edl-data             kind-kafka-client                                     1/1     Running     0               23h
+edl-data             kind-s3-contract-njkgw                                0/1     Completed   0               30h
+edl-data             kind-spark-lakehouse-driver                           0/1     Completed   0               12h
+edl-data             kind-spark-lakehouse-submit-5w4j6                     0/1     Completed   0               12h
+edl-data             kind-spark-smoke-driver                               0/1     Completed   0               13h
+edl-data             kind-spark-smoke-submit-qvvnq                         0/1     Completed   0               13h
+edl-data             pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0               13h
+edl-observability    edl-monitoring-grafana-588684d575-7qj2z               3/3     Running     0               5h31m
+edl-observability    edl-monitoring-kube-state-metrics-5f86f7f857-d24nv    1/1     Running     0               5h31m
+edl-observability    edl-monitoring-operator-6f98564695-v6rr2              1/1     Running     0               5h31m
+edl-observability    prometheus-edl-monitoring-prometheus-0                2/2     Running     0               5h30m
+edl-platform         strimzi-cluster-operator-6b5748dd7c-vw5xc             1/1     Running     2 (6h58m ago)   23h
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp              1/1     Running     0               31h
+kube-system          calico-node-9c92x                                     1/1     Running     0               31h
+kube-system          calico-node-kxn5h                                     1/1     Running     0               31h
+kube-system          calico-node-r2fjv                                     1/1     Running     0               31h
+kube-system          coredns-674b8bbfcf-rlc6x                              1/1     Running     0               31h
+kube-system          coredns-674b8bbfcf-z6qc6                              1/1     Running     0               31h
+kube-system          etcd-edl-lab-control-plane                            1/1     Running     0               31h
+kube-system          kube-apiserver-edl-lab-control-plane                  1/1     Running     0               31h
+kube-system          kube-controller-manager-edl-lab-control-plane         1/1     Running     5 (6h55m ago)   31h
+kube-system          kube-proxy-ntlfp                                      1/1     Running     0               31h
+kube-system          kube-proxy-t4mkz                                      1/1     Running     0               31h
+kube-system          kube-proxy-vvwp5                                      1/1     Running     0               31h
+kube-system          kube-scheduler-edl-lab-control-plane                  1/1     Running     5 (6h54m ago)   31h
+kyverno              kyverno-admission-controller-bc847675-bmkjv           1/1     Running     0               5h47m
+kyverno              kyverno-background-controller-86cf668b6d-f4g7j        1/1     Running     0               5h47m
+kyverno              kyverno-cleanup-controller-8c7fc6cb7-vxgkf            1/1     Running     0               5h47m
+kyverno              kyverno-migrate-resources-q8ps8                       0/1     Completed   0               5h40m
+kyverno              kyverno-reports-controller-65fb7bf664-ttwwk           1/1     Running     0               5h47m
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn               1/1     Running     0               31h
+[INFO] node metrics unavailable
+[INFO] pod metrics unavailable
+CONTAINER ID   NAME                    CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O         PIDS
+0b1373e18e98   edl-lab-worker2         25.25%    4.561GiB / 31.29GiB   14.58%    5.05GB / 605MB   4.56GB / 26.7GB   887
+2ae0f7f06247   edl-lab-control-plane   46.48%    3.095GiB / 31.29GiB   9.89%     710MB / 2.72GB   4.42GB / 23GB     288
+a5000f4a3d06   edl-lab-worker          32.00%    3.691GiB / 31.29GiB   11.80%    3.31GB / 267MB   4.51GB / 24.1GB   790
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          4         1         8.757GB   7.686GB (87%)
+Containers      3         3         542.1MB   0B (0%)
+Local Volumes   3         3         62.1GB    0B (0%)
+Build Cache     69        0         5.905kB   5.905kB
+
+I10: kubectl top = NOT AVAILABLE (metrics-server / metrics.k8s.io API absent). Docker stats above are Docker container measurements, not Kubernetes Metrics API data.

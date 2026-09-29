@@ -162,6 +162,17 @@ the installed ServiceMonitor CRD rejects `httpHeaders`. A live probe returned HT
 200 with username-only Basic authentication and 401 without an identity, matching
 the [Trino OpenMetrics authentication example](https://trino.io/docs/current/admin/openmetrics.html).
 This is the lab's existing unauthenticated-user mode, not password authentication.
+The Operator requires an explicit Secret selector for the empty password as well.
+`configure-trino-metrics.sh` supplies both keys, and `monitoring.sh` preserves them
+on reruns. The Kafka broker PodMonitor selects only `edl-kafka-kafka`; the exporter
+has its own monitor to avoid duplicate collection.
+
+I10 runtime validation on 2026-09-29 found 21/21 configured targets UP, four healthy
+loaded application rules, Grafana's authenticated API and healthy Prometheus
+datasource, and both dashboards. Consumer-lag and PVC-capacity metric series were
+absent; their dependent panels/alerts are not validated. No alert firing test or
+metric coverage for unlisted components is claimed. `kubectl top = NOT AVAILABLE`;
+Docker stats do not replace the Kubernetes Metrics API.
 
 References: [Kind v0.29.0](https://github.com/kubernetes-sigs/kind/releases/tag/v0.29.0),
 [Calico on Kind](https://docs.tigera.io/calico/latest/getting-started/kubernetes/kind),

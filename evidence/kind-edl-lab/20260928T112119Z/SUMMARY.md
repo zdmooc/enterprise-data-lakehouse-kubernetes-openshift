@@ -15,7 +15,7 @@ This pack records actual gates; later stages are not inferred from static files.
 | I7 Trino | IMPLEMENTED | RUNTIME_VALIDATED | 14-trino.txt | SELECT 1, 25 TPCH nations, five Iceberg transactions |
 | I8 Jupyter | IMPLEMENTED | RUNTIME_VALIDATED | 15-jupyter.txt, jupyter-image.txt | Revalidated 2026-09-29 18:37 UTC: Ready pod, Bound PVC, HTTP 200, five actual Iceberg transactions via Trino, retained PVC proof |
 | I9 security | IMPLEMENTED | RUNTIME_VALIDATED | 17-security-tests.txt, i9-supply-chain.txt, SECURITY_FINDINGS.md | Five denials passed; scans completed with vulnerabilities remaining; resource policy Audit |
-| I10 observability | IMPLEMENTED | NOT_TESTED | Pending | Metrics API absent; Docker stats available |
+| I10 observability | IMPLEMENTED | RUNTIME_VALIDATED | 18-prometheus-targets.txt, 20-resource-usage.txt | 21/21 targets UP; Grafana API/datasource/dashboards verified; consumer lag and PVC capacity series absent; kubectl top NOT AVAILABLE |
 | I11 recovery | IMPLEMENTED | NOT_TESTED | Pending | No multi-host HA claim |
 | I12 E2E | IMPLEMENTED | NOT_TESTED | Pending | Full chain not yet deployed |
 
@@ -77,3 +77,33 @@ artifacts from those stages are retained as prior work. CRC was not accessed or
 modified, and edl-lab was left running. This checkpoint records I8 completion only,
 not completion of the entire lab. The requested `git add -A` includes pre-existing
 local changes as well as this I8 evidence update.
+
+## I10-only checkpoint — 2026-09-29 18:46 UTC
+
+Started from clean revision `266e9c359f2d64f65c9fae76b447fd8712ba79bc` on
+`runtime/kind-edl-lab`, with context `kind-edl-lab` and three Ready nodes.
+`scripts/kind/monitoring.sh` and `scripts/kind/test-monitoring.py` were executed.
+All four observability pods are Ready. Both Trino ServiceMonitors, both Kafka
+PodMonitors and the application PrometheusRule are loaded. All 21 configured scrape
+targets are UP: Trino coordinator/worker, Kafka broker/exporter, API server, CoreDNS,
+kubelet endpoints, kube-state-metrics, Grafana, Prometheus and its operator/reloader.
+No scrape coverage is claimed for components absent from this target list.
+
+The four application rules are loaded with health `ok`, state `inactive`:
+`EDLKafkaConsumerLagHigh`, `EDLKafkaUnderReplicatedPartition`, `EDLPodRestartBurst`
+and `EDLPVCNearlyFull`. No alert firing or recovery scenario was tested.
+Grafana's authenticated API succeeds, its default Prometheus datasource reports
+`OK`, and both repository dashboards are available.
+
+I10 corrections: preserve the explicit empty-password Secret key required by the
+Operator for Trino's username-only BasicAuth; narrow the Kafka broker PodMonitor
+selector so it does not scrape the exporter twice. Runtime assertions now require
+all configured targets UP, one broker-monitor target, Ready observability pods and
+healthy loaded rules. No existing OpenShift profile was changed.
+
+Limitations: `kafka_consumergroup_lag` and `kubelet_volume_stats_capacity_bytes` have
+no active series. Their dependent panels/alerts are not functionally validated;
+rule loading alone does not establish that coverage. Metrics-server remains absent:
+`kubectl top = NOT AVAILABLE`. Docker stats are separate container-level observations,
+not an equivalent to Kubernetes Metrics API. I1-I9 were not rerun, I11-I12 were not
+started, CRC was not accessed, and edl-lab remains running.

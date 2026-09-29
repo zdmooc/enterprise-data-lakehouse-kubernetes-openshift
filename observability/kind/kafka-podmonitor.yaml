@@ -7,11 +7,8 @@ metadata:
     app.kubernetes.io/part-of: enterprise-data-lakehouse
 spec:
   selector:
-    matchExpressions:
-      - key: strimzi.io/kind
-        operator: In
-        values:
-          - Kafka
+    matchLabels:
+      strimzi.io/name: edl-kafka-kafka
   namespaceSelector:
     matchNames:
       - edl-data

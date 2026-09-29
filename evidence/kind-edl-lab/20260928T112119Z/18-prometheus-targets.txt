@@ -1,20 +1,46 @@
-podMonitor/edl-data/edl-kafka-exporter/0 up 
-podMonitor/edl-data/edl-kafka-metrics/0 up 
-podMonitor/edl-data/edl-kafka-metrics/0 up 
-serviceMonitor/edl-observability/edl-monitoring-apiserver/0 up 
-serviceMonitor/edl-observability/edl-monitoring-coredns/0 up 
-serviceMonitor/edl-observability/edl-monitoring-coredns/0 up 
-serviceMonitor/edl-observability/edl-monitoring-grafana/0 up 
-serviceMonitor/edl-observability/edl-monitoring-kube-state-metrics/0 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/0 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/0 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/0 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/1 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/1 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/1 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/2 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/2 up 
-serviceMonitor/edl-observability/edl-monitoring-kubelet/2 up 
-serviceMonitor/edl-observability/edl-monitoring-operator/0 up 
-serviceMonitor/edl-observability/edl-monitoring-prometheus/0 up 
-serviceMonitor/edl-observability/edl-monitoring-prometheus/1 up 
+I10 validation: 2026-09-29T18:46:10.058082+00:00 context=kind-edl-lab
+Ready pod: edl-monitoring-grafana-588684d575-7qj2z
+Ready pod: edl-monitoring-kube-state-metrics-5f86f7f857-d24nv
+Ready pod: edl-monitoring-operator-6f98564695-v6rr2
+Ready pod: prometheus-edl-monitoring-prometheus-0
+Loaded resource: servicemonitor edl-trino-coordinator, edl-trino-worker
+Loaded resource: podmonitor edl-kafka-exporter, edl-kafka-metrics
+Loaded resource: prometheusrule edl-data-platform-rules
+podMonitor/edl-data/edl-kafka-exporter/0 edl-kafka-kafka-exporter-6645f86f59-2xb6q instance=192.168.206.201:9404 up
+podMonitor/edl-data/edl-kafka-metrics/0 edl-kafka-dual-role-0 instance=192.168.206.200:9404 up
+serviceMonitor/edl-data/edl-trino-coordinator/0 edl-trino-coordinator-988976887-ls4v9 instance=192.168.206.206:8080 up
+serviceMonitor/edl-data/edl-trino-worker/0 edl-trino-worker-fd7d84897-ppvg9 instance=192.168.169.220:8080 up
+serviceMonitor/edl-observability/edl-monitoring-apiserver/0  instance=172.18.0.2:6443 up
+serviceMonitor/edl-observability/edl-monitoring-coredns/0 coredns-674b8bbfcf-z6qc6 instance=192.168.206.194:9153 up
+serviceMonitor/edl-observability/edl-monitoring-coredns/0 coredns-674b8bbfcf-rlc6x instance=192.168.206.196:9153 up
+serviceMonitor/edl-observability/edl-monitoring-grafana/0 edl-monitoring-grafana-588684d575-7qj2z instance=192.168.169.229:3000 up
+serviceMonitor/edl-observability/edl-monitoring-kube-state-metrics/0 edl-monitoring-kube-state-metrics-5f86f7f857-d24nv instance=192.168.206.209:8080 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  instance=172.18.0.3:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  instance=172.18.0.2:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  instance=172.18.0.4:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  instance=172.18.0.2:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  instance=172.18.0.4:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  instance=172.18.0.3:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  instance=172.18.0.2:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  instance=172.18.0.4:10250 up
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  instance=172.18.0.3:10250 up
+serviceMonitor/edl-observability/edl-monitoring-operator/0 edl-monitoring-operator-6f98564695-v6rr2 instance=192.168.206.208:10250 up
+serviceMonitor/edl-observability/edl-monitoring-prometheus/0 prometheus-edl-monitoring-prometheus-0 instance=192.168.206.211:9090 up
+serviceMonitor/edl-observability/edl-monitoring-prometheus/1 prometheus-edl-monitoring-prometheus-0 instance=192.168.206.211:8080 up
+TARGETS_UP=21; TARGETS_TOTAL=21
+Loaded application rules: EDLKafkaConsumerLagHigh, EDLKafkaUnderReplicatedPartition, EDLPVCNearlyFull, EDLPodRestartBurst
+Rule: EDLKafkaConsumerLagHigh health=ok state=inactive
+Rule: EDLKafkaUnderReplicatedPartition health=ok state=inactive
+Rule: EDLPodRestartBurst health=ok state=inactive
+Rule: EDLPVCNearlyFull health=ok state=inactive
+Metric series: kube_pod_status_ready 141
+Metric series: kube_pod_container_status_restarts_total 51
+Metric series: kafka_consumergroup_lag 0
+NOT AVAILABLE: kafka_consumergroup_lag - no active series; dependent panels/alerts are not validated
+Metric series: kafka_topic_partition_under_replicated_partition 114
+Metric series: trino_execution_name_QueryManager_RunningQueries 1
+Metric series: kubelet_volume_stats_capacity_bytes 0
+NOT AVAILABLE: kubelet_volume_stats_capacity_bytes - no active series; dependent panels/alerts are not validated
+[PASS] Kafka, exporter, Trino coordinator and worker targets UP; alert rules loaded
+Scope: only listed scrape targets; no metric coverage claimed for other components.
+[PASS] Grafana authenticated API, healthy Prometheus datasource and both repository dashboards available

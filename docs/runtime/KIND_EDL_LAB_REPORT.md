@@ -21,14 +21,14 @@ Une configuration présente dans Git ne constitue pas une preuve d'exécution.
 | 13. Trino | `SELECT 1`, 25 nations TPCH et lecture des cinq transactions réelles réussis. `14-trino.txt`. |
 | 14. Jupyter | HTTP authentifié 200, cinq groupes de transactions lus via Trino et écriture du PVC réussis. `15-jupyter.txt`. |
 | 15. Sécurité | Cinq refus contrôlés réussis, ressources des pods vérifiées, politiques Kyverno actives. Trivy exécuté sur le dépôt et trois images construites localement. Des vulnérabilités restent présentes : voir le rapport de sécurité. |
-| 16. Observabilité | `NOT_TESTED` : installation en cours ; cibles, règles et tableaux de bord doivent encore être vérifiés. |
+| 16. Observabilité | `RUNTIME_VALIDATED` : 21/21 cibles UP, quatre règles chargées/saines, quatre pods d'observabilité Ready, API Grafana authentifiée, source Prometheus saine et deux tableaux de bord disponibles. Preuve : `18-prometheus-targets.txt`. Séries de lag consommateur et capacité PVC absentes ; alertes dépendantes non validées fonctionnellement. |
 | 17. Résilience | `NOT_TESTED` : scénarios de remplacement préparés. Aucune affirmation de HA multi-hôte. |
 | 18. E2E | `NOT_TESTED` : la chaîne intermédiaire fonctionne ; le test avec un nouvel événement et sa lecture exacte dans Trino/Jupyter reste à exécuter. |
 | 19. Ressources | Snapshots Docker après les composants dans `20-resource-usage.txt`. `kubectl top` indisponible car metrics-server n'est pas installé. Snapshot final à collecter. |
 | 20. Anomalies | Vulnérabilités d'images ; systèmes de fichiers racine inscriptibles ; pertes temporaires de bail du control-plane pendant des périodes de lenteur API/etcd. Reprises observées et documentées, sans preuve d'une cause matérielle unique. |
 | 21. Kind/OpenShift | Docker/Kind remplace les BuildConfig pour ce profil ; port-forward remplace les Routes ; PSS remplace les contraintes SCC ; Prometheus upstream remplace UWM. Les fichiers de profils OpenShift existants sont inchangés. Leur redéploiement fonctionnel sur CRC est `NOT_TESTED`. |
 | 22. Preuves | Dossier daté, logs de tests, synthèse des scans sans extraits de secrets, identifiants d'images et procédure de reprise. Collecte finale et contrôles Git encore à terminer. |
-| 23. I1–I12 | I1–I9 et Polaris : `RUNTIME_VALIDATED` dans le périmètre décrit. I10–I12 : `NOT_TESTED`. La bascule finale CRC ↔ Kind reste à exécuter. |
+| 23. I1–I12 | I1–I10 et Polaris : `RUNTIME_VALIDATED` dans le périmètre décrit. I11–I12 : `NOT_TESTED`. La bascule finale CRC ↔ Kind reste à exécuter. Le checkpoint I10 ne poursuit aucune de ces étapes. |
 
 ## Limites de sécurité
 
