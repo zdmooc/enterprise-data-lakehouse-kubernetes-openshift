@@ -82,7 +82,7 @@ ready_nodes
 # Guard against a partially recovered Docker/Kind network. After a container
 # restart, Kubernetes may briefly report stale node addresses. H2 must start
 # only when all three retained nodes expose distinct InternalIP values.
-mapfile -t kind_internal_ips < <(k get nodes -o jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address}{"\\n"}{end}')
+mapfile -t kind_internal_ips < <(k get nodes -o json | py -c 'import json,sys; d=json.load(sys.stdin); [print(next(a["address"] for a in n["status"]["addresses"] if a["type"]=="InternalIP")) for n in d["items"]]')
 [ "${#kind_internal_ips[@]}" -eq 3 ] || fail "expected 3 Kind InternalIP values"
 [ "$(printf '%s\\n' "${kind_internal_ips[@]}" | sort -u | wc -l | tr -d ' ')" -eq 3 ] \
   || fail "duplicate/stale Kind InternalIP detected; wait for node network reconciliation before H2"
@@ -169,7 +169,7 @@ until k get nodes >/dev/null 2>&1; do
   sleep 5
 done
 ready_nodes
-mapfile -t kind_internal_ips < <(k get nodes -o jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address}{"\\n"}{end}')
+mapfile -t kind_internal_ips < <(k get nodes -o json | py -c 'import json,sys; d=json.load(sys.stdin); [print(next(a["address"] for a in n["status"]["addresses"] if a["type"]=="InternalIP")) for n in d["items"]]')
 [ "${#kind_internal_ips[@]}" -eq 3 ] || fail "expected 3 Kind InternalIP values after restart"
 [ "$(printf '%s\\n' "${kind_internal_ips[@]}" | sort -u | wc -l | tr -d ' ')" -eq 3 ] \
   || fail "duplicate/stale Kind InternalIP detected after restart"
