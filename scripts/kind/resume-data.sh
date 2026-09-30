@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source "$(dirname "$0")/common.sh"
-inventory
 guard
+export EDL_RECOVERY_ONLY=yes
 for namespace in argocd edl-platform edl-data edl-observability kyverno; do
   if k get namespace "$namespace" >/dev/null 2>&1; then
     for deployment in $(k -n "$namespace" get deployments -o name); do

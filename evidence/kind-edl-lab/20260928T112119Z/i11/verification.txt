@@ -1,0 +1,17 @@
+UTC=2026-09-30T05:02:11.648290+00:00
+[PASS] Python syntax: scripts/kind/test-recovery.py
+[PASS] Python syntax: scripts/kind/polaris.py
+[PASS] Bash syntax: scripts/kind/recovery.sh
+[PASS] Bash syntax: scripts/kind/resume-data.sh
+[PASS] Bash syntax: scripts/kind/spark.sh
+[PASS] final scenario result and replacement count: jupyter
+[PASS] final scenario result and replacement count: trino
+[PASS] final scenario result and replacement count: kafka
+[PASS] final scenario result and replacement count: polaris
+[PASS] final scenario result and replacement count: s3
+[PASS] final scenario result and replacement count: argo
+[PASS] final scenario result and replacement count: diagnostics
+[PASS] I11 evidence private-key/JWT/AWS access-key patterns absent
+[PASS] No known lab credential found in tracked or publishable untracked files
+Scope: current lab credential values and their base64 encodings; complementary to pattern/history scanning.
+[PASS] git diff --check

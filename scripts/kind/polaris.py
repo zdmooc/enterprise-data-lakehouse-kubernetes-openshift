@@ -2,6 +2,7 @@
 import base64
 import json
 import secrets
+import socket
 import subprocess
 import sys
 import time
@@ -58,22 +59,29 @@ if sys.argv[1] == 'secrets':
     print('[PASS] Polaris credentials available in Kubernetes Secrets only')
 elif sys.argv[1] == 'bootstrap':
     client = secret('polaris-client')
+    # A previous notebook/user forward may still own 18181 after pod replacement.
+    # Use an available loopback port for this short-lived recovery operation.
+    with socket.socket() as listener:
+        listener.bind(('127.0.0.1', 0))
+        port = listener.getsockname()[1]
     pf = subprocess.Popen(['kubectl', '--context=kind-edl-lab', '-n', 'edl-data',
-        'port-forward', 'svc/edl-polaris', '18181:8181', '--address=127.0.0.1'],
+        'port-forward', 'svc/edl-polaris', f'{port}:8181', '--address=127.0.0.1'],
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
-        root = 'http://127.0.0.1:18181'
+        root = f'http://127.0.0.1:{port}'
         basic = base64.b64encode(f"{client['CLIENT_ID']}:{client['CLIENT_SECRET']}".encode()).decode()
         request = urllib.request.Request(root + '/api/catalog/v1/oauth/tokens',
             data=urllib.parse.urlencode({'grant_type': 'client_credentials',
                                         'scope': 'PRINCIPAL_ROLE:ALL'}).encode(),
             headers={'Authorization': 'Basic ' + basic, 'Polaris-Realm': 'POLARIS'})
         for attempt in range(30):
+            if pf.poll() is not None:
+                raise SystemExit('Polaris port-forward exited before authentication')
             try:
                 with urllib.request.urlopen(request, timeout=5) as response:
                     token = json.load(response)['access_token']
                 break
-            except urllib.error.URLError:
+            except OSError:
                 if attempt == 29 or pf.poll() is not None:
                     raise SystemExit('Polaris authentication/port-forward failed')
                 time.sleep(1)

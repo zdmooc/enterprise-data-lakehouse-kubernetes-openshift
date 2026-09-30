@@ -1,0 +1,312 @@
+
+UTC=2026-09-29T19:09:23.656198+00:00; SCENARIO=s3
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+pod/kind-s3-reader created
+pod/kind-s3-reader condition met
+BEFORE existing S3 objects (key/size/ETag)
+
+
+aws: [ERROR]: argument --output: Found invalid choice 'json
+'
+
+Maybe you meant:
+
+  * json
+
+usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+To see help text, you can run:
+
+  aws help
+  aws <command> help
+  aws <command> <subcommand> help
+
+command terminated with exit code 252
+[FAIL] s3: Command failed (252): ['kubectl', '--context=kind-edl-lab', '-n', 'edl-data']
+
+UTC=2026-09-29T19:10:14.719835+00:00; SCENARIO=s3
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+pod/kind-s3-reader configured
+pod/kind-s3-reader condition met
+BEFORE existing S3 objects (key/size/ETag)
+{
+    "Contents": [
+        {
+            "Key": "checkpoints/.edl-zone",
+            "LastModified": "2026-09-28T11:52:02.733000+00:00",
+            "ETag": "\"65c24f72f954ee9a014faa9968fe8afe\"",
+            "Size": 21,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "contract-tests/20260928T114638Z-53.txt",
+            "LastModified": "2026-09-28T11:46:42.704000+00:00",
+            "ETag": "\"49399e10f8bc6c35542f8f3f85e36bf9\"",
+            "Size": 38,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/.edl-zone",
+            "LastModified": "2026-09-28T11:52:00.428000+00:00",
+            "ETag": "\"a0499ba3cc3ccbdebec403b15b65d3ef\"",
+            "Size": 17,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00000-0-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+            "LastModified": "2026-09-29T19:08:24.316000+00:00",
+            "ETag": "\"865c42ad1651e480c1afb377f3ce12e5\"",
+            "Size": 2920,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00000-0-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+            "LastModified": "2026-09-29T05:47:28.213000+00:00",
+            "ETag": "\"4510c3a91004207588b1240449de031b\"",
+            "Size": 2920,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00001-1-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+            "LastModified": "2026-09-29T19:08:25.253000+00:00",
+            "ETag": "\"9e00085831647bc766477747ecc45841\"",
+            "Size": 2916,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00001-1-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+            "LastModified": "2026-09-29T05:47:28.883000+00:00",
+            "ETag": "\"b4d7d2ad0485045426d7030a0405476a\"",
+            "Size": 2916,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/00000-34958b28-7480-49da-a5a2-64d0851088f7.metadata.json",
+            "LastModified": "2026-09-29T05:47:36.118000+00:00",
+            "ETag": "\"918e7285c3f794e163df607cf94ef08b\"",
+            "Size": 2316,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/00000-aee8f3c2-429e-4c44-ba61-37e39dc82f95.metadata.json",
+            "LastModified": "2026-09-29T19:08:36.364000+00:00",
+            "ETag": "\"24ec2150cc358fab68d6a075f7c3a6a5\"",
+            "Size": 2316,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/05097c2d-8b0c-4e50-a23b-4dbd85ea439a-m0.avro",
+            "LastModified": "2026-09-29T19:08:29.832000+00:00",
+            "ETag": "\"4b39cbebfb3218df7bdc5f6766c9f625\"",
+            "Size": 7794,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc-m0.avro",
+            "LastModified": "2026-09-29T05:47:31.790000+00:00",
+            "ETag": "\"615668a74c487e5d03c2a6ee8878282c\"",
+            "Size": 7793,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/snap-3162642734200796715-1-c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc.avro",
+            "LastModified": "2026-09-29T05:47:32.016000+00:00",
+            "ETag": "\"37bd7a1566f46b43b832d4dc3308d3f7\"",
+            "Size": 4454,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/snap-8689157227482492877-1-05097c2d-8b0c-4e50-a23b-4dbd85ea439a.avro",
+            "LastModified": "2026-09-29T19:08:30.630000+00:00",
+            "ETag": "\"a5b73ca931a67febbad3d22371e062c5\"",
+            "Size": 4455,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "evidence/.edl-zone",
+            "LastModified": "2026-09-28T11:52:05.127000+00:00",
+            "ETag": "\"a4652e891dbf7d1642ab6d8d0eec3c1d\"",
+            "Size": 18,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "raw/.edl-zone",
+            "LastModified": "2026-09-28T11:51:58.236000+00:00",
+            "ETag": "\"a58af7f61dd05e5fe3c7d39b28dd8ece\"",
+            "Size": 13,
+            "StorageClass": "STANDARD"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": ""
+}
+{"name": "edl-s3", "uid": "787fd0d9-32d7-4203-934c-90f08db55bf4", "volume": "pvc-787fd0d9-32d7-4203-934c-90f08db55bf4", "phase": "Bound"}
+BEFORE {"name": "edl-s3-86454754dc-sv7v7", "uid": "ce03264c-75a4-4f14-8d54-beb0dc0c43da", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+ACTION delete only pod/edl-s3-86454754dc-sv7v7
+pod "edl-s3-86454754dc-sv7v7" deleted
+WAIT for different UID and Ready
+AFTER {"name": "edl-s3-86454754dc-tz79h", "uid": "f18d9642-a9d5-4757-921c-57a755476644", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+REPLACEMENT_READY_SECONDS=9.0
+{"name": "edl-s3", "uid": "787fd0d9-32d7-4203-934c-90f08db55bf4", "volume": "pvc-787fd0d9-32d7-4203-934c-90f08db55bf4", "phase": "Bound"}
+{
+    "Contents": [
+        {
+            "Key": "checkpoints/.edl-zone",
+            "LastModified": "2026-09-28T11:52:02.733000+00:00",
+            "ETag": "\"65c24f72f954ee9a014faa9968fe8afe\"",
+            "Size": 21,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "contract-tests/20260928T114638Z-53.txt",
+            "LastModified": "2026-09-28T11:46:42.704000+00:00",
+            "ETag": "\"49399e10f8bc6c35542f8f3f85e36bf9\"",
+            "Size": 38,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/.edl-zone",
+            "LastModified": "2026-09-28T11:52:00.428000+00:00",
+            "ETag": "\"a0499ba3cc3ccbdebec403b15b65d3ef\"",
+            "Size": 17,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00000-0-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+            "LastModified": "2026-09-29T19:08:24.316000+00:00",
+            "ETag": "\"865c42ad1651e480c1afb377f3ce12e5\"",
+            "Size": 2920,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00000-0-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+            "LastModified": "2026-09-29T05:47:28.213000+00:00",
+            "ETag": "\"4510c3a91004207588b1240449de031b\"",
+            "Size": 2920,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00001-1-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+            "LastModified": "2026-09-29T19:08:25.253000+00:00",
+            "ETag": "\"9e00085831647bc766477747ecc45841\"",
+            "Size": 2916,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/data/00001-1-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+            "LastModified": "2026-09-29T05:47:28.883000+00:00",
+            "ETag": "\"b4d7d2ad0485045426d7030a0405476a\"",
+            "Size": 2916,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/00000-34958b28-7480-49da-a5a2-64d0851088f7.metadata.json",
+            "LastModified": "2026-09-29T05:47:36.118000+00:00",
+            "ETag": "\"918e7285c3f794e163df607cf94ef08b\"",
+            "Size": 2316,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/00000-aee8f3c2-429e-4c44-ba61-37e39dc82f95.metadata.json",
+            "LastModified": "2026-09-29T19:08:36.364000+00:00",
+            "ETag": "\"24ec2150cc358fab68d6a075f7c3a6a5\"",
+            "Size": 2316,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/05097c2d-8b0c-4e50-a23b-4dbd85ea439a-m0.avro",
+            "LastModified": "2026-09-29T19:08:29.832000+00:00",
+            "ETag": "\"4b39cbebfb3218df7bdc5f6766c9f625\"",
+            "Size": 7794,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc-m0.avro",
+            "LastModified": "2026-09-29T05:47:31.790000+00:00",
+            "ETag": "\"615668a74c487e5d03c2a6ee8878282c\"",
+            "Size": 7793,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/snap-3162642734200796715-1-c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc.avro",
+            "LastModified": "2026-09-29T05:47:32.016000+00:00",
+            "ETag": "\"37bd7a1566f46b43b832d4dc3308d3f7\"",
+            "Size": 4454,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "curated/analytics/transactions/metadata/snap-8689157227482492877-1-05097c2d-8b0c-4e50-a23b-4dbd85ea439a.avro",
+            "LastModified": "2026-09-29T19:08:30.630000+00:00",
+            "ETag": "\"a5b73ca931a67febbad3d22371e062c5\"",
+            "Size": 4455,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "evidence/.edl-zone",
+            "LastModified": "2026-09-28T11:52:05.127000+00:00",
+            "ETag": "\"a4652e891dbf7d1642ab6d8d0eec3c1d\"",
+            "Size": 18,
+            "StorageClass": "STANDARD"
+        },
+        {
+            "Key": "raw/.edl-zone",
+            "LastModified": "2026-09-28T11:51:58.236000+00:00",
+            "ETag": "\"a58af7f61dd05e5fe3c7d39b28dd8ece\"",
+            "Size": 13,
+            "StorageClass": "STANDARD"
+        }
+    ],
+    "RequestCharged": null,
+    "Prefix": ""
+}
+EXISTING_OBJECTS_RETAINED=15; SAME_KEYS_SIZES_ETAGS=PASS
+[PASS] S3 PUT/GET/integrity/DELETE contract validated
+{
+    "ETag": "\"ccc199986c0c86497cb4577b925fa64b\"",
+    "ChecksumCRC64NVME": "rPQndcfyqc4="
+}
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-09-29T19:11:17+00:00",
+    "ContentLength": 26,
+    "ETag": "\"ccc199986c0c86497cb4577b925fa64b\"",
+    "ChecksumCRC64NVME": "rPQndcfyqc4=",
+    "ContentType": "text/plain",
+    "Metadata": {}
+}
+{
+    "DeleteMarker": false
+}
+command terminated with exit code 1
+[FAIL] s3: Command failed (1): ['kubectl', '--context=kind-edl-lab', '-n', 'edl-data']
+
+UTC=2026-09-30T04:55:02.207982+00:00; SCENARIO=s3
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+FUNCTIONAL_VALIDATION S3 fresh object contract after recorded replacement
+[PASS] S3 PUT/GET/integrity/DELETE contract validated
+FRESH_OBJECT_KEY=contract-tests/i11-c2d873dbf40944e0b41a96df1e17f49b.txt
+{
+    "ETag": "\"ccc199986c0c86497cb4577b925fa64b\"",
+    "ChecksumCRC64NVME": "rPQndcfyqc4="
+}
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-09-30T04:56:06+00:00",
+    "ContentLength": 26,
+    "ETag": "\"ccc199986c0c86497cb4577b925fa64b\"",
+    "ChecksumCRC64NVME": "rPQndcfyqc4=",
+    "ContentType": "text/plain",
+    "Metadata": {}
+}
+{
+    "DeleteMarker": false
+}
+FRESH_PUT_GET_INTEGRITY_LIST_DELETE_ABSENCE=PASS; key=contract-tests/i11-c2d873dbf40944e0b41a96df1e17f49b.txt
+E0930 06:56:01.928198   18504 websocket.go:297] Unknown stream id 1, discarding message
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+[PASS] s3

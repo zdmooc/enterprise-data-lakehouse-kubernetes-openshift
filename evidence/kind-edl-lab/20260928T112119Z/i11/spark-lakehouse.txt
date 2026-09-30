@@ -1,0 +1,603 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+26/09/29 19:07:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/09/29 19:07:05 INFO SparkContext: Running Spark version 4.1.3
+26/09/29 19:07:05 INFO SparkContext: OS info Linux, 6.6.87.2-microsoft-standard-WSL2, amd64
+26/09/29 19:07:05 INFO SparkContext: Java version 17.0.20.1+1
+26/09/29 19:07:05 INFO ResourceUtils: ==============================================================
+26/09/29 19:07:05 INFO ResourceUtils: No custom resources configured for spark.driver.
+26/09/29 19:07:05 INFO ResourceUtils: ==============================================================
+26/09/29 19:07:06 INFO SparkContext: Submitted application: edl-transactions-to-iceberg
+26/09/29 19:07:06 INFO SecurityManager: Changing view acls to: spark
+26/09/29 19:07:06 INFO SecurityManager: Changing modify acls to: spark
+26/09/29 19:07:06 INFO SecurityManager: Changing view acls groups to: spark
+26/09/29 19:07:06 INFO SecurityManager: Changing modify acls groups to: spark
+26/09/29 19:07:06 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark groups with view permissions: EMPTY; users with modify permissions: spark; groups with modify permissions: EMPTY; RPC SSL disabled
+26/09/29 19:07:07 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+26/09/29 19:07:07 INFO SparkEnv: Registering MapOutputTracker
+26/09/29 19:07:07 INFO SparkEnv: Registering BlockManagerMaster
+26/09/29 19:07:07 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+26/09/29 19:07:07 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+26/09/29 19:07:07 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+26/09/29 19:07:07 INFO DiskBlockManager: Created local directory at /var/data/spark-3db525e0-2716-4bb0-beed-0056b3a48f5c/blockmgr-a438267c-8303-4508-a8dd-d1a115e90e10
+26/09/29 19:07:07 INFO SparkEnv: Registering OutputCommitCoordinator
+26/09/29 19:07:08 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+26/09/29 19:07:08 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+26/09/29 19:07:09 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memoryOverhead -> name: memoryOverhead, amount: 384, script: , vendor: , cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+26/09/29 19:07:09 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+26/09/29 19:07:09 INFO ResourceProfileManager: Added ResourceProfile id: 0
+26/09/29 19:07:09 INFO SecurityManager: Changing view acls to: spark
+26/09/29 19:07:09 INFO SecurityManager: Changing modify acls to: spark
+26/09/29 19:07:09 INFO SecurityManager: Changing view acls groups to: spark
+26/09/29 19:07:09 INFO SecurityManager: Changing modify acls groups to: spark
+26/09/29 19:07:09 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark groups with view permissions: EMPTY; users with modify permissions: spark; groups with modify permissions: EMPTY; RPC SSL disabled
+26/09/29 19:07:09 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+26/09/29 19:07:13 INFO SslUtils: Default SSL endpoint verification has been disabled:  -Dio.netty.handler.ssl.defaultEndpointVerificationAlgorithm="NONE"
+26/09/29 19:07:15 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
+26/09/29 19:07:16 INFO ExecutorPodsAllocator: Cannot list PVC resources. Please check account permissions.
+26/09/29 19:07:16 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+26/09/29 19:07:16 INFO NettyBlockTransferService: Server created on kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc 192.168.169.239:7079
+26/09/29 19:07:16 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+26/09/29 19:07:16 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+26/09/29 19:07:16 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc, 7079, None)
+26/09/29 19:07:16 INFO BlockManagerMasterEndpoint: Registering block manager kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc:7079 with 413.9 MiB RAM, BlockManagerId(driver, kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc, 7079, None)
+26/09/29 19:07:16 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc, 7079, None)
+26/09/29 19:07:16 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc, 7079, None)
+26/09/29 19:07:34 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (192.168.206.213:50952) with ID 1, ResourceProfileId 0
+26/09/29 19:07:34 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+26/09/29 19:07:34 INFO BlockManagerMasterEndpoint: Registering block manager 192.168.206.213:7079 with 413.9 MiB RAM, BlockManagerId(1, 192.168.206.213, 7079, None)
+/opt/spark/work-dir/jobs/transactions_to_iceberg.py:30: DeprecationWarning: value_deserializer does not implement kafka.serializer.Deserializer
+  consumer = KafkaConsumer(
+26/09/29 19:07:56 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+26/09/29 19:07:56 INFO SharedState: Warehouse path is 'file:/opt/spark/work-dir/spark-warehouse'.
+26/09/29 19:08:00 WARN AuthManagers: Inferring rest.auth.type=oauth2 since property credential was provided. Please explicitly set rest.auth.type to avoid this warning.
+26/09/29 19:08:00 INFO AuthManagers: Loading AuthManager implementation: org.apache.iceberg.rest.auth.OAuth2Manager
+26/09/29 19:08:01 WARN OAuth2Manager: Iceberg REST client is missing the OAuth2 server URI configuration and defaults to http://edl-polaris.edl-data.svc.cluster.local:8181/api/catalog/v1/oauth/tokens. This automatic fallback will be removed in a future Iceberg release. It is recommended to configure the OAuth2 endpoint using the 'oauth2-server-uri' property to be prepared. This warning will disappear if the OAuth2 endpoint is explicitly configured. See https://github.com/apache/iceberg/issues/10537
+26/09/29 19:08:01 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.io.ResolvingFileIO
+26/09/29 19:08:04 INFO RESTSessionCatalog: Table properties set at catalog level through catalog properties: {}
+26/09/29 19:08:04 INFO RESTSessionCatalog: Table properties enforced at catalog level through catalog properties: {}
+26/09/29 19:08:04 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.io.ResolvingFileIO
+26/09/29 19:08:06 INFO CodeGenerator: Code generated in 844.222005 ms
+26/09/29 19:08:06 INFO MemoryStore: MemoryStore started with capacity 413.9 MiB
+26/09/29 19:08:06 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 32.0 KiB, free 413.9 MiB)
+26/09/29 19:08:07 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 36.0 KiB, free 413.9 MiB)
+26/09/29 19:08:07 INFO SparkContext: Created broadcast 0 from broadcast at SparkWrite.java:216
+26/09/29 19:08:07 INFO OverwriteByExpressionExec: Start processing data source write support: IcebergBatchWrite(table=polaris.analytics.transactions, format=PARQUET). The input RDD has 2 partitions.
+26/09/29 19:08:07 INFO SparkContext: Starting job: createOrReplace at NativeMethodAccessorImpl.java:0
+26/09/29 19:08:07 INFO DAGScheduler: Got job 0 (createOrReplace at NativeMethodAccessorImpl.java:0) with 2 output partitions
+26/09/29 19:08:07 INFO DAGScheduler: Final stage: ResultStage 0 (createOrReplace at NativeMethodAccessorImpl.java:0)
+26/09/29 19:08:07 INFO DAGScheduler: Parents of final stage: List()
+26/09/29 19:08:07 INFO DAGScheduler: Missing parents: List()
+26/09/29 19:08:07 INFO DAGScheduler: Missing parents found for ResultStage 0: List()
+26/09/29 19:08:07 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[5] at createOrReplace at NativeMethodAccessorImpl.java:0), which has no missing parents
+26/09/29 19:08:07 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 23.3 KiB, free 413.8 MiB)
+26/09/29 19:08:07 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 10.8 KiB, free 413.8 MiB)
+26/09/29 19:08:07 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1686
+26/09/29 19:08:07 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[5] at createOrReplace at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1))
+26/09/29 19:08:07 INFO TaskSchedulerImpl: Adding task set 0.0 with 2 tasks resource profile 0
+26/09/29 19:08:07 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (192.168.206.213,executor 1, partition 0, PROCESS_LOCAL, 9897 bytes)
+26/09/29 19:08:24 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1) (192.168.206.213,executor 1, partition 1, PROCESS_LOCAL, 10009 bytes)
+26/09/29 19:08:24 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 17305 ms on 192.168.206.213 (executor 1) (1/2)
+26/09/29 19:08:24 INFO PythonAccumulatorV2: Connected to AccumulatorServer at host: 127.0.0.1 port: 47795
+26/09/29 19:08:25 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 604 ms on 192.168.206.213 (executor 1) (2/2)
+26/09/29 19:08:25 INFO TaskSchedulerImpl: Removed TaskSet 0.0 whose tasks have all completed, from pool
+26/09/29 19:08:25 INFO DAGScheduler: ResultStage 0 (createOrReplace at NativeMethodAccessorImpl.java:0) finished in 18138 ms
+26/09/29 19:08:25 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+26/09/29 19:08:25 INFO TaskSchedulerImpl: Canceling stage 0
+26/09/29 19:08:25 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+26/09/29 19:08:25 INFO DAGScheduler: Job 0 finished: createOrReplace at NativeMethodAccessorImpl.java:0, took 18292.393117 ms
+26/09/29 19:08:25 INFO OverwriteByExpressionExec: Data source write support IcebergBatchWrite(table=polaris.analytics.transactions, format=PARQUET) is committing.
+26/09/29 19:08:25 INFO SparkWrite: Committing overwrite by filter true with 2 new data files to table polaris.analytics.transactions
+26/09/29 19:08:25 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.aws.s3.S3FileIO
+26/09/29 19:08:30 INFO SnapshotProducer: Committed snapshot 8689157227482492877 (BaseOverwriteFiles)
+26/09/29 19:08:31 WARN RESTMetricsReporter: Failed to report metrics to REST endpoint v1/quickstart_catalog/namespaces/analytics/tables/transactions/metrics
+org.apache.iceberg.exceptions.RESTException: Unable to process (code: 404, type: NoSuchTableException): Table does not exist: analytics.transactions
+	at org.apache.iceberg.rest.ErrorHandlers.createRESTException(ErrorHandlers.java:115)
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:357)
+	at org.apache.iceberg.rest.ErrorHandlers$DefaultErrorHandler.accept(ErrorHandlers.java:321)
+	at org.apache.iceberg.rest.HTTPClient.throwFailure(HTTPClient.java:242)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:347)
+	at org.apache.iceberg.rest.HTTPClient.execute(HTTPClient.java:299)
+	at org.apache.iceberg.rest.BaseHTTPClient.post(BaseHTTPClient.java:112)
+	at org.apache.iceberg.rest.RESTClient.post(RESTClient.java:150)
+	at org.apache.iceberg.rest.RESTMetricsReporter.lambda$report$1(RESTMetricsReporter.java:69)
+	at org.apache.iceberg.util.Tasks$Builder.runTaskWithRetry(Tasks.java:413)
+	at org.apache.iceberg.util.Tasks$Builder$1.run(Tasks.java:315)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+26/09/29 19:08:31 INFO LoggingMetricsReporter: Received metrics report: CommitReport{tableName=polaris.analytics.transactions, snapshotId=8689157227482492877, sequenceNumber=1, operation=overwrite, commitMetrics=CommitMetricsResult{totalDuration=TimerResult{timeUnit=NANOSECONDS, totalDuration=PT5.796934889S, count=1}, attempts=CounterResult{unit=COUNT, value=1}, addedDataFiles=CounterResult{unit=COUNT, value=2}, removedDataFiles=null, totalDataFiles=CounterResult{unit=COUNT, value=2}, addedDeleteFiles=null, addedEqualityDeleteFiles=null, addedPositionalDeleteFiles=null, addedDVs=null, removedDeleteFiles=null, removedEqualityDeleteFiles=null, removedPositionalDeleteFiles=null, removedDVs=null, totalDeleteFiles=CounterResult{unit=COUNT, value=0}, addedRecords=CounterResult{unit=COUNT, value=5}, removedRecords=null, totalRecords=CounterResult{unit=COUNT, value=5}, addedFilesSizeInBytes=CounterResult{unit=BYTES, value=5836}, removedFilesSizeInBytes=null, totalFilesSizeInBytes=CounterResult{unit=BYTES, value=5836}, addedPositionalDeletes=null, removedPositionalDeletes=null, totalPositionalDeletes=CounterResult{unit=COUNT, value=0}, addedEqualityDeletes=null, removedEqualityDeletes=null, totalEqualityDeletes=CounterResult{unit=COUNT, value=0}, manifestsCreated=CounterResult{unit=COUNT, value=1}, manifestsReplaced=CounterResult{unit=COUNT, value=0}, manifestsKept=CounterResult{unit=COUNT, value=0}, manifestEntriesProcessed=null}, metadata={engine-version=4.1.3, app-id=spark-8eb2128164634f438b2da7caaf2c0f0d, engine-name=spark, iceberg-version=Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9), app-name=edl-transactions-to-iceberg}}
+26/09/29 19:08:31 INFO SparkWrite: Committed in 6141 ms
+26/09/29 19:08:31 INFO OverwriteByExpressionExec: Data source write support IcebergBatchWrite(table=polaris.analytics.transactions, format=PARQUET) committed.
+=== EDL_ICEBERG_TABLE ===
+26/09/29 19:08:37 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.io.ResolvingFileIO
+26/09/29 19:08:37 INFO SparkScanBuilder: Skipping aggregate pushdown: group by aggregation push down is not supported
+26/09/29 19:08:38 INFO V2ScanRelationPushDown:
+Output: amount#29, status#31, channel#32, latencyMs#34
+
+26/09/29 19:08:38 INFO SnapshotScan: Scanning table polaris.analytics.transactions snapshot 8689157227482492877 created at 2026-09-29T19:08:30.648+00:00 with filter true
+26/09/29 19:08:38 INFO CatalogUtil: Loading custom FileIO implementation: org.apache.iceberg.aws.s3.S3FileIO
+26/09/29 19:08:38 INFO BaseDistributedDataScan: Planning file tasks locally for table polaris.analytics.transactions
+26/09/29 19:08:38 INFO LoggingMetricsReporter: Received metrics report: ScanReport{tableName=polaris.analytics.transactions, snapshotId=8689157227482492877, filter=true, schemaId=0, projectedFieldIds=[4, 6, 7, 9], projectedFieldNames=[amount, status, channel, latencyMs], scanMetrics=ScanMetricsResult{totalPlanningDuration=TimerResult{timeUnit=NANOSECONDS, totalDuration=PT0.296996147S, count=1}, resultDataFiles=CounterResult{unit=COUNT, value=2}, resultDeleteFiles=CounterResult{unit=COUNT, value=0}, totalDataManifests=CounterResult{unit=COUNT, value=1}, totalDeleteManifests=CounterResult{unit=COUNT, value=0}, scannedDataManifests=CounterResult{unit=COUNT, value=1}, skippedDataManifests=CounterResult{unit=COUNT, value=0}, totalFileSizeInBytes=CounterResult{unit=BYTES, value=5836}, totalDeleteFileSizeInBytes=CounterResult{unit=BYTES, value=0}, skippedDataFiles=CounterResult{unit=COUNT, value=0}, skippedDeleteFiles=CounterResult{unit=COUNT, value=0}, scannedDeleteManifests=CounterResult{unit=COUNT, value=0}, skippedDeleteManifests=CounterResult{unit=COUNT, value=0}, indexedDeleteFiles=CounterResult{unit=COUNT, value=0}, equalityDeleteFiles=CounterResult{unit=COUNT, value=0}, positionalDeleteFiles=CounterResult{unit=COUNT, value=0}, dvs=CounterResult{unit=COUNT, value=0}}, metadata={engine-version=4.1.3, iceberg-version=Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9), app-id=spark-8eb2128164634f438b2da7caaf2c0f0d, engine-name=spark, app-name=edl-transactions-to-iceberg}}
+26/09/29 19:08:38 INFO SparkPartitioningAwareScan: Reporting UnknownPartitioning with 1 partition(s) for table polaris.analytics.transactions
+26/09/29 19:08:38 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 32.0 KiB, free 413.8 MiB)
+26/09/29 19:08:38 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 36.6 KiB, free 413.8 MiB)
+26/09/29 19:08:38 INFO SparkContext: Created broadcast 2 from broadcast at SparkBatch.java:88
+26/09/29 19:08:38 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 32.0 KiB, free 413.8 MiB)
+26/09/29 19:08:38 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 35.5 KiB, free 413.7 MiB)
+26/09/29 19:08:38 INFO SparkContext: Created broadcast 3 from broadcast at SparkBatch.java:90
+26/09/29 19:08:39 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 32.0 KiB, free 413.7 MiB)
+26/09/29 19:08:39 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 36.6 KiB, free 413.7 MiB)
+26/09/29 19:08:39 INFO SparkContext: Created broadcast 4 from broadcast at SparkBatch.java:88
+26/09/29 19:08:39 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 32.0 KiB, free 413.6 MiB)
+26/09/29 19:08:39 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 35.5 KiB, free 413.6 MiB)
+26/09/29 19:08:39 INFO SparkContext: Created broadcast 5 from broadcast at SparkBatch.java:90
+26/09/29 19:08:40 INFO CodeGenerator: Code generated in 543.389287 ms
+26/09/29 19:08:40 INFO DAGScheduler: Registering RDD 9 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) as input to shuffle 0
+26/09/29 19:08:40 INFO DAGScheduler: Got map stage job 1 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) with 1 output partitions
+26/09/29 19:08:40 INFO DAGScheduler: Final stage: ShuffleMapStage 1 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768)
+26/09/29 19:08:40 INFO DAGScheduler: Parents of final stage: List()
+26/09/29 19:08:40 INFO DAGScheduler: Missing parents: List()
+26/09/29 19:08:40 INFO DAGScheduler: Missing parents found for ShuffleMapStage 1: List()
+26/09/29 19:08:40 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[9] at $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768), which has no missing parents
+26/09/29 19:08:40 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 48.8 KiB, free 413.5 MiB)
+26/09/29 19:08:40 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 19.4 KiB, free 413.5 MiB)
+26/09/29 19:08:40 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1686
+26/09/29 19:08:40 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[9] at $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) (first 15 tasks are for partitions Vector(0))
+26/09/29 19:08:40 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+26/09/29 19:08:41 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 2) (192.168.206.213,executor 1, partition 0, PROCESS_LOCAL, 15315 bytes)
+26/09/29 19:08:45 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 2) in 4707 ms on 192.168.206.213 (executor 1) (1/1)
+26/09/29 19:08:45 INFO TaskSchedulerImpl: Removed TaskSet 1.0 whose tasks have all completed, from pool
+26/09/29 19:08:45 INFO DAGScheduler: ShuffleMapStage 1 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) finished in 4785 ms
+26/09/29 19:08:45 INFO DAGScheduler: looking for newly runnable stages
+26/09/29 19:08:45 INFO DAGScheduler: running: HashSet()
+26/09/29 19:08:45 INFO DAGScheduler: waiting: HashSet()
+26/09/29 19:08:45 INFO DAGScheduler: failed: HashSet()
+26/09/29 19:08:45 INFO ShufflePartitionsUtil: For shuffle(0, advisory target size: 67108864, actual target size 1048576, minimum partition size: 1048576
+26/09/29 19:08:46 INFO CodeGenerator: Code generated in 198.827291 ms
+26/09/29 19:08:46 INFO HashAggregateExec: spark.sql.codegen.aggregate.map.twolevel.enabled is set to true, but current version of codegened fast hashmap does not support this aggregate.
+26/09/29 19:08:46 INFO CodeGenerator: Code generated in 302.406543 ms
+26/09/29 19:08:46 INFO SparkContext: Starting job: $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768
+26/09/29 19:08:46 INFO DAGScheduler: Got job 2 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) with 1 output partitions
+26/09/29 19:08:46 INFO DAGScheduler: Final stage: ResultStage 3 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768)
+26/09/29 19:08:46 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 2)
+26/09/29 19:08:46 INFO DAGScheduler: Missing parents: List()
+26/09/29 19:08:46 INFO DAGScheduler: Missing parents found for ResultStage 3: List()
+26/09/29 19:08:46 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[13] at $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768), which has no missing parents
+26/09/29 19:08:46 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 54.2 KiB, free 413.5 MiB)
+26/09/29 19:08:46 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 22.1 KiB, free 413.5 MiB)
+26/09/29 19:08:47 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1686
+26/09/29 19:08:47 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[13] at $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) (first 15 tasks are for partitions Vector(0))
+26/09/29 19:08:47 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+26/09/29 19:08:47 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3) (192.168.206.213,executor 1, partition 0, NODE_LOCAL, 9650 bytes)
+26/09/29 19:08:47 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 192.168.206.213:50952
+26/09/29 19:08:48 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 3) in 1468 ms on 192.168.206.213 (executor 1) (1/1)
+26/09/29 19:08:48 INFO TaskSchedulerImpl: Removed TaskSet 3.0 whose tasks have all completed, from pool
+26/09/29 19:08:48 INFO DAGScheduler: ResultStage 3 ($anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768) finished in 1557 ms
+26/09/29 19:08:48 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+26/09/29 19:08:48 INFO TaskSchedulerImpl: Canceling stage 3
+26/09/29 19:08:48 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+26/09/29 19:08:48 INFO DAGScheduler: Job 2 finished: $anonfun$withThreadLocalCaptured$2 at CompletableFuture.java:1768, took 1622.040379 ms
+26/09/29 19:08:48 INFO CodeGenerator: Code generated in 118.208413 ms
+26/09/29 19:08:48 INFO CodeGenerator: Code generated in 81.521506 ms
++--------+-------+----------------+-----------+------------+
+|status  |channel|transactionCount|totalAmount|avgLatencyMs|
++--------+-------+----------------+-----------+------------+
+|ACCEPTED|MOBILE |1               |125.4      |84.0        |
+|ACCEPTED|POS    |1               |19.99      |45.0        |
+|ACCEPTED|WEB    |1               |90.0       |102.0       |
+|PENDING |WEB    |1               |800.0      |310.0       |
+|REJECTED|MOBILE |1               |250.1      |64.0        |
++--------+-------+----------------+-----------+------------+
+
+EDL_EVENT_COUNT=5
+26/09/29 19:08:49 INFO SparkContext: SparkContext is stopping with exitCode 0 from stop at NativeMethodAccessorImpl.java:0.
+26/09/29 19:08:49 INFO SparkUI: Stopped Spark web UI at http://kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc.edl-data.svc:4040
+26/09/29 19:08:49 INFO KubernetesClusterSchedulerBackend: Shutting down all executors
+26/09/29 19:08:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asking each executor to shut down
+26/09/29 19:08:49 INFO ExecutorPodsWatchSnapshotSource: Kubernetes client has been closed.
+26/09/29 19:08:49 ERROR Utils: Uncaught exception in thread Thread-4
+io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/services?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d. Message: services is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "services" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=services, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=services is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "services" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.KubernetesClientException.copyAsCause(KubernetesClientException.java:205)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.waitForResult(OperationSupport.java:507)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleResponse(OperationSupport.java:524)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleDelete(OperationSupport.java:320)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.deleteAll(BaseOperation.java:535)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.delete(BaseOperation.java:500)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.$anonfun$stop$5(KubernetesClusterSchedulerBackend.scala:144)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.stop(KubernetesClusterSchedulerBackend.scala:145)
+	at org.apache.spark.scheduler.SchedulerBackend.stop(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.SchedulerBackend.stop$(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.stop(CoarseGrainedSchedulerBackend.scala:58)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.$anonfun$stop$2(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.stop(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$stop$4(DAGScheduler.scala:3310)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:3310)
+	at org.apache.spark.SparkContext.$anonfun$stop$12(SparkContext.scala:2357)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2357)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2308)
+	at org.apache.spark.api.java.JavaSparkContext.stop(JavaSparkContext.scala:552)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/services?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d. Message: services is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "services" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=services, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=services is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "services" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:642)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:622)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.assertResponseCode(OperationSupport.java:582)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.lambda$handleResponse$0(OperationSupport.java:549)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:646)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.StandardHttpClient.lambda$completeOrCancel$10(StandardHttpClient.java:141)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.ByteArrayBodyHandler.onBodyDone(ByteArrayBodyHandler.java:51)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.vertx.VertxHttpRequest.lambda$consumeBytes$1(VertxHttpRequest.java:84)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:270)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:252)
+	at io.vertx.core.http.impl.HttpEventHandler.handleEnd(HttpEventHandler.java:76)
+	at io.vertx.core.http.impl.HttpClientResponseImpl.handleEnd(HttpClientResponseImpl.java:250)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.lambda$new$0(Http1xClientConnection.java:448)
+	at io.vertx.core.streams.impl.InboundBuffer.handleEvent(InboundBuffer.java:279)
+	at io.vertx.core.streams.impl.InboundBuffer.write(InboundBuffer.java:157)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.handleEnd(Http1xClientConnection.java:758)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:327)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:307)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleResponseEnd(Http1xClientConnection.java:989)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleHttpMessage(Http1xClientConnection.java:861)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleMessage(Http1xClientConnection.java:823)
+	at io.vertx.core.net.impl.ConnectionBase.read(ConnectionBase.java:159)
+	at io.vertx.core.net.impl.VertxHandler.channelRead(VertxHandler.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:434)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:249)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1540)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1398)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1449)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:356)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1429)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:918)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:168)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:445)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1193)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 more
+26/09/29 19:08:49 ERROR Utils: Uncaught exception in thread Thread-4
+io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/persistentvolumeclaims?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d. Message: persistentvolumeclaims is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "persistentvolumeclaims" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=persistentvolumeclaims, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=persistentvolumeclaims is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "persistentvolumeclaims" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.KubernetesClientException.copyAsCause(KubernetesClientException.java:205)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.waitForResult(OperationSupport.java:507)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleResponse(OperationSupport.java:524)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleDelete(OperationSupport.java:320)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.deleteAll(BaseOperation.java:535)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.delete(BaseOperation.java:500)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.$anonfun$stop$6(KubernetesClusterSchedulerBackend.scala:154)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.stop(KubernetesClusterSchedulerBackend.scala:155)
+	at org.apache.spark.scheduler.SchedulerBackend.stop(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.SchedulerBackend.stop$(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.stop(CoarseGrainedSchedulerBackend.scala:58)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.$anonfun$stop$2(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.stop(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$stop$4(DAGScheduler.scala:3310)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:3310)
+	at org.apache.spark.SparkContext.$anonfun$stop$12(SparkContext.scala:2357)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2357)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2308)
+	at org.apache.spark.api.java.JavaSparkContext.stop(JavaSparkContext.scala:552)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/persistentvolumeclaims?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d. Message: persistentvolumeclaims is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "persistentvolumeclaims" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=persistentvolumeclaims, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=persistentvolumeclaims is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "persistentvolumeclaims" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:642)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:622)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.assertResponseCode(OperationSupport.java:582)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.lambda$handleResponse$0(OperationSupport.java:549)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:646)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.StandardHttpClient.lambda$completeOrCancel$10(StandardHttpClient.java:141)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.ByteArrayBodyHandler.onBodyDone(ByteArrayBodyHandler.java:51)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.vertx.VertxHttpRequest.lambda$consumeBytes$1(VertxHttpRequest.java:84)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:270)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:252)
+	at io.vertx.core.http.impl.HttpEventHandler.handleEnd(HttpEventHandler.java:76)
+	at io.vertx.core.http.impl.HttpClientResponseImpl.handleEnd(HttpClientResponseImpl.java:250)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.lambda$new$0(Http1xClientConnection.java:448)
+	at io.vertx.core.streams.impl.InboundBuffer.handleEvent(InboundBuffer.java:279)
+	at io.vertx.core.streams.impl.InboundBuffer.write(InboundBuffer.java:157)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.handleEnd(Http1xClientConnection.java:758)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:327)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:307)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleResponseEnd(Http1xClientConnection.java:989)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleHttpMessage(Http1xClientConnection.java:861)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleMessage(Http1xClientConnection.java:823)
+	at io.vertx.core.net.impl.ConnectionBase.read(ConnectionBase.java:159)
+	at io.vertx.core.net.impl.VertxHandler.channelRead(VertxHandler.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:434)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:249)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1540)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1398)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1449)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:356)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1429)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:918)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:168)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:445)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1193)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 more
+26/09/29 19:08:49 ERROR Utils: Uncaught exception in thread Thread-4
+io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/pods?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d%2Cspark-role%3Dexecutor. Message: pods is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "pods" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=pods, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=pods is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "pods" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.KubernetesClientException.copyAsCause(KubernetesClientException.java:205)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.waitForResult(OperationSupport.java:507)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleResponse(OperationSupport.java:524)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleDelete(OperationSupport.java:320)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.deleteAll(BaseOperation.java:535)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.delete(BaseOperation.java:500)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.$anonfun$stop$1(ExecutorPodsAllocator.scala:541)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.cluster.k8s.ExecutorPodsAllocator.stop(ExecutorPodsAllocator.scala:542)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.stop(KubernetesClusterSchedulerBackend.scala:161)
+	at org.apache.spark.scheduler.SchedulerBackend.stop(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.SchedulerBackend.stop$(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.stop(CoarseGrainedSchedulerBackend.scala:58)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.$anonfun$stop$2(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.stop(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$stop$4(DAGScheduler.scala:3310)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:3310)
+	at org.apache.spark.SparkContext.$anonfun$stop$12(SparkContext.scala:2357)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2357)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2308)
+	at org.apache.spark.api.java.JavaSparkContext.stop(JavaSparkContext.scala:552)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/pods?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d%2Cspark-role%3Dexecutor. Message: pods is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "pods" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=pods, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=pods is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "pods" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:642)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:622)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.assertResponseCode(OperationSupport.java:582)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.lambda$handleResponse$0(OperationSupport.java:549)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:646)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.StandardHttpClient.lambda$completeOrCancel$10(StandardHttpClient.java:141)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.ByteArrayBodyHandler.onBodyDone(ByteArrayBodyHandler.java:51)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.vertx.VertxHttpRequest.lambda$consumeBytes$1(VertxHttpRequest.java:84)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:270)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:252)
+	at io.vertx.core.http.impl.HttpEventHandler.handleEnd(HttpEventHandler.java:76)
+	at io.vertx.core.http.impl.HttpClientResponseImpl.handleEnd(HttpClientResponseImpl.java:250)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.lambda$new$0(Http1xClientConnection.java:448)
+	at io.vertx.core.streams.impl.InboundBuffer.handleEvent(InboundBuffer.java:279)
+	at io.vertx.core.streams.impl.InboundBuffer.write(InboundBuffer.java:157)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.handleEnd(Http1xClientConnection.java:758)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:327)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:307)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleResponseEnd(Http1xClientConnection.java:989)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleHttpMessage(Http1xClientConnection.java:861)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleMessage(Http1xClientConnection.java:823)
+	at io.vertx.core.net.impl.ConnectionBase.read(ConnectionBase.java:159)
+	at io.vertx.core.net.impl.VertxHandler.channelRead(VertxHandler.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:434)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:249)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1540)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1398)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1449)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:356)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1429)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:918)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:168)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:445)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1193)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 more
+26/09/29 19:08:49 ERROR Utils: Uncaught exception in thread Thread-4
+io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/configmaps?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d%2Cspark-role%3Dexecutor. Message: configmaps is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "configmaps" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=configmaps, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=configmaps is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "configmaps" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.KubernetesClientException.copyAsCause(KubernetesClientException.java:205)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.waitForResult(OperationSupport.java:507)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleResponse(OperationSupport.java:524)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.handleDelete(OperationSupport.java:320)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.deleteAll(BaseOperation.java:535)
+	at io.fabric8.kubernetes.client.dsl.internal.BaseOperation.delete(BaseOperation.java:500)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.$anonfun$stop$7(KubernetesClusterSchedulerBackend.scala:169)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend.stop(KubernetesClusterSchedulerBackend.scala:170)
+	at org.apache.spark.scheduler.SchedulerBackend.stop(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.SchedulerBackend.stop$(SchedulerBackend.scala:34)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.stop(CoarseGrainedSchedulerBackend.scala:58)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.$anonfun$stop$2(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.stop(TaskSchedulerImpl.scala:933)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$stop$4(DAGScheduler.scala:3310)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:3310)
+	at org.apache.spark.SparkContext.$anonfun$stop$12(SparkContext.scala:2357)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1314)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2357)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2308)
+	at org.apache.spark.api.java.JavaSparkContext.stop(JavaSparkContext.scala:552)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.fabric8.kubernetes.client.KubernetesClientException: Failure executing: DELETE at: https://kubernetes.default.svc/api/v1/namespaces/edl-data/configmaps?labelSelector=spark-app-selector%3Dspark-8eb2128164634f438b2da7caaf2c0f0d%2Cspark-role%3Dexecutor. Message: configmaps is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "configmaps" in API group "" in the namespace "edl-data". Received status: Status(apiVersion=v1, code=403, details=StatusDetails(causes=[], group=null, kind=configmaps, name=null, retryAfterSeconds=null, uid=null, additionalProperties={}), kind=Status, message=configmaps is forbidden: User "system:serviceaccount:edl-data:spark-runner" cannot deletecollection resource "configmaps" in API group "" in the namespace "edl-data", metadata=ListMeta(_continue=null, remainingItemCount=null, resourceVersion=null, selfLink=null, additionalProperties={}), reason=Forbidden, status=Failure, additionalProperties={}).
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:642)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.requestFailure(OperationSupport.java:622)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.assertResponseCode(OperationSupport.java:582)
+	at io.fabric8.kubernetes.client.dsl.internal.OperationSupport.lambda$handleResponse$0(OperationSupport.java:549)
+	at java.base/java.util.concurrent.CompletableFuture$UniApply.tryFire(CompletableFuture.java:646)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.StandardHttpClient.lambda$completeOrCancel$10(StandardHttpClient.java:141)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.http.ByteArrayBodyHandler.onBodyDone(ByteArrayBodyHandler.java:51)
+	at java.base/java.util.concurrent.CompletableFuture.uniWhenComplete(CompletableFuture.java:863)
+	at java.base/java.util.concurrent.CompletableFuture$UniWhenComplete.tryFire(CompletableFuture.java:841)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147)
+	at io.fabric8.kubernetes.client.vertx.VertxHttpRequest.lambda$consumeBytes$1(VertxHttpRequest.java:84)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:270)
+	at io.vertx.core.impl.ContextInternal.dispatch(ContextInternal.java:252)
+	at io.vertx.core.http.impl.HttpEventHandler.handleEnd(HttpEventHandler.java:76)
+	at io.vertx.core.http.impl.HttpClientResponseImpl.handleEnd(HttpClientResponseImpl.java:250)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.lambda$new$0(Http1xClientConnection.java:448)
+	at io.vertx.core.streams.impl.InboundBuffer.handleEvent(InboundBuffer.java:279)
+	at io.vertx.core.streams.impl.InboundBuffer.write(InboundBuffer.java:157)
+	at io.vertx.core.http.impl.Http1xClientConnection$StreamImpl.handleEnd(Http1xClientConnection.java:758)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:327)
+	at io.vertx.core.impl.ContextImpl.execute(ContextImpl.java:307)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleResponseEnd(Http1xClientConnection.java:989)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleHttpMessage(Http1xClientConnection.java:861)
+	at io.vertx.core.http.impl.Http1xClientConnection.handleMessage(Http1xClientConnection.java:823)
+	at io.vertx.core.net.impl.ConnectionBase.read(ConnectionBase.java:159)
+	at io.vertx.core.net.impl.VertxHandler.channelRead(VertxHandler.java:153)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:434)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:249)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:354)
+	at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1540)
+	at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1398)
+	at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1449)
+	at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:530)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:469)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:356)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1429)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:918)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:168)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.handle(AbstractNioChannel.java:445)
+	at io.netty.channel.nio.NioIoHandler$DefaultNioRegistration.handle(NioIoHandler.java:388)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKey(NioIoHandler.java:596)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeysOptimized(NioIoHandler.java:571)
+	at io.netty.channel.nio.NioIoHandler.processSelectedKeys(NioIoHandler.java:512)
+	at io.netty.channel.nio.NioIoHandler.run(NioIoHandler.java:484)
+	at io.netty.channel.SingleThreadIoEventLoop.runIo(SingleThreadIoEventLoop.java:225)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:196)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1193)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 more
+26/09/29 19:08:49 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+26/09/29 19:08:49 INFO MemoryStore: MemoryStore cleared
+26/09/29 19:08:49 INFO BlockManager: BlockManager stopped
+26/09/29 19:08:49 INFO BlockManagerMaster: BlockManagerMaster stopped
+26/09/29 19:08:49 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+26/09/29 19:08:49 INFO SparkContext: Successfully stopped SparkContext (Uptime: 103863 ms)

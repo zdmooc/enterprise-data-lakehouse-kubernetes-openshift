@@ -16,7 +16,7 @@ This pack records actual gates; later stages are not inferred from static files.
 | I8 Jupyter | IMPLEMENTED | RUNTIME_VALIDATED | 15-jupyter.txt, jupyter-image.txt | Revalidated 2026-09-29 18:37 UTC: Ready pod, Bound PVC, HTTP 200, five actual Iceberg transactions via Trino, retained PVC proof |
 | I9 security | IMPLEMENTED | RUNTIME_VALIDATED | 17-security-tests.txt, i9-supply-chain.txt, SECURITY_FINDINGS.md | Five denials passed; scans completed with vulnerabilities remaining; resource policy Audit |
 | I10 observability | IMPLEMENTED | RUNTIME_VALIDATED | 18-prometheus-targets.txt, 20-resource-usage.txt | 21/21 targets UP; Grafana API/datasource/dashboards verified; consumer lag and PVC capacity series absent; kubectl top NOT AVAILABLE |
-| I11 recovery | IMPLEMENTED | NOT_TESTED | Pending | No multi-host HA claim |
+| I11 recovery | IMPLEMENTED | RUNTIME_VALIDATED | i11/README.md, i11/*.txt | KIND_MULTI_NODE_FUNCTIONAL_RECOVERY; seven scenarios; Polaris catalog lost then reconstructed; one laptop/local PVCs |
 | I12 E2E | IMPLEMENTED | NOT_TESTED | Pending | Full chain not yet deployed |
 
 Initial I2 DNS probe used a short name which BusyBox returned as NXDOMAIN. The
@@ -107,3 +107,34 @@ rule loading alone does not establish that coverage. Metrics-server remains abse
 `kubectl top = NOT AVAILABLE`. Docker stats are separate container-level observations,
 not an equivalent to Kubernetes Metrics API. I1-I9 were not rerun, I11-I12 were not
 started, CRC was not accessed, and edl-lab remains running.
+
+## I11-only checkpoint — 2026-09-29/30 UTC
+
+Started from clean `e4137cb29274a5d738f4ba1dc8da617df64a1154` on
+`runtime/kind-edl-lab`, with context `kind-edl-lab` and three Ready nodes.
+Result: **KIND_MULTI_NODE_FUNCTIONAL_RECOVERY**, I11 **RUNTIME_VALIDATED**.
+See [the I11 evidence index](i11/README.md) and its seven scenario logs.
+
+Jupyter, Trino worker, Kafka, Polaris and RustFS each received exactly one targeted
+pod deletion. New UIDs became Ready; stateful PVC identities remained unchanged.
+Jupyter's persistent marker survived, the coordinator stayed healthy during worker
+replacement, Kafka accepted and returned a unique smoke event, and RustFS retained
+all 15 existing objects with identical sizes/ETags. Fresh S3 PUT/GET/LIST/DELETE and
+post-delete absence passed. Argo automatically healed a non-destructive quota drift
+(6 -> 7 -> 6), transitioning OutOfSync/Healthy -> Synced/Healthy in 10.2 seconds.
+
+Polaris's catalog was actually lost: its catalog list became empty and Trino's
+Iceberg query failed with SCHEMA_NOT_FOUND. The documented resume-data procedure
+reconstructed it from retained Kafka records; the catalog and exactly five original
+transactions were verified afterwards. **This does not validate Polaris durability.**
+The initial port-forward collision and S3 harness failures remain in the logs with
+their corrections; no failed assertion was silently discarded.
+
+N3 collected pods/events/nodes/storage/network/Argo state and verified DNS, the PVC
+marker and real SQL reads. Final nodes/pods/PVCs/Argo gates passed. Transient probe/API
+timeouts around 2026-09-30 04:52 UTC and the operator's increased restart count are
+recorded without claiming a root cause. This is a single-laptop recovery result;
+there was no host/node/storage failure injection or continuity guarantee.
+
+I1-I10 were not rerun. I12 remains NOT_TESTED and was not started. CRC was not
+accessed, no PVC or namespace was deleted, and edl-lab remains running.

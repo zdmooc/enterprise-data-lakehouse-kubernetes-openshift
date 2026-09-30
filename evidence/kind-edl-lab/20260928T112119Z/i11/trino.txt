@@ -1,0 +1,27 @@
+
+UTC=2026-09-29T18:59:17.517465+00:00; SCENARIO=trino
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+BEFORE coordinator {"name": "edl-trino-coordinator-988976887-ls4v9", "uid": "62a6f3d2-45cf-41a1-9004-5b3988a6c8d0", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+BEFORE {"name": "edl-trino-worker-fd7d84897-ppvg9", "uid": "2d10b6f3-a53b-4376-8766-5470a0a59faa", "node": "edl-lab-worker2", "ready": true, "restarts": 0}
+ACTION delete only pod/edl-trino-worker-fd7d84897-ppvg9
+pod "edl-trino-worker-fd7d84897-ppvg9" deleted
+WAIT for different UID and Ready
+AFTER {"name": "edl-trino-worker-fd7d84897-rtjbs", "uid": "171c8233-6d82-416f-991c-196e8295416f", "node": "edl-lab-worker2", "ready": true, "restarts": 0}
+REPLACEMENT_READY_SECONDS=64.9
+COORDINATOR_HEALTHY_SAMPLES_DURING_WAIT=15
+AFTER coordinator {"name": "edl-trino-coordinator-988976887-ls4v9", "uid": "62a6f3d2-45cf-41a1-9004-5b3988a6c8d0", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+[PASS] trino

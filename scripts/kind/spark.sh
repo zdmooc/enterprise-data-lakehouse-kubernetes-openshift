@@ -2,8 +2,12 @@
 source "$(dirname "$0")/common.sh"
 mode="${1:-smoke}"
 [[ "$mode" = smoke || "$mode" = lakehouse ]] || fail 'expected smoke or lakehouse'
-inventory
+if [ "${EDL_RECOVERY_ONLY:-no}" != yes ]; then inventory; fi
 guard
+if [ -n "${EDL_RECOVERY_EVIDENCE_DIR:-}" ]; then
+  EVIDENCE_DIR="$EDL_RECOVERY_EVIDENCE_DIR"
+  mkdir -p "$EVIDENCE_DIR"
+fi
 for node in $(lab_nodes); do
   docker exec "$node" crictl inspecti docker.io/library/edl-spark-lakehouse:kind-4.1.3-iceberg1.11 >/dev/null || fail 'Run build-spark.sh to completion before submitting Spark'
 done
@@ -26,4 +30,4 @@ if [ "$mode" = smoke ]; then
 else
   grep -E 'EDL_EVENT_COUNT=[1-9][0-9]*' "$EVIDENCE_DIR/spark-$mode.txt"
 fi
-resource_check | tee -a "$EVIDENCE_DIR/20-resource-usage.txt"
+if [ "${EDL_RECOVERY_ONLY:-no}" != yes ]; then resource_check | tee -a "$EVIDENCE_DIR/20-resource-usage.txt"; fi
