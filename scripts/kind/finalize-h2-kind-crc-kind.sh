@@ -58,8 +58,26 @@ fi
 
 mapfile -t nodes < <(lab_nodes)
 [ "${#nodes[@]}" -eq 3 ] || fail "expected exactly 3 existing edl-lab node containers"
-[ "$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab' | wc -l | tr -d ' ')" -eq 3 ] \
-  || fail "all 3 edl-lab containers must be running before H2"
+
+running_count="$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab' | wc -l | tr -d ' ')"
+if [ "$running_count" -ne 3 ]; then
+  echo "[INFO] partial Kind state detected: $running_count/3 containers running"
+  for node in edl-lab-control-plane edl-lab-worker2 edl-lab-worker; do
+    state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+    if [ "$state" != "true" ]; then
+      echo "[INFO] starting $node"
+      docker start "$node"
+      sleep 3
+    fi
+  done
+  kind export kubeconfig --name "$CLUSTER"
+  kubectl config use-context "$CONTEXT" >/dev/null
+  deadline=$((SECONDS + 300))
+  until k get nodes >/dev/null 2>&1; do
+    [ "$SECONDS" -lt "$deadline" ] || fail "Kind API did not return during pre-H2 recovery"
+    sleep 5
+  done
+fi
 
 # Capture the exact Docker IP mapping before the switch. Kind node identities
 # retain their InternalIP across a container stop/start, so the existing node
