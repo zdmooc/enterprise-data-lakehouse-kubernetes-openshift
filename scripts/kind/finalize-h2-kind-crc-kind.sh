@@ -139,6 +139,37 @@ ensure_core_runtime() {
   done
 }
 
+wait_platform_health() {
+  local namespace deployment deadline
+  echo "[INFO] waiting for retained platform deployments to settle"
+  for namespace in argocd edl-platform edl-data edl-observability kyverno; do
+    if k get namespace "$namespace" >/dev/null 2>&1; then
+      while IFS= read -r deployment; do
+        [ -n "$deployment" ] || continue
+        k -n "$namespace" rollout status "$deployment" --timeout=600s
+      done < <(k -n "$namespace" get deployments -o name)
+    fi
+  done
+  k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
+
+  deadline=$((SECONDS + 600))
+  while true; do
+    if py scripts/kind/check-health.py >/tmp/h2-health-check.txt 2>&1; then
+      cat /tmp/h2-health-check.txt
+      echo "[PASS] retained platform health gate is stable"
+      return 0
+    fi
+    if [ "$SECONDS" -ge "$deadline" ]; then
+      cat /tmp/h2-health-check.txt
+      k get pods -A
+      fail "retained platform did not become healthy within 600s"
+    fi
+    echo "[INFO] platform still converging after node restart; retrying health gate"
+    k get pods -A --field-selector=status.phase=Pending || true
+    sleep 10
+  done
+}
+
 ensure_s3_reader() {
   local phase ready
   phase="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.phase}' 2>/dev/null || true)"
@@ -154,6 +185,7 @@ ensure_s3_reader() {
 
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
 ensure_core_runtime
+wait_platform_health
 ensure_s3_reader
 # Polaris is intentionally in-memory. A previous node restart may already have
 # emptied the catalog before the actual H2 CRC switch. Restore only the exact
@@ -267,6 +299,7 @@ for namespace in argocd edl-platform edl-data edl-observability kyverno; do
 done
 k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
 ensure_core_runtime
+wait_platform_health
 ensure_s3_reader
 
 echo "===== H2 POLARIS RETENTION / METADATA-ONLY RECOVERY ====="
