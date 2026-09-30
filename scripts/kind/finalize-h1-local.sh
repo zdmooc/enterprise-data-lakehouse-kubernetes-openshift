@@ -80,6 +80,9 @@ k apply -k data-platform/jupyter/profiles/kind
 k -n edl-data rollout status deployment/edl-jupyter --timeout=600s
 k -n edl-data wait --for=condition=Ready pod -l app=edl-jupyter --timeout=300s
 
+# KSV-0014 also covers this diagnostic pod; retain and verify its existing PVC.
+"${PYTHON[@]}" scripts/kind/test-h1-probe.py
+
 k apply -k data-platform/object-storage/profiles/kind
 k -n edl-data rollout status deployment/edl-s3 --timeout=600s
 k -n edl-data wait --for=condition=Ready pod -l app=edl-s3 --timeout=300s
@@ -217,6 +220,8 @@ k -n edl-data get pvc
 k -n argocd get applications
 
 echo "===== H1 EVIDENCE COMMIT ====="
+"${PYTHON[@]}" scripts/kind/check-evidence-secrets.py
+git diff --check
 git add "$H1_EVIDENCE"
 BAD="$(git diff --cached --name-only | grep -v "^$H1_EVIDENCE/" || true)"
 [ -z "$BAD" ] || fail "unexpected staged path(s): $BAD"

@@ -181,3 +181,28 @@ Resume verification at 2026-09-30 10:01 UTC confirmed the already successful r3
 driver/executor, unchanged six-row snapshot, exact Trino/Jupyter event reads and
 healthy observability/cluster state. Only read checks were repeated; no Kafka event
 was republished and no Spark job or Polaris reconstruction was restarted.
+
+## H1 SECURITY HARDENING
+
+Result: **COMPLETED_WITH_REMAINING_FINDINGS**. The local finalizer passed against
+the retained I12 runtime on 2026-09-30; details are in `h1-security-hardening/`.
+I1–I12 statuses and their historical evidence remain unchanged.
+
+Jupyter GitPython 3.1.59 removes CVE-2026-78676. Local scan occurrences change
+from 8 CRITICAL / 205 HIGH to 7 CRITICAL / 198 HIGH. AWS CLI 2.37.5 reduces the
+S3 client from 213 HIGH to 14 HIGH (zero CRITICAL in both). Spark retains its
+acquired binaries: 10 CRITICAL / 278 HIGH remain, including Netty/Derby findings
+classified UPSTREAM/DEFERRED. Other upstream images are NOT_TESTED in this scan
+checkpoint. The six Kind KSV-0014 manifest findings are reduced to zero, and
+read-only roots were checked on the running workloads and Spark driver/executor.
+The omitted diagnostic-probe rollout was detected and corrected while preserving
+its PVC identity and file hashes; that gate is now included in the finalizer.
+
+Spark smoke, existing Kafka-event read, six-row Iceberg read and disposable
+table write/read/drop passed. The original snapshot `3607998935123899351`, table
+UUID and metadata location are unchanged. Jupyter's kernel queried the exact I12
+event through Trino, its persistent marker survived, and the S3 contract passed.
+Final H1 health: 3 Ready nodes, 6 Bound PVCs, 2 Synced/Healthy Argo applications,
+21 targets UP and Grafana healthy. No Kafka publish, Polaris reconstruction,
+PVC/namespace/cluster deletion or CRC access occurred in H1. Findings and lab
+limitations remain explicit; this is not a production approval.
