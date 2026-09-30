@@ -110,6 +110,7 @@ jobs:
           set -euo pipefail
           mkdir -p .audit/h1-ci
           trivy image --download-db-only --cache-dir .audit/h1-ci/cache
+          trivy image --download-java-db-only --cache-dir .audit/h1-ci/cache
           trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update             --scanners vuln --format json --output .audit/h1-ci/jupyter-before.json             edl-jupyter:kind-2026-07-28
           trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update             --scanners vuln --format json --output .audit/h1-ci/jupyter-after.json             edl-jupyter:kind-h1-gitpython3.1.59
           python - <<'PY'
