@@ -39,7 +39,7 @@ spec:
         seccompProfile: {type: RuntimeDefault}
       containers:
         - name: jupyter
-          image: edl-jupyter:kind-2026-07-28
+          image: edl-jupyter:kind-h1-gitpython3.1.59
           imagePullPolicy: IfNotPresent
           args: [start-notebook.py, '--ServerApp.ip=0.0.0.0', '--ServerApp.port=8888', '--ServerApp.open_browser=False']
           env:
@@ -60,10 +60,17 @@ spec:
             requests: {cpu: 100m, memory: 512Mi}
             limits: {cpu: '1', memory: 2Gi}
           securityContext:
+            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
           volumeMounts:
+            - {name: home, mountPath: /home/jovyan}
+            - {name: tmp, mountPath: /tmp}
             - {name: workspace, mountPath: /home/jovyan/work}
       volumes:
+        - name: home
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
         - name: workspace
           persistentVolumeClaim: {claimName: jupyter-workspace}

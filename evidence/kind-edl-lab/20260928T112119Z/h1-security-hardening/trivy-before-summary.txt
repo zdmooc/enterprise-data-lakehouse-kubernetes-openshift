@@ -1,0 +1,5 @@
+Historical baseline scans (2026-09-29); raw reports remain in ignored .audit/kind. Counts are finding occurrences, not unique CVEs.
+jupyter Counter({'MEDIUM': 3916, 'LOW': 306, 'HIGH': 198, 'CRITICAL': 7})
+spark Counter({'MEDIUM': 3567, 'LOW': 336, 'HIGH': 276, 'CRITICAL': 10})
+s3 Counter({'HIGH': 199, 'MEDIUM': 127, 'LOW': 10})
+files Counter()

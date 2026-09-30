@@ -1,0 +1,12 @@
+https://repo.maven.apache.org/maven2/org/apache/spark/spark-parent_2.13/4.1.3/spark-parent_2.13-4.1.3.pom
+java.version=17
+derby.version=10.16.1.1
+netty-tcnative.version=2.0.74.Final
+derby.deps.scope=compile
+netty.version=4.2.7.Final
+https://repo.maven.apache.org/maven2/org/apache/spark/spark-parent_2.13/4.2.0/spark-parent_2.13-4.2.0.pom
+java.version=17
+derby.version=10.16.1.1
+netty-tcnative.version=2.0.76.Final
+derby.deps.scope=compile
+netty.version=4.2.13.Final
