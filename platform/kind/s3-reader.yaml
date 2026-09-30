@@ -14,7 +14,7 @@ spec:
     seccompProfile: {type: RuntimeDefault}
   containers:
     - name: reader
-      image: edl-s3-client:kind-2.31.0
+      image: edl-s3-client:kind-h1
       imagePullPolicy: IfNotPresent
       command: [bash, -c, 'sleep 86400']
       envFrom:
@@ -23,8 +23,14 @@ spec:
         - {name: HOME, value: /tmp}
         - {name: AWS_PAGER, value: ''}
       securityContext:
+        readOnlyRootFilesystem: true
         allowPrivilegeEscalation: false
         capabilities: {drop: [ALL]}
       resources:
         requests: {cpu: 10m, memory: 32Mi}
         limits: {cpu: 250m, memory: 128Mi}
+      volumeMounts:
+        - {name: tmp, mountPath: /tmp}
+  volumes:
+    - name: tmp
+      emptyDir: {}

@@ -20,7 +20,7 @@ spec:
         seccompProfile: {type: RuntimeDefault}
       containers:
         - name: contract
-          image: edl-s3-client:kind-2.31.0
+          image: edl-s3-client:kind-h1
           imagePullPolicy: IfNotPresent
           command: [bash, -ec]
           args:
@@ -37,6 +37,7 @@ spec:
             - {name: AWS_EC2_METADATA_DISABLED, value: 'true'}
             - {name: S3_CREATE_BUCKET, value: 'yes'}
           securityContext:
+            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
           resources:
@@ -44,6 +45,9 @@ spec:
             limits: {cpu: 500m, memory: 256Mi}
           volumeMounts:
             - {name: scripts, mountPath: /work/scripts, readOnly: true}
+            - {name: tmp, mountPath: /tmp}
       volumes:
         - name: scripts
           configMap: {name: kind-s3-contract-scripts}
+        - name: tmp
+          emptyDir: {}

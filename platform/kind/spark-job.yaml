@@ -26,7 +26,11 @@ spec:
           command: [bash, /opt/edl-templates/submit.sh]
           env:
             - {name: MODE, value: __MODE__}
+            - {name: HOME, value: /tmp}
+            - {name: SPARK_LOCAL_DIRS, value: /tmp/spark}
+            - {name: PYTHONDONTWRITEBYTECODE, value: '1'}
           securityContext:
+            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
           resources:
@@ -34,6 +38,9 @@ spec:
             limits: {cpu: 500m, memory: 768Mi}
           volumeMounts:
             - {name: templates, mountPath: /opt/edl-templates, readOnly: true}
+            - {name: tmp, mountPath: /tmp}
       volumes:
         - name: templates
           configMap: {name: kind-spark-templates}
+        - name: tmp
+          emptyDir: {}

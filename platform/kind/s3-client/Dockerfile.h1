@@ -1,0 +1,10 @@
+# H1 derivative: preserve the validated AWS CLI contract while applying current
+# Amazon Linux package updates available for the pinned 2.31.0 CLI image.
+FROM edl-s3-client:kind-2.31.0
+USER 0
+RUN yum update -y \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
+    && aws --version \
+    && diff --version >/dev/null
+USER 1000:1000

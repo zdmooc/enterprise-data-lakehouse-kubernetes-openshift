@@ -48,6 +48,7 @@ spec:
             - {name: RUSTFS_ADDRESS, value: '0.0.0.0:9000'}
             - {name: RUSTFS_CONSOLE_ENABLE, value: 'false'}
             - {name: RUSTFS_OBS_LOG_DIRECTORY, value: /logs}
+            - {name: TMPDIR, value: /tmp}
             - name: RUSTFS_ACCESS_KEY
               valueFrom:
                 secretKeyRef: {name: kind-s3, key: AWS_ACCESS_KEY_ID}
@@ -55,6 +56,7 @@ spec:
               valueFrom:
                 secretKeyRef: {name: kind-s3, key: AWS_SECRET_ACCESS_KEY}
           securityContext:
+            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
           resources:
@@ -72,8 +74,11 @@ spec:
           volumeMounts:
             - {name: data, mountPath: /data}
             - {name: logs, mountPath: /logs}
+            - {name: tmp, mountPath: /tmp}
       volumes:
         - name: data
           persistentVolumeClaim: {claimName: edl-s3}
         - name: logs
+          emptyDir: {}
+        - name: tmp
           emptyDir: {}
