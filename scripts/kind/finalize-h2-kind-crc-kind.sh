@@ -58,6 +58,15 @@ mapfile -t nodes < <(lab_nodes)
 
 ready_nodes
 
+# Guard against a partially recovered Docker/Kind network. After a container
+# restart, Kubernetes may briefly report stale node addresses. H2 must start
+# only when all three retained nodes expose distinct InternalIP values.
+mapfile -t kind_internal_ips < <(k get nodes -o jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address}{"\\n"}{end}')
+[ "${#kind_internal_ips[@]}" -eq 3 ] || fail "expected 3 Kind InternalIP values"
+[ "$(printf '%s\\n' "${kind_internal_ips[@]}" | sort -u | wc -l | tr -d ' ')" -eq 3 ] \
+  || fail "duplicate/stale Kind InternalIP detected; wait for node network reconciliation before H2"
+printf 'Kind InternalIPs: %s\\n' "${kind_internal_ips[*]}"
+
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
 py scripts/kind/test-h2.py before
 
@@ -114,6 +123,11 @@ until k get nodes >/dev/null 2>&1; do
   sleep 5
 done
 ready_nodes
+mapfile -t kind_internal_ips < <(k get nodes -o jsonpath='{range .items[*]}{.status.addresses[?(@.type=="InternalIP")].address}{"\\n"}{end}')
+[ "${#kind_internal_ips[@]}" -eq 3 ] || fail "expected 3 Kind InternalIP values after restart"
+[ "$(printf '%s\\n' "${kind_internal_ips[@]}" | sort -u | wc -l | tr -d ' ')" -eq 3 ] \
+  || fail "duplicate/stale Kind InternalIP detected after restart"
+printf 'Kind InternalIPs after restart: %s\\n' "${kind_internal_ips[*]}"
 
 echo "===== H2 WAIT RETAINED WORKLOADS ====="
 for namespace in argocd edl-platform edl-data edl-observability kyverno; do
