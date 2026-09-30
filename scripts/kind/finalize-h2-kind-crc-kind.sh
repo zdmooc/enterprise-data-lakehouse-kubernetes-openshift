@@ -35,7 +35,8 @@ trap restore_kind_on_exit EXIT
 
 echo "===== H2 PRECHECK ====="
 [ "$(git branch --show-current)" = "$BRANCH" ] || fail "wrong Git branch"
-[ -z "$(git status --porcelain)" ] || fail "Git working tree must be clean"
+DIRTY="$(git status --porcelain | grep -v "?? $H2_DIR/" || true)"
+[ -z "$DIRTY" ] || fail "Git working tree has changes outside the H2 evidence directory"
 guard
 
 for cmd in docker kind kubectl crc; do
@@ -70,8 +71,8 @@ py scripts/kind/test-h2.py before
 } | tee "$H2_DIR/kind-before.txt"
 
 echo "===== H2 STOP KIND WITHOUT DELETION ====="
-docker stop --time 60 "${nodes[@]}" | tee "$H2_DIR/kind-stop.txt"
 KIND_STOPPED=true
+docker stop --timeout 60 "${nodes[@]}" | tee "$H2_DIR/kind-stop.txt"
 [ -z "$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab')" ] \
   || fail "some edl-lab node containers are still running"
 echo '[PASS] Kind node containers stopped; containers/images/volumes preserved' | tee -a "$H2_DIR/kind-stop.txt"
