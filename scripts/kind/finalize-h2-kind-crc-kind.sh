@@ -14,6 +14,8 @@ KIND_STOPPED=false
 CRC_MAYBE_RUNNING=false
 SUCCESS=false
 nodes=()
+restart_order=()
+declare -A expected_docker_ip
 
 restore_kind_on_exit() {
   local code=$?
@@ -24,8 +26,11 @@ restore_kind_on_exit() {
   if [ "$CRC_MAYBE_RUNNING" = true ]; then
     crc stop >/dev/null 2>&1 || true
   fi
-  if [ "$KIND_STOPPED" = true ] && [ "${#nodes[@]}" -eq 3 ]; then
-    docker start "${nodes[@]}" >/dev/null 2>&1 || true
+  if [ "$KIND_STOPPED" = true ] && [ "${#restart_order[@]}" -eq 3 ]; then
+    for node in "${restart_order[@]}"; do
+      docker start "$node" >/dev/null 2>&1 || true
+      sleep 2
+    done
     kind export kubeconfig --name "$CLUSTER" >/dev/null 2>&1 || true
     kubectl config use-context "$CONTEXT" >/dev/null 2>&1 || true
   fi
@@ -55,6 +60,22 @@ mapfile -t nodes < <(lab_nodes)
 [ "${#nodes[@]}" -eq 3 ] || fail "expected exactly 3 existing edl-lab node containers"
 [ "$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab' | wc -l | tr -d ' ')" -eq 3 ] \
   || fail "all 3 edl-lab containers must be running before H2"
+
+# Capture the exact Docker IP mapping before the switch. Kind node identities
+# retain their InternalIP across a container stop/start, so the existing node
+# containers must reacquire the same Docker bridge addresses on restart.
+tmp_order="$(mktemp)"
+for id in "${nodes[@]}"; do
+  name="$(docker inspect -f '{{.Name}}' "$id" | sed 's#^/##')"
+  ip="$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$id")"
+  [ -n "$ip" ] || fail "missing Docker IP for $name"
+  expected_docker_ip["$name"]="$ip"
+  printf '%s %s\n' "$ip" "$name" >> "$tmp_order"
+done
+mapfile -t restart_order < <(sort -V "$tmp_order" | awk '{print $2}')
+rm -f "$tmp_order"
+[ "${#restart_order[@]}" -eq 3 ] || fail "unable to determine deterministic Kind restart order"
+printf 'Kind restart order preserving Docker IPs: %s\n' "${restart_order[*]}"
 
 ready_nodes
 
@@ -111,7 +132,19 @@ crc stop | tee "$H2_DIR/crc-stop.txt"
 CRC_MAYBE_RUNNING=false
 
 echo "===== H2 RESTART EXISTING KIND CONTAINERS ====="
-docker start "${nodes[@]}" | tee "$H2_DIR/kind-start.txt"
+{
+  for node in "${restart_order[@]}"; do
+    docker start "$node"
+    sleep 2
+  done
+} | tee "$H2_DIR/kind-start.txt"
+
+for node in "${restart_order[@]}"; do
+  actual_ip="$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$node")"
+  [ "$actual_ip" = "${expected_docker_ip[$node]}" ] \
+    || fail "Docker IP changed for $node: expected ${expected_docker_ip[$node]}, got $actual_ip"
+done
+
 kind export kubeconfig --name "$CLUSTER"
 kubectl config use-context "$CONTEXT" >/dev/null
 KIND_STOPPED=false
