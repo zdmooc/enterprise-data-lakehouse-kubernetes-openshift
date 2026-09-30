@@ -119,6 +119,26 @@ ensure_kyverno_webhook() {
   done
 }
 
+ensure_core_runtime() {
+  local deployment deadline
+  for deployment in edl-s3 edl-polaris edl-trino-coordinator edl-trino-worker edl-jupyter; do
+    k -n edl-data rollout status "deployment/$deployment" --timeout=600s
+  done
+  k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
+
+  # A Deployment can be Available a few seconds before the Service has a usable
+  # endpoint after a node/container restart. Wait explicitly for Polaris.
+  deadline=$((SECONDS + 180))
+  while true; do
+    if k -n edl-data get endpoints edl-polaris -o json | py -c 'import json,sys; d=json.load(sys.stdin); addrs=sum((s.get("addresses",[]) for s in d.get("subsets",[])),[]); raise SystemExit(0 if addrs else 1)' >/dev/null 2>&1; then
+      echo "[PASS] Polaris service endpoint is ready"
+      break
+    fi
+    [ "$SECONDS" -lt "$deadline" ] || fail "Polaris service endpoint did not become ready"
+    sleep 3
+  done
+}
+
 ensure_s3_reader() {
   local phase ready
   phase="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.phase}' 2>/dev/null || true)"
@@ -133,6 +153,7 @@ ensure_s3_reader() {
 }
 
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
+ensure_core_runtime
 ensure_s3_reader
 # Polaris is intentionally in-memory. A previous node restart may already have
 # emptied the catalog before the actual H2 CRC switch. Restore only the exact
@@ -245,6 +266,7 @@ for namespace in argocd edl-platform edl-data edl-observability kyverno; do
   fi
 done
 k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
+ensure_core_runtime
 ensure_s3_reader
 
 echo "===== H2 POLARIS RETENTION / METADATA-ONLY RECOVERY ====="
