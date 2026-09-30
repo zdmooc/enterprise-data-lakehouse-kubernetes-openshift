@@ -85,12 +85,29 @@ ready_nodes
 k get nodes -o json | py -c 'import json,sys; d=json.load(sys.stdin); ips=[next(a["address"] for a in n["status"]["addresses"] if a["type"]=="InternalIP") for n in d["items"]]; print("Kind InternalIPs: "+" ".join(ips)); assert len(ips)==3, f"expected 3 Kind InternalIPs, got {ips}"; assert len(set(ips))==3, f"duplicate/stale Kind InternalIP detected: {ips}"' \
   || fail "Kind InternalIP validation failed; wait for node network reconciliation before H2"
 
+ensure_kyverno_webhook() {
+  if ! k get namespace kyverno >/dev/null 2>&1; then
+    fail "kyverno namespace missing"
+  fi
+  k -n kyverno rollout status deployment/kyverno-admission-controller --timeout=300s
+  local deadline=$((SECONDS + 180))
+  while true; do
+    if k -n kyverno get endpoints kyverno-svc -o json | py -c 'import json,sys; d=json.load(sys.stdin); addrs=sum((s.get("addresses",[]) for s in d.get("subsets",[])),[]); raise SystemExit(0 if addrs else 1)' >/dev/null 2>&1; then
+      echo "[PASS] Kyverno admission webhook endpoint is ready"
+      return 0
+    fi
+    [ "$SECONDS" -lt "$deadline" ] || fail "Kyverno admission webhook endpoint did not become ready"
+    sleep 3
+  done
+}
+
 ensure_s3_reader() {
   local phase ready
   phase="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.phase}' 2>/dev/null || true)"
   ready="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null || true)"
   if [ "$phase" != "Running" ] || [ "$ready" != "true" ]; then
     echo "[INFO] recreating stateless kind-s3-reader diagnostic pod after node restart"
+    ensure_kyverno_webhook
     k -n edl-data delete pod kind-s3-reader --ignore-not-found --wait=true
     k apply -f platform/kind/s3-reader.yaml
     k -n edl-data wait --for=condition=Ready pod/kind-s3-reader --timeout=300s
