@@ -116,6 +116,10 @@ ensure_s3_reader() {
 
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
 ensure_s3_reader
+# Polaris is intentionally in-memory. A previous node restart may already have
+# emptied the catalog before the actual H2 CRC switch. Restore only the exact
+# existing I12 metadata registration; never replay Kafka or rerun Spark.
+py scripts/kind/restore-polaris-i12.py | tee "$H2_DIR/polaris-before-switch.txt"
 py scripts/kind/test-h2.py before
 
 {
