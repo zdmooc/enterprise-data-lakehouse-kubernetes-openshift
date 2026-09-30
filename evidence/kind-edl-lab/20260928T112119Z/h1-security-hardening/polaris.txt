@@ -1,0 +1,23 @@
+
+UTC=2026-09-30T16:41:10.091650+00:00; GATE=polaris
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+[PASS] polaris

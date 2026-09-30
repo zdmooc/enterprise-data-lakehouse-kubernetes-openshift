@@ -1,0 +1,9 @@
+
+UTC=2026-09-30T16:42:41.286199+00:00; GATE=probe-local
+BEFORE readOnlyRootFilesystem=False
+pod "kind-contract" deleted
+persistentvolumeclaim/kind-contract unchanged
+pod/kind-contract created
+pod/kind-contract condition met
+AFTER rootfs read-only; pod Ready; same Bound PVC UID/volume; stored file hashes unchanged
+[PASS] probe-local

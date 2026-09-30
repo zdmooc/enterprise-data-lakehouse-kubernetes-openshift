@@ -1,0 +1,52 @@
+
+UTC=2026-09-30T16:38:21.696494+00:00; GATE=spark-regression
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+configmap/kind-h1-spark-163821 created
+job.batch/kind-h1-spark-163821-submit created
+{"pod": "kind-h1-spark-163821-driver", "phase": "Succeeded", "images": ["sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd"], "rootReadOnly": [true]}
+{"pod": "edl-transactions-to-iceberg-07e3ffa0f32f410c-exec-1", "phase": "Succeeded", "images": ["sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd"], "rootReadOnly": [true]}
+H1_SPARK_EXECUTOR_SMOKE=PASS
+H1_KAFKA_EXISTING_I12=PASS; partition=1; offset=0; no publish
+H1_ICEBERG_I12={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30 05:12:36", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7, "latencyBucket": "FAST"}
+H1_ICEBERG_TOTAL=6
+H1_ICEBERG_S3_WRITE_READ_DROP=PASS; disposable=polaris.analytics.kind_h1_spark_163821
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+[PASS] spark-regression

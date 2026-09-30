@@ -1,0 +1,6 @@
+
+UTC=2026-09-30T16:41:51.785846+00:00; GATE=jupyter
+QUERY=SELECT eventId AS "eventId", CAST(eventTime AS VARCHAR) AS "eventTime", transactionId AS "transactionId", amount, currency, status, channel, country, latencyMs AS "latencyMs" FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+ROW_COUNT=1; EVENT_ID=E2E-I12-20260930T051236Z-a0adb24c8c95
+{"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30 05:12:36.000000 UTC", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7}
+[PASS] jupyter
