@@ -88,7 +88,20 @@ mapfile -t kind_internal_ips < <(k get nodes -o jsonpath='{range .items[*]}{.sta
   || fail "duplicate/stale Kind InternalIP detected; wait for node network reconciliation before H2"
 printf 'Kind InternalIPs: %s\\n' "${kind_internal_ips[*]}"
 
+ensure_s3_reader() {
+  local phase ready
+  phase="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.phase}' 2>/dev/null || true)"
+  ready="$(k -n edl-data get pod kind-s3-reader -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null || true)"
+  if [ "$phase" != "Running" ] || [ "$ready" != "true" ]; then
+    echo "[INFO] recreating stateless kind-s3-reader diagnostic pod after node restart"
+    k -n edl-data delete pod kind-s3-reader --ignore-not-found --wait=true
+    k apply -f platform/kind/s3-reader.yaml
+    k -n edl-data wait --for=condition=Ready pod/kind-s3-reader --timeout=300s
+  fi
+}
+
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
+ensure_s3_reader
 py scripts/kind/test-h2.py before
 
 {
@@ -172,7 +185,7 @@ for namespace in argocd edl-platform edl-data edl-observability kyverno; do
   fi
 done
 k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
-k -n edl-data wait --for=condition=Ready pod/kind-s3-reader --timeout=300s
+ensure_s3_reader
 
 echo "===== H2 POLARIS RETENTION / METADATA-ONLY RECOVERY ====="
 # Polaris is intentionally in-memory in this lab. If its catalog disappeared,
