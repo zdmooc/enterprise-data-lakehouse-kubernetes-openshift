@@ -1,0 +1,144 @@
+name: h1-security-ci
+
+on:
+  push:
+    branches:
+      - runtime/kind-edl-lab
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  h1-static:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python syntax
+        run: |
+          set -euo pipefail
+          python -m py_compile             scripts/kind/scan-h1.py             scripts/kind/summarize-h1.py             scripts/kind/test-h1.py             scripts/kind/test-h1-spark.py
+
+      - name: Install kubectl
+        run: |
+          set -euo pipefail
+          VERSION="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
+          curl -fsSL -o kubectl "https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/kubectl
+          kubectl version --client
+
+      - name: Render Kind Jupyter profile
+        run: |
+          set -euo pipefail
+          kubectl kustomize data-platform/jupyter/profiles/kind > /tmp/jupyter-kind.yaml
+          test -s /tmp/jupyter-kind.yaml
+
+      - name: Assert Jupyter hardening contract
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check PyYAML==6.0.2
+          python - <<'PY'
+          import yaml
+          docs=[d for d in yaml.safe_load_all(open('/tmp/jupyter-kind.yaml')) if d]
+          dep=next(d for d in docs if d.get('kind')=='Deployment' and d['metadata']['name']=='edl-jupyter')
+          pod=dep['spec']['template']['spec']
+          c=pod['containers'][0]
+          assert c['image']=='edl-jupyter:kind-h1-gitpython3.1.59'
+          sc=c['securityContext']
+          assert sc['readOnlyRootFilesystem'] is True
+          assert sc['allowPrivilegeEscalation'] is False
+          assert sc['capabilities']['drop']==['ALL']
+          mounts={m['mountPath']:m['name'] for m in c['volumeMounts']}
+          assert mounts['/home/jovyan']=='home'
+          assert mounts['/tmp']=='tmp'
+          assert mounts['/home/jovyan/work']=='workspace'
+          volumes={v['name']:v for v in pod['volumes']}
+          assert 'emptyDir' in volumes['home']
+          assert 'emptyDir' in volumes['tmp']
+          assert volumes['workspace']['persistentVolumeClaim']['claimName']=='jupyter-workspace'
+          assert pod['automountServiceAccountToken'] is False
+          print('H1_JUPYTER_MANIFEST_CONTRACT=PASS')
+          PY
+
+      - name: Secret hygiene regression
+        run: |
+          set -euo pipefail
+          python tests/static/scan_secrets.py
+
+  h1-jupyter-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build validated base image
+        run: |
+          set -euo pipefail
+          docker build -t edl-jupyter:kind-2026-07-28 data-platform/jupyter/image
+
+      - name: Build H1 Jupyter derivative
+        run: |
+          set -euo pipefail
+          docker build             -f platform/kind/jupyter/Dockerfile             -t edl-jupyter:kind-h1-gitpython3.1.59             .
+
+      - name: Verify GitPython remediation
+        run: |
+          set -euo pipefail
+          docker run --rm edl-jupyter:kind-h1-gitpython3.1.59             python -c "import git; print('GitPython='+git.__version__); assert git.__version__=='3.1.59'"
+
+      - name: Read-only container smoke
+        run: |
+          set -euo pipefail
+          docker run --rm             --read-only             --tmpfs /tmp:rw,nosuid,nodev             --tmpfs /home/jovyan:rw,nosuid,nodev             edl-jupyter:kind-h1-gitpython3.1.59             python -c "import git,trino; print('H1_READONLY_CONTAINER_SMOKE=PASS')"
+
+      - name: Install Trivy 0.74.0
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/trivy.tar.gz             https://github.com/aquasecurity/trivy/releases/download/v0.74.0/trivy_0.74.0_Linux-64bit.tar.gz
+          tar -xzf /tmp/trivy.tar.gz -C /tmp trivy
+          sudo install /tmp/trivy /usr/local/bin/trivy
+          trivy --version
+
+      - name: Scan before and after with same database
+        run: |
+          set -euo pipefail
+          mkdir -p .audit/h1-ci
+          trivy image --download-db-only --cache-dir .audit/h1-ci/cache
+          trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update             --scanners vuln --format json --output .audit/h1-ci/jupyter-before.json             edl-jupyter:kind-2026-07-28
+          trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update             --scanners vuln --format json --output .audit/h1-ci/jupyter-after.json             edl-jupyter:kind-h1-gitpython3.1.59
+          python - <<'PY'
+          import json
+          from collections import Counter
+          def vulns(path):
+              r=json.load(open(path))
+              return [v for x in r.get('Results',[]) for v in (x.get('Vulnerabilities') or [])]
+          for phase in ('before','after'):
+              vs=vulns(f'.audit/h1-ci/jupyter-{phase}.json')
+              c=Counter(v['Severity'] for v in vs)
+              target=[v for v in vs if v['VulnerabilityID']=='CVE-2026-78676' or v.get('PkgName','').lower()=='gitpython']
+              print(phase.upper(), dict(c))
+              print('GitPython/CVE-2026-78676', [(v['VulnerabilityID'],v.get('InstalledVersion'),v.get('FixedVersion')) for v in target])
+              if phase=='after':
+                  assert not any(v['VulnerabilityID']=='CVE-2026-78676' for v in target), 'GitPython CVE remains'
+          print('H1_GITPYTHON_TRIVY_REMEDIATION=PASS')
+          PY
+
+      - name: Trivy Jupyter manifest config scan
+        run: |
+          set -euo pipefail
+          trivy config --format json --output .audit/h1-ci/config-after.json data-platform/jupyter/profiles/kind
+          python - <<'PY'
+          import json
+          r=json.load(open('.audit/h1-ci/config-after.json'))
+          rows=[m for x in r.get('Results',[]) for m in (x.get('Misconfigurations') or [])]
+          bad=[m for m in rows if m.get('ID')=='KSV-0014']
+          print('KSV-0014 occurrences in Jupyter Kind profile:',len(bad))
+          assert not bad, 'Jupyter profile still has writable root filesystem finding'
+          print('H1_JUPYTER_KSV0014=PASS')
+          PY
