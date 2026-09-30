@@ -1,8 +1,8 @@
-# H1 derivative: preserve the validated AWS CLI contract while applying current
-# Amazon Linux package updates available for the pinned 2.31.0 CLI image.
-FROM edl-s3-client:kind-2.31.0
+# H1 S3 client: use a pinned current AWS CLI v2 image rather than updating the
+# older 2.31.0 layer in-place. Adoption is gated by the S3 contract and Trivy CI.
+FROM amazon/aws-cli:2.37.5
 USER 0
-RUN yum update -y \
+RUN yum install -y diffutils \
     && yum clean all \
     && rm -rf /var/cache/yum \
     && aws --version \

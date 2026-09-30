@@ -45,6 +45,19 @@ at this checkpoint (see `upstream-versions.json`). Spark 4.1.3 and 4.2.0 both pi
 10.16.1.1. This POC uses Polaris REST, not Derby LDAP authentication. Keep the
 finding UPSTREAM rather than substitute an unverified or unrelated Derby JAR.
 
+## S3 contract client
+
+The original Kind client is based on `amazon/aws-cli:2.31.0`. A package-only
+`yum update` derivative did not reduce Trivy findings with the 2026-09-30 CI
+database: 213 HIGH / 134 MEDIUM remained unchanged.
+
+A pinned `amazon/aws-cli:2.37.5` candidate was therefore tested before adoption.
+On the same GitHub Actions run and Trivy database it reported 14 HIGH / 7 MEDIUM,
+while both the read-only container smoke and the full RustFS S3
+PUT/GET/integrity/DELETE + zone-layout contract passed. The H1 image now pins
+2.37.5; this is a reduction, not a claim of zero vulnerabilities. Remaining
+findings stay DEFERRED unless separately classified.
+
 ## Scope and classification
 
 FIXED means an identified finding is absent from the final scan of that component.
