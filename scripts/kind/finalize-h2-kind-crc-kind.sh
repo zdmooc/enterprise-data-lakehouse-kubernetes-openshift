@@ -213,15 +213,29 @@ for ((i=${#restart_order[@]}-1; i>=0; i--)); do
   state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
   if [ "$state" = "true" ]; then
     set +e
-    stop_output="$(docker stop --timeout=60 "$node" 2>&1)"
+    stop_output="$(docker stop --timeout=30 "$node" 2>&1)"
     stop_rc=$?
     set -e
     printf '%s\n' "$stop_output" | tee -a "$H2_DIR/kind-stop.txt"
+
+    # Docker Desktop on Windows/Git Bash can return 130 while the stop request
+    # is still being processed. Re-check the real container state before
+    # deciding whether the stop failed.
+    sleep 3
     state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+
     if [ "$state" = "true" ]; then
-      fail "Docker could not stop $node (rc=$stop_rc)"
-    fi
-    if [ "$stop_rc" -ne 0 ]; then
+      echo "[WARN] docker stop rc=$stop_rc left $node running; using docker kill fallback" | tee -a "$H2_DIR/kind-stop.txt"
+      set +e
+      kill_output="$(docker kill "$node" 2>&1)"
+      kill_rc=$?
+      set -e
+      printf '%s\n' "$kill_output" | tee -a "$H2_DIR/kind-stop.txt"
+      sleep 2
+      state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+      [ "$state" != "true" ] || fail "Docker could not stop or kill $node (stop_rc=$stop_rc kill_rc=$kill_rc)"
+      echo "[WARN] $node required forced container stop; container/filesystem/PVC objects were preserved" | tee -a "$H2_DIR/kind-stop.txt"
+    elif [ "$stop_rc" -ne 0 ]; then
       echo "[WARN] docker stop returned rc=$stop_rc but $node is confirmed stopped" | tee -a "$H2_DIR/kind-stop.txt"
     fi
   else
