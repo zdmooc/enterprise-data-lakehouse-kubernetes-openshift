@@ -134,16 +134,35 @@ py scripts/kind/test-h2.py before
 echo "===== H2 STOP KIND WITHOUT DELETION ====="
 KIND_STOPPED=true
 : > "$H2_DIR/kind-stop.txt"
-# Stop by stable container names, one at a time. Git Bash/Docker Desktop can
-# return CRLF-tainted container IDs from docker ps; the names captured through
-# docker inspect are stable and were already validated above.
+# Stop by stable container names, one at a time. Treat an already-stopped
+# container as success and verify state explicitly after each Docker command.
 for ((i=${#restart_order[@]}-1; i>=0; i--)); do
   node="${restart_order[$i]}"
   echo "[INFO] stopping $node" | tee -a "$H2_DIR/kind-stop.txt"
-  docker stop --timeout=60 "$node" | tee -a "$H2_DIR/kind-stop.txt"
+  state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+  if [ "$state" = "true" ]; then
+    set +e
+    stop_output="$(docker stop --timeout=60 "$node" 2>&1)"
+    stop_rc=$?
+    set -e
+    printf '%s\n' "$stop_output" | tee -a "$H2_DIR/kind-stop.txt"
+    state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+    if [ "$state" = "true" ]; then
+      fail "Docker could not stop $node (rc=$stop_rc)"
+    fi
+    if [ "$stop_rc" -ne 0 ]; then
+      echo "[WARN] docker stop returned rc=$stop_rc but $node is confirmed stopped" | tee -a "$H2_DIR/kind-stop.txt"
+    fi
+  else
+    echo "[INFO] $node already stopped" | tee -a "$H2_DIR/kind-stop.txt"
+  fi
 done
-[ -z "$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab')" ] \
-  || fail "some edl-lab node containers are still running"
+
+for node in "${restart_order[@]}"; do
+  state="$(docker inspect -f '{{.State.Running}}' "$node" 2>/dev/null || true)"
+  [ "$state" != "true" ] || fail "$node is still running after H2 stop phase"
+done
+
 echo '[PASS] Kind node containers stopped; containers/images/volumes preserved' | tee -a "$H2_DIR/kind-stop.txt"
 
 echo "===== H2 START CRC ====="
