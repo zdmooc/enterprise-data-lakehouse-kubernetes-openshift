@@ -1,0 +1,91 @@
+{
+  "polaris": {
+    "catalog": "quickstart_catalog",
+    "storage": {
+      "storageType": "S3",
+      "allowedLocations": [
+        "s3://edl-lab/curated/"
+      ],
+      "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+      "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+      "pathStyleAccess": true,
+      "stsUnavailable": true,
+      "region": "us-east-1"
+    },
+    "namespace": "analytics",
+    "table": "transactions",
+    "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00000-aee8f3c2-429e-4c44-ba61-37e39dc82f95.metadata.json",
+    "location": "s3://edl-lab/curated/analytics/transactions",
+    "snapshot-id": 8689157227482492877,
+    "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+  },
+  "objects": [
+    {
+      "Key": "curated/.edl-zone",
+      "Size": 17,
+      "ETag": "\"a0499ba3cc3ccbdebec403b15b65d3ef\"",
+      "LastModified": "2026-09-28T11:52:00.428000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/data/00000-0-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+      "Size": 2920,
+      "ETag": "\"865c42ad1651e480c1afb377f3ce12e5\"",
+      "LastModified": "2026-09-29T19:08:24.316000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/data/00000-0-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+      "Size": 2920,
+      "ETag": "\"4510c3a91004207588b1240449de031b\"",
+      "LastModified": "2026-09-29T05:47:28.213000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/data/00001-1-18d646f9-5896-436f-a93a-a3c132433078-0-00001.parquet",
+      "Size": 2916,
+      "ETag": "\"9e00085831647bc766477747ecc45841\"",
+      "LastModified": "2026-09-29T19:08:25.253000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/data/00001-1-a639ad4f-8ac0-476d-906c-670a240f7f6f-0-00001.parquet",
+      "Size": 2916,
+      "ETag": "\"b4d7d2ad0485045426d7030a0405476a\"",
+      "LastModified": "2026-09-29T05:47:28.883000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/00000-34958b28-7480-49da-a5a2-64d0851088f7.metadata.json",
+      "Size": 2316,
+      "ETag": "\"918e7285c3f794e163df607cf94ef08b\"",
+      "LastModified": "2026-09-29T05:47:36.118000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/00000-aee8f3c2-429e-4c44-ba61-37e39dc82f95.metadata.json",
+      "Size": 2316,
+      "ETag": "\"24ec2150cc358fab68d6a075f7c3a6a5\"",
+      "LastModified": "2026-09-29T19:08:36.364000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/05097c2d-8b0c-4e50-a23b-4dbd85ea439a-m0.avro",
+      "Size": 7794,
+      "ETag": "\"4b39cbebfb3218df7bdc5f6766c9f625\"",
+      "LastModified": "2026-09-29T19:08:29.832000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc-m0.avro",
+      "Size": 7793,
+      "ETag": "\"615668a74c487e5d03c2a6ee8878282c\"",
+      "LastModified": "2026-09-29T05:47:31.790000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/snap-3162642734200796715-1-c4bdac5d-7c8e-4992-b81b-e3a9d1861bbc.avro",
+      "Size": 4454,
+      "ETag": "\"37bd7a1566f46b43b832d4dc3308d3f7\"",
+      "LastModified": "2026-09-29T05:47:32.016000+00:00"
+    },
+    {
+      "Key": "curated/analytics/transactions/metadata/snap-8689157227482492877-1-05097c2d-8b0c-4e50-a23b-4dbd85ea439a.avro",
+      "Size": 4455,
+      "ETag": "\"a5b73ca931a67febbad3d22371e062c5\"",
+      "LastModified": "2026-09-29T19:08:30.630000+00:00"
+    }
+  ],
+  "spark-image-id": "sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd"
+}

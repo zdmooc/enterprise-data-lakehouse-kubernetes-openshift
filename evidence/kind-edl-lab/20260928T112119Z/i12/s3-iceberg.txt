@@ -1,0 +1,150 @@
+
+UTC=2026-09-30T05:16:59.544737+00:00; GATE=s3-iceberg
+NEW_OBJECTS=[
+  {
+    "Key": "curated/analytics/transactions/data/00001-1-de4763a2-b3c2-40dd-b564-82ca70983fcc-0-00001.parquet",
+    "Size": 3202,
+    "ETag": "\"b64fadb3bebdf9cf46aad472fead5047\"",
+    "LastModified": "2026-09-30T05:16:00.736000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/00001-36641747-cfc9-4380-a57a-b398395e5f7c.metadata.json",
+    "Size": 3421,
+    "ETag": "\"fef4b5de927dd8d0b52df2037690b6f7\"",
+    "LastModified": "2026-09-30T05:16:06.733000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/176b707e-cb18-4f9e-a9b6-fe956ce5c86c-m0.avro",
+    "Size": 7653,
+    "ETag": "\"c4c545ac063b3a64786026484cad2e5d\"",
+    "LastModified": "2026-09-30T05:16:05.706000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/snap-7109692547811464927-1-176b707e-cb18-4f9e-a9b6-fe956ce5c86c.avro",
+    "Size": 4453,
+    "ETag": "\"78286f36324cc6fc8dff16e6bdd1c6da\"",
+    "LastModified": "2026-09-30T05:16:05.846000+00:00"
+  }
+]
+S3_CURRENT_SNAPSHOT={"snapshot-id": 7109692547811464927, "summary": {"operation": "overwrite", "spark.app.id": "spark-4d76526c8ed248a0a7fbf91242001dd9", "manifests-created": "1", "manifests-kept": "0", "manifests-replaced": "0", "added-data-files": "1", "added-records": "1", "added-files-size": "3202", "changed-partition-count": "1", "total-records": "1", "total-files-size": "3202", "total-data-files": "1", "total-delete-files": "0", "total-position-deletes": "0", "total-equality-deletes": "0", "engine-version": "4.1.3", "app-id": "spark-4d76526c8ed248a0a7fbf91242001dd9", "engine-name": "spark", "iceberg-version": "Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)", "app-name": "edl-transactions-to-iceberg"}, "manifest-list": "s3://edl-lab/curated/analytics/transactions/metadata/snap-7109692547811464927-1-176b707e-cb18-4f9e-a9b6-fe956ce5c86c.avro"}
+[PASS] s3-iceberg
+
+UTC=2026-09-30T05:26:35.642107+00:00; GATE=s3-iceberg
+NEW_OBJECTS=[
+  {
+    "Key": "curated/analytics/transactions/data/00000-1-6969dd47-c417-4c0c-adb8-62c6f80654ca-0-00001.parquet",
+    "Size": 3187,
+    "ETag": "\"12290a59f2980fc8d15338d6fe2a4c66\"",
+    "LastModified": "2026-09-30T05:25:28.027000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/data/00001-1-de4763a2-b3c2-40dd-b564-82ca70983fcc-0-00001.parquet",
+    "Size": 3202,
+    "ETag": "\"b64fadb3bebdf9cf46aad472fead5047\"",
+    "LastModified": "2026-09-30T05:16:00.736000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/data/00002-3-6969dd47-c417-4c0c-adb8-62c6f80654ca-0-00001.parquet",
+    "Size": 3266,
+    "ETag": "\"72e694f477a092c45634520166927155\"",
+    "LastModified": "2026-09-30T05:25:30.705000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/00001-36641747-cfc9-4380-a57a-b398395e5f7c.metadata.json",
+    "Size": 3421,
+    "ETag": "\"fef4b5de927dd8d0b52df2037690b6f7\"",
+    "LastModified": "2026-09-30T05:16:06.733000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+    "Size": 4527,
+    "ETag": "\"c7dcbc551fe3dc888f87a3ebeac771bc\"",
+    "LastModified": "2026-09-30T05:25:31.690000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/176b707e-cb18-4f9e-a9b6-fe956ce5c86c-m0.avro",
+    "Size": 7653,
+    "ETag": "\"c4c545ac063b3a64786026484cad2e5d\"",
+    "LastModified": "2026-09-30T05:16:05.706000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/d99919b9-e6a0-40aa-ae00-e476a4a7bc73-m0.avro",
+    "Size": 7811,
+    "ETag": "\"306617a501382ecb614e671b732f128e\"",
+    "LastModified": "2026-09-30T05:25:31.069000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/snap-3607998935123899351-1-d99919b9-e6a0-40aa-ae00-e476a4a7bc73.avro",
+    "Size": 4454,
+    "ETag": "\"25ccdbd5f12c9e4f6f96692b67be0ac7\"",
+    "LastModified": "2026-09-30T05:25:31.251000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/snap-7109692547811464927-1-176b707e-cb18-4f9e-a9b6-fe956ce5c86c.avro",
+    "Size": 4453,
+    "ETag": "\"78286f36324cc6fc8dff16e6bdd1c6da\"",
+    "LastModified": "2026-09-30T05:16:05.846000+00:00"
+  }
+]
+S3_CURRENT_SNAPSHOT={"snapshot-id": 3607998935123899351, "summary": {"operation": "overwrite", "spark.app.id": "spark-e92c2f053eb346e1adf592ca53d3d65d", "manifests-created": "1", "manifests-kept": "0", "manifests-replaced": "0", "added-data-files": "2", "added-records": "6", "added-files-size": "6453", "changed-partition-count": "1", "total-records": "6", "total-files-size": "6453", "total-data-files": "2", "total-delete-files": "0", "total-position-deletes": "0", "total-equality-deletes": "0", "engine-version": "4.1.3", "app-id": "spark-e92c2f053eb346e1adf592ca53d3d65d", "engine-name": "spark", "iceberg-version": "Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)", "app-name": "edl-transactions-to-iceberg"}, "manifest-list": "s3://edl-lab/curated/analytics/transactions/metadata/snap-3607998935123899351-1-d99919b9-e6a0-40aa-ae00-e476a4a7bc73.avro"}
+[PASS] s3-iceberg
+
+UTC=2026-09-30T10:01:29.471185+00:00; GATE=s3-iceberg
+NEW_OBJECTS=[
+  {
+    "Key": "curated/analytics/transactions/data/00000-1-6969dd47-c417-4c0c-adb8-62c6f80654ca-0-00001.parquet",
+    "Size": 3187,
+    "ETag": "\"12290a59f2980fc8d15338d6fe2a4c66\"",
+    "LastModified": "2026-09-30T05:25:28.027000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/data/00001-1-de4763a2-b3c2-40dd-b564-82ca70983fcc-0-00001.parquet",
+    "Size": 3202,
+    "ETag": "\"b64fadb3bebdf9cf46aad472fead5047\"",
+    "LastModified": "2026-09-30T05:16:00.736000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/data/00002-3-6969dd47-c417-4c0c-adb8-62c6f80654ca-0-00001.parquet",
+    "Size": 3266,
+    "ETag": "\"72e694f477a092c45634520166927155\"",
+    "LastModified": "2026-09-30T05:25:30.705000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/00001-36641747-cfc9-4380-a57a-b398395e5f7c.metadata.json",
+    "Size": 3421,
+    "ETag": "\"fef4b5de927dd8d0b52df2037690b6f7\"",
+    "LastModified": "2026-09-30T05:16:06.733000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+    "Size": 4527,
+    "ETag": "\"c7dcbc551fe3dc888f87a3ebeac771bc\"",
+    "LastModified": "2026-09-30T05:25:31.690000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/176b707e-cb18-4f9e-a9b6-fe956ce5c86c-m0.avro",
+    "Size": 7653,
+    "ETag": "\"c4c545ac063b3a64786026484cad2e5d\"",
+    "LastModified": "2026-09-30T05:16:05.706000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/d99919b9-e6a0-40aa-ae00-e476a4a7bc73-m0.avro",
+    "Size": 7811,
+    "ETag": "\"306617a501382ecb614e671b732f128e\"",
+    "LastModified": "2026-09-30T05:25:31.069000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/snap-3607998935123899351-1-d99919b9-e6a0-40aa-ae00-e476a4a7bc73.avro",
+    "Size": 4454,
+    "ETag": "\"25ccdbd5f12c9e4f6f96692b67be0ac7\"",
+    "LastModified": "2026-09-30T05:25:31.251000+00:00"
+  },
+  {
+    "Key": "curated/analytics/transactions/metadata/snap-7109692547811464927-1-176b707e-cb18-4f9e-a9b6-fe956ce5c86c.avro",
+    "Size": 4453,
+    "ETag": "\"78286f36324cc6fc8dff16e6bdd1c6da\"",
+    "LastModified": "2026-09-30T05:16:05.846000+00:00"
+  }
+]
+S3_CURRENT_SNAPSHOT={"snapshot-id": 3607998935123899351, "summary": {"operation": "overwrite", "spark.app.id": "spark-e92c2f053eb346e1adf592ca53d3d65d", "manifests-created": "1", "manifests-kept": "0", "manifests-replaced": "0", "added-data-files": "2", "added-records": "6", "added-files-size": "6453", "changed-partition-count": "1", "total-records": "6", "total-files-size": "6453", "total-data-files": "2", "total-delete-files": "0", "total-position-deletes": "0", "total-equality-deletes": "0", "engine-version": "4.1.3", "app-id": "spark-e92c2f053eb346e1adf592ca53d3d65d", "engine-name": "spark", "iceberg-version": "Apache Iceberg 1.11.0 (commit 6976e020b894f6a6777704df2b8c4458cb291ae9)", "app-name": "edl-transactions-to-iceberg"}, "manifest-list": "s3://edl-lab/curated/analytics/transactions/metadata/snap-3607998935123899351-1-d99919b9-e6a0-40aa-ae00-e476a4a7bc73.avro"}
+[PASS] s3-iceberg

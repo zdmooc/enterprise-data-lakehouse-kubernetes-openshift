@@ -1,0 +1,10 @@
+UTC=2026-09-30T10:04:14.542408+00:00
+[PASS] all required evidence files present and final gate outcomes PASS
+[PASS] one recorded producer acknowledgement; same I12 ID/payload, partition 1, offset 0
+[PASS] same event across Spark/Trino/Jupyter; current Iceberg snapshot and SQL report six rows
+[PASS] failed r2 driver evidence retained; successful versionAsOf r3 evidence retained
+[PASS] Python and Bash syntax
+[PASS] private-key/JWT/AWS key patterns absent from I12 files
+[PASS] No known lab credential found in tracked or publishable untracked files
+Scope: current lab credential values and their base64 encodings; complementary to pattern/history scanning.
+[PASS] git diff --check

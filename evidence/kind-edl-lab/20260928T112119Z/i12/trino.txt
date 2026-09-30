@@ -1,0 +1,38 @@
+
+UTC=2026-09-30T05:17:13.957263+00:00; GATE=trino
+QUERY=SELECT eventId AS "eventId", CAST(eventTime AS VARCHAR) AS "eventTime", transactionId AS "transactionId", amount, currency, status, channel, country, latencyMs AS "latencyMs" FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","eventTime":"2026-09-30 05:12:36.000000 UTC","transactionId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42,"currency":"EUR","status":"ACCEPTED","channel":"E2E","country":"FR","latencyMs":7}
+ROW_COUNT=1
+[FAIL] trino: Invalid isoformat string: '2026-09-30 05:12:36.000000 UTC'
+
+UTC=2026-09-30T05:26:50.507737+00:00; GATE=trino
+QUERY=SELECT eventId AS "eventId", CAST(eventTime AS VARCHAR) AS "eventTime", transactionId AS "transactionId", amount, currency, status, channel, country, latencyMs AS "latencyMs" FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","eventTime":"2026-09-30 05:12:36.000000 UTC","transactionId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42,"currency":"EUR","status":"ACCEPTED","channel":"E2E","country":"FR","latencyMs":7}
+ROW_COUNT=1
+EVENT_ID=E2E-I12-20260930T051236Z-a0adb24c8c95
+PRESERVATION_CHECK: five historical events plus I12
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+[PASS] trino
+
+UTC=2026-09-30T10:01:46.519831+00:00; GATE=trino
+QUERY=SELECT eventId AS "eventId", CAST(eventTime AS VARCHAR) AS "eventTime", transactionId AS "transactionId", amount, currency, status, channel, country, latencyMs AS "latencyMs" FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","eventTime":"2026-09-30 05:12:36.000000 UTC","transactionId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42,"currency":"EUR","status":"ACCEPTED","channel":"E2E","country":"FR","latencyMs":7}
+ROW_COUNT=1
+EVENT_ID=E2E-I12-20260930T051236Z-a0adb24c8c95
+PRESERVATION_CHECK: five historical events plus I12
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+[PASS] trino

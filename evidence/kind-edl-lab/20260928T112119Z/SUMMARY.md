@@ -1,4 +1,4 @@
-# Kind runtime evidence — validation in progress
+# KIND LOCAL E2E RUNTIME VALIDATED
 
 Source: audited `ccbb114`, runtime branch `runtime/kind-edl-lab`.
 This pack records actual gates; later stages are not inferred from static files.
@@ -17,7 +17,7 @@ This pack records actual gates; later stages are not inferred from static files.
 | I9 security | IMPLEMENTED | RUNTIME_VALIDATED | 17-security-tests.txt, i9-supply-chain.txt, SECURITY_FINDINGS.md | Five denials passed; scans completed with vulnerabilities remaining; resource policy Audit |
 | I10 observability | IMPLEMENTED | RUNTIME_VALIDATED | 18-prometheus-targets.txt, 20-resource-usage.txt | 21/21 targets UP; Grafana API/datasource/dashboards verified; consumer lag and PVC capacity series absent; kubectl top NOT AVAILABLE |
 | I11 recovery | IMPLEMENTED | RUNTIME_VALIDATED | i11/README.md, i11/*.txt | KIND_MULTI_NODE_FUNCTIONAL_RECOVERY; seven scenarios; Polaris catalog lost then reconstructed; one laptop/local PVCs |
-| I12 E2E | IMPLEMENTED | NOT_TESTED | Pending | Full chain not yet deployed |
+| I12 E2E | IMPLEMENTED | RUNTIME_VALIDATED | i12/README.md, i12/*.txt | New unique event verified through Kafka/Spark/Iceberg/S3/Polaris/Trino/Jupyter; five historical rows preserved; local batch/runtime scope |
 
 Initial I2 DNS probe used a short name which BusyBox returned as NXDOMAIN. The
 probe now uses `kubernetes.default.svc.cluster.local`, also used by I1; rerun passed.
@@ -138,3 +138,46 @@ there was no host/node/storage failure injection or continuity guarantee.
 
 I1-I10 were not rerun. I12 remains NOT_TESTED and was not started. CRC was not
 accessed, no PVC or namespace was deleted, and edl-lab remains running.
+
+## I12-only checkpoint — 2026-09-30 UTC
+
+Final status: **KIND LOCAL E2E RUNTIME VALIDATED**.
+Started from clean `6ab558b4df06e3fb81600703b2c0a2351ac85bc9` on
+`runtime/kind-edl-lab`, context `kind-edl-lab`.
+Full evidence and retained failed attempts: [i12/README.md](i12/README.md).
+
+A single new transaction, `E2E-I12-20260930T051236Z-a0adb24c8c95`, was generated,
+published and reread with every JSON field compared in transactions.raw at partition 1,
+offset 0. Spark consumed that exact event, wrote it through Polaris to Iceberg/S3,
+and read it back. The final driver and executor succeeded with the acquired image;
+no image was rebuilt. New metadata/Parquet objects were checked against the baseline.
+The final S3/Polaris snapshot is `3607998935123899351`, with six total records.
+
+Trino and Jupyter each returned exactly one targeted I12 row, with all payload fields
+checked, including timestamp. The five historical IDs also remain in the table.
+Polaris retained its catalog and storage contract throughout; no restart or catalog
+reconstruction was needed. Post-E2E observability found 21/21 targets UP and Grafana's
+authenticated API healthy. Final health: 3 Ready nodes, 56 healthy/completed pods,
+6 Bound PVCs, 2 Synced/Healthy Argo applications; no current failed/pending/image-pull
+or crash-loop pod.
+
+The first batch exposed a real retention limit: the five original Kafka events had
+expired under the 24-hour policy, so createOrReplace initially left only the new row
+in the current snapshot. The previous five-row Iceberg snapshot remained readable.
+The I12 wrapper now preserves that baseline and unions the new transaction. Its first
+preservation retry used an unsupported snapshot-id option; the successful retry uses
+versionAsOf. The failed driver log/status were archived before targeted cleanup.
+The timestamp parser was also corrected for Trino's UTC suffix. Failed attempts are
+retained, and no second event was produced. The base batch job remains unchanged;
+its retention/overwrite behavior is documented as a limit, not hidden.
+
+All I1-I12 gates are now RUNTIME_VALIDATED within their stated local scope. This does
+not establish durable Polaris metadata, continuous streaming, exactly-once processing
+or multi-host availability. Known CVEs and missing metric coverage remain unchanged.
+I1-I11 were not rerun, no CVE hardening or CRC/Kind switch was performed, CRC was not
+accessed or modified, and edl-lab is preserved.
+
+Resume verification at 2026-09-30 10:01 UTC confirmed the already successful r3
+driver/executor, unchanged six-row snapshot, exact Trino/Jupyter event reads and
+healthy observability/cluster state. Only read checks were repeated; no Kafka event
+was republished and no Spark job or Polaris reconstruction was restarted.

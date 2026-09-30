@@ -1,0 +1,82 @@
+
+UTC=2026-09-30T05:12:19.465905+00:00; GATE=environment
+On branch runtime/kind-edl-lab
+Your branch is up to date with 'origin/runtime/kind-edl-lab'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   scripts/e2e-lakehouse-kind.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	evidence/kind-edl-lab/20260928T112119Z/i12/
+	scripts/kind/test-e2e.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+runtime/kind-edl-lab
+6ab558b feat(kind): validate recovery scenarios
+e4137cb feat(kind): validate observability runtime
+266e9c3 feat(kind): validate Jupyter runtime
+8076fc9 feat(kind): validate S3 Kafka and Spark smoke, add remaining runtime profiles
+1aea523 feat(kind): bootstrap isolated lab, baseline and upstream GitOps
+kind-edl-lab
+edl-lab
+NAME                    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   41h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          41h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          41h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+NAMESPACE            NAME                                                  READY   STATUS      RESTARTS      AGE
+argocd               argocd-application-controller-0                       1/1     Running     0             41h
+argocd               argocd-applicationset-controller-7f77c467d8-trjz8     1/1     Running     0             41h
+argocd               argocd-redis-5fb8cdb75b-l25jg                         1/1     Running     0             41h
+argocd               argocd-repo-server-7c69999875-6k97k                   1/1     Running     0             41h
+argocd               argocd-server-5b845b4458-jfqcl                        1/1     Running     0             41h
+edl-data             edl-jupyter-6c67748ccb-mnpcs                          1/1     Running     0             10h
+edl-data             edl-kafka-dual-role-0                                 1/1     Running     0             10h
+edl-data             edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0             34h
+edl-data             edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0             34h
+edl-data             edl-polaris-7f765cd5fc-r4smc                          1/1     Running     0             10h
+edl-data             edl-s3-86454754dc-tz79h                               1/1     Running     0             10h
+edl-data             edl-transaction-producer                              0/1     Completed   0             33h
+edl-data             edl-transactions-to-iceberg-a1784da0ee904d58-exec-1   0/1     Completed   0             10h
+edl-data             edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0             23h
+edl-data             edl-trino-worker-fd7d84897-rtjbs                      1/1     Running     0             10h
+edl-data             kind-contract                                         1/1     Running     0             41h
+edl-data             kind-kafka-client                                     1/1     Running     0             33h
+edl-data             kind-s3-contract-njkgw                                0/1     Completed   0             41h
+edl-data             kind-s3-reader                                        1/1     Running     0             10h
+edl-data             kind-spark-lakehouse-driver                           0/1     Completed   0             10h
+edl-data             kind-spark-lakehouse-submit-rmhlg                     0/1     Completed   0             10h
+edl-data             kind-spark-smoke-driver                               0/1     Completed   0             23h
+edl-data             kind-spark-smoke-submit-qvvnq                         0/1     Completed   0             23h
+edl-data             pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0             23h
+edl-observability    edl-monitoring-grafana-588684d575-7qj2z               3/3     Running     0             15h
+edl-observability    edl-monitoring-kube-state-metrics-5f86f7f857-d24nv    1/1     Running     0             15h
+edl-observability    edl-monitoring-operator-6f98564695-v6rr2              1/1     Running     0             15h
+edl-observability    prometheus-edl-monitoring-prometheus-0                2/2     Running     0             15h
+edl-platform         strimzi-cluster-operator-6b5748dd7c-vw5xc             1/1     Running     4 (20m ago)   34h
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp              1/1     Running     0             41h
+kube-system          calico-node-9c92x                                     1/1     Running     0             41h
+kube-system          calico-node-kxn5h                                     1/1     Running     0             41h
+kube-system          calico-node-r2fjv                                     1/1     Running     0             41h
+kube-system          coredns-674b8bbfcf-rlc6x                              1/1     Running     0             41h
+kube-system          coredns-674b8bbfcf-z6qc6                              1/1     Running     0             41h
+kube-system          etcd-edl-lab-control-plane                            1/1     Running     0             41h
+kube-system          kube-apiserver-edl-lab-control-plane                  1/1     Running     0             41h
+kube-system          kube-controller-manager-edl-lab-control-plane         1/1     Running     5 (17h ago)   41h
+kube-system          kube-proxy-ntlfp                                      1/1     Running     0             41h
+kube-system          kube-proxy-t4mkz                                      1/1     Running     0             41h
+kube-system          kube-proxy-vvwp5                                      1/1     Running     0             41h
+kube-system          kube-scheduler-edl-lab-control-plane                  1/1     Running     5 (17h ago)   41h
+kyverno              kyverno-admission-controller-bc847675-bmkjv           1/1     Running     0             16h
+kyverno              kyverno-background-controller-86cf668b6d-f4g7j        1/1     Running     0             16h
+kyverno              kyverno-cleanup-controller-8c7fc6cb7-vxgkf            1/1     Running     0             16h
+kyverno              kyverno-migrate-resources-q8ps8                       0/1     Completed   0             16h
+kyverno              kyverno-reports-controller-65fb7bf664-ttwwk           1/1     Running     0             16h
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn               1/1     Running     0             41h
+sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd
+CACHED_IMAGE edl-lab-control-plane sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd
+CACHED_IMAGE edl-lab-worker sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd
+CACHED_IMAGE edl-lab-worker2 sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd
+[PASS] environment

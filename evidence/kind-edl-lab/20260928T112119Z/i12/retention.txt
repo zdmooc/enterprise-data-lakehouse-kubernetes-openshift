@@ -1,0 +1,7 @@
+{"retention.ms":86400000}
+transactions.raw:0:0
+transactions.raw:1:0
+transactions.raw:2:5
+transactions.raw:0:0
+transactions.raw:1:1
+transactions.raw:2:5
