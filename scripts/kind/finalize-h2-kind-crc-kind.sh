@@ -185,8 +185,8 @@ ensure_s3_reader() {
 
 echo "===== H2 VERIFY RETAINED STATE BEFORE SWITCH ====="
 ensure_core_runtime
-wait_platform_health
 ensure_s3_reader
+wait_platform_health
 # Polaris is intentionally in-memory. A previous node restart may already have
 # emptied the catalog before the actual H2 CRC switch. Restore only the exact
 # existing I12 metadata registration; never replay Kafka or rerun Spark.
@@ -313,8 +313,8 @@ for namespace in argocd edl-platform edl-data edl-observability kyverno; do
 done
 k -n edl-data wait --for=condition=Ready kafka/edl-kafka --timeout=600s
 ensure_core_runtime
-wait_platform_health
 ensure_s3_reader
+wait_platform_health
 
 echo "===== H2 POLARIS RETENTION / METADATA-ONLY RECOVERY ====="
 # Polaris is intentionally in-memory in this lab. If its catalog disappeared,
