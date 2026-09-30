@@ -187,18 +187,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build baseline and hardened S3 clients
+      - name: Build baseline, hardened and candidate S3 clients
         run: |
           set -euo pipefail
           docker build -t edl-s3-client:kind-2.31.0 platform/kind/s3-client
           docker build -f platform/kind/s3-client/Dockerfile.h1 -t edl-s3-client:kind-h1 .
+          docker build -f platform/kind/s3-client/Dockerfile.candidate -t edl-s3-client:kind-candidate .
 
       - name: Read-only S3 client smoke
         run: |
           set -euo pipefail
-          docker run --rm --read-only --tmpfs /tmp:rw,nosuid,nodev \
-            --entrypoint bash edl-s3-client:kind-h1 -ec \
-            'export HOME=/tmp; aws --version; diff --version >/dev/null; echo H1_S3_CLIENT_READONLY=PASS'
+          for image in edl-s3-client:kind-h1 edl-s3-client:kind-candidate; do
+            docker run --rm --read-only --tmpfs /tmp:rw,nosuid,nodev \
+              --entrypoint bash "$image" -ec \
+              'export HOME=/tmp; aws --version; diff --version >/dev/null; echo H1_S3_CLIENT_READONLY=PASS'
+          done
 
       - name: RustFS + S3 contract under read-only roots
         run: |
@@ -225,22 +228,24 @@ jobs:
             sleep 2
           done
           curl -fsS http://127.0.0.1:9000/health >/dev/null
-          docker run --rm --network h1-security \
-            --read-only --user 1000:1000 \
-            --tmpfs /tmp:rw,uid=1000,gid=1000,mode=0770 \
-            --entrypoint bash \
-            -e HOME=/tmp \
-            -e AWS_ACCESS_KEY_ID="$ACCESS" \
-            -e AWS_SECRET_ACCESS_KEY="$SECRET" \
-            -e AWS_DEFAULT_REGION=us-east-1 \
-            -e AWS_EC2_METADATA_DISABLED=true \
-            -e AWS_PAGER= \
-            -e S3_ENDPOINT=http://h1-rustfs:9000 \
-            -e S3_BUCKET=edl-h1-ci \
-            -e S3_CREATE_BUCKET=yes \
-            -v "$PWD/scripts:/work/scripts:ro" -w /work \
-            edl-s3-client:kind-h1 -ec \
-            'bash scripts/bootstrap-s3-layout.sh; bash scripts/verify-s3-layout.sh'
+          for image in edl-s3-client:kind-h1 edl-s3-client:kind-candidate; do
+            docker run --rm --network h1-security \
+              --read-only --user 1000:1000 \
+              --tmpfs /tmp:rw,uid=1000,gid=1000,mode=0770 \
+              --entrypoint bash \
+              -e HOME=/tmp \
+              -e AWS_ACCESS_KEY_ID="$ACCESS" \
+              -e AWS_SECRET_ACCESS_KEY="$SECRET" \
+              -e AWS_DEFAULT_REGION=us-east-1 \
+              -e AWS_EC2_METADATA_DISABLED=true \
+              -e AWS_PAGER= \
+              -e S3_ENDPOINT=http://h1-rustfs:9000 \
+              -e S3_BUCKET=edl-h1-ci \
+              -e S3_CREATE_BUCKET=yes \
+              -v "$PWD/scripts:/work/scripts:ro" -w /work \
+              "$image" -ec \
+              'bash scripts/bootstrap-s3-layout.sh; bash scripts/verify-s3-layout.sh'
+          done
           echo H1_RUSTFS_S3_CONTRACT=PASS
 
       - name: Install Trivy 0.74.0
@@ -251,17 +256,20 @@ jobs:
           tar -xzf /tmp/trivy.tar.gz -C /tmp trivy
           sudo install /tmp/trivy /usr/local/bin/trivy
 
-      - name: Scan S3 client before and after
+      - name: Scan S3 client baseline, hardened and current candidate
         run: |
           set -euo pipefail
           mkdir -p .audit/h1-s3-ci
           trivy image --download-db-only --cache-dir .audit/h1-s3-ci/cache
-          trivy image --cache-dir .audit/h1-s3-ci/cache --skip-db-update \
-            --scanners vuln --format json --output .audit/h1-s3-ci/before.json \
-            edl-s3-client:kind-2.31.0
-          trivy image --cache-dir .audit/h1-s3-ci/cache --skip-db-update \
-            --scanners vuln --format json --output .audit/h1-s3-ci/after.json \
-            edl-s3-client:kind-h1
+          for item in \
+            before=edl-s3-client:kind-2.31.0 \
+            after=edl-s3-client:kind-h1 \
+            candidate=edl-s3-client:kind-candidate; do
+            name="${item%%=*}"
+            image="${item#*=}"
+            trivy image --cache-dir .audit/h1-s3-ci/cache --skip-db-update \
+              --scanners vuln --format json --output ".audit/h1-s3-ci/${name}.json" "$image"
+          done
           python - <<'PY'
           import json
           from collections import Counter
@@ -271,10 +279,17 @@ jobs:
               return Counter(v['Severity'] for v in rows)
           b=counts('.audit/h1-s3-ci/before.json')
           a=counts('.audit/h1-s3-ci/after.json')
-          print('S3 BEFORE',dict(b))
-          print('S3 AFTER ',dict(a))
-          assert a['CRITICAL']+a['HIGH'] <= b['CRITICAL']+b['HIGH'], 'S3 hardening regressed HIGH/CRITICAL count'
+          c=counts('.audit/h1-s3-ci/candidate.json')
+          print('S3 BEFORE   ',dict(b))
+          print('S3 H1       ',dict(a))
+          print('S3 CANDIDATE',dict(c))
+          assert a['CRITICAL']+a['HIGH'] <= b['CRITICAL']+b['HIGH'], 'S3 H1 regressed HIGH/CRITICAL count'
+          assert c['CRITICAL']+c['HIGH'] <= b['CRITICAL']+b['HIGH'], 'S3 candidate regressed HIGH/CRITICAL count'
           print('H1_S3_TRIVY_NON_REGRESSION=PASS')
+          if c['CRITICAL']+c['HIGH'] < a['CRITICAL']+a['HIGH']:
+              print('H1_S3_CANDIDATE_IMPROVES_HIGH_CRITICAL=YES')
+          else:
+              print('H1_S3_CANDIDATE_IMPROVES_HIGH_CRITICAL=NO')
           PY
 
       - name: Cleanup S3 CI
