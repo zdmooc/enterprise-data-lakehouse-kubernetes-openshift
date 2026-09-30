@@ -112,7 +112,15 @@ py scripts/kind/test-h2.py before
 
 echo "===== H2 STOP KIND WITHOUT DELETION ====="
 KIND_STOPPED=true
-docker stop --timeout 60 "${nodes[@]}" | tee "$H2_DIR/kind-stop.txt"
+: > "$H2_DIR/kind-stop.txt"
+# Stop by stable container names, one at a time. Git Bash/Docker Desktop can
+# return CRLF-tainted container IDs from docker ps; the names captured through
+# docker inspect are stable and were already validated above.
+for ((i=${#restart_order[@]}-1; i>=0; i--)); do
+  node="${restart_order[$i]}"
+  echo "[INFO] stopping $node" | tee -a "$H2_DIR/kind-stop.txt"
+  docker stop --timeout=60 "$node" | tee -a "$H2_DIR/kind-stop.txt"
+done
 [ -z "$(docker ps -q --filter 'label=io.x-k8s.kind.cluster=edl-lab')" ] \
   || fail "some edl-lab node containers are still running"
 echo '[PASS] Kind node containers stopped; containers/images/volumes preserved' | tee -a "$H2_DIR/kind-stop.txt"
