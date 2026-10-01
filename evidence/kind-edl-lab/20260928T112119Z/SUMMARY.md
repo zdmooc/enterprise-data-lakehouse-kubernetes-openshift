@@ -206,3 +206,30 @@ Final H1 health: 3 Ready nodes, 6 Bound PVCs, 2 Synced/Healthy Argo applications
 21 targets UP and Grafana healthy. No Kafka publish, Polaris reconstruction,
 PVC/namespace/cluster deletion or CRC access occurred in H1. Findings and lab
 limitations remain explicit; this is not a production approval.
+
+
+## H2 KIND -> CRC -> KIND LOCAL SWITCH
+
+Result: **KIND_CRC_KIND_LOCAL_SWITCH_VALIDATED** on 2026-10-01.
+
+The retained three-node Kind cluster was validated before the switch with exactly six
+Iceberg transactions, I12 event `E2E-I12-20260930T051236Z-a0adb24c8c95`, snapshot
+`3607998935123899351`, table UUID `8894029f-a135-4248-9464-8af1cd2f8966`,
+6 Bound PVCs and 2 Synced/Healthy Argo applications. The existing Kind Docker node
+containers were stopped without deletion.
+
+CRC/OpenShift Local 4.22.7 was then started and inspected read-only. H2 issued no
+workload mutation against CRC. CRC was stopped before the exact existing Kind
+containers were restarted with their preserved Docker IP mapping.
+
+After restart, the three Kind nodes were Ready. The in-memory Polaris catalog was
+re-registered from the already-existing I12 Iceberg metadata only; there was no Kafka
+replay, Spark rerun or S3/Iceberg data rewrite. Final validation retained the same six
+rows, snapshot and table UUID. Jupyter -> Trino -> I12 and the persistent Jupyter
+marker passed. Prometheus reported 21 targets UP and Grafana's authenticated API was
+healthy. Final health: 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs and
+2 Synced/Healthy Argo applications.
+
+Evidence: `h2-kind-crc-kind/`. This validates local operational switching on one
+workstation. It is not multi-host HA, disaster recovery, durable Polaris metadata or
+production approval.

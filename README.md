@@ -196,18 +196,18 @@ The project is developed in progressive iterations:
 
 ```text
 I0  Architecture & scope                         DONE
-I1  Cluster contracts and prerequisites          IMPLEMENTED / RUNTIME PENDING
-I2  Platform baseline                             IMPLEMENTED / RUNTIME PENDING
-I3  GitOps                                        IMPLEMENTED / RUNTIME PENDING
-I4  Object storage                               IMPLEMENTED / RUNTIME PENDING
-I5  Kafka streaming                              IMPLEMENTED / RUNTIME PENDING
-I6  Spark processing                             IMPLEMENTED / RUNTIME PENDING
-I7  Trino query layer                            IMPLEMENTED / RUNTIME PENDING
-I8  Jupyter / Data user experience               IMPLEMENTED / RUNTIME PENDING
-I9  Security & secrets                           IMPLEMENTED / RUNTIME PENDING
-I10 Observability                                IMPLEMENTED / RUNTIME PENDING
-I11 Resilience / N3 operations                   IMPLEMENTED / RUNTIME PENDING
-I12 End-to-end Data Product demonstration        IMPLEMENTED / RUNTIME PENDING
+I1  Cluster contracts and prerequisites          RUNTIME VALIDATED
+I2  Platform baseline                             RUNTIME VALIDATED
+I3  GitOps                                        RUNTIME VALIDATED
+I4  Object storage                                RUNTIME VALIDATED
+I5  Kafka streaming                               RUNTIME VALIDATED
+I6  Spark processing                              RUNTIME VALIDATED
+I7  Trino query layer                             RUNTIME VALIDATED
+I8  Jupyter / Data user experience                RUNTIME VALIDATED
+I9  Security & secrets                            RUNTIME VALIDATED
+I10 Observability                                 RUNTIME VALIDATED
+I11 Resilience / N3 operations                    RUNTIME VALIDATED
+I12 End-to-end Data Product demonstration         RUNTIME VALIDATED
 ```
 
 See [ROADMAP.md](ROADMAP.md).
@@ -237,31 +237,32 @@ See [docs/03-reuse-existing-repositories.md](docs/03-reuse-existing-repositories
 
 ## Current status
 
-**Iteration I0 — COMPLETED**
+**Local Kind POC — RUNTIME VALIDATED**
 
-Completed:
-- scope and architecture;
-- mission capability mapping;
-- reuse matrix;
-- lab strategy;
-- end-to-end Data Product scenario;
-- prioritized backlog;
-- platform profiles;
-- evidence rules.
+The retained `kind-edl-lab` three-node cluster has completed I1-I12 runtime validation.
+The final I12 Data Product path is Kafka -> Spark/Iceberg -> S3/Polaris -> Trino ->
+Jupyter, with exactly six retained transactions in the validated snapshot.
 
-**Iterations I1 and I2 — IMPLEMENTED / RUNTIME VALIDATION PENDING**
+**H1 security hardening — COMPLETED_WITH_REMAINING_FINDINGS**
 
-Implemented:
-- cluster contract;
-- full preflight suite: connectivity, DNS, PVC, RBAC, NetworkPolicy;
-- platform baseline with namespaces, quotas, limits, RBAC and deny-by-default networking;
-- Kubernetes/OpenShift overlays and verification scripts.
+The hardened local checkpoint verifies the Jupyter GitPython remediation, read-only
+root filesystem contracts, reduced-risk S3 client, zero Kind KSV-0014 manifest
+findings, Spark regression coverage and retained I12 data. Residual upstream CVEs and
+known monitoring gaps remain documented; this is not a production approval.
 
-I3 GitOps is also implemented in Git: bootstrap, AppProject, Applications, operating conventions, environment strategy, secrets contract and drift/rollback lab.
+**H2 local runtime switching — KIND_CRC_KIND_LOCAL_SWITCH_VALIDATED**
 
-I4 through I12 are now implemented in Git as executable/design assets: S3 contract, Kafka/Strimzi, Spark, Trino, Jupyter, security, observability, N3/resilience and the final Kafka -> Spark/Iceberg -> S3/Polaris -> Trino -> Jupyter Data Product.
+The exact existing Kind containers were stopped without deletion, CRC/OpenShift Local
+4.22.7 was started and inspected read-only, then stopped, and the same Kind containers
+were restarted. Final validation retained the six I12 Iceberg rows, snapshot/table UUID,
+Jupyter persistence, 21 Prometheus targets UP, 3 Ready nodes, 6 Bound PVCs and
+Synced/Healthy Argo applications.
 
-The repository therefore has **I0 complete and I1-I12 implemented**. Runtime validation remains deliberately pending. The next operational phase is to execute the iterations on CRC in controlled order, capture evidence, then move HA-only scenarios to a multi-node target. No unexecuted capability is claimed as tested.
+Evidence is under `evidence/kind-edl-lab/20260928T112119Z/`.
+
+Scope remains intentionally local: one workstation, Polaris in-memory metadata and no
+claim of multi-host HA, DR, durable catalog, exactly-once streaming or production
+readiness.
 
 ---
 
