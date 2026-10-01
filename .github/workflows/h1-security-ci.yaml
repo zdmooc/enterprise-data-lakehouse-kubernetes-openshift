@@ -1,0 +1,316 @@
+name: h1-security-ci
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  h1-static:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python syntax
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            scripts/kind/scan-h1.py \
+            scripts/kind/summarize-h1.py \
+            scripts/kind/test-h1.py \
+            scripts/kind/test-h1-spark.py
+
+      - name: Install kubectl
+        run: |
+          set -euo pipefail
+          VERSION="$(curl -fsSL https://dl.k8s.io/release/stable.txt)"
+          curl -fsSL -o kubectl "https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/kubectl
+          kubectl version --client
+
+      - name: Render Kind profiles
+        run: |
+          set -euo pipefail
+          kubectl kustomize data-platform/jupyter/profiles/kind > /tmp/jupyter-kind.yaml
+          kubectl kustomize data-platform/object-storage/profiles/kind > /tmp/object-storage-kind.yaml
+          test -s /tmp/jupyter-kind.yaml
+          test -s /tmp/object-storage-kind.yaml
+
+      - name: Assert Kind hardening contracts
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check PyYAML==6.0.2
+          python - <<'PY'
+          import pathlib
+          import yaml
+
+          def docs(path):
+              return [d for d in yaml.safe_load_all(pathlib.Path(path).read_text()) if d]
+
+          def podspec(doc):
+              kind=doc.get('kind')
+              if kind in ('Deployment','StatefulSet','DaemonSet','Job'):
+                  return doc['spec']['template']['spec']
+              if kind=='Pod':
+                  return doc['spec']
+              raise AssertionError(f'unsupported workload kind {kind}')
+
+          def check(doc, label, require_tmp=False):
+              spec=podspec(doc)
+              for c in spec['containers']:
+                  sc=c.get('securityContext',{})
+                  assert sc.get('readOnlyRootFilesystem') is True, f'{label}/{c["name"]}: rootfs not read-only'
+                  assert sc.get('allowPrivilegeEscalation') is False, f'{label}/{c["name"]}: privilege escalation'
+                  assert sc.get('capabilities',{}).get('drop')==['ALL'], f'{label}/{c["name"]}: capabilities'
+                  if require_tmp:
+                      mounts={m['mountPath']:m['name'] for m in c.get('volumeMounts',[])}
+                      assert '/tmp' in mounts, f'{label}/{c["name"]}: /tmp not writable'
+              print('H1_KIND_HARDENING=PASS', label)
+
+          j=next(d for d in docs('/tmp/jupyter-kind.yaml') if d.get('kind')=='Deployment')
+          jc=j['spec']['template']['spec']['containers'][0]
+          assert jc['image']=='edl-jupyter:kind-h1-gitpython3.1.59'
+          check(j,'jupyter',True)
+          mounts={m['mountPath']:m['name'] for m in jc['volumeMounts']}
+          assert mounts['/home/jovyan']=='home'
+          assert mounts['/home/jovyan/work']=='workspace'
+
+          s3=next(d for d in docs('/tmp/object-storage-kind.yaml') if d.get('kind')=='Deployment')
+          check(s3,'rustfs',True)
+
+          targets=[
+              ('platform/kind/contract-probe.yaml','kind-contract',False),
+              ('platform/kind/s3-contract-job.yaml','s3-contract',True),
+              ('platform/kind/s3-reader.yaml','s3-reader',True),
+              ('platform/kind/spark-job.yaml','spark-submit',True),
+              ('platform/kind/spark-template.yaml','spark-template',True),
+          ]
+          for path,label,tmp in targets:
+              workload=next(d for d in docs(path) if d.get('kind') in ('Pod','Job','Deployment'))
+              check(workload,label,tmp)
+
+          for path in ('platform/kind/s3-contract-job.yaml','platform/kind/s3-reader.yaml'):
+              workload=next(d for d in docs(path) if d.get('kind') in ('Pod','Job'))
+              c=podspec(workload)['containers'][0]
+              assert c['image']=='edl-s3-client:kind-h1'
+
+          print('H1_KIND_HARDENING_CONTRACTS=PASS')
+          PY
+
+      - name: Secret hygiene regression
+        run: |
+          set -euo pipefail
+          python tests/static/scan_secrets.py
+
+  h1-jupyter-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build validated base image
+        run: |
+          set -euo pipefail
+          docker build -t edl-jupyter:kind-2026-07-28 data-platform/jupyter/image
+
+      - name: Build H1 Jupyter derivative
+        run: |
+          set -euo pipefail
+          docker build \
+            -f platform/kind/jupyter/Dockerfile \
+            -t edl-jupyter:kind-h1-gitpython3.1.59 \
+            .
+
+      - name: Verify GitPython remediation
+        run: |
+          set -euo pipefail
+          docker run --rm edl-jupyter:kind-h1-gitpython3.1.59 \
+            python -c "import git; print('GitPython='+git.__version__); assert git.__version__=='3.1.59'"
+
+      - name: Read-only container smoke
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            --read-only \
+            --tmpfs /tmp:rw,nosuid,nodev \
+            --tmpfs /home/jovyan:rw,nosuid,nodev \
+            edl-jupyter:kind-h1-gitpython3.1.59 \
+            python -c "import git,trino; print('H1_READONLY_CONTAINER_SMOKE=PASS')"
+
+      - name: Install Trivy 0.74.0
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/trivy.tar.gz \
+            https://github.com/aquasecurity/trivy/releases/download/v0.74.0/trivy_0.74.0_Linux-64bit.tar.gz
+          tar -xzf /tmp/trivy.tar.gz -C /tmp trivy
+          sudo install /tmp/trivy /usr/local/bin/trivy
+          trivy --version
+
+      - name: Scan Jupyter before and after with same database
+        run: |
+          set -euo pipefail
+          mkdir -p .audit/h1-ci
+          trivy image --download-db-only --cache-dir .audit/h1-ci/cache
+          trivy image --download-java-db-only --cache-dir .audit/h1-ci/cache
+          trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update \
+            --scanners vuln --format json --output .audit/h1-ci/jupyter-before.json \
+            edl-jupyter:kind-2026-07-28
+          trivy image --cache-dir .audit/h1-ci/cache --skip-db-update --skip-java-db-update \
+            --scanners vuln --format json --output .audit/h1-ci/jupyter-after.json \
+            edl-jupyter:kind-h1-gitpython3.1.59
+          python - <<'PY'
+          import json
+          from collections import Counter
+          def vulns(path):
+              r=json.load(open(path))
+              return [v for x in r.get('Results',[]) for v in (x.get('Vulnerabilities') or [])]
+          for phase in ('before','after'):
+              vs=vulns(f'.audit/h1-ci/jupyter-{phase}.json')
+              c=Counter(v['Severity'] for v in vs)
+              target=[v for v in vs if v['VulnerabilityID']=='CVE-2026-78676' or v.get('PkgName','').lower()=='gitpython']
+              print(phase.upper(), dict(c))
+              print('GitPython/CVE-2026-78676', [(v['VulnerabilityID'],v.get('InstalledVersion'),v.get('FixedVersion')) for v in target])
+              if phase=='after':
+                  assert not any(v['VulnerabilityID']=='CVE-2026-78676' for v in target), 'GitPython CVE remains'
+          print('H1_GITPYTHON_TRIVY_REMEDIATION=PASS')
+          PY
+
+  h1-s3-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build baseline and hardened S3 clients
+        run: |
+          set -euo pipefail
+          docker build -t edl-s3-client:kind-2.31.0 platform/kind/s3-client
+          docker build -f platform/kind/s3-client/Dockerfile.h1 -t edl-s3-client:kind-h1 .
+
+      - name: Read-only S3 client smoke
+        run: |
+          set -euo pipefail
+          docker run --rm --read-only --tmpfs /tmp:rw,nosuid,nodev \
+            --entrypoint bash edl-s3-client:kind-h1 -ec \
+            'export HOME=/tmp; aws --version; diff --version >/dev/null; echo H1_S3_CLIENT_READONLY=PASS'
+
+      - name: RustFS + S3 contract under read-only roots
+        run: |
+          set -euo pipefail
+          ACCESS="h1$(openssl rand -hex 8)"
+          SECRET="$(openssl rand -hex 24)"
+          echo "::add-mask::$ACCESS"
+          echo "::add-mask::$SECRET"
+          docker network create h1-security
+          docker run -d --name h1-rustfs --network h1-security -p 9000:9000 \
+            --read-only --user 10001:10001 \
+            --tmpfs /data:rw,uid=10001,gid=10001,mode=0770 \
+            --tmpfs /logs:rw,uid=10001,gid=10001,mode=0770 \
+            --tmpfs /tmp:rw,uid=10001,gid=10001,mode=0770 \
+            -e RUSTFS_VOLUMES=/data \
+            -e RUSTFS_ADDRESS=0.0.0.0:9000 \
+            -e RUSTFS_CONSOLE_ENABLE=false \
+            -e RUSTFS_OBS_LOG_DIRECTORY=/logs \
+            -e RUSTFS_ACCESS_KEY="$ACCESS" \
+            -e RUSTFS_SECRET_KEY="$SECRET" \
+            rustfs/rustfs:1.0.0
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:9000/health >/dev/null; then break; fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:9000/health >/dev/null
+          docker run --rm --network h1-security \
+            --read-only --user 1000:1000 \
+            --tmpfs /tmp:rw,uid=1000,gid=1000,mode=0770 \
+            --entrypoint bash \
+            -e HOME=/tmp \
+            -e AWS_ACCESS_KEY_ID="$ACCESS" \
+            -e AWS_SECRET_ACCESS_KEY="$SECRET" \
+            -e AWS_DEFAULT_REGION=us-east-1 \
+            -e AWS_EC2_METADATA_DISABLED=true \
+            -e AWS_PAGER= \
+            -e S3_ENDPOINT=http://h1-rustfs:9000 \
+            -e S3_BUCKET=edl-h1-ci \
+            -e S3_CREATE_BUCKET=yes \
+            -v "$PWD/scripts:/work/scripts:ro" -w /work \
+            edl-s3-client:kind-h1 -ec \
+            'bash scripts/bootstrap-s3-layout.sh; bash scripts/verify-s3-layout.sh'
+          echo H1_RUSTFS_S3_CONTRACT=PASS
+
+      - name: Install Trivy 0.74.0
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/trivy.tar.gz \
+            https://github.com/aquasecurity/trivy/releases/download/v0.74.0/trivy_0.74.0_Linux-64bit.tar.gz
+          tar -xzf /tmp/trivy.tar.gz -C /tmp trivy
+          sudo install /tmp/trivy /usr/local/bin/trivy
+
+      - name: Scan S3 client before and after
+        run: |
+          set -euo pipefail
+          mkdir -p .audit/h1-s3-ci
+          trivy image --download-db-only --cache-dir .audit/h1-s3-ci/cache
+          trivy image --cache-dir .audit/h1-s3-ci/cache --skip-db-update \
+            --scanners vuln --format json --output .audit/h1-s3-ci/before.json \
+            edl-s3-client:kind-2.31.0
+          trivy image --cache-dir .audit/h1-s3-ci/cache --skip-db-update \
+            --scanners vuln --format json --output .audit/h1-s3-ci/after.json \
+            edl-s3-client:kind-h1
+          python - <<'PY'
+          import json
+          from collections import Counter
+          def counts(path):
+              r=json.load(open(path))
+              rows=[v for x in r.get('Results',[]) for v in (x.get('Vulnerabilities') or [])]
+              return Counter(v['Severity'] for v in rows)
+          b=counts('.audit/h1-s3-ci/before.json')
+          a=counts('.audit/h1-s3-ci/after.json')
+          print('S3 BEFORE',dict(b))
+          print('S3 AFTER ',dict(a))
+          assert a['CRITICAL']+a['HIGH'] < b['CRITICAL']+b['HIGH'], 'S3 H1 did not reduce HIGH/CRITICAL findings'
+          print('H1_S3_TRIVY_IMPROVEMENT=PASS')
+          PY
+
+      - name: Cleanup S3 CI
+        if: always()
+        run: |
+          docker rm -f h1-rustfs >/dev/null 2>&1 || true
+          docker network rm h1-security >/dev/null 2>&1 || true
+
+  h1-spark-readonly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build validated Spark image
+        run: |
+          set -euo pipefail
+          docker build -t edl-spark-lakehouse:kind-4.1.3-iceberg1.11 \
+            -f data-platform/lakehouse/image/Dockerfile data-platform/lakehouse
+
+      - name: Spark local-mode read-only smoke
+        run: |
+          set -euo pipefail
+          docker run --rm --read-only \
+            --tmpfs /tmp:rw,nosuid,nodev \
+            --entrypoint bash \
+            -e HOME=/tmp \
+            -e SPARK_LOCAL_DIRS=/tmp/spark \
+            -e PYTHONDONTWRITEBYTECODE=1 \
+            edl-spark-lakehouse:kind-4.1.3-iceberg1.11 -ec '
+              printf "%s\n" \
+                "from pyspark.sql import SparkSession" \
+                "spark=SparkSession.builder.master(\"local[2]\").appName(\"h1-readonly\").getOrCreate()" \
+                "value=spark.sparkContext.parallelize(range(10000),4).map(lambda x:x*x).sum()" \
+                "assert value==333283335000, value" \
+                "print(\"H1_SPARK_READONLY_LOCAL_SMOKE=PASS\")" \
+                "spark.stop()" > /tmp/h1_spark.py
+              /opt/spark/bin/spark-submit --master local[2] /tmp/h1_spark.py
+            '

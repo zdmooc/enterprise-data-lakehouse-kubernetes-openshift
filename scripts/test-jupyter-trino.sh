@@ -10,7 +10,7 @@ if [ -z "$pod" ]; then
   exit 1
 fi
 
-out="$(oc -n edl-data exec "$pod" -- python /home/jovyan/work/trino_query.py 2>&1)" || {
+out="$(oc -n edl-data exec "$pod" -- python /opt/edl-samples/trino_query.py 2>&1)" || {
   printf '%s\n' "$out"
   echo "[FAIL] Jupyter -> Trino query failed"
   exit 1

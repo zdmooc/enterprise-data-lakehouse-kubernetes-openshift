@@ -1,0 +1,23 @@
+NAME                               READY   WARNINGS   KAFKA VERSION   METADATA VERSION
+kafka.kafka.strimzi.io/edl-kafka   True               4.3.1           4.3-IV0
+
+NAME                                       DESIRED REPLICAS   ROLES                     NODEIDS
+kafkanodepool.kafka.strimzi.io/dual-role   1                  ["controller","broker"]   [0]
+
+NAME                                               CLUSTER     PARTITIONS   REPLICATION FACTOR   READY
+kafkatopic.kafka.strimzi.io/edl.smoke              edl-kafka   1            1                    True
+kafkatopic.kafka.strimzi.io/transactions.curated   edl-kafka   3            1                    True
+kafkatopic.kafka.strimzi.io/transactions.raw       edl-kafka   3            1                    True
+NAME                                         READY   STATUS      RESTARTS   AGE
+edl-kafka-dual-role-0                        1/1     Running     0          5m7s
+edl-kafka-entity-operator-5f545b695d-4dglr   2/2     Running     0          70s
+edl-kafka-kafka-exporter-6645f86f59-2xb6q    1/1     Running     0          37s
+edl-s3-86454754dc-sv7v7                      1/1     Running     0          7h26m
+kind-contract                                1/1     Running     0          7h32m
+kind-s3-contract-njkgw                       0/1     Completed   0          7h18m
+[PASS] fresh Kafka smoke marker produced and consumed
+[PASS] existing synthetic producer completed successfully
+NAME                   CLUSTER     PARTITIONS   REPLICATION FACTOR   READY
+edl.smoke              edl-kafka   1            1                    True
+transactions.curated   edl-kafka   3            1                    True
+transactions.raw       edl-kafka   3            1                    True

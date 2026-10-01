@@ -1,0 +1,5 @@
+UTC=2026-09-30T05:27:43.700903+00:00
+Archived I12 failed driver only: kind-i12-a0adb24c8c95-r2-driver; UID=cc1092e0-ac00-4e22-b67c-b5fc42d57c15; phase=Failed; exit=1
+Successful r3 driver and exact Trino/Jupyter reads recorded before cleanup.
+pod "kind-i12-a0adb24c8c95-r2-driver" deleted
+[PASS] removed only the archived failed I12 test driver; no PVC/namespace/cluster deletion

@@ -1,0 +1,39 @@
+
+UTC=2026-10-01T07:07:13.799616+00:00; GATE=after-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] after-state

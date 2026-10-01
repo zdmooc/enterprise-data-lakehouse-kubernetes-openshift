@@ -5,9 +5,8 @@ command -v oc >/dev/null 2>&1 && CLI=oc
 
 NS=data-platform-preflight
 cleanup() { "$CLI" delete ns "$NS" --ignore-not-found >/dev/null 2>&1 || true; }
-trap cleanup EXIT
-
 "$CLI" create ns "$NS" >/dev/null
+trap cleanup EXIT
 
 cat <<'EOF' | "$CLI" apply -n "$NS" -f - >/dev/null
 apiVersion: v1

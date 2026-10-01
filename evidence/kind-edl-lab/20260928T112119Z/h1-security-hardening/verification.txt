@@ -1,0 +1,16 @@
+H1 local finalizer: PASS; evidence checkpoint c93cdca335f6b63b60dad26fd64fabf9a5835c04 pushed.
+Jupyter GitPython 3.1.59; CVE-2026-78676 absent in local after scan.
+Jupyter authenticated HTTP, persistent marker and real kernel -> Trino I12: PASS.
+Spark driver/executor Succeeded, exit 0, read-only roots: PASS.
+Kafka existing I12 partition 1 / offset 0 read: PASS; no producer invoked.
+Iceberg: exactly six retained IDs; disposable table write/read/drop PASS.
+Polaris original snapshot/table UUID/metadata location: unchanged.
+S3 hardened client PUT/GET/integrity/DELETE, List and zones: PASS.
+Kind KSV-0014 before=6, after=0. Diagnostic probe actual rootfs omission corrected.
+Diagnostic probe same Bound PVC UID/volume and stored-file hashes: PASS.
+Final health: 3 Ready nodes, 6 Bound PVCs, 2 Synced/Healthy Argo applications.
+Prometheus 21/21 UP; authenticated Grafana database/API healthy.
+HIGH/CRITICAL: Jupyter 213 -> 205; Spark 288 -> 288; S3 213 -> 14.
+Netty/Derby and other residuals remain listed as UPSTREAM/DEFERRED.
+No CRC command, I1-I12 replay, Kafka publication, namespace/PVC/cluster deletion.
+Raw scanner files remain ignored under .audit/kind/h1; published reports are filtered.

@@ -20,12 +20,12 @@ spec:
 YAML
   host=$("$CLI" -n "$NS" get route np-server -o jsonpath='{.spec.host}' 2>/dev/null || true)
   [ -n "$host" ] || fail "OpenShift Route was created but no host was assigned"
-  pass "OpenShift Route API works; host assigned: $host"
+  pass "OpenShift Route API creates a host: $host (HTTP reachability not checked)"
   exit 0
 fi
 
 if "$CLI" api-resources 2>/dev/null | grep -q '^ingresses[[:space:]]'; then
-  controllers=$("$CLI" get pods -A 2>/dev/null | grep -Ei 'ingress|traefik|nginx' | wc -l | tr -d ' ')
+  controllers=$("$CLI" get pods -A 2>/dev/null | awk 'tolower($0) ~ /ingress|traefik|nginx/ {n++} END {print n+0}')
   if [ "${controllers:-0}" -gt 0 ]; then
     pass "Ingress API and at least one probable ingress controller detected"
   else

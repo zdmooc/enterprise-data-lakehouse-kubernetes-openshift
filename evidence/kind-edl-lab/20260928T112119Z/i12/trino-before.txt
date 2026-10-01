@@ -1,0 +1,6 @@
+
+UTC=2026-09-30T05:12:36.555450+00:00; GATE=trino-before
+QUERY=SELECT eventId FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+
+ROW_COUNT=0
+[PASS] trino-before

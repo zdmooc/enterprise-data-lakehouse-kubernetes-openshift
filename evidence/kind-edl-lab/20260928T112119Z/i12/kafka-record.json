@@ -1,0 +1,16 @@
+{
+  "topic": "transactions.raw",
+  "partition": 1,
+  "offset": 0,
+  "payload": {
+    "eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95",
+    "eventTime": "2026-09-30T05:12:36Z",
+    "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95",
+    "amount": 17.42,
+    "currency": "EUR",
+    "status": "ACCEPTED",
+    "channel": "E2E",
+    "country": "FR",
+    "latencyMs": 7
+  }
+}

@@ -1,0 +1,324 @@
+UTC=2026-10-01T07:01:08Z
+H2_CRC_INSPECTION=READ_ONLY
+CRC VM:          Running
+OpenShift:       Running (v4.22.7)
+RAM Usage:       18.64GB of 33.65GB
+Disk Usage:      114.9GB of 214.1GB (Inside the CRC VM)
+Cache Usage:     94.41GB
+Cache Directory: C:\Users\HP 17 G3 Win 11 23H2\.crc\cache
+NAME   STATUS   ROLES                         AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE                                                KERNEL-VERSION                 CONTAINER-RUNTIME
+crc    Ready    control-plane,master,worker   64d   v1.35.6   192.168.126.11   <none>        Red Hat Enterprise Linux CoreOS 9.8.20260721-0 (Plow)   5.14.0-687.29.1.el9_8.x86_64   cri-o://1.35.5-3.rhaos4.22.git0adf62b.el9
+NAME                                               DISPLAY NAME   STATUS
+cni-test                                                          Active
+default                                                           Active
+hostpath-provisioner                                              Active
+instant-payments-local                                            Active
+kube-node-lease                                                   Active
+kube-public                                                       Active
+kube-system                                                       Active
+maya-freelance                                                    Active
+mayabank-mq-build                                                 Active
+mayabank-mq-local                                                 Active
+mayainsurance-decision-local                                      Active
+openshift                                                         Active
+openshift-apiserver                                               Active
+openshift-apiserver-operator                                      Active
+openshift-authentication                                          Active
+openshift-authentication-operator                                 Active
+openshift-cloud-network-config-controller                         Active
+openshift-cloud-platform-infra                                    Active
+openshift-cluster-machine-approver                                Active
+openshift-cluster-samples-operator                                Active
+openshift-cluster-storage-operator                                Active
+openshift-cluster-version                                         Active
+openshift-config                                                  Active
+openshift-config-managed                                          Active
+openshift-config-operator                                         Active
+openshift-console                                                 Active
+openshift-console-operator                                        Active
+openshift-console-user-settings                                   Active
+openshift-controller-manager                                      Active
+openshift-controller-manager-operator                             Active
+openshift-dns                                                     Active
+openshift-dns-operator                                            Active
+openshift-etcd                                                    Active
+openshift-etcd-operator                                           Active
+openshift-gitops                                                  Active
+openshift-host-network                                            Active
+openshift-image-registry                                          Active
+openshift-infra                                                   Active
+openshift-ingress                                                 Active
+openshift-ingress-canary                                          Active
+openshift-ingress-operator                                        Active
+openshift-kni-infra                                               Active
+openshift-kube-apiserver                                          Active
+openshift-kube-apiserver-operator                                 Active
+openshift-kube-controller-manager                                 Active
+openshift-kube-controller-manager-operator                        Active
+openshift-kube-scheduler                                          Active
+openshift-kube-scheduler-operator                                 Active
+openshift-kube-storage-version-migrator                           Active
+openshift-kube-storage-version-migrator-operator                  Active
+openshift-machine-api                                             Active
+openshift-machine-config-operator                                 Active
+openshift-marketplace                                             Active
+openshift-monitoring                                              Active
+openshift-multus                                                  Active
+openshift-network-console                                         Active
+openshift-network-diagnostics                                     Active
+openshift-network-node-identity                                   Active
+openshift-network-operator                                        Active
+openshift-node                                                    Active
+openshift-nutanix-infra                                           Active
+openshift-oauth-apiserver                                         Active
+openshift-openstack-infra                                         Active
+openshift-operator-lifecycle-manager                              Active
+openshift-operators                                               Active
+openshift-ovirt-infra                                             Active
+openshift-ovn-kubernetes                                          Active
+openshift-pipelines                                               Active
+openshift-route-controller-manager                                Active
+openshift-service-ca                                              Active
+openshift-service-ca-operator                                     Active
+openshift-user-workload-monitoring                                Active
+openshift-vsphere-infra                                           Active
+tradeops                                                          Active
+wero-poc                                                          Active
+NAMESPACE                                          NAME                                                              READY   STATUS                  RESTARTS         AGE
+hostpath-provisioner                               csi-hostpathplugin-w5z7n                                          4/4     Running                 42               25d
+instant-payments-local                             acceptor-service-3-build                                          0/1     Completed               0                5d15h
+instant-payments-local                             acceptor-service-4-build                                          0/1     Completed               0                5d14h
+instant-payments-local                             acceptor-service-5-build                                          0/1     Completed               0                4d23h
+instant-payments-local                             acceptor-service-6-build                                          0/1     Completed               0                4d18h
+instant-payments-local                             acceptor-service-7-build                                          0/1     Completed               0                4d17h
+instant-payments-local                             acceptor-service-7bbf58c758-rjt66                                 0/1     Running                 8 (76s ago)      4d1h
+instant-payments-local                             alloy-968b9897f-fh5bs                                             1/1     Running                 2                3d23h
+instant-payments-local                             consumer-psp-5-build                                              0/1     Completed               0                4d21h
+instant-payments-local                             consumer-psp-5d79dbd457-h5kd6                                     0/1     Running                 8 (76s ago)      4d1h
+instant-payments-local                             consumer-psp-6-build                                              0/1     Completed               0                4d20h
+instant-payments-local                             consumer-psp-7-build                                              0/1     Completed               0                4d20h
+instant-payments-local                             consumer-psp-8-build                                              0/1     Completed               0                4d18h
+instant-payments-local                             consumer-psp-9-build                                              0/1     Completed               0                4d17h
+instant-payments-local                             demo-cockpit-10-build                                             0/1     Completed               0                3d23h
+instant-payments-local                             demo-cockpit-11-build                                             0/1     Completed               0                3d23h
+instant-payments-local                             demo-cockpit-5b8bd8b866-qdt5x                                     0/1     Running                 5 (105s ago)     3d23h
+instant-payments-local                             demo-cockpit-7-build                                              0/1     Completed               0                4d20h
+instant-payments-local                             demo-cockpit-8-build                                              0/1     Completed               0                4d17h
+instant-payments-local                             demo-cockpit-9-build                                              0/1     Completed               0                4d
+instant-payments-local                             dependency-simulator-10-build                                     0/1     Completed               0                4d9h
+instant-payments-local                             dependency-simulator-11-build                                     0/1     Completed               0                4d9h
+instant-payments-local                             dependency-simulator-12-build                                     0/1     Completed               0                3d23h
+instant-payments-local                             dependency-simulator-6c995cd449-wlj2d                             1/1     Running                 2                3d20h
+instant-payments-local                             dependency-simulator-8-build                                      0/1     Completed               0                4d18h
+instant-payments-local                             dependency-simulator-9-build                                      0/1     Completed               0                4d17h
+instant-payments-local                             grafana-57dc9cb798-vvkf2                                          1/1     Running                 4 (2m18s ago)    7d22h
+instant-payments-local                             kafka-7b4f97d4c8-hvjhp                                            1/1     Running                 2                3d20h
+instant-payments-local                             loki-7449c45cc-6zmzs                                              1/1     Running                 3                8d
+instant-payments-local                             payment-orchestrator-11-build                                     0/1     Completed               0                4d18h
+instant-payments-local                             payment-orchestrator-12-build                                     0/1     Completed               0                4d17h
+instant-payments-local                             payment-orchestrator-13-build                                     0/1     Completed               0                4d9h
+instant-payments-local                             payment-orchestrator-14-build                                     0/1     Completed               0                4d9h
+instant-payments-local                             payment-orchestrator-15-build                                     0/1     Completed               0                3d20h
+instant-payments-local                             payment-orchestrator-2-build                                      0/1     Error                   0                11d
+instant-payments-local                             payment-orchestrator-668c67994b-zx9j6                             0/1     Running                 8 (71s ago)      3d20h
+instant-payments-local                             payment-orchestrator-7-build                                      0/1     Error                   0                5d
+instant-payments-local                             payment-orchestrator-8-build                                      0/1     Error                   0                5d
+instant-payments-local                             postgresql-acceptor-7fd84bff8d-ckmht                              0/1     ContainerCreating       4                11d
+instant-payments-local                             postgresql-consumer-7858759cbc-wdwq9                              0/1     ContainerCreating       4                11d
+instant-payments-local                             postgresql-payments-645c699f4-sdm55                               0/1     ContainerCreating       4                11d
+instant-payments-local                             prometheus-d666bcf44-4jxfd                                        1/1     Running                 2                4d9h
+instant-payments-local                             reconciliation-service-1-build                                    0/1     Completed               0                11d
+instant-payments-local                             reconciliation-service-2-build                                    0/1     Completed               0                10d
+instant-payments-local                             reconciliation-service-3-build                                    0/1     Completed               0                4d18h
+instant-payments-local                             reconciliation-service-4-build                                    0/1     Completed               0                4d17h
+instant-payments-local                             reconciliation-service-5-build                                    0/1     Completed               0                4d10h
+instant-payments-local                             reconciliation-service-6d8476f9cb-nmxck                           0/1     Running                 8 (73s ago)      3d20h
+instant-payments-local                             redpanda-console-66b44f9764-tztkt                                 0/1     ImagePullBackOff        2                8d
+maya-freelance                                     maya-dashboard-3-build                                            0/1     Completed               0                17d
+maya-freelance                                     maya-dashboard-4-build                                            0/1     Completed               0                17d
+maya-freelance                                     maya-dashboard-5-build                                            0/1     Completed               0                17d
+maya-freelance                                     maya-dashboard-6-build                                            0/1     Completed               0                16d
+maya-freelance                                     maya-dashboard-7-build                                            0/1     Completed               0                16d
+maya-freelance                                     maya-dashboard-8b6878c6d-v7rrx                                    1/1     Running                 8                15d
+maya-freelance                                     n8n-847c8b67cb-sk5xd                                              1/1     Running                 19 (2m27s ago)   15d
+maya-freelance                                     postgres-8568dc5c5d-lrwwx                                         1/1     Running                 8                15d
+mayabank-mq-build                                  mq-prometheus-exporter-1-build                                    0/1     Completed               0                15d
+mayabank-mq-build                                  payments-11-build                                                 0/1     Completed               0                15d
+mayabank-mq-build                                  payments-12-build                                                 0/1     Completed               0                15d
+mayabank-mq-build                                  payments-ci-42gwr-build-test-scan-pod                             0/4     Error                   0                15d
+mayabank-mq-build                                  payments-ci-7xxc2-build-test-scan-pod                             0/4     Completed               0                15d
+mayabank-mq-build                                  payments-ci-hmwdh-build-test-scan-pod                             0/4     Error                   0                15d
+mayabank-mq-build                                  payments-ci-rfsqx-build-test-scan-pod                             0/4     Error                   0                15d
+mayabank-mq-local                                  mq-6f5ccb7dcd-5pr54                                               1/1     Running                 8                15d
+mayabank-mq-local                                  mq-prometheus-exporter-7964fc7596-4b749                           1/1     Running                 8                15d
+mayabank-mq-local                                  payment-processing-6bdb8f5569-lctz6                               1/1     Running                 8                15d
+mayabank-mq-local                                  payments-db-7b987c77f9-t44q8                                      1/1     Running                 8                15d
+mayainsurance-decision-local                       decision-api-1-build                                              0/1     Completed               0                21d
+mayainsurance-decision-local                       decision-api-2-build                                              0/1     Error                   0                21d
+mayainsurance-decision-local                       decision-api-3-build                                              0/1     Completed               0                21d
+mayainsurance-decision-local                       decision-api-4-build                                              0/1     Completed               0                21d
+mayainsurance-decision-local                       decision-api-778769f9b4-4zt9f                                     1/1     Running                 10               21d
+openshift-apiserver-operator                       openshift-apiserver-operator-5db6f6f497-f47nd                     1/1     Running                 10               25d
+openshift-apiserver                                apiserver-8564554976-cmjvj                                        2/2     Running                 20               25d
+openshift-authentication-operator                  authentication-operator-687b4b78b5-6gftj                          1/1     Running                 10               25d
+openshift-authentication                           oauth-openshift-f6df59c94-4wc8b                                   1/1     Running                 10               25d
+openshift-cluster-machine-approver                 machine-approver-d57946bc8-4vfpc                                  2/2     Running                 24               25d
+openshift-cluster-samples-operator                 cluster-samples-operator-78cc6c6466-r4px2                         2/2     Running                 20               25d
+openshift-cluster-version                          cluster-version-operator-669bb454d5-hrtrb                         1/1     Running                 10               25d
+openshift-config-operator                          openshift-config-operator-74f974d7f-8vjnq                         1/1     Running                 12               25d
+openshift-console-operator                         console-operator-7d44547c5-h68sp                                  1/1     Running                 10               25d
+openshift-console                                  console-d559985df-wx95k                                           1/1     Running                 10               25d
+openshift-console                                  downloads-845c4955bf-cp4tp                                        1/1     Running                 10               25d
+openshift-controller-manager-operator              openshift-controller-manager-operator-8d5bc8b65-vshjw             1/1     Running                 10               25d
+openshift-controller-manager                       controller-manager-84d596cf8b-b8czg                               1/1     Running                 10               25d
+openshift-dns-operator                             dns-operator-54f4967658-mnqd2                                     2/2     Running                 20               25d
+openshift-dns                                      dns-default-hw65m                                                 2/2     Running                 20               25d
+openshift-dns                                      node-resolver-tbxml                                               1/1     Running                 10               25d
+openshift-etcd-operator                            etcd-operator-577f95b76f-khjx4                                    1/1     Running                 37               25d
+openshift-etcd                                     etcd-crc                                                          5/5     Running                 50               25d
+openshift-gitops                                   cluster-79754f5dcb-njmnn                                          1/1     Running                 10               25d
+openshift-gitops                                   gitops-plugin-6c657484f4-kjb4p                                    1/1     Running                 10               25d
+openshift-gitops                                   openshift-gitops-application-controller-0                         1/1     Running                 10               25d
+openshift-gitops                                   openshift-gitops-applicationset-controller-66b4588bfc-c4b2r       1/1     Running                 10               25d
+openshift-gitops                                   openshift-gitops-dex-server-6b674bdb-pvvzx                        1/1     Running                 12               25d
+openshift-gitops                                   openshift-gitops-redis-868f9fffc6-lgcrt                           1/1     Running                 10               25d
+openshift-gitops                                   openshift-gitops-repo-server-664589bf79-hqv5g                     1/1     Running                 10               25d
+openshift-gitops                                   openshift-gitops-server-5767cf5b6f-49bdd                          1/1     Running                 11               25d
+openshift-image-registry                           cluster-image-registry-operator-78db66bc68-whfd2                  1/1     Running                 10               25d
+openshift-image-registry                           image-pruner-29810880-qzdx4                                       0/1     Completed               0                25d
+openshift-image-registry                           image-pruner-29833920-xt8jb                                       0/1     Completed               0                9d
+openshift-image-registry                           image-registry-d855fdb85-8szpb                                    1/1     Running                 10               25d
+openshift-image-registry                           node-ca-txs2p                                                     1/1     Running                 10               25d
+openshift-ingress-canary                           ingress-canary-zngl6                                              1/1     Running                 10               25d
+openshift-ingress-operator                         ingress-operator-6ccc597445-x22wd                                 2/2     Running                 20               25d
+openshift-ingress                                  router-default-74b7cbf59f-gc49q                                   1/1     Running                 17 (115s ago)    25d
+openshift-ingress                                  routes-controller-7869668f5b-p9wz2                                1/1     Running                 10               25d
+openshift-kube-apiserver-operator                  kube-apiserver-operator-764fc86c5c-9qgvx                          1/1     Running                 10               25d
+openshift-kube-apiserver                           kube-apiserver-crc                                                5/5     Running                 50               25d
+openshift-kube-controller-manager-operator         kube-controller-manager-operator-5d7c4f5f8f-cmhmw                 1/1     Running                 10               25d
+openshift-kube-controller-manager                  kube-controller-manager-crc                                       4/4     Running                 45               25d
+openshift-kube-controller-manager                  revision-pruner-7-crc                                             0/1     Completed               0                25d
+openshift-kube-scheduler-operator                  openshift-kube-scheduler-operator-689d8ffd7d-h5p9z                1/1     Running                 10               25d
+openshift-kube-scheduler                           openshift-kube-scheduler-crc                                      3/3     Running                 30               25d
+openshift-kube-storage-version-migrator-operator   kube-storage-version-migrator-operator-575f75d8c5-8ppfr           1/1     Running                 10               25d
+openshift-kube-storage-version-migrator            migrator-5d7d799c6c-6xkr8                                         1/1     Running                 10               25d
+openshift-machine-api                              control-plane-machine-set-operator-6fbcfc756c-4hjlr               1/1     Running                 10               25d
+openshift-machine-api                              machine-api-operator-68c88d755-p7rb7                              1/1     Running                 10               25d
+openshift-machine-config-operator                  kube-rbac-proxy-crio-crc                                          1/1     Running                 10               25d
+openshift-machine-config-operator                  machine-config-controller-5f484b4b5c-bj5d5                        2/2     Running                 20               25d
+openshift-machine-config-operator                  machine-config-daemon-gf8qx                                       2/2     Running                 20               25d
+openshift-machine-config-operator                  machine-config-operator-55d5975b79-dswlx                          1/1     Running                 10               25d
+openshift-machine-config-operator                  machine-config-server-fdlmm                                       1/1     Running                 10               25d
+openshift-marketplace                              3bf27183126b453194d9881cb5dc60537c0cfc482d3ce7918d869a138emdgsm   0/1     Completed               0                15d
+openshift-marketplace                              certified-operators-44st4                                         0/1     Init:1/2                1                10h
+openshift-marketplace                              certified-operators-jbwm5                                         0/1     PodInitializing         1                2d20h
+openshift-marketplace                              community-operators-89t97                                         0/1     Init:ImagePullBackOff   2 (2d20h ago)    2d20h
+openshift-marketplace                              community-operators-xlggf                                         0/1     Init:1/2                1                10h
+openshift-marketplace                              f56e63cd4deb02e80e8bc6e3acf8b6ecb07192f9e30ea752f566e41bdewzlsl   0/1     Completed               0                25d
+openshift-marketplace                              marketplace-operator-859b5c5466-8skb6                             1/1     Running                 10               25d
+openshift-marketplace                              redhat-operators-6lh5w                                            0/1     Init:1/2                1                10h
+openshift-marketplace                              redhat-operators-t52xv                                            0/1     PodInitializing         1                5d11h
+openshift-monitoring                               alertmanager-main-0                                               6/6     Running                 60               25d
+openshift-monitoring                               cluster-monitoring-operator-79cdb44cdb-twwgr                      1/1     Running                 10               25d
+openshift-monitoring                               kube-state-metrics-6879f6ccfd-w6st2                               3/3     Running                 30               25d
+openshift-monitoring                               metrics-server-c96996d75-8s66c                                    1/1     Running                 10               25d
+openshift-monitoring                               monitoring-plugin-56f6d569b7-hgr9z                                1/1     Running                 10               25d
+openshift-monitoring                               node-exporter-c68hl                                               2/2     Running                 20               25d
+openshift-monitoring                               openshift-state-metrics-65f9857f4-dv874                           3/3     Running                 30               25d
+openshift-monitoring                               prometheus-k8s-0                                                  6/6     Running                 60               25d
+openshift-monitoring                               prometheus-operator-5ff6854865-rnszj                              2/2     Running                 20               25d
+openshift-monitoring                               prometheus-operator-admission-webhook-644f564c57-wj2ft            1/1     Running                 10               25d
+openshift-monitoring                               telemeter-client-75dc4c77b5-l58th                                 3/3     Running                 30               25d
+openshift-monitoring                               thanos-querier-5dbbc48bdd-q476q                                   6/6     Running                 48               15d
+openshift-multus                                   multus-additional-cni-plugins-kr9t5                               1/1     Running                 10               25d
+openshift-multus                                   multus-admission-controller-cd5fb88f4-vctj6                       2/2     Running                 20               25d
+openshift-multus                                   multus-q2tgq                                                      1/1     Running                 2                4d12h
+openshift-multus                                   network-metrics-daemon-tdgw5                                      2/2     Running                 20               25d
+openshift-network-console                          networking-console-plugin-595d54bff-ss7xz                         1/1     Running                 10               64d
+openshift-network-diagnostics                      network-check-source-59df56d99-6dpc4                              1/1     Running                 10               64d
+openshift-network-diagnostics                      network-check-target-km2cv                                        1/1     Running                 10               64d
+openshift-network-node-identity                    network-node-identity-stj8g                                       2/2     Running                 20               64d
+openshift-network-operator                         iptables-alerter-98l2d                                            1/1     Running                 10               64d
+openshift-network-operator                         network-operator-567566fb4c-bt24b                                 1/1     Running                 10               64d
+openshift-oauth-apiserver                          apiserver-5c48dc6d79-rtlcx                                        1/1     Running                 10               25d
+openshift-operator-lifecycle-manager               catalog-operator-645d54b866-cvnhn                                 1/1     Running                 10               25d
+openshift-operator-lifecycle-manager               olm-operator-6c59865757-jz4rm                                     1/1     Running                 10               25d
+openshift-operator-lifecycle-manager               package-server-manager-69cbd56f56-p6wvb                           1/1     Running                 10               25d
+openshift-operator-lifecycle-manager               packageserver-5c474d6dd7-hn9g5                                    1/1     Running                 10               25d
+openshift-operators                                openshift-gitops-operator-controller-manager-5bcbd4b9d-bbl6l      1/1     Running                 20 (2m25s ago)   25d
+openshift-operators                                openshift-pipelines-operator-5457f7bb8c-8z5f9                     2/2     Running                 16               15d
+openshift-operators                                tekton-operator-webhook-54b776c6bf-btfjn                          1/1     Running                 8                15d
+openshift-ovn-kubernetes                           ovnkube-control-plane-77789f84c4-w8sp4                            2/2     Running                 20               25d
+openshift-ovn-kubernetes                           ovnkube-node-clf5t                                                8/8     Running                 99               25d
+openshift-pipelines                                pipelines-as-code-controller-848d6b8676-l8pqq                     1/1     Running                 10 (2m9s ago)    15d
+openshift-pipelines                                pipelines-as-code-watcher-686f58fdd7-sp4fn                        1/1     Running                 11 (2m59s ago)   15d
+openshift-pipelines                                pipelines-as-code-webhook-589d47cfbc-xdz6j                        1/1     Running                 8                15d
+openshift-pipelines                                pipelines-console-plugin-6b86dc6658-454jb                         1/1     Running                 8                15d
+openshift-pipelines                                tekton-chains-controller-cdb86d9f6-wbkr2                          1/1     Running                 8                15d
+openshift-pipelines                                tekton-events-controller-794cd9cf6b-vwlc7                         1/1     Running                 12 (2m37s ago)   15d
+openshift-pipelines                                tekton-operator-proxy-webhook-f674f556c-46fbp                     1/1     Running                 8                15d
+openshift-pipelines                                tekton-pipelines-controller-8559989b76-qs8dg                      1/1     Running                 13 (2m46s ago)   15d
+openshift-pipelines                                tekton-pipelines-remote-resolvers-7f8b9cf58c-nz2nc                1/1     Running                 8                15d
+openshift-pipelines                                tekton-pipelines-webhook-6d9f4fd4bb-xwcdq                         1/1     Running                 8                15d
+openshift-pipelines                                tekton-results-api-5f989d4bc4-c2w8p                               1/1     Running                 10 (99s ago)     15d
+openshift-pipelines                                tekton-results-postgres-0                                         1/1     Running                 8                15d
+openshift-pipelines                                tekton-results-retention-policy-agent-d47cd4f47-7ghls             1/1     Running                 9                15d
+openshift-pipelines                                tekton-results-watcher-8d7c98979-fsfwv                            1/1     Running                 16 (68s ago)     15d
+openshift-pipelines                                tekton-triggers-controller-5967978577-pfcz5                       1/1     Running                 8                15d
+openshift-pipelines                                tekton-triggers-core-interceptors-65dd6cc546-hrrrv                1/1     Running                 8                15d
+openshift-pipelines                                tekton-triggers-webhook-6bdd75cb9d-2cg2p                          1/1     Running                 9                15d
+openshift-pipelines                                tkn-cli-serve-55466dc66-f894q                                     1/1     Running                 8                15d
+openshift-route-controller-manager                 route-controller-manager-758c6f746b-8qcmf                         1/1     Running                 10               25d
+openshift-service-ca-operator                      service-ca-operator-66fdd47447-mdmt2                              1/1     Running                 10               25d
+openshift-service-ca                               service-ca-f57d6bb98-wq56s                                        1/1     Running                 10               25d
+openshift-user-workload-monitoring                 prometheus-operator-689f7855d5-nc2c4                              2/2     Running                 16               15d
+openshift-user-workload-monitoring                 prometheus-user-workload-0                                        6/6     Running                 48               15d
+openshift-user-workload-monitoring                 thanos-ruler-user-workload-0                                      4/4     Running                 32               15d
+tradeops                                           agent-controller-65f67b5f7c-kzbbx                                 1/1     Running                 9                17d
+tradeops                                           genai-api-668d94c967-tztds                                        1/1     Running                 9                18d
+tradeops                                           grafana-574f9bd5dd-wqbvd                                          1/1     Running                 9                18d
+tradeops                                           market-data-74787d9b7f-vxc8c                                      1/1     Running                 9                18d
+tradeops                                           mcp-server-564fd79c44-bg8vp                                       1/1     Running                 9                17d
+tradeops                                           notifier-7db85f9d46-dz4js                                         1/1     Running                 9                18d
+tradeops                                           otel-collector-7f67cb765d-2qrwm                                   1/1     Running                 9                18d
+tradeops                                           paper-oms-76c8667549-8jvhh                                        1/1     Running                 9                18d
+tradeops                                           postgres-0                                                        1/1     Running                 9                18d
+tradeops                                           prometheus-76db5f955c-jvc64                                       1/1     Running                 9                18d
+tradeops                                           qdrant-0                                                          1/1     Running                 9                18d
+tradeops                                           rag-api-5fc75b94c8-6dfqc                                          0/1     Running                 11               18d
+tradeops                                           redpanda-0                                                        1/1     Running                 9                18d
+tradeops                                           risk-engine-57b8d65bd8-5jgtw                                      1/1     Running                 9                18d
+tradeops                                           tradeops-ui-1-build                                               0/1     Completed               0                17d
+tradeops                                           tradeops-ui-2-build                                               0/1     Error                   0                17d
+tradeops                                           tradeops-ui-3-build                                               0/1     Completed               0                17d
+tradeops                                           tradeops-ui-4-build                                               0/1     Completed               0                17d
+tradeops                                           tradeops-ui-86c54754d4-5djdp                                      1/1     Running                 9                17d
+tradeops                                           workflow-api-57497655bb-gtr82                                     1/1     Running                 9                18d
+wero-poc                                           api-gateway-1-build                                               0/1     Error                   0                25d
+wero-poc                                           api-gateway-2-build                                               0/1     Completed               0                25d
+wero-poc                                           api-gateway-3-build                                               0/1     Completed               0                25d
+wero-poc                                           api-gateway-4-build                                               0/1     Completed               0                24d
+wero-poc                                           api-gateway-5-build                                               0/1     Completed               0                24d
+wero-poc                                           consumer-psp-1-build                                              0/1     Completed               0                25d
+wero-poc                                           consumer-psp-2-build                                              0/1     Completed               0                25d
+wero-poc                                           consumer-psp-3-build                                              0/1     Completed               0                25d
+wero-poc                                           event-audit-service-4-build                                       0/1     Completed               0                25d
+wero-poc                                           event-audit-service-5-build                                       0/1     Completed               0                25d
+wero-poc                                           event-audit-service-6-build                                       0/1     Completed               0                25d
+wero-poc                                           event-audit-service-7-build                                       0/1     Completed               0                24d
+wero-poc                                           event-audit-service-8-build                                       0/1     Completed               0                24d
+wero-poc                                           mock-sct-inst-1-build                                             0/1     Completed               0                25d
+wero-poc                                           mock-sct-inst-2-build                                             0/1     Completed               0                25d
+wero-poc                                           mock-sct-inst-3-build                                             0/1     Completed               0                25d
+wero-poc                                           mock-sct-inst-4-build                                             0/1     Completed               0                24d
+wero-poc                                           mock-wero-1-build                                                 0/1     Completed               0                25d
+wero-poc                                           mock-wero-2-build                                                 0/1     Completed               0                25d
+wero-poc                                           mock-wero-3-build                                                 0/1     Completed               0                25d
+wero-poc                                           payment-service-1-build                                           0/1     Error                   0                25d
+wero-poc                                           payment-service-10-build                                          0/1     Error                   0                25d
+wero-poc                                           payment-service-17-build                                          0/1     Completed               0                25d
+wero-poc                                           payment-service-18-build                                          0/1     Completed               0                25d
+wero-poc                                           payment-service-19-build                                          0/1     Completed               0                24d
+wero-poc                                           payment-service-20-build                                          0/1     Completed               0                24d
+wero-poc                                           payment-service-21-build                                          0/1     Completed               0                24d
+[PASS] CRC started and was inspected read-only; no workload mutation command executed by H2

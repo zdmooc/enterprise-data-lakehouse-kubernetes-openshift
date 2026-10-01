@@ -1,0 +1,75 @@
+{
+  "pod": "kind-i12-a0adb24c8c95-r3-driver",
+  "uid": "04c013c5-6e13-4da0-b3dc-ffb6821a02bd",
+  "phase": "Succeeded",
+  "containers": [
+    {
+      "allocatedResources": {
+        "cpu": "200m",
+        "memory": "1408Mi"
+      },
+      "containerID": "containerd://41484ab065881bfa59fc20be1be2a2ee79b2bfcd8cec7d1fca4b10365aaca8ed",
+      "image": "docker.io/library/edl-spark-lakehouse:kind-4.1.3-iceberg1.11",
+      "imageID": "sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd",
+      "lastState": {},
+      "name": "spark-kubernetes",
+      "ready": false,
+      "resources": {
+        "limits": {
+          "cpu": "1",
+          "memory": "1408Mi"
+        },
+        "requests": {
+          "cpu": "200m",
+          "memory": "1408Mi"
+        }
+      },
+      "restartCount": 0,
+      "started": false,
+      "state": {
+        "terminated": {
+          "containerID": "containerd://41484ab065881bfa59fc20be1be2a2ee79b2bfcd8cec7d1fca4b10365aaca8ed",
+          "exitCode": 0,
+          "finishedAt": "2026-09-30T05:25:44Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-30T05:23:55Z"
+        }
+      },
+      "user": {
+        "linux": {
+          "gid": 0,
+          "supplementalGroups": [
+            0
+          ],
+          "uid": 185
+        }
+      },
+      "volumeMounts": [
+        {
+          "mountPath": "/opt/edl-templates",
+          "name": "edl-templates",
+          "readOnly": true,
+          "recursiveReadOnly": "Disabled"
+        },
+        {
+          "mountPath": "/opt/spark/pod-template",
+          "name": "pod-template-volume"
+        },
+        {
+          "mountPath": "/var/data/spark-b46a0db7-a259-41f4-ab62-3c155d9aa6fd",
+          "name": "spark-local-dir-1"
+        },
+        {
+          "mountPath": "/opt/spark/conf",
+          "name": "spark-conf-volume-driver"
+        },
+        {
+          "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+          "name": "kube-api-access-p6qc6",
+          "readOnly": true,
+          "recursiveReadOnly": "Disabled"
+        }
+      ]
+    }
+  ]
+}

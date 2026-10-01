@@ -37,7 +37,7 @@ echo "[INFO] waiting for replacement Ready pod matching $SELECTOR"
 for i in $(seq 1 120); do
   replacement=$("$CLI" -n "$NS" get pod -l "$SELECTOR"     --field-selector=status.phase=Running     -o jsonpath='{range .items[*]}{.metadata.name}{" "}{end}' 2>/dev/null || true)
   if [ -n "$replacement" ] && ! printf '%s\n' "$replacement" | grep -qw "$pod"; then
-    "$CLI" -n "$NS" wait pod -l "$SELECTOR" --for=condition=Ready --timeout=120s >/dev/null || true
+    "$CLI" -n "$NS" wait pod -l "$SELECTOR" --for=condition=Ready --timeout=120s >/dev/null || { echo "[FAIL] replacement is not Ready"; exit 1; }
     after="$(date +%s)"
     echo "[PASS] replacement observed after $((after-before)) seconds: $replacement"
     exit 0

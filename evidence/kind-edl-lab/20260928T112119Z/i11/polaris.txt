@@ -1,0 +1,145 @@
+
+UTC=2026-09-29T19:03:07.418724+00:00; SCENARIO=polaris
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+BEFORE catalog + SQL
+POLARIS_CATALOG_NAMES=["quickstart_catalog"]
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+BEFORE {"name": "edl-polaris-7f765cd5fc-df6q5", "uid": "34b698f6-afb3-4d37-95b1-36af36737fa2", "node": "edl-lab-worker2", "ready": true, "restarts": 0}
+ACTION delete only pod/edl-polaris-7f765cd5fc-df6q5
+pod "edl-polaris-7f765cd5fc-df6q5" deleted
+WAIT for different UID and Ready
+AFTER {"name": "edl-polaris-7f765cd5fc-r4smc", "uid": "e84e7ab9-6304-4321-a642-2bb591995516", "node": "edl-lab-worker2", "ready": true, "restarts": 0}
+REPLACEMENT_READY_SECONDS=27.0
+POLARIS_CATALOG_NAMES=[]
+OBSERVED_EXPECTED_LIMIT: in-memory catalog LOST after pod replacement
+SELECT_1=PASS
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+    cur.execute('SELECT eventId,transactionId,amount,status FROM transactions ORDER BY eventId'); rows=cur.fetchall()
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.13/site-packages/trino/dbapi.py", line 670, in execute
+    self._iterator = iter(self._query.execute())
+                          ~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/conda/lib/python3.13/site-packages/trino/client.py", line 1026, in execute
+    new_rows = self.fetch()
+  File "/opt/conda/lib/python3.13/site-packages/trino/client.py", line 1080, in fetch
+    status = self._request.process(response)
+  File "/opt/conda/lib/python3.13/site-packages/trino/client.py", line 770, in process
+    raise self._process_error(response["error"], response.get("id"))
+trino.exceptions.TrinoUserError: TrinoUserError(type=USER_ERROR, name=SCHEMA_NOT_FOUND, message="line 1:49: Schema 'analytics' does not exist", query_id=20260929_190350_00017_f8tid)
+command terminated with exit code 1
+POST_RESTART_SQL_EXIT=1; cached SQL success would not prove catalog persistence
+ACTION documented resume-data/reconstruction from retained Kafka; no new transaction production
+deployment "argocd-applicationset-controller" successfully rolled out
+deployment "argocd-redis" successfully rolled out
+deployment "argocd-repo-server" successfully rolled out
+deployment "argocd-server" successfully rolled out
+deployment "strimzi-cluster-operator" successfully rolled out
+deployment "edl-jupyter" successfully rolled out
+deployment "edl-kafka-entity-operator" successfully rolled out
+deployment "edl-kafka-kafka-exporter" successfully rolled out
+deployment "edl-polaris" successfully rolled out
+deployment "edl-s3" successfully rolled out
+deployment "edl-trino-coordinator" successfully rolled out
+deployment "edl-trino-worker" successfully rolled out
+deployment "edl-monitoring-grafana" successfully rolled out
+deployment "edl-monitoring-kube-state-metrics" successfully rolled out
+deployment "edl-monitoring-operator" successfully rolled out
+deployment "kyverno-admission-controller" successfully rolled out
+deployment "kyverno-background-controller" successfully rolled out
+deployment "kyverno-cleanup-controller" successfully rolled out
+deployment "kyverno-reports-controller" successfully rolled out
+kafka.kafka.strimzi.io/edl-kafka condition met
+Traceback (most recent call last):
+  File "C:\Users\HP 17 G3 Win 11 23H2\Documents\ChatGPT\Wero\enterprise-data-lakehouse-kubernetes-openshift\scripts\kind\polaris.py", line 73, in <module>
+    with urllib.request.urlopen(request, timeout=5) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\urllib\request.py", line 1348, in do_open
+    r = h.getresponse()
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 1478, in getresponse
+    response.begin()
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 343, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP 17 G3 Win 11 23H2\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 312, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+[FAIL] polaris: Command failed (1): ['C:/Program Files/Git/bin/bash.exe', 'scripts/kind/resume-data.sh']
+
+UTC=2026-09-29T19:05:53.056361+00:00; SCENARIO=polaris
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+POLARIS_CATALOG_NAMES=[]
+BEFORE resume: []
+ACTION documented resume-data/reconstruction from retained Kafka; no new transaction production
+deployment "argocd-applicationset-controller" successfully rolled out
+deployment "argocd-redis" successfully rolled out
+deployment "argocd-repo-server" successfully rolled out
+deployment "argocd-server" successfully rolled out
+deployment "strimzi-cluster-operator" successfully rolled out
+deployment "edl-jupyter" successfully rolled out
+deployment "edl-kafka-entity-operator" successfully rolled out
+deployment "edl-kafka-kafka-exporter" successfully rolled out
+deployment "edl-polaris" successfully rolled out
+deployment "edl-s3" successfully rolled out
+deployment "edl-trino-coordinator" successfully rolled out
+deployment "edl-trino-worker" successfully rolled out
+deployment "edl-monitoring-grafana" successfully rolled out
+deployment "edl-monitoring-kube-state-metrics" successfully rolled out
+deployment "edl-monitoring-operator" successfully rolled out
+deployment "kyverno-admission-controller" successfully rolled out
+deployment "kyverno-background-controller" successfully rolled out
+deployment "kyverno-cleanup-controller" successfully rolled out
+deployment "kyverno-reports-controller" successfully rolled out
+kafka.kafka.strimzi.io/edl-kafka condition met
+[PASS] Polaris authentication, catalog storage contract and grants verified
+Catalog: quickstart_catalog; storage: s3://edl-lab/curated/
+LAB ONLY / IN-MEMORY METADATA / NOT DURABLE / NOT PRODUCTION HA
+serviceaccount/spark-runner unchanged
+role.rbac.authorization.k8s.io/spark-runner unchanged
+rolebinding.rbac.authorization.k8s.io/spark-runner unchanged
+networkpolicy.networking.k8s.io/allow-spark-executor-to-driver unchanged
+configmap/kind-spark-templates configured
+job.batch "kind-spark-lakehouse-submit" deleted
+pod "kind-spark-lakehouse-driver" deleted
+job.batch/kind-spark-lakehouse-submit created
+pod/kind-spark-lakehouse-driver condition met
+EDL_EVENT_COUNT=5
+['ACCEPTED', 'MOBILE', 1, 125.4]
+['ACCEPTED', 'POS', 1, 19.99]
+['ACCEPTED', 'WEB', 1, 90.0]
+['PENDING', 'WEB', 1, 800.0]
+['REJECTED', 'MOBILE', 1, 250.1]
+EDL_JUPYTER_LAKEHOUSE_ROWS=5
+[PASS] lab catalog and table rebuilt from retained Kafka records
+POLARIS_CATALOG_NAMES=["quickstart_catalog"]
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+RECOVERY=RECONSTRUCTION; POLARIS_DURABILITY=NOT_VALIDATED
+[PASS] polaris

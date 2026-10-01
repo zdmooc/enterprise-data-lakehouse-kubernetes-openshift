@@ -1,0 +1,37 @@
+Kind manifest scope only; excludes CRC/OpenShift profiles and intentional negative fixtures.
+before data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0014 HIGH
+before data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0020 LOW
+before data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0021 LOW
+before data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0110 LOW
+before data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0014 HIGH
+before data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0110 LOW
+before data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0125 MEDIUM
+before platform/kind/contract-probe.yaml KSV-0014 HIGH
+before platform/kind/contract-probe.yaml KSV-0020 LOW
+before platform/kind/contract-probe.yaml KSV-0021 LOW
+before platform/kind/s3-contract-job.yaml KSV-0014 HIGH
+before platform/kind/s3-contract-job.yaml KSV-0020 LOW
+before platform/kind/s3-contract-job.yaml KSV-0021 LOW
+before platform/kind/s3-reader.yaml KSV-0014 HIGH
+before platform/kind/s3-reader.yaml KSV-0020 LOW
+before platform/kind/s3-reader.yaml KSV-0021 LOW
+before platform/kind/spark-job.yaml KSV-0014 HIGH
+before platform/kind/spark-job.yaml KSV-0020 LOW
+before platform/kind/spark-job.yaml KSV-0021 LOW
+before platform/kind/spark-job.yaml KSV-0116 LOW
+before TOTAL={'KSV-0014': 6, 'KSV-0020': 5, 'KSV-0021': 5, 'KSV-0110': 2, 'KSV-0125': 1, 'KSV-0116': 1}
+after data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0020 LOW
+after data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0021 LOW
+after data-platform/jupyter/profiles/kind/jupyter.yaml KSV-0110 LOW
+after data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0110 LOW
+after data-platform/object-storage/profiles/kind/rustfs.yaml KSV-0125 MEDIUM
+after platform/kind/contract-probe.yaml KSV-0020 LOW
+after platform/kind/contract-probe.yaml KSV-0021 LOW
+after platform/kind/s3-contract-job.yaml KSV-0020 LOW
+after platform/kind/s3-contract-job.yaml KSV-0021 LOW
+after platform/kind/s3-reader.yaml KSV-0020 LOW
+after platform/kind/s3-reader.yaml KSV-0021 LOW
+after platform/kind/spark-job.yaml KSV-0020 LOW
+after platform/kind/spark-job.yaml KSV-0021 LOW
+after platform/kind/spark-job.yaml KSV-0116 LOW
+after TOTAL={'KSV-0020': 5, 'KSV-0021': 5, 'KSV-0110': 2, 'KSV-0125': 1, 'KSV-0116': 1}

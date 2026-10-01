@@ -9,6 +9,7 @@ spec:
   template:
     metadata:
       labels:
+        edl.network/api-client: "true"
         app.kubernetes.io/name: spark-submit
         app.kubernetes.io/part-of: enterprise-data-lakehouse
     spec:
@@ -35,6 +36,12 @@ spec:
             - spark.kubernetes.container.image=spark:4.2.0-python3
             - --conf
             - spark.executor.instances=1
+            - --conf
+            - spark.kubernetes.driver.label.edl.network/api-client=true
+            - --conf
+            - spark.driver.port=7078
+            - --conf
+            - spark.blockManager.port=7079
             - --conf
             - spark.driver.cores=1
             - --conf

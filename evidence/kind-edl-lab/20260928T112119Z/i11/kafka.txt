@@ -1,0 +1,30 @@
+
+UTC=2026-09-29T19:00:55.613728+00:00; SCENARIO=kafka
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+{"name": "data-0-edl-kafka-dual-role-0", "uid": "7d687a1a-73b6-4edc-99e4-4a9563757721", "volume": "pvc-7d687a1a-73b6-4edc-99e4-4a9563757721", "phase": "Bound"}
+Topic: edl.smoke	TopicId: A_NAtefqT621s5lj80uDGA	PartitionCount: 1	ReplicationFactor: 1	Configs: min.insync.replicas=1,retention.ms=3600000
+	Topic: edl.smoke	Partition: 0	Leader: 0	Replicas: 0	Isr: 0	Elr: 	LastKnownElr:
+BEFORE {"name": "edl-kafka-dual-role-0", "uid": "81de595c-60d3-49cc-ab7c-a5078aa2c112", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+ACTION delete only pod/edl-kafka-dual-role-0
+pod "edl-kafka-dual-role-0" deleted
+WAIT for different UID and Ready
+AFTER {"name": "edl-kafka-dual-role-0", "uid": "74c08e3a-4e6f-4f6f-b4db-c1719e1fdf6e", "node": "edl-lab-worker", "ready": true, "restarts": 0}
+REPLACEMENT_READY_SECONDS=27.7
+kafka.kafka.strimzi.io/edl-kafka condition met
+{"name": "data-0-edl-kafka-dual-role-0", "uid": "7d687a1a-73b6-4edc-99e4-4a9563757721", "volume": "pvc-7d687a1a-73b6-4edc-99e4-4a9563757721", "phase": "Bound"}
+ClusterId:              p7lLguzLRTSU9pN3q_paSg
+LeaderId:               0
+LeaderEpoch:            2
+HighWatermark:          100427
+MaxFollowerLag:         0
+MaxFollowerLagTimeMs:   0
+CurrentVoters:          [{"id": 0, "endpoints": ["CONTROLPLANE-9090://edl-kafka-dual-role-0.edl-kafka-kafka-brokers.edl-data.svc:9090"]}]
+CurrentObservers:       []
+Topic: edl.smoke	TopicId: A_NAtefqT621s5lj80uDGA	PartitionCount: 1	ReplicationFactor: 1	Configs: min.insync.replicas=1,retention.ms=3600000
+	Topic: edl.smoke	Partition: 0	Leader: 0	Replicas: 0	Isr: 0	Elr: 	LastKnownElr:
+edl.smoke:0:2
+
+i11-recovery-e478b12a4488406ab540fc196957056c
+Processed a total of 1 messages
+FRESH_EVENT_PRODUCED_AND_CONSUMED=i11-recovery-e478b12a4488406ab540fc196957056c; OFFSET=2
+[PASS] kafka

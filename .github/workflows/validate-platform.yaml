@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Shell syntax
         shell: bash
@@ -82,6 +84,20 @@ jobs:
             echo "checking $f"
             python -m json.tool "$f" >/dev/null
           done
+
+      - name: Offline E2E contracts and fail-closed probe regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install PyYAML==6.0.2
+          helm version --short
+          mkdir -p .audit
+          helm pull trino --repo https://trinodb.github.io/charts/ --version 1.42.2 --destination .audit
+          helm pull polaris --repo https://downloads.apache.org/polaris/helm-chart --version 1.7.0 --destination .audit
+          tar -xf .audit/trino-1.42.2.tgz -C .audit
+          tar -xf .audit/polaris-1.7.0.tgz -C .audit
+          python tests/static/audit_contracts.py --charts .audit
+          python tests/static/scan_secrets.py
 
       - name: Reject obvious secret files
         shell: bash

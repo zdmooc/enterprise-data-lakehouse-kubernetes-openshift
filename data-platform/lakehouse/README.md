@@ -26,7 +26,7 @@ Apache Polaris REST Catalog
 
 ## Why Spark 4.1.3 here?
 
-I6 proves the current Spark 4.2 engine on Kubernetes.
+I6 provides Spark 4.2 execution assets; cluster execution remains pending.
 
 I12 is a Lakehouse interoperability profile. Iceberg 1.11.0 officially supports Spark 4.1, so the integrated profile pins Spark 4.1.3 + Iceberg 1.11.0.
 
@@ -53,7 +53,7 @@ Implemented:
 After exporting the I4 S3 variables:
 
 ```bash
-bash scripts/e2e-lakehouse-crc.sh
+CONFIRM_EDL_E2E=yes bash scripts/e2e-lakehouse-crc.sh
 ```
 
 ## Acceptance
@@ -68,7 +68,7 @@ The test passes only when:
 
 ## Not production claims
 
-CRC remains single-node. The integrated test proves component interoperability, not:
+CRC remains single-node. A future successful integrated test would provide component interoperability evidence, excluding:
 - Kafka HA;
 - catalog HA;
 - storage HA;

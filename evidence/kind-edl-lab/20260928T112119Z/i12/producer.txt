@@ -1,0 +1,8 @@
+
+UTC=2026-09-30T05:13:27.216811+00:00; GATE=producer
+pod/kind-i12-producer-a0adb24c8c95 created
+pod/kind-i12-producer-a0adb24c8c95 condition met
+PRODUCER_ACK={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "topic": "transactions.raw", "partition": 1, "offset": 0}
+<string>:8: DeprecationWarning: value_deserializer does not implement kafka.serializer.Deserializer
+KAFKA_VERIFIED={"topic": "transactions.raw", "partition": 1, "offset": 0, "payload": {"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30T05:12:36Z", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7}}
+[PASS] producer

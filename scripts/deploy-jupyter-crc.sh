@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+bash scripts/apply-data-networking.sh
 
 command -v oc >/dev/null 2>&1 || {
   echo "[FAIL] oc is required"
@@ -11,7 +12,10 @@ oc get ns edl-data >/dev/null 2>&1 || {
   exit 1
 }
 
-if command -v openssl >/dev/null 2>&1; then
+existing="$(oc -n edl-data get secret jupyter-auth --ignore-not-found -o jsonpath='{.data.token}')"
+if [ -n "$existing" ]; then
+  token="$(printf '%s' "$existing" | base64 --decode)"
+elif command -v openssl >/dev/null 2>&1; then
   token="$(openssl rand -hex 24)"
 else
   token="$(python - <<'PY'
@@ -42,5 +46,4 @@ route="$(oc -n edl-data get route edl-jupyter -o jsonpath='{.spec.host}')"
 
 echo "[PASS] JupyterLab deployed"
 echo "URL: https://$route"
-echo "Token: $token"
-echo "[WARN] Token is displayed once for this local lab; do not commit it."
+echo "[INFO] Retrieve the token privately from Secret jupyter-auth; do not include it in evidence logs."

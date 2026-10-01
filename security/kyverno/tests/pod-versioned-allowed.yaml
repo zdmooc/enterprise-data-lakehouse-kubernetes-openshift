@@ -4,10 +4,17 @@ metadata:
   name: policy-positive-versioned
   namespace: edl-data
 spec:
+  serviceAccountName: data-workload
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile: {type: RuntimeDefault}
   restartPolicy: Never
   containers:
     - name: nginx
       image: nginx:1.27.5
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities: {drop: [ALL]}
       resources:
         requests:
           cpu: 10m

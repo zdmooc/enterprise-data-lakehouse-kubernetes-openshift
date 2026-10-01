@@ -9,7 +9,9 @@ This directory adds only the flows needed by the Data Product.
 - Kafka pods -> same namespace, for broker/controller internal communication.
 - Spark driver -> Kafka 9092.
 - Spark driver -> Polaris 8181.
-- Spark submit/driver -> Kubernetes/OpenShift API over 443.
+- Spark submit/driver and Strimzi controllers -> API over 443/6443 (before/after service translation).
+- Spark executor -> driver RPC on 7078; driver/executors exchange blocks on 7079.
+- Spark executors -> HTTPS S3 on 443.
 - Trino -> Trino 8080.
 - Trino -> Polaris 8181.
 - Jupyter -> Trino 8080.
@@ -23,3 +25,9 @@ The HTTPS `0.0.0.0/0:443` rules are a CRC/lab portability compromise because the
 A production profile must replace them with approved API, proxy and object-storage CIDRs or egress gateway policy.
 
 No policy here opens ingress from another POC namespace.
+
+The OpenShift baseline overlay also allows DNS in `openshift-dns` on 53/5353
+(TCP/UDP). The Kubernetes baseline keeps `kube-system` DNS on 53.
+The I10 overlay separately admits the existing user workload monitoring namespace
+to Kafka 9404 and Trino 8080. Actual CNI service translation, host-network DNS,
+operator-generated labels and successful scrapes still require cluster evidence.

@@ -1,133 +1,104 @@
 # Backlog
 
-## P0 — Foundation
+## Completed core POC
 
-- [x] Initialize repository.
-- [x] Define repository purpose and truth rules.
-- [x] Write target architecture.
-- [x] Write mission capability mapping.
-- [x] Write reuse matrix.
-- [x] Write lab resource strategy.
-- [x] Define end-to-end Data Product.
-- [x] Define ADR template.
-- [x] Define evidence template.
-- [x] Add cluster preflight contract.
+### Foundation
+- [x] Repository purpose, truth rules and architecture.
+- [x] Mission capability mapping and reuse strategy.
+- [x] Data Product scenario and evidence rules.
+- [x] Cluster contract and verification tooling.
 
-## P1 — Kubernetes/OpenShift platform
+### Kubernetes / platform
+- [x] Three-node Kind runtime.
+- [x] Cluster readiness and DNS validation.
+- [x] Dynamic PVC write/read/persistence validation.
+- [x] Namespace-scoped RBAC negative validation.
+- [x] Default-deny NetworkPolicy and explicit allow flows.
+- [x] Namespace, ResourceQuota and LimitRange baseline.
+- [x] Security-context / PSS-aligned local profile.
+- [x] Health checks and N3 diagnostics.
 
-- [x] Kubernetes target profile: KTHW/Vagrant.
-- [x] OpenShift target profile: CRC.
-- [ ] Execute connectivity/readiness preflight on target cluster.
-- [ ] Validate cluster DNS with workload.
-- [ ] Validate dynamic PVC write/read/restart.
-- [ ] Validate namespace-scoped RBAC with negative test.
-- [ ] Validate default-deny NetworkPolicy with allow exception.
-- [x] Namespace/project baseline.
-- [x] ResourceQuota.
-- [x] LimitRange.
-- [x] OpenShift SCC/PSS mapping.
-- [x] ingress / route pattern for OpenShift workloads.
-- [x] storage contract/profile abstraction; provider runtime validation pending.
-- [x] expanded healthcheck script.
+### GitOps
+- [x] Argo CD bootstrap and AppProject/Application model.
+- [x] Helm/Kustomize conventions.
+- [x] Synced/Healthy runtime proof.
+- [x] Controlled drift/self-heal proof.
+- [x] Git-driven reconciliation / rollback pattern.
 
-## P1 — GitOps
+### Data Platform
+- [x] S3-compatible object-storage runtime.
+- [x] Kafka / Strimzi runtime.
+- [x] Spark runtime and Iceberg transform.
+- [x] Polaris REST catalog integration.
+- [x] Trino runtime and Iceberg query.
+- [x] Jupyter runtime and persistent workspace.
+- [x] End-to-end Kafka -> Spark/Iceberg -> S3/Polaris -> Trino -> Jupyter proof.
+- [x] Retained six-row I12 snapshot and exact event verification.
 
-- [x] Argo CD bootstrap.
-- [x] AppProject model.
-- [x] ApplicationSet vs App-of-Apps ADR.
-- [x] Helm conventions.
-- [x] Kustomize overlays.
-- [ ] Execute drift/self-heal demo on target cluster.
-- [ ] Execute Git revert/rollback demo on target cluster.
+### Security
+- [x] RBAC and deny-by-default network controls.
+- [x] Kyverno policy runtime.
+- [x] Five-case negative security suite.
+- [x] Trivy-based hardening workflow.
+- [x] Jupyter GitPython remediation.
+- [x] Read-only root filesystem contracts.
+- [x] Kind KSV-0014 findings reduced to zero.
+- [x] H1 local hardening evidence.
+- [x] Cosign design documented.
+- [x] Vault and OIDC/Keycloak target patterns documented.
 
-## P1 — Data Platform
+### Observability / operations
+- [x] Prometheus monitoring resources.
+- [x] Grafana dashboards.
+- [x] PrometheusRule assets.
+- [x] 21 configured scrape targets validated UP.
+- [x] Grafana authenticated API/database health validated.
+- [x] RCA template, incident runbooks and upgrade/migration strategy.
+- [x] I11 functional recovery scenarios.
+- [x] H2 Kind -> CRC -> Kind operational switching proof.
 
-- [x] S3-compatible object-storage contract and zone layout; provider runtime pending.
-- [x] Kafka / Strimzi implementation; runtime pending.
-- [x] Spark implementation; runtime pending.
-- [x] Trino implementation; runtime pending.
-- [x] Jupyter implementation; runtime pending.
-- [x] sample Data Product implementation; E2E runtime pending.
+## Explicit residual scope
 
-## P2 — Extended Data services
+These items are useful future extensions, not blockers for the completed local POC.
 
-Only add when a use case requires them:
-
-- [ ] MongoDB.
-- [ ] OpenSearch.
-- [ ] Redis.
-- [ ] RabbitMQ.
-- [ ] Flink.
-- [x] Iceberg REST Catalog / Polaris reference implementation; runtime pending.
-
-The repository must not become a tool catalogue.
-
-## P1 — Security
-
-- [x] OIDC identity architecture.
-- [x] Keycloak/OIDC integration pattern; runtime integration pending.
-- [x] Vault pattern.
-- [x] Kyverno policies.
-- [x] OPA Gatekeeper positioning/comparison.
-- [x] Trivy scan command/workflow; runtime result pending.
+### Security extensions
 - [ ] Grype comparison.
-- [x] Cosign signing/verification design; signed artifact evidence pending.
+- [ ] Signed-image admission enforcement.
 - [ ] Falco runtime-security assessment.
-- [ ] NeuVector positioning note.
-- [ ] secret rotation scenario.
+- [ ] NeuVector positioning/runtime assessment.
+- [ ] Vault runtime integration and secret rotation.
+- [ ] OIDC/Keycloak runtime integration.
 
-## P1 — Observability / N3
-
-- [x] Prometheus/OpenShift user-workload metrics resources.
-- [x] Grafana dashboard assets.
-- [x] PrometheusRule alerts; Alertmanager routing remains platform-owned.
-- [x] Loki/OpenShift logging strategy.
-- [x] OpenSearch positioning.
-- [x] platform health SLI/SLO.
-- [x] Data pipeline SLI/SLO.
-- [x] RCA template.
-- [x] upgrade/migration strategy.
-- [x] incident runbooks.
-
-## P2 — Networking
-
-- [ ] CNI concepts and current target implementation.
-- [ ] Calico comparison.
-- [ ] Cilium comparison.
+### Networking extensions
+- [ ] Cilium comparison/runtime profile.
 - [ ] Canal positioning.
-- [ ] BGP concepts and enterprise use.
+- [ ] BGP enterprise pattern.
 - [ ] F5 north-south integration pattern.
-- [x] deny-by-default egress plus explicit Data Product flows.
 
-## P2 — Storage
+### Storage / resilience extensions
+- [ ] Longhorn positioning/runtime profile.
+- [ ] Portworx positioning/runtime profile.
+- [ ] NetApp Trident positioning/runtime profile.
+- [ ] CSI snapshots.
+- [ ] Backup/restore proof.
+- [ ] Multi-host storage failure injection.
+- [ ] Durable Polaris metadata backend.
 
-- [ ] Longhorn positioning.
-- [ ] Portworx positioning.
-- [ ] NetApp Trident positioning.
-- [ ] snapshots.
-- [ ] backup/restore.
-- [ ] performance classes.
-- [ ] S3/object-storage lifecycle.
-
-## P2 — Rancher/RKE2
-
-- [ ] RKE2 architecture note.
-- [ ] Rancher management-plane note.
-- [ ] deployment profile decision.
-- [ ] compare with OpenShift lifecycle and governance.
-
-## P2 — Operators / Go
-
-- [ ] Operator pattern.
-- [ ] CRD/controller reconciliation concepts.
-- [ ] Kubebuilder hello-operator.
-- [ ] Go fundamentals required for operator maintenance.
+### Platform variants
+- [ ] RKE2 architecture/runtime profile.
+- [ ] Rancher management-plane note/runtime profile.
+- [ ] Multi-node OpenShift target for HA-only scenarios.
+- [ ] Operator/Kubebuilder hello-operator.
+- [ ] Go fundamentals for operator maintenance.
 
 ## Definition of Done
 
-A technical item is done only when:
+A core POC capability is considered complete only when:
 - design exists;
 - code/manifests exist;
-- validation command exists;
-- result is captured under `evidence/`;
+- a validation command exists;
+- runtime evidence is captured;
 - limitations are documented.
+
+The completed local POC satisfies this definition for I1-I12 within its stated
+single-workstation scope.

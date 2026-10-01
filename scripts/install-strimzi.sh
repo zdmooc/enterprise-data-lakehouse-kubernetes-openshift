@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+bash scripts/apply-data-networking.sh
 
 if command -v oc >/dev/null 2>&1; then CLI=oc; else CLI=kubectl; fi
 

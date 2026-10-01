@@ -1,0 +1,27 @@
+
+UTC=2026-09-30T16:42:04.856104+00:00; GATE=observability
+podMonitor/edl-data/edl-kafka-exporter/0 edl-kafka-kafka-exporter-6645f86f59-2xb6q UP
+podMonitor/edl-data/edl-kafka-metrics/0 edl-kafka-dual-role-0 UP
+serviceMonitor/edl-data/edl-trino-coordinator/0 edl-trino-coordinator-988976887-ls4v9 UP
+serviceMonitor/edl-data/edl-trino-worker/0 edl-trino-worker-fd7d84897-rtjbs UP
+serviceMonitor/edl-observability/edl-monitoring-apiserver/0  UP
+serviceMonitor/edl-observability/edl-monitoring-coredns/0 coredns-674b8bbfcf-z6qc6 UP
+serviceMonitor/edl-observability/edl-monitoring-coredns/0 coredns-674b8bbfcf-rlc6x UP
+serviceMonitor/edl-observability/edl-monitoring-grafana/0 edl-monitoring-grafana-588684d575-7qj2z UP
+serviceMonitor/edl-observability/edl-monitoring-kube-state-metrics/0 edl-monitoring-kube-state-metrics-5f86f7f857-d24nv UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/0  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/1  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  UP
+serviceMonitor/edl-observability/edl-monitoring-kubelet/2  UP
+serviceMonitor/edl-observability/edl-monitoring-operator/0 edl-monitoring-operator-6f98564695-v6rr2 UP
+serviceMonitor/edl-observability/edl-monitoring-prometheus/0 prometheus-edl-monitoring-prometheus-0 UP
+serviceMonitor/edl-observability/edl-monitoring-prometheus/1 prometheus-edl-monitoring-prometheus-0 UP
+TARGETS_UP=21
+GRAFANA_AUTHENTICATED_API=OK; database=ok
+No claim for absent consumer-lag/PVC-capacity metrics or unexposed components; kubectl top remains NOT AVAILABLE.
+[PASS] observability

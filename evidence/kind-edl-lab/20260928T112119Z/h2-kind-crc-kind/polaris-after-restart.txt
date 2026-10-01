@@ -1,0 +1,29 @@
+[INFO] In-memory Polaris catalog is absent after restart; metadata-only recovery is required
+[PASS] Polaris authentication, catalog storage contract and grants verified
+Catalog: quickstart_catalog; storage: s3://edl-lab/curated/
+LAB ONLY / IN-MEMORY METADATA / NOT DURABLE / NOT PRODUCTION HA
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+[PASS] Polaris metadata-only recovery registered the existing I12 metadata file
+POLARIS_RECOVERY=REGISTER_EXISTING_METADATA
+SNAPSHOT_ID=3607998935123899351
+TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+No Kafka replay; no Spark rewrite; no S3/Iceberg data rewrite

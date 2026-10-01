@@ -4,9 +4,9 @@ ARG ICEBERG_VERSION=1.11.0
 
 USER root
 
-RUN python -m pip install --no-cache-dir kafka-python==3.0.11
+RUN python3 -m pip install --no-cache-dir kafka-python==3.0.11
 
-RUN python - <<'PY'
+RUN python3 - <<'PY'
 import os
 import urllib.request
 

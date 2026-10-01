@@ -1,0 +1,10 @@
+H1 image vulnerability finding occurrences (not unique CVEs).
+Same frozen Trivy DB and scanner; OS + language dependencies; secrets scanner excluded from images.
+DB={"Version":2,"NextUpdate":"2026-10-01T07:10:47.109176927Z","UpdatedAt":"2026-09-30T07:10:47.109177017Z","DownloadedAt":"2026-09-30T10:22:44.6319084Z"}
+jupyter: edl-jupyter:kind-h1-gitpython3.1.59 {'MEDIUM': 3923, 'LOW': 316, 'HIGH': 198, 'CRITICAL': 7}
+scanUTC=2026-09-30T18:50:18.6076319+02:00; imageID=sha256:efe0f5c19ff66c4f255c701f9d4ac8a8a460ebb248ce18a9a7335d1d576dc2c4
+spark: edl-spark-lakehouse:kind-h1 {'MEDIUM': 3567, 'LOW': 346, 'HIGH': 278, 'CRITICAL': 10}
+scanUTC=2026-09-30T18:50:23.6879808+02:00; imageID=sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd
+s3: edl-s3-client:kind-h1 {'HIGH': 14, 'MEDIUM': 7}
+scanUTC=2026-09-30T18:51:48.1320783+02:00; imageID=sha256:afcf94fc43cfa9a9c46bd94d6fd37d409f7d978f295914d8e3bf3e43c2d67c7a
+Kafka, Polaris, Trino, Prometheus, Grafana, cluster components, RustFS, BusyBox images: NOT_TESTED (not rescanned in H1).

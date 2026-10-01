@@ -1,0 +1,61 @@
+kind-edl-lab
+CRC VM:          Stopped
+OpenShift:       Stopped (v4.22.7)
+Disk Usage:      0B of 0B (Inside the CRC VM)
+Cache Usage:     94.41GB
+Cache Directory: C:\Users\HP 17 G3 Win 11 23H2\.crc\cache
+edl-lab
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                       NAMES
+0b1373e18e98   kindest/node:v1.33.1   "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes                               edl-lab-worker2
+2ae0f7f06247   kindest/node:v1.33.1   "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes   127.0.0.1:53408->6443/tcp   edl-lab-control-plane
+a5000f4a3d06   kindest/node:v1.33.1   "/usr/local/bin/entr…"   12 minutes ago   Up 12 minutes                               edl-lab-worker
+REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
+kindest/node   <none>    d6b20550c77b   16 months ago   1.07GB
+DRIVER    VOLUME NAME
+local     5b9ddc4af3d2b708a459423bc5df9579306f1910a93820e631a431d6bbb437e8
+local     391900e321447200da4301bd66321fedb7109bee25a5b46da96156421e7e362e
+local     a24e84e4b744c69b758a1152de2e55e7b66d6e9af0080d881621dc1d26aca973
+persistentvolumeclaim/kind-contract unchanged
+pod/kind-contract configured
+pod/kind-contract condition met
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1
+
+
+pod "kind-contract" deleted
+persistentvolumeclaim/kind-contract unchanged
+pod/kind-contract created
+pod/kind-contract condition met
+[PASS] DNS in governed namespace and PVC write/read across pod recreation
+NAMESPACE            NAME                                            READY   STATUS    RESTARTS   AGE
+edl-data             kind-contract                                   1/1     Running   0          5s
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp        1/1     Running   0          11m
+kube-system          calico-node-9c92x                               1/1     Running   0          11m
+kube-system          calico-node-kxn5h                               1/1     Running   0          11m
+kube-system          calico-node-r2fjv                               1/1     Running   0          11m
+kube-system          coredns-674b8bbfcf-rlc6x                        1/1     Running   0          12m
+kube-system          coredns-674b8bbfcf-z6qc6                        1/1     Running   0          12m
+kube-system          etcd-edl-lab-control-plane                      1/1     Running   0          12m
+kube-system          kube-apiserver-edl-lab-control-plane            1/1     Running   0          12m
+kube-system          kube-controller-manager-edl-lab-control-plane   1/1     Running   0          12m
+kube-system          kube-proxy-ntlfp                                1/1     Running   0          12m
+kube-system          kube-proxy-t4mkz                                1/1     Running   0          12m
+kube-system          kube-proxy-vvwp5                                1/1     Running   0          12m
+kube-system          kube-scheduler-edl-lab-control-plane            1/1     Running   0          12m
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn         1/1     Running   0          12m
+error: Metrics API not available
+[INFO] node metrics unavailable
+error: Metrics API not available
+[INFO] pod metrics unavailable
+CONTAINER ID   NAME                    CPU %     MEM USAGE / LIMIT     MEM %     NET I/O          BLOCK I/O         PIDS
+0b1373e18e98   edl-lab-worker2         33.46%    600.2MiB / 31.29GiB   1.87%     314MB / 7.02MB   258kB / 1.33GB    166
+2ae0f7f06247   edl-lab-control-plane   48.85%    915.4MiB / 31.29GiB   2.86%     243MB / 19.2MB   1.83MB / 1.57GB   265
+a5000f4a3d06   edl-lab-worker          31.60%    645.3MiB / 31.29GiB   2.01%     300MB / 6.81MB   659kB / 1.4GB     261
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          1         1         1.071GB   0B (0%)
+Containers      3         3         542.1MB   0B (0%)
+Local Volumes   3         3         4.523GB   0B (0%)
+Build Cache     0         0         0B        0B

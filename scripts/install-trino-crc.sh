@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+bash scripts/apply-data-networking.sh
 
 command -v helm >/dev/null 2>&1 || {
   echo "[FAIL] helm is required"

@@ -1,0 +1,517 @@
+
+UTC=2026-09-30T04:57:39.472463+00:00; SCENARIO=diagnostics
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+BEFORE diagnostics: no failure injection
+ACTION existing scripts/n3-diagnostics.sh; WAIT for collection
+=== cluster ===
+Client Version: 4.19.3
+Kustomize Version: v5.5.0
+Kubernetes Version: v1.33.1
+NAME                    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   41h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          41h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          41h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+=== namespace edl-data ===
+NAME                                                  READY   STATUS      RESTARTS   AGE   IP                NODE              NOMINATED NODE   READINESS GATES
+edl-jupyter-6c67748ccb-mnpcs                          1/1     Running     0          9h    192.168.169.235   edl-lab-worker2   <none>           <none>
+edl-kafka-dual-role-0                                 1/1     Running     0          9h    192.168.206.212   edl-lab-worker    <none>           <none>
+edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0          33h   192.168.169.212   edl-lab-worker2   <none>           <none>
+edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0          33h   192.168.206.201   edl-lab-worker    <none>           <none>
+edl-polaris-7f765cd5fc-r4smc                          1/1     Running     0          9h    192.168.169.237   edl-lab-worker2   <none>           <none>
+edl-s3-86454754dc-tz79h                               1/1     Running     0          9h    192.168.206.214   edl-lab-worker    <none>           <none>
+edl-transaction-producer                              0/1     Completed   0          33h   192.168.206.204   edl-lab-worker    <none>           <none>
+edl-transactions-to-iceberg-a1784da0ee904d58-exec-1   0/1     Completed   0          9h    192.168.206.213   edl-lab-worker    <none>           <none>
+edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0          23h   192.168.206.206   edl-lab-worker    <none>           <none>
+edl-trino-worker-fd7d84897-rtjbs                      1/1     Running     0          9h    192.168.169.236   edl-lab-worker2   <none>           <none>
+kind-contract                                         1/1     Running     0          41h   192.168.169.202   edl-lab-worker2   <none>           <none>
+kind-kafka-client                                     1/1     Running     0          33h   192.168.206.203   edl-lab-worker    <none>           <none>
+kind-s3-contract-njkgw                                0/1     Completed   0          41h   192.168.169.210   edl-lab-worker2   <none>           <none>
+kind-s3-reader                                        1/1     Running     0          9h    192.168.169.240   edl-lab-worker2   <none>           <none>
+kind-spark-lakehouse-driver                           0/1     Completed   0          9h    192.168.169.239   edl-lab-worker2   <none>           <none>
+kind-spark-lakehouse-submit-rmhlg                     0/1     Completed   0          9h    192.168.169.238   edl-lab-worker2   <none>           <none>
+kind-spark-smoke-driver                               0/1     Completed   0          23h   192.168.169.215   edl-lab-worker2   <none>           <none>
+kind-spark-smoke-submit-qvvnq                         0/1     Completed   0          23h   192.168.169.214   edl-lab-worker2   <none>           <none>
+pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0          23h   192.168.169.216   edl-lab-worker2   <none>           <none>
+NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/edl-jupyter                 1/1     1            1           17h
+deployment.apps/edl-kafka-entity-operator   1/1     1            1           33h
+deployment.apps/edl-kafka-kafka-exporter    1/1     1            1           33h
+deployment.apps/edl-polaris                 1/1     1            1           23h
+deployment.apps/edl-s3                      1/1     1            1           41h
+deployment.apps/edl-trino-coordinator       1/1     1            1           23h
+deployment.apps/edl-trino-worker            1/1     1            1           23h
+
+NAME                                    STATUS     COMPLETIONS   DURATION   AGE
+job.batch/kind-s3-contract              Complete   1/1           50s        41h
+job.batch/kind-spark-lakehouse-submit   Complete   1/1           2m39s      9h
+job.batch/kind-spark-smoke-submit       Complete   1/1           80s        23h
+NAME                                                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                        AGE
+service/edl-jupyter                                        ClusterIP   10.96.156.67    <none>        8888/TCP                                       17h
+service/edl-kafka-kafka-bootstrap                          ClusterIP   10.96.120.177   <none>        9091/TCP,9092/TCP,9093/TCP                     33h
+service/edl-kafka-kafka-brokers                            ClusterIP   None            <none>        9090/TCP,9091/TCP,8443/TCP,9092/TCP,9093/TCP   33h
+service/edl-polaris                                        ClusterIP   10.96.42.45     <none>        8181/TCP                                       23h
+service/edl-polaris-mgmt                                   ClusterIP   None            <none>        8182/TCP                                       23h
+service/edl-s3                                             ClusterIP   10.96.225.46    <none>        9000/TCP                                       41h
+service/edl-trino                                          ClusterIP   10.96.100.8     <none>        8080/TCP                                       23h
+service/edl-trino-worker                                   ClusterIP   None            <none>        8080/TCP                                       23h
+service/kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc   ClusterIP   None            <none>        7078/TCP,7079/TCP,4040/TCP,15002/TCP           9h
+service/kind-spark-smoke-2eeb83a0ebac71ef-driver-svc       ClusterIP   None            <none>        7078/TCP,7079/TCP,4040/TCP,15002/TCP           23h
+
+NAME                                                         ENDPOINTS                                                                    AGE
+endpoints/edl-jupyter                                        192.168.169.235:8888                                                         17h
+endpoints/edl-kafka-kafka-bootstrap                          192.168.206.212:9093,192.168.206.212:9092,192.168.206.212:9091               33h
+endpoints/edl-kafka-kafka-brokers                            192.168.206.212:8443,192.168.206.212:9093,192.168.206.212:9092 + 2 more...   33h
+endpoints/edl-polaris                                        192.168.169.237:8181                                                         23h
+endpoints/edl-polaris-mgmt                                   192.168.169.237:8182                                                         23h
+endpoints/edl-s3                                             192.168.206.214:9000                                                         41h
+endpoints/edl-trino                                          192.168.206.206:8080                                                         23h
+endpoints/edl-trino-worker                                   192.168.169.236:8080                                                         23h
+endpoints/kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc                                                                                9h
+endpoints/kind-spark-smoke-2eeb83a0ebac71ef-driver-svc       <none>                                                                       23h
+NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-0-edl-kafka-dual-role-0   Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 33h
+edl-s3                         Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 41h
+jupyter-workspace              Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 17h
+kind-contract                  Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 41h
+NAME                                    POD-SELECTOR                                                                                                   AGE
+allow-data-catalog-ingress              <none>                                                                                                         41h
+allow-dns-egress                        <none>                                                                                                         41h
+allow-edl-operator-api                  name in (strimzi-cluster-operator,strimzi-entity-operator)                                                     41h
+allow-jupyter-to-trino                  app=edl-jupyter                                                                                                41h
+allow-kafka-same-namespace              strimzi.io/cluster=edl-kafka                                                                                   33h
+allow-kafka-same-namespace-egress       strimzi.io/cluster=edl-kafka                                                                                   41h
+allow-kind-kafka-metrics                strimzi.io/cluster=edl-kafka                                                                                   15h
+allow-kind-trino-metrics                app.kubernetes.io/name=trino                                                                                   15h
+allow-labeled-kafka-clients             edl.network/kafka-client=true                                                                                  41h
+allow-polaris-object-storage            app.kubernetes.io/name=polaris                                                                                 41h
+allow-spark-api-target-port             edl.network/api-client in (true)                                                                               41h
+allow-spark-blockmanager                spark-role in (driver,executor)                                                                                41h
+allow-spark-data-services               spark-role=driver                                                                                              41h
+allow-spark-executor-s3                 spark-role=executor                                                                                            41h
+allow-spark-executor-to-driver          spark-role=driver                                                                                              23h
+allow-spark-executor-to-driver-egress   spark-role=executor                                                                                            41h
+allow-spark-rpc-ingress                 spark-role=driver                                                                                              41h
+allow-spark-submit-api                  app.kubernetes.io/name in (edl-lakehouse-submit,spark-submit)                                                  41h
+allow-trino-internal-and-catalog        app.kubernetes.io/name=trino                                                                                   41h
+default-deny-egress                     <none>                                                                                                         41h
+default-deny-ingress                    <none>                                                                                                         41h
+edl-kafka-entity-operator               strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-entity-operator                   33h
+edl-kafka-kafka-exporter                strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka-exporter                    33h
+edl-kafka-network-policy-kafka          strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka                             33h
+edl-trino                               app.kubernetes.io/instance=edl-trino,app.kubernetes.io/name=trino,trino.io/network-policy-protection=enabled   23h
+kind-s3-client-egress                   edl.s3-client=true                                                                                             41h
+kind-s3-ingress                         app=edl-s3                                                                                                     41h
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+NAME                               READY   WARNINGS   KAFKA VERSION   METADATA VERSION
+kafka.kafka.strimzi.io/edl-kafka   True               4.3.1           4.3-IV0
+
+NAME                                       DESIRED REPLICAS   ROLES                     NODEIDS
+kafkanodepool.kafka.strimzi.io/dual-role   1                  ["controller","broker"]   [0]
+
+NAME                                               CLUSTER     PARTITIONS   REPLICATION FACTOR   READY
+kafkatopic.kafka.strimzi.io/edl.smoke              edl-kafka   1            1                    True
+kafkatopic.kafka.strimzi.io/transactions.curated   edl-kafka   3            1                    True
+kafkatopic.kafka.strimzi.io/transactions.raw       edl-kafka   3            1                    True
+[INFO] diagnostics complete; Secret objects were intentionally not exported
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+No resources found in edl-data namespace.
+NAMESPACE            NAME                                                  READY   STATUS      RESTARTS        AGE   IP                NODE                    NOMINATED NODE   READINESS GATES
+argocd               argocd-application-controller-0                       1/1     Running     0               41h   192.168.169.208   edl-lab-worker2         <none>           <none>
+argocd               argocd-applicationset-controller-7f77c467d8-trjz8     1/1     Running     0               41h   192.168.169.204   edl-lab-worker2         <none>           <none>
+argocd               argocd-redis-5fb8cdb75b-l25jg                         1/1     Running     0               41h   192.168.169.205   edl-lab-worker2         <none>           <none>
+argocd               argocd-repo-server-7c69999875-6k97k                   1/1     Running     0               41h   192.168.169.206   edl-lab-worker2         <none>           <none>
+argocd               argocd-server-5b845b4458-jfqcl                        1/1     Running     0               41h   192.168.169.207   edl-lab-worker2         <none>           <none>
+edl-data             edl-jupyter-6c67748ccb-mnpcs                          1/1     Running     0               9h    192.168.169.235   edl-lab-worker2         <none>           <none>
+edl-data             edl-kafka-dual-role-0                                 1/1     Running     0               9h    192.168.206.212   edl-lab-worker          <none>           <none>
+edl-data             edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0               33h   192.168.169.212   edl-lab-worker2         <none>           <none>
+edl-data             edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0               33h   192.168.206.201   edl-lab-worker          <none>           <none>
+edl-data             edl-polaris-7f765cd5fc-r4smc                          1/1     Running     0               9h    192.168.169.237   edl-lab-worker2         <none>           <none>
+edl-data             edl-s3-86454754dc-tz79h                               1/1     Running     0               9h    192.168.206.214   edl-lab-worker          <none>           <none>
+edl-data             edl-transaction-producer                              0/1     Completed   0               33h   192.168.206.204   edl-lab-worker          <none>           <none>
+edl-data             edl-transactions-to-iceberg-a1784da0ee904d58-exec-1   0/1     Completed   0               9h    192.168.206.213   edl-lab-worker          <none>           <none>
+edl-data             edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0               23h   192.168.206.206   edl-lab-worker          <none>           <none>
+edl-data             edl-trino-worker-fd7d84897-rtjbs                      1/1     Running     0               9h    192.168.169.236   edl-lab-worker2         <none>           <none>
+edl-data             kind-contract                                         1/1     Running     0               41h   192.168.169.202   edl-lab-worker2         <none>           <none>
+edl-data             kind-kafka-client                                     1/1     Running     0               33h   192.168.206.203   edl-lab-worker          <none>           <none>
+edl-data             kind-s3-contract-njkgw                                0/1     Completed   0               41h   192.168.169.210   edl-lab-worker2         <none>           <none>
+edl-data             kind-s3-reader                                        1/1     Running     0               9h    192.168.169.240   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-lakehouse-driver                           0/1     Completed   0               9h    192.168.169.239   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-lakehouse-submit-rmhlg                     0/1     Completed   0               9h    192.168.169.238   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-smoke-driver                               0/1     Completed   0               23h   192.168.169.215   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-smoke-submit-qvvnq                         0/1     Completed   0               23h   192.168.169.214   edl-lab-worker2         <none>           <none>
+edl-data             pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0               23h   192.168.169.216   edl-lab-worker2         <none>           <none>
+edl-observability    edl-monitoring-grafana-588684d575-7qj2z               3/3     Running     0               15h   192.168.169.229   edl-lab-worker2         <none>           <none>
+edl-observability    edl-monitoring-kube-state-metrics-5f86f7f857-d24nv    1/1     Running     0               15h   192.168.206.209   edl-lab-worker          <none>           <none>
+edl-observability    edl-monitoring-operator-6f98564695-v6rr2              1/1     Running     0               15h   192.168.206.208   edl-lab-worker          <none>           <none>
+edl-observability    prometheus-edl-monitoring-prometheus-0                2/2     Running     0               15h   192.168.206.211   edl-lab-worker          <none>           <none>
+edl-platform         strimzi-cluster-operator-6b5748dd7c-vw5xc             1/1     Running     4 (5m50s ago)   33h   192.168.169.211   edl-lab-worker2         <none>           <none>
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp              1/1     Running     0               41h   192.168.206.193   edl-lab-worker          <none>           <none>
+kube-system          calico-node-9c92x                                     1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          calico-node-kxn5h                                     1/1     Running     0               41h   172.18.0.4        edl-lab-worker          <none>           <none>
+kube-system          calico-node-r2fjv                                     1/1     Running     0               41h   172.18.0.3        edl-lab-worker2         <none>           <none>
+kube-system          coredns-674b8bbfcf-rlc6x                              1/1     Running     0               41h   192.168.206.196   edl-lab-worker          <none>           <none>
+kube-system          coredns-674b8bbfcf-z6qc6                              1/1     Running     0               41h   192.168.206.194   edl-lab-worker          <none>           <none>
+kube-system          etcd-edl-lab-control-plane                            1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-apiserver-edl-lab-control-plane                  1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-controller-manager-edl-lab-control-plane         1/1     Running     5 (17h ago)     41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-proxy-ntlfp                                      1/1     Running     0               41h   172.18.0.4        edl-lab-worker          <none>           <none>
+kube-system          kube-proxy-t4mkz                                      1/1     Running     0               41h   172.18.0.3        edl-lab-worker2         <none>           <none>
+kube-system          kube-proxy-vvwp5                                      1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-scheduler-edl-lab-control-plane                  1/1     Running     5 (17h ago)     41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kyverno              kyverno-admission-controller-bc847675-bmkjv           1/1     Running     0               16h   192.168.206.207   edl-lab-worker          <none>           <none>
+kyverno              kyverno-background-controller-86cf668b6d-f4g7j        1/1     Running     0               16h   192.168.169.223   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-cleanup-controller-8c7fc6cb7-vxgkf            1/1     Running     0               16h   192.168.169.224   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-migrate-resources-q8ps8                       0/1     Completed   0               15h   192.168.169.226   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-reports-controller-65fb7bf664-ttwwk           1/1     Running     0               16h   192.168.169.225   edl-lab-worker2         <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn               1/1     Running     0               41h   192.168.206.195   edl-lab-worker          <none>           <none>
+NAME                    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   41h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          41h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          41h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                                                              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            Delete           Bound    edl-data/edl-s3                                                                                    standard       <unset>                          41h
+pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            Delete           Bound    edl-data/data-0-edl-kafka-dual-role-0                                                              standard       <unset>                          33h
+pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            Delete           Bound    edl-observability/edl-monitoring-grafana                                                           standard       <unset>                          15h
+pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            Delete           Bound    edl-data/kind-contract                                                                             standard       <unset>                          41h
+pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            Delete           Bound    edl-data/jupyter-workspace                                                                         standard       <unset>                          17h
+pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            Delete           Bound    edl-observability/prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   standard       <unset>                          15h
+NAMESPACE           NAME                                                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+edl-data            data-0-edl-kafka-dual-role-0                                                     Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 33h
+edl-data            edl-s3                                                                           Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 41h
+edl-data            jupyter-workspace                                                                Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 17h
+edl-data            kind-contract                                                                    Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 41h
+edl-observability   edl-monitoring-grafana                                                           Bound    pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            standard       <unset>                 15h
+edl-observability   prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   Bound    pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            standard       <unset>                 15h
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  41h
+NAMESPACE   NAME                                    POD-SELECTOR                                                                                                   AGE
+argocd      argocd-application-controller           app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-application-controller                         41h
+argocd      argocd-redis                            app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-redis                                          41h
+argocd      argocd-repo-server                      app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-repo-server                                    41h
+argocd      argocd-server                           app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-server                                         41h
+edl-data    allow-data-catalog-ingress              <none>                                                                                                         41h
+edl-data    allow-dns-egress                        <none>                                                                                                         41h
+edl-data    allow-edl-operator-api                  name in (strimzi-cluster-operator,strimzi-entity-operator)                                                     41h
+edl-data    allow-jupyter-to-trino                  app=edl-jupyter                                                                                                41h
+edl-data    allow-kafka-same-namespace              strimzi.io/cluster=edl-kafka                                                                                   33h
+edl-data    allow-kafka-same-namespace-egress       strimzi.io/cluster=edl-kafka                                                                                   41h
+edl-data    allow-kind-kafka-metrics                strimzi.io/cluster=edl-kafka                                                                                   15h
+edl-data    allow-kind-trino-metrics                app.kubernetes.io/name=trino                                                                                   15h
+edl-data    allow-labeled-kafka-clients             edl.network/kafka-client=true                                                                                  41h
+edl-data    allow-polaris-object-storage            app.kubernetes.io/name=polaris                                                                                 41h
+edl-data    allow-spark-api-target-port             edl.network/api-client in (true)                                                                               41h
+edl-data    allow-spark-blockmanager                spark-role in (driver,executor)                                                                                41h
+edl-data    allow-spark-data-services               spark-role=driver                                                                                              41h
+edl-data    allow-spark-executor-s3                 spark-role=executor                                                                                            41h
+edl-data    allow-spark-executor-to-driver          spark-role=driver                                                                                              23h
+edl-data    allow-spark-executor-to-driver-egress   spark-role=executor                                                                                            41h
+edl-data    allow-spark-rpc-ingress                 spark-role=driver                                                                                              41h
+edl-data    allow-spark-submit-api                  app.kubernetes.io/name in (edl-lakehouse-submit,spark-submit)                                                  41h
+edl-data    allow-trino-internal-and-catalog        app.kubernetes.io/name=trino                                                                                   41h
+edl-data    default-deny-egress                     <none>                                                                                                         41h
+edl-data    default-deny-ingress                    <none>                                                                                                         41h
+edl-data    edl-kafka-entity-operator               strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-entity-operator                   33h
+edl-data    edl-kafka-kafka-exporter                strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka-exporter                    33h
+edl-data    edl-kafka-network-policy-kafka          strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka                             33h
+edl-data    edl-trino                               app.kubernetes.io/instance=edl-trino,app.kubernetes.io/name=trino,trino.io/network-policy-protection=enabled   23h
+edl-data    kind-s3-client-egress                   edl.s3-client=true                                                                                             41h
+edl-data    kind-s3-ingress                         app=edl-s3                                                                                                     41h
+NAMESPACE           LAST SEEN   TYPE      REASON               OBJECT                                                   MESSAGE
+argocd              6m12s       Warning   Unhealthy            pod/argocd-repo-server-7c69999875-6k97k                  Liveness probe failed: Get "http://192.168.169.206:8084/healthz?full=true": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+edl-observability   6m10s       Warning   Unhealthy            pod/edl-monitoring-grafana-588684d575-7qj2z              Readiness probe failed: Get "http://192.168.169.229:3000/api/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+kube-system         6m6s        Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Readiness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded
+kyverno             6m6s        Warning   Unhealthy            pod/kyverno-admission-controller-bc847675-bmkjv          Readiness probe failed: Get "https://192.168.206.207:9443/health/readiness": net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+edl-observability   6m6s        Warning   Unhealthy            pod/edl-monitoring-kube-state-metrics-5f86f7f857-d24nv   Liveness probe failed: HTTP probe failed with statuscode: 503
+kube-system         6m5s        Warning   Unhealthy            pod/kube-apiserver-edl-lab-control-plane                 Liveness probe failed: HTTP probe failed with statuscode: 500
+kube-system         6m2s        Warning   Unhealthy            pod/kube-apiserver-edl-lab-control-plane                 Readiness probe failed: HTTP probe failed with statuscode: 500
+kube-system         6m2s        Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Liveness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded; Error reaching apiserver: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded with http status code: 500
+kube-system         5m57s       Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Readiness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded; Error reaching apiserver: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded with http status code: 500
+edl-platform        5m55s       Normal    Pulled               pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Container image "quay.io/strimzi/operator:1.2.0" already present on machine
+edl-platform        5m54s       Normal    Created              pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Created container: strimzi-cluster-operator
+edl-platform        5m53s       Normal    Started              pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Started container strimzi-cluster-operator
+edl-platform        5m23s       Warning   Unhealthy            pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Liveness probe failed: Get "http://192.168.169.211:8080/healthy": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+edl-platform        5m21s       Warning   Unhealthy            pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Readiness probe failed: Get "http://192.168.169.211:8080/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+argocd              49s         Normal    ResourceUpdated      application/kind-edl-baseline                            Updated sync status: Synced -> OutOfSync
+argocd              49s         Normal    OperationStarted     application/kind-edl-baseline                            Initiated automated sync to 'e4137cb29274a5d738f4ba1dc8da617df64a1154'
+argocd              44s         Normal    OperationCompleted   application/kind-edl-baseline                            Sync operation to e4137cb29274a5d738f4ba1dc8da617df64a1154 succeeded
+argocd              44s         Normal    ResourceUpdated      application/kind-edl-baseline                            Updated sync status: OutOfSync -> Synced
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1
+PERSISTENT_MARKER=PASS
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+AFTER all nodes/pods/PVCs/Argo states healthy; DNS and retained SQL validated
+[PASS] diagnostics
+
+UTC=2026-09-30T04:59:06.774157+00:00; SCENARIO=diagnostics
+CONTEXT=kind-edl-lab; RESULT_SCOPE=KIND_MULTI_NODE_FUNCTIONAL_RECOVERY
+BEFORE diagnostics: no failure injection
+ACTION existing scripts/n3-diagnostics.sh; WAIT for collection
+/c/Users/HP 17 G3 Win 11 23H2/Documents/ChatGPT/Wero/enterprise-data-lakehouse-kubernetes-openshift/scripts/kind/portable-cli/oc
+=== cluster ===
+Client Version: v1.33.3
+Kustomize Version: v5.6.0
+Server Version: v1.33.1
+NAME                    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   41h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          41h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          41h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+=== namespace edl-data ===
+NAME                                                  READY   STATUS      RESTARTS   AGE   IP                NODE              NOMINATED NODE   READINESS GATES
+edl-jupyter-6c67748ccb-mnpcs                          1/1     Running     0          10h   192.168.169.235   edl-lab-worker2   <none>           <none>
+edl-kafka-dual-role-0                                 1/1     Running     0          9h    192.168.206.212   edl-lab-worker    <none>           <none>
+edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0          33h   192.168.169.212   edl-lab-worker2   <none>           <none>
+edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0          33h   192.168.206.201   edl-lab-worker    <none>           <none>
+edl-polaris-7f765cd5fc-r4smc                          1/1     Running     0          9h    192.168.169.237   edl-lab-worker2   <none>           <none>
+edl-s3-86454754dc-tz79h                               1/1     Running     0          9h    192.168.206.214   edl-lab-worker    <none>           <none>
+edl-transaction-producer                              0/1     Completed   0          33h   192.168.206.204   edl-lab-worker    <none>           <none>
+edl-transactions-to-iceberg-a1784da0ee904d58-exec-1   0/1     Completed   0          9h    192.168.206.213   edl-lab-worker    <none>           <none>
+edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0          23h   192.168.206.206   edl-lab-worker    <none>           <none>
+edl-trino-worker-fd7d84897-rtjbs                      1/1     Running     0          9h    192.168.169.236   edl-lab-worker2   <none>           <none>
+kind-contract                                         1/1     Running     0          41h   192.168.169.202   edl-lab-worker2   <none>           <none>
+kind-kafka-client                                     1/1     Running     0          33h   192.168.206.203   edl-lab-worker    <none>           <none>
+kind-s3-contract-njkgw                                0/1     Completed   0          41h   192.168.169.210   edl-lab-worker2   <none>           <none>
+kind-s3-reader                                        1/1     Running     0          9h    192.168.169.240   edl-lab-worker2   <none>           <none>
+kind-spark-lakehouse-driver                           0/1     Completed   0          9h    192.168.169.239   edl-lab-worker2   <none>           <none>
+kind-spark-lakehouse-submit-rmhlg                     0/1     Completed   0          9h    192.168.169.238   edl-lab-worker2   <none>           <none>
+kind-spark-smoke-driver                               0/1     Completed   0          23h   192.168.169.215   edl-lab-worker2   <none>           <none>
+kind-spark-smoke-submit-qvvnq                         0/1     Completed   0          23h   192.168.169.214   edl-lab-worker2   <none>           <none>
+pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0          23h   192.168.169.216   edl-lab-worker2   <none>           <none>
+NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/edl-jupyter                 1/1     1            1           17h
+deployment.apps/edl-kafka-entity-operator   1/1     1            1           33h
+deployment.apps/edl-kafka-kafka-exporter    1/1     1            1           33h
+deployment.apps/edl-polaris                 1/1     1            1           23h
+deployment.apps/edl-s3                      1/1     1            1           41h
+deployment.apps/edl-trino-coordinator       1/1     1            1           23h
+deployment.apps/edl-trino-worker            1/1     1            1           23h
+
+NAME                                    STATUS     COMPLETIONS   DURATION   AGE
+job.batch/kind-s3-contract              Complete   1/1           50s        41h
+job.batch/kind-spark-lakehouse-submit   Complete   1/1           2m39s      9h
+job.batch/kind-spark-smoke-submit       Complete   1/1           80s        23h
+NAME                                                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                        AGE
+service/edl-jupyter                                        ClusterIP   10.96.156.67    <none>        8888/TCP                                       17h
+service/edl-kafka-kafka-bootstrap                          ClusterIP   10.96.120.177   <none>        9091/TCP,9092/TCP,9093/TCP                     33h
+service/edl-kafka-kafka-brokers                            ClusterIP   None            <none>        9090/TCP,9091/TCP,8443/TCP,9092/TCP,9093/TCP   33h
+service/edl-polaris                                        ClusterIP   10.96.42.45     <none>        8181/TCP                                       23h
+service/edl-polaris-mgmt                                   ClusterIP   None            <none>        8182/TCP                                       23h
+service/edl-s3                                             ClusterIP   10.96.225.46    <none>        9000/TCP                                       41h
+service/edl-trino                                          ClusterIP   10.96.100.8     <none>        8080/TCP                                       23h
+service/edl-trino-worker                                   ClusterIP   None            <none>        8080/TCP                                       23h
+service/kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc   ClusterIP   None            <none>        7078/TCP,7079/TCP,4040/TCP,15002/TCP           9h
+service/kind-spark-smoke-2eeb83a0ebac71ef-driver-svc       ClusterIP   None            <none>        7078/TCP,7079/TCP,4040/TCP,15002/TCP           23h
+
+NAME                                                         ENDPOINTS                                                                    AGE
+endpoints/edl-jupyter                                        192.168.169.235:8888                                                         17h
+endpoints/edl-kafka-kafka-bootstrap                          192.168.206.212:9093,192.168.206.212:9092,192.168.206.212:9091               33h
+endpoints/edl-kafka-kafka-brokers                            192.168.206.212:8443,192.168.206.212:9093,192.168.206.212:9092 + 2 more...   33h
+endpoints/edl-polaris                                        192.168.169.237:8181                                                         23h
+endpoints/edl-polaris-mgmt                                   192.168.169.237:8182                                                         23h
+endpoints/edl-s3                                             192.168.206.214:9000                                                         41h
+endpoints/edl-trino                                          192.168.206.206:8080                                                         23h
+endpoints/edl-trino-worker                                   192.168.169.236:8080                                                         23h
+endpoints/kind-spark-lakehouse-4a01c3a0ee8fd1d9-driver-svc                                                                                9h
+endpoints/kind-spark-smoke-2eeb83a0ebac71ef-driver-svc       <none>                                                                       23h
+NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-0-edl-kafka-dual-role-0   Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 33h
+edl-s3                         Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 41h
+jupyter-workspace              Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 17h
+kind-contract                  Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 41h
+NAME                                    POD-SELECTOR                                                                                                   AGE
+allow-data-catalog-ingress              <none>                                                                                                         41h
+allow-dns-egress                        <none>                                                                                                         41h
+allow-edl-operator-api                  name in (strimzi-cluster-operator,strimzi-entity-operator)                                                     41h
+allow-jupyter-to-trino                  app=edl-jupyter                                                                                                41h
+allow-kafka-same-namespace              strimzi.io/cluster=edl-kafka                                                                                   33h
+allow-kafka-same-namespace-egress       strimzi.io/cluster=edl-kafka                                                                                   41h
+allow-kind-kafka-metrics                strimzi.io/cluster=edl-kafka                                                                                   15h
+allow-kind-trino-metrics                app.kubernetes.io/name=trino                                                                                   15h
+allow-labeled-kafka-clients             edl.network/kafka-client=true                                                                                  41h
+allow-polaris-object-storage            app.kubernetes.io/name=polaris                                                                                 41h
+allow-spark-api-target-port             edl.network/api-client in (true)                                                                               41h
+allow-spark-blockmanager                spark-role in (driver,executor)                                                                                41h
+allow-spark-data-services               spark-role=driver                                                                                              41h
+allow-spark-executor-s3                 spark-role=executor                                                                                            41h
+allow-spark-executor-to-driver          spark-role=driver                                                                                              23h
+allow-spark-executor-to-driver-egress   spark-role=executor                                                                                            41h
+allow-spark-rpc-ingress                 spark-role=driver                                                                                              41h
+allow-spark-submit-api                  app.kubernetes.io/name in (edl-lakehouse-submit,spark-submit)                                                  41h
+allow-trino-internal-and-catalog        app.kubernetes.io/name=trino                                                                                   41h
+default-deny-egress                     <none>                                                                                                         41h
+default-deny-ingress                    <none>                                                                                                         41h
+edl-kafka-entity-operator               strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-entity-operator                   33h
+edl-kafka-kafka-exporter                strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka-exporter                    33h
+edl-kafka-network-policy-kafka          strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka                             33h
+edl-trino                               app.kubernetes.io/instance=edl-trino,app.kubernetes.io/name=trino,trino.io/network-policy-protection=enabled   23h
+kind-s3-client-egress                   edl.s3-client=true                                                                                             41h
+kind-s3-ingress                         app=edl-s3                                                                                                     41h
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+NAME                               READY   WARNINGS   KAFKA VERSION   METADATA VERSION
+kafka.kafka.strimzi.io/edl-kafka   True               4.3.1           4.3-IV0
+
+NAME                                       DESIRED REPLICAS   ROLES                     NODEIDS
+kafkanodepool.kafka.strimzi.io/dual-role   1                  ["controller","broker"]   [0]
+
+NAME                                               CLUSTER     PARTITIONS   REPLICATION FACTOR   READY
+kafkatopic.kafka.strimzi.io/edl.smoke              edl-kafka   1            1                    True
+kafkatopic.kafka.strimzi.io/transactions.curated   edl-kafka   3            1                    True
+kafkatopic.kafka.strimzi.io/transactions.raw       edl-kafka   3            1                    True
+[INFO] diagnostics complete; Secret objects were intentionally not exported
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+No resources found in edl-data namespace.
+NAMESPACE            NAME                                                  READY   STATUS      RESTARTS        AGE   IP                NODE                    NOMINATED NODE   READINESS GATES
+argocd               argocd-application-controller-0                       1/1     Running     0               41h   192.168.169.208   edl-lab-worker2         <none>           <none>
+argocd               argocd-applicationset-controller-7f77c467d8-trjz8     1/1     Running     0               41h   192.168.169.204   edl-lab-worker2         <none>           <none>
+argocd               argocd-redis-5fb8cdb75b-l25jg                         1/1     Running     0               41h   192.168.169.205   edl-lab-worker2         <none>           <none>
+argocd               argocd-repo-server-7c69999875-6k97k                   1/1     Running     0               41h   192.168.169.206   edl-lab-worker2         <none>           <none>
+argocd               argocd-server-5b845b4458-jfqcl                        1/1     Running     0               41h   192.168.169.207   edl-lab-worker2         <none>           <none>
+edl-data             edl-jupyter-6c67748ccb-mnpcs                          1/1     Running     0               10h   192.168.169.235   edl-lab-worker2         <none>           <none>
+edl-data             edl-kafka-dual-role-0                                 1/1     Running     0               9h    192.168.206.212   edl-lab-worker          <none>           <none>
+edl-data             edl-kafka-entity-operator-5f545b695d-4dglr            2/2     Running     0               33h   192.168.169.212   edl-lab-worker2         <none>           <none>
+edl-data             edl-kafka-kafka-exporter-6645f86f59-2xb6q             1/1     Running     0               33h   192.168.206.201   edl-lab-worker          <none>           <none>
+edl-data             edl-polaris-7f765cd5fc-r4smc                          1/1     Running     0               9h    192.168.169.237   edl-lab-worker2         <none>           <none>
+edl-data             edl-s3-86454754dc-tz79h                               1/1     Running     0               9h    192.168.206.214   edl-lab-worker          <none>           <none>
+edl-data             edl-transaction-producer                              0/1     Completed   0               33h   192.168.206.204   edl-lab-worker          <none>           <none>
+edl-data             edl-transactions-to-iceberg-a1784da0ee904d58-exec-1   0/1     Completed   0               9h    192.168.206.213   edl-lab-worker          <none>           <none>
+edl-data             edl-trino-coordinator-988976887-ls4v9                 1/1     Running     0               23h   192.168.206.206   edl-lab-worker          <none>           <none>
+edl-data             edl-trino-worker-fd7d84897-rtjbs                      1/1     Running     0               9h    192.168.169.236   edl-lab-worker2         <none>           <none>
+edl-data             kind-contract                                         1/1     Running     0               41h   192.168.169.202   edl-lab-worker2         <none>           <none>
+edl-data             kind-kafka-client                                     1/1     Running     0               33h   192.168.206.203   edl-lab-worker          <none>           <none>
+edl-data             kind-s3-contract-njkgw                                0/1     Completed   0               41h   192.168.169.210   edl-lab-worker2         <none>           <none>
+edl-data             kind-s3-reader                                        1/1     Running     0               9h    192.168.169.240   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-lakehouse-driver                           0/1     Completed   0               9h    192.168.169.239   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-lakehouse-submit-rmhlg                     0/1     Completed   0               9h    192.168.169.238   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-smoke-driver                               0/1     Completed   0               23h   192.168.169.215   edl-lab-worker2         <none>           <none>
+edl-data             kind-spark-smoke-submit-qvvnq                         0/1     Completed   0               23h   192.168.169.214   edl-lab-worker2         <none>           <none>
+edl-data             pythonpi-7cdfb8a0ebacdaf2-exec-1                      0/1     Completed   0               23h   192.168.169.216   edl-lab-worker2         <none>           <none>
+edl-observability    edl-monitoring-grafana-588684d575-7qj2z               3/3     Running     0               15h   192.168.169.229   edl-lab-worker2         <none>           <none>
+edl-observability    edl-monitoring-kube-state-metrics-5f86f7f857-d24nv    1/1     Running     0               15h   192.168.206.209   edl-lab-worker          <none>           <none>
+edl-observability    edl-monitoring-operator-6f98564695-v6rr2              1/1     Running     0               15h   192.168.206.208   edl-lab-worker          <none>           <none>
+edl-observability    prometheus-edl-monitoring-prometheus-0                2/2     Running     0               15h   192.168.206.211   edl-lab-worker          <none>           <none>
+edl-platform         strimzi-cluster-operator-6b5748dd7c-vw5xc             1/1     Running     4 (7m16s ago)   33h   192.168.169.211   edl-lab-worker2         <none>           <none>
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp              1/1     Running     0               41h   192.168.206.193   edl-lab-worker          <none>           <none>
+kube-system          calico-node-9c92x                                     1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          calico-node-kxn5h                                     1/1     Running     0               41h   172.18.0.4        edl-lab-worker          <none>           <none>
+kube-system          calico-node-r2fjv                                     1/1     Running     0               41h   172.18.0.3        edl-lab-worker2         <none>           <none>
+kube-system          coredns-674b8bbfcf-rlc6x                              1/1     Running     0               41h   192.168.206.196   edl-lab-worker          <none>           <none>
+kube-system          coredns-674b8bbfcf-z6qc6                              1/1     Running     0               41h   192.168.206.194   edl-lab-worker          <none>           <none>
+kube-system          etcd-edl-lab-control-plane                            1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-apiserver-edl-lab-control-plane                  1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-controller-manager-edl-lab-control-plane         1/1     Running     5 (17h ago)     41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-proxy-ntlfp                                      1/1     Running     0               41h   172.18.0.4        edl-lab-worker          <none>           <none>
+kube-system          kube-proxy-t4mkz                                      1/1     Running     0               41h   172.18.0.3        edl-lab-worker2         <none>           <none>
+kube-system          kube-proxy-vvwp5                                      1/1     Running     0               41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kube-system          kube-scheduler-edl-lab-control-plane                  1/1     Running     5 (17h ago)     41h   172.18.0.2        edl-lab-control-plane   <none>           <none>
+kyverno              kyverno-admission-controller-bc847675-bmkjv           1/1     Running     0               16h   192.168.206.207   edl-lab-worker          <none>           <none>
+kyverno              kyverno-background-controller-86cf668b6d-f4g7j        1/1     Running     0               16h   192.168.169.223   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-cleanup-controller-8c7fc6cb7-vxgkf            1/1     Running     0               16h   192.168.169.224   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-migrate-resources-q8ps8                       0/1     Completed   0               15h   192.168.169.226   edl-lab-worker2         <none>           <none>
+kyverno              kyverno-reports-controller-65fb7bf664-ttwwk           1/1     Running     0               16h   192.168.169.225   edl-lab-worker2         <none>           <none>
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn               1/1     Running     0               41h   192.168.206.195   edl-lab-worker          <none>           <none>
+NAME                    STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   41h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          41h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          41h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                                                              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            Delete           Bound    edl-data/edl-s3                                                                                    standard       <unset>                          41h
+pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            Delete           Bound    edl-data/data-0-edl-kafka-dual-role-0                                                              standard       <unset>                          33h
+pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            Delete           Bound    edl-observability/edl-monitoring-grafana                                                           standard       <unset>                          15h
+pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            Delete           Bound    edl-data/kind-contract                                                                             standard       <unset>                          41h
+pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            Delete           Bound    edl-data/jupyter-workspace                                                                         standard       <unset>                          17h
+pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            Delete           Bound    edl-observability/prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   standard       <unset>                          15h
+NAMESPACE           NAME                                                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+edl-data            data-0-edl-kafka-dual-role-0                                                     Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 33h
+edl-data            edl-s3                                                                           Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 41h
+edl-data            jupyter-workspace                                                                Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 17h
+edl-data            kind-contract                                                                    Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 41h
+edl-observability   edl-monitoring-grafana                                                           Bound    pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            standard       <unset>                 15h
+edl-observability   prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   Bound    pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            standard       <unset>                 15h
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  41h
+NAMESPACE   NAME                                    POD-SELECTOR                                                                                                   AGE
+argocd      argocd-application-controller           app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-application-controller                         41h
+argocd      argocd-redis                            app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-redis                                          41h
+argocd      argocd-repo-server                      app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-repo-server                                    41h
+argocd      argocd-server                           app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-server                                         41h
+edl-data    allow-data-catalog-ingress              <none>                                                                                                         41h
+edl-data    allow-dns-egress                        <none>                                                                                                         41h
+edl-data    allow-edl-operator-api                  name in (strimzi-cluster-operator,strimzi-entity-operator)                                                     41h
+edl-data    allow-jupyter-to-trino                  app=edl-jupyter                                                                                                41h
+edl-data    allow-kafka-same-namespace              strimzi.io/cluster=edl-kafka                                                                                   33h
+edl-data    allow-kafka-same-namespace-egress       strimzi.io/cluster=edl-kafka                                                                                   41h
+edl-data    allow-kind-kafka-metrics                strimzi.io/cluster=edl-kafka                                                                                   15h
+edl-data    allow-kind-trino-metrics                app.kubernetes.io/name=trino                                                                                   15h
+edl-data    allow-labeled-kafka-clients             edl.network/kafka-client=true                                                                                  41h
+edl-data    allow-polaris-object-storage            app.kubernetes.io/name=polaris                                                                                 41h
+edl-data    allow-spark-api-target-port             edl.network/api-client in (true)                                                                               41h
+edl-data    allow-spark-blockmanager                spark-role in (driver,executor)                                                                                41h
+edl-data    allow-spark-data-services               spark-role=driver                                                                                              41h
+edl-data    allow-spark-executor-s3                 spark-role=executor                                                                                            41h
+edl-data    allow-spark-executor-to-driver          spark-role=driver                                                                                              23h
+edl-data    allow-spark-executor-to-driver-egress   spark-role=executor                                                                                            41h
+edl-data    allow-spark-rpc-ingress                 spark-role=driver                                                                                              41h
+edl-data    allow-spark-submit-api                  app.kubernetes.io/name in (edl-lakehouse-submit,spark-submit)                                                  41h
+edl-data    allow-trino-internal-and-catalog        app.kubernetes.io/name=trino                                                                                   41h
+edl-data    default-deny-egress                     <none>                                                                                                         41h
+edl-data    default-deny-ingress                    <none>                                                                                                         41h
+edl-data    edl-kafka-entity-operator               strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-entity-operator                   33h
+edl-data    edl-kafka-kafka-exporter                strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka-exporter                    33h
+edl-data    edl-kafka-network-policy-kafka          strimzi.io/cluster=edl-kafka,strimzi.io/kind=Kafka,strimzi.io/name=edl-kafka-kafka                             33h
+edl-data    edl-trino                               app.kubernetes.io/instance=edl-trino,app.kubernetes.io/name=trino,trino.io/network-policy-protection=enabled   23h
+edl-data    kind-s3-client-egress                   edl.s3-client=true                                                                                             41h
+edl-data    kind-s3-ingress                         app=edl-s3                                                                                                     41h
+NAMESPACE           LAST SEEN   TYPE      REASON               OBJECT                                                   MESSAGE
+argocd              7m37s       Warning   Unhealthy            pod/argocd-repo-server-7c69999875-6k97k                  Liveness probe failed: Get "http://192.168.169.206:8084/healthz?full=true": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+edl-observability   7m35s       Warning   Unhealthy            pod/edl-monitoring-grafana-588684d575-7qj2z              Readiness probe failed: Get "http://192.168.169.229:3000/api/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+kube-system         7m31s       Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Readiness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded
+kyverno             7m31s       Warning   Unhealthy            pod/kyverno-admission-controller-bc847675-bmkjv          Readiness probe failed: Get "https://192.168.206.207:9443/health/readiness": net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+edl-observability   7m31s       Warning   Unhealthy            pod/edl-monitoring-kube-state-metrics-5f86f7f857-d24nv   Liveness probe failed: HTTP probe failed with statuscode: 503
+kube-system         7m30s       Warning   Unhealthy            pod/kube-apiserver-edl-lab-control-plane                 Liveness probe failed: HTTP probe failed with statuscode: 500
+kube-system         7m27s       Warning   Unhealthy            pod/kube-apiserver-edl-lab-control-plane                 Readiness probe failed: HTTP probe failed with statuscode: 500
+kube-system         7m27s       Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Liveness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded; Error reaching apiserver: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded with http status code: 500
+kube-system         7m22s       Warning   Unhealthy            pod/calico-kube-controllers-7959b6fcd8-nm2rp             Readiness probe failed: Error verifying datastore: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded; Error reaching apiserver: Get "https://10.96.0.1:443/apis/crd.projectcalico.org/v1/clusterinformations/default": context deadline exceeded with http status code: 500
+edl-platform        7m20s       Normal    Pulled               pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Container image "quay.io/strimzi/operator:1.2.0" already present on machine
+edl-platform        7m19s       Normal    Created              pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Created container: strimzi-cluster-operator
+edl-platform        7m18s       Normal    Started              pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Started container strimzi-cluster-operator
+edl-platform        6m48s       Warning   Unhealthy            pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Liveness probe failed: Get "http://192.168.169.211:8080/healthy": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+edl-platform        6m46s       Warning   Unhealthy            pod/strimzi-cluster-operator-6b5748dd7c-vw5xc            Readiness probe failed: Get "http://192.168.169.211:8080/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+argocd              2m14s       Normal    ResourceUpdated      application/kind-edl-baseline                            Updated sync status: Synced -> OutOfSync
+argocd              2m14s       Normal    OperationStarted     application/kind-edl-baseline                            Initiated automated sync to 'e4137cb29274a5d738f4ba1dc8da617df64a1154'
+argocd              2m9s        Normal    OperationCompleted   application/kind-edl-baseline                            Sync operation to e4137cb29274a5d738f4ba1dc8da617df64a1154 succeeded
+argocd              2m9s        Normal    ResourceUpdated      application/kind-edl-baseline                            Updated sync status: OutOfSync -> Synced
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	kubernetes.default.svc.cluster.local
+Address: 10.96.0.1
+PERSISTENT_MARKER=PASS
+SELECT_1=PASS
+ICEBERG_TRANSACTIONS=5
+['evt-0001', 'txn-0001', 125.4, 'ACCEPTED']
+['evt-0002', 'txn-0002', 90.0, 'ACCEPTED']
+['evt-0003', 'txn-0003', 250.1, 'REJECTED']
+['evt-0004', 'txn-0004', 19.99, 'ACCEPTED']
+['evt-0005', 'txn-0005', 800.0, 'PENDING']
+AFTER all nodes/pods/PVCs/Argo states healthy; DNS and retained SQL validated
+[PASS] diagnostics

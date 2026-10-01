@@ -1,0 +1,26 @@
+[
+  {
+    "image": "edl-jupyter:kind-2026-07-28",
+    "id": "sha256:a54e134013fbf00f591451f7a701c855d91188b9d0b1c07cfcf1ac30282a432c",
+    "created": "2026-09-29T11:15:19.686541601Z",
+    "size": 5823364176
+  },
+  {
+    "image": "edl-jupyter:kind-h1-gitpython3.1.59",
+    "id": "sha256:efe0f5c19ff66c4f255c701f9d4ac8a8a460ebb248ce18a9a7335d1d576dc2c4",
+    "created": "2026-09-30T10:15:45.809661222Z",
+    "size": 5824866559
+  },
+  {
+    "image": "edl-spark-lakehouse:kind-4.1.3-iceberg1.11",
+    "id": "sha256:88a3dd7d2c1b890ffb3bad012e358d06b6cd8115a4f63010257639fabc3f28bd",
+    "created": "2026-09-29T05:28:39.675531019Z",
+    "size": 1437796522
+  },
+  {
+    "image": "edl-s3-client:kind-2.31.0",
+    "id": "sha256:4e2d31dc71d9efb14c84c63d11fe66b5964523c3ac83dbcaaddc21aa861a8d0a",
+    "created": "2026-09-28T11:49:48.058715728Z",
+    "size": 424785054
+  }
+]

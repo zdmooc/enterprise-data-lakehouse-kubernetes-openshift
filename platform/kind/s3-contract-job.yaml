@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kind-s3-contract
+  namespace: edl-data
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 600
+  template:
+    metadata:
+      labels: {app: kind-s3-contract, edl.s3-client: 'true'}
+    spec:
+      restartPolicy: Never
+      serviceAccountName: data-workload
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: contract
+          image: edl-s3-client:kind-h1
+          imagePullPolicy: IfNotPresent
+          command: [bash, -ec]
+          args:
+            - |
+              bash scripts/bootstrap-s3-layout.sh
+              bash scripts/verify-s3-layout.sh
+              aws --endpoint-url "$S3_ENDPOINT" s3 ls "s3://$S3_BUCKET/" --recursive
+          workingDir: /work
+          envFrom:
+            - secretRef: {name: kind-s3}
+          env:
+            - {name: HOME, value: /tmp}
+            - {name: AWS_PAGER, value: ''}
+            - {name: AWS_EC2_METADATA_DISABLED, value: 'true'}
+            - {name: S3_CREATE_BUCKET, value: 'yes'}
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          resources:
+            requests: {cpu: 50m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 256Mi}
+          volumeMounts:
+            - {name: scripts, mountPath: /work/scripts, readOnly: true}
+            - {name: tmp, mountPath: /tmp}
+      volumes:
+        - name: scripts
+          configMap: {name: kind-s3-contract-scripts}
+        - name: tmp
+          emptyDir: {}

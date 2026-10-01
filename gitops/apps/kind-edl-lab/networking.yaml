@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kind-edl-networking
+spec:
+  project: kind-edl-lab
+  source:
+    repoURL: https://github.com/zdmooc/enterprise-data-lakehouse-kubernetes-openshift.git
+    targetRevision: runtime/kind-edl-lab
+    path: data-platform/networking/base
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: edl-data
+  syncPolicy:
+    automated: {prune: false, selfHeal: true}

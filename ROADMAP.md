@@ -1,401 +1,45 @@
 # Roadmap
 
-## Delivery principle
-
-Each iteration must produce four things:
-
-1. architecture decision or design update;
-2. executable artifact;
-3. verification procedure;
-4. evidence of the result.
-
-Status vocabulary:
+## Status vocabulary
 
 `PLANNED -> DESIGNED -> IMPLEMENTED -> TESTED -> RUNTIME_VALIDATED`
 
-Documentation alone never upgrades a status beyond `DESIGNED`.
-
----
-
-## I0 — Architecture & scope
-
-**Status:** COMPLETED
-
-Delivered:
-- mission-aligned scope;
-- target architecture;
-- reuse strategy;
-- Data Product demo;
-- local and multi-node execution profiles;
-- prioritized implementation backlog;
-- ADR template;
-- evidence rules.
-
-Exit criteria:
-- [x] architecture documented;
-- [x] backlog prioritized;
-- [x] no duplicated Kubernetes-from-scratch implementation;
-- [x] resource constraints explicitly documented.
-
----
-
-## I1 — Cluster contracts & prerequisites
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Define the contract expected from a target cluster.
-
-Capabilities:
-- working CNI;
-- default StorageClass or documented storage path;
-- ingress/route exposure;
-- DNS;
-- metrics availability;
-- namespace/project provisioning;
-- RBAC;
-- support for Operators where applicable.
-
-Targets:
-- KTHW/Vagrant Kubernetes;
-- OpenShift Local / CRC.
-
-Delivered so far:
-- target profile documentation;
-- evidence template;
-- generic connectivity/readiness preflight.
-
-Remaining:
-- runtime execution on a real target;
-- DNS workload test;
-- PVC write/read/restart test;
-- RBAC negative test;
-- NetworkPolicy negative/positive test;
-- ingress/route validation.
-
-Exit criteria:
-- preflight suite;
-- target profile documentation;
-- runtime evidence.
-
----
-
-## I2 — Platform baseline
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- namespaces/projects;
-- ResourceQuota / LimitRange;
-- RBAC;
-- default-deny NetworkPolicies;
-- security contexts / OpenShift SCC mapping;
-- base labels and annotations;
-- storage classes abstraction;
-- baseline health checks.
-
-Exit criteria:
-- repeatable baseline;
-- validation script;
-- clean uninstall/reset procedure.
-
----
-
-## I3 — GitOps foundation
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Delivered:
-- OpenShift GitOps/Argo CD bootstrap path;
-- constrained AppProject model;
-- explicit Application model for initial platform ownership;
-- ADR deciding Application first, ApplicationSet when real multi-target scale exists;
-- Helm/Kustomize conventions;
-- logical dev/preprod/prod-like promotion model without fake multi-cluster claims;
-- secrets integration contract and Vault target pattern;
-- read-only GitOps status check;
-- drift/self-heal/Git-revert rollback lab.
-
-Runtime remaining:
-- execute bootstrap on a validated target;
-- capture Synced/Healthy evidence;
-- execute controlled drift/self-heal;
-- execute Git change and revert reconciliation.
-
-Exit criteria:
-- Git-driven deployment;
-- drift detection;
-- rollback/reconciliation evidence.
-
----
-
-## I4 — Object storage
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Lab target:
-- provider-neutral S3-compatible object storage contract;
-- current provider selected at runtime; MinIO/AIStor or another maintained S3-compatible implementation may satisfy the contract.
-
-Learn and prove:
-- object storage concepts;
-- buckets;
-- credentials;
-- persistence;
-- encryption/TLS pattern;
-- access from Data workloads;
-- backup/restore considerations.
-
-Implemented:
-- S3 contract test;
-- raw/curated/checkpoints/evidence zone layout;
-- provider-neutral bootstrap/verification scripts;
-- provider decision ADR and OpenShift compatibility guardrails.
-
-Runtime remaining:
-- select/start an approved provider;
-- validate persistence, TLS and metrics;
-- capture evidence.
-
-Exit criteria:
-- Data zone bucket structure;
-- smoke tests;
-- metrics integrated.
-
----
-
-## I5 — Kafka streaming
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Lab target:
-- Apache Kafka through Strimzi where supported.
-
-Deliver:
-- operator installation path;
-- Kafka cluster;
-- topics;
-- producer/consumer test;
-- persistence;
-- quotas/security baseline;
-- observability;
-- incident runbook.
-
-Implemented:
-- Strimzi install path;
-- CRC KRaft profile and future multi-node profile;
-- topics;
-- producer/consumer smoke test;
-- persistence configuration;
-- explicit NetworkPolicy flows;
-- monitoring resources and Kafka incident runbook.
-
-Runtime remaining:
-- operator/cluster reconciliation on target;
-- producer/consumer evidence;
-- multi-node HA deferred to I11 target.
-
-Reuse:
-- `kafka-data-engineer-kafkaops-topic-service-crc`.
-
----
-
-## I6 — Spark processing
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- Spark execution model on Kubernetes/OpenShift;
-- driver/executor RBAC;
-- resource requests/limits;
-- S3 access;
-- sample batch transformation;
-- event/stream processing comparison;
-- troubleshooting runbook.
-
-Implemented:
-- native Spark Kubernetes execution model;
-- driver/executor RBAC and NetworkPolicy;
-- CRC engine smoke test;
-- custom image build path;
-- synthetic transaction transformation job;
-- Lakehouse Spark/Iceberg profile for I12.
-
-Runtime remaining:
-- OpenShift SCC/arbitrary-UID validation;
-- engine and transformation evidence.
-
-Exit criteria:
-- reproducible transformation from raw to curated data.
-
----
-
-## I7 — Trino query layer
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- Trino;
-- S3-backed catalog pattern;
-- SQL query over curated Data;
-- resource and concurrency observations;
-- authentication pattern;
-- query observability.
-
-Implemented:
-- pinned Trino Helm profile;
-- CRC coordinator/worker values;
-- TPCH smoke query;
-- Polaris/Iceberg catalog profile;
-- explicit network flows and monitoring integration.
-
-Runtime remaining:
-- Helm deployment and query evidence;
-- Lakehouse catalog query evidence.
-
-Exit criteria:
-- SQL query validated against lakehouse data.
-
----
-
-## I8 — Jupyter / Data user experience
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- Jupyter;
-- namespace isolation;
-- access to Trino/S3/Spark where justified;
-- resource quotas;
-- persistent workspace pattern;
-- user authentication model.
-
-Implemented:
-- OpenShift BuildConfig and image;
-- PVC-backed workspace;
-- Route and NetworkPolicy;
-- runtime-generated token;
-- Trino smoke query;
-- Lakehouse query example;
-- pod-recreation persistence test.
-
-Runtime remaining:
-- build/deploy on CRC;
-- PVC persistence and Trino/Lakehouse query evidence.
-
-Exit criteria:
-- notebook can query or analyze the sample Data Product.
-
----
-
-## I9 — Security & secrets
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- Vault integration pattern;
-- OIDC / Keycloak pattern;
-- RBAC;
-- SCC/PSS mapping;
-- NetworkPolicies;
-- Kyverno / Gatekeeper;
-- image scanning;
-- signed-image verification design.
-
-Implemented:
-- Vault and OIDC/Keycloak patterns;
-- RBAC and SCC/PSS mapping;
-- deny-by-default networking plus explicit flows;
-- Kyverno policies;
-- Trivy configuration scan and Cosign design;
-- five-case negative security suite.
-
-Runtime remaining:
-- execute the five negative tests;
-- capture scan/admission evidence;
-- validate secret rotation/integration when Vault runtime exists.
-
-Exit criteria:
-- at least five negative security tests documented and executed.
-
----
-
-## I10 — Observability
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Deliver:
-- Prometheus;
-- Grafana;
-- Alertmanager;
-- Loki and/or OpenSearch;
-- platform + Data workload dashboard;
-- SLI/SLO proposal.
-
-Implemented:
-- OpenShift User Workload Monitoring reuse model;
-- Kafka PodMonitor and Trino ServiceMonitors;
-- PrometheusRule alerts;
-- platform overview and Data pipeline dashboards;
-- logging strategy;
-- SLI/SLO proposal.
-
-Runtime remaining:
-- apply monitoring resources;
-- verify metrics queries/alerts on target;
-- tune thresholds from observed data.
-
-Exit criteria:
-- one dashboard for platform health;
-- one dashboard for Data pipeline health;
-- actionable alerts.
-
----
-
-## I11 — Resilience & N3 operations
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Scenarios:
-- worker unavailable;
-- pod OOMKilled;
-- pending pod;
-- storage failure;
-- Kafka broker/pod failure;
-- DNS issue;
-- certificate/secret issue;
-- failed GitOps sync;
-- Spark job failure;
-- Trino degraded query path.
-
-Implemented:
-- N3 incident runbooks for GitOps, Kafka, Spark, Trino, storage, nodes/API, scheduling/OOM/image, DNS/NetworkPolicy and secret/certificate;
-- read-only N3 diagnostics;
-- guarded pod-deletion recovery script;
-- RCA template;
-- resilience test matrix;
-- upgrade/migration strategy;
-- evidence template.
-
-Runtime remaining:
-- execute selected CRC-safe scenarios;
-- execute node/broker/storage HA only on a real multi-node target.
-
-Deliver:
-- runbooks;
-- evidence;
-- RCA template;
-- upgrade/migration procedures.
-
----
-
-## I12 — End-to-end Data Product
-
-**Status:** IMPLEMENTED / RUNTIME VALIDATION PENDING
-
-Target flow:
+Documentation alone never upgrades a runtime status. Evidence is required under
+`evidence/`.
+
+## Validated local target
+
+The completed runtime target is `kind-edl-lab`: one workstation, three Kind nodes,
+Calico networking and local-path storage. CRC/OpenShift Local 4.22.7 is retained as a
+separate OpenShift environment and was exercised in H2 only as a read-only local
+runtime switch target.
+
+This local POC is not a production HA, multi-host DR or durable-catalog proof.
+
+## Delivery status
+
+| Iteration | Scope | Status |
+|---|---|---|
+| I0 | Architecture, scope, reuse strategy, evidence rules | COMPLETED |
+| I1 | Cluster contracts and prerequisites | RUNTIME_VALIDATED |
+| I2 | Platform baseline: namespaces, quotas, RBAC, NetworkPolicy | RUNTIME_VALIDATED |
+| I3 | GitOps / Argo CD / drift and reconciliation | RUNTIME_VALIDATED |
+| I4 | S3-compatible object storage | RUNTIME_VALIDATED |
+| I5 | Kafka / Strimzi | RUNTIME_VALIDATED |
+| I6 | Spark processing | RUNTIME_VALIDATED |
+| I7 | Trino query layer | RUNTIME_VALIDATED |
+| I8 | Jupyter / Data user experience | RUNTIME_VALIDATED |
+| I9 | Security / Kyverno / negative controls | RUNTIME_VALIDATED |
+| I10 | Prometheus / Grafana observability | RUNTIME_VALIDATED |
+| I11 | Resilience / N3 functional recovery | RUNTIME_VALIDATED |
+| I12 | End-to-end Data Product | RUNTIME_VALIDATED |
+
+## I12 retained proof
+
+The validated flow is:
 
 ```text
-Synthetic transactions/events
+Synthetic transaction
         |
         v
       Kafka
@@ -404,7 +48,10 @@ Synthetic transactions/events
       Spark
         |
         v
-    MinIO / S3
+ Iceberg / S3
+        |
+        v
+     Polaris
         |
         v
       Trino
@@ -413,31 +60,63 @@ Synthetic transactions/events
      Jupyter
 ```
 
-The same logical product must be deployable through GitOps on both supported platform profiles, subject to local resource constraints.
+Retained proof includes event
+`E2E-I12-20260930T051236Z-a0adb24c8c95`, six Iceberg rows, snapshot
+`3607998935123899351`, table UUID
+`8894029f-a135-4248-9464-8af1cd2f8966`, Jupyter/Trino verification and
+observability evidence.
 
-Implemented:
-- HLD and LLD;
-- architecture ADRs;
-- synthetic Kafka transaction producer;
-- Spark/Iceberg/Polaris/Trino/Jupyter integration path;
-- explicit Data Product networking;
-- guarded one-command CRC E2E orchestrator;
-- security, observability and N3 integration;
-- evidence template;
-- interview/demo walkthrough.
+## H1 — Security hardening
 
-Runtime remaining:
-- execute the full flow on CRC after resource/capacity check;
-- record evidence;
-- validate portability/multi-node behavior separately.
+**Status: COMPLETED_WITH_REMAINING_FINDINGS**
 
-Final deliverables:
-- HLD;
-- LLD;
-- ADRs;
-- deployment;
-- security;
-- observability;
-- runbooks;
-- evidence;
-- interview/demo walkthrough.
+Validated:
+- Jupyter GitPython remediation;
+- read-only root filesystem contracts;
+- reduced-risk S3 client;
+- Kind KSV-0014 manifest findings reduced to zero;
+- Spark regression checks against retained I12 state;
+- Jupyter -> Trino -> I12;
+- 3 Ready nodes, 6 Bound PVCs, Argo Synced/Healthy;
+- 21 Prometheus targets UP and Grafana healthy.
+
+Residual upstream CVEs and known metric-coverage gaps remain explicit. H1 is not a
+production security approval.
+
+## H2 — Kind -> CRC -> Kind local switch
+
+**Status: KIND_CRC_KIND_LOCAL_SWITCH_VALIDATED**
+
+Validated:
+- exact existing Kind node containers stopped without deletion;
+- CRC/OpenShift Local 4.22.7 started and inspected read-only;
+- CRC stopped before Kind restart;
+- same Kind node containers restarted with preserved Docker IP mapping;
+- in-memory Polaris recovered through metadata-only registration of the existing I12
+  metadata file when required;
+- no Kafka replay, no Spark rerun and no S3/Iceberg data rewrite;
+- final state retained six rows, same snapshot and table UUID;
+- Jupyter persistence and Jupyter -> Trino -> I12 passed;
+- final platform health and observability passed.
+
+Evidence:
+`evidence/kind-edl-lab/20260928T112119Z/h2-kind-crc-kind/`.
+
+## Residual / future engineering scope
+
+These are intentionally outside the completed local POC:
+- durable Polaris catalog;
+- multi-host / multi-AZ HA and DR;
+- real worker/node/storage failure domains;
+- backup/restore and CSI snapshot proof;
+- exactly-once/continuous streaming semantics;
+- Vault and OIDC runtime integration;
+- Cosign signed-artifact enforcement;
+- Falco/NeuVector runtime assessment;
+- Grype comparison;
+- RKE2/Rancher profile;
+- Cilium/BGP/F5 enterprise networking;
+- Longhorn/Portworx/Trident storage profiles;
+- operator/Kubebuilder implementation.
+
+Those extensions must not be represented as already validated.

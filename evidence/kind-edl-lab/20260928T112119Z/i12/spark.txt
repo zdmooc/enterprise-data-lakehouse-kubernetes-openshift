@@ -1,0 +1,31 @@
+
+UTC=2026-09-30T05:13:53.712933+00:00; GATE=spark
+BASE_SPARK_SCRIPT_SHA256=b3b16141024ac1527328f55c651b45df1620461adce17161bb1bb8f8226ffe87
+configmap/kind-i12-a0adb24c8c95 created
+job.batch/kind-i12-a0adb24c8c95-submit created
+WAIT Spark submit/driver/executor completion
+SUCCESS kind-i12-a0adb24c8c95-driver; phase=Succeeded
+SUCCESS edl-transactions-to-iceberg-9d5fc5a0f0bc8d80-exec-1; phase=Succeeded
+I12_CONSUMED_EVENT={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30T05:12:36Z", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7}
+I12_ICEBERG_WRITTEN={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30 05:12:36", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7, "latencyBucket": "FAST"}
+[PASS] spark
+
+UTC=2026-09-30T05:19:51.369642+00:00; GATE=spark
+BASE_SPARK_SCRIPT_SHA256=b3b16141024ac1527328f55c651b45df1620461adce17161bb1bb8f8226ffe87
+configmap/kind-i12-a0adb24c8c95-r2 created
+job.batch/kind-i12-a0adb24c8c95-r2-submit created
+WAIT Spark submit/driver/executor completion
+[FAIL] spark:
+
+UTC=2026-09-30T05:23:22.245421+00:00; GATE=spark
+BASE_SPARK_SCRIPT_SHA256=b3b16141024ac1527328f55c651b45df1620461adce17161bb1bb8f8226ffe87
+configmap/kind-i12-a0adb24c8c95-r3 created
+job.batch/kind-i12-a0adb24c8c95-r3-submit created
+WAIT Spark submit/driver/executor completion
+SUCCESS kind-i12-a0adb24c8c95-r3-driver; phase=Succeeded
+SUCCESS edl-transactions-to-iceberg-3fbc4aa0f0c52aa5-exec-1; phase=Succeeded
+I12_CONSUMED_EVENT={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30T05:12:36Z", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7}
+I12_ICEBERG_WRITTEN={"eventId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "eventTime": "2026-09-30 05:12:36", "transactionId": "E2E-I12-20260930T051236Z-a0adb24c8c95", "amount": 17.42, "currency": "EUR", "status": "ACCEPTED", "channel": "E2E", "country": "FR", "latencyMs": 7, "latencyBucket": "FAST"}
+I12_BASELINE_SNAPSHOT=8689157227482492877; RETAINED_EVENT_IDS=["evt-0001", "evt-0002", "evt-0003", "evt-0004", "evt-0005"]
+I12_FINAL_EVENT_IDS=["E2E-I12-20260930T051236Z-a0adb24c8c95", "evt-0001", "evt-0002", "evt-0003", "evt-0004", "evt-0005"]
+[PASS] spark

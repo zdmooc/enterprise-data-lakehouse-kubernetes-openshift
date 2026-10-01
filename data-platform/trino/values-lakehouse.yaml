@@ -2,6 +2,16 @@ envFrom:
   - secretRef:
       name: polaris-client
 
+env:
+  - name: AWS_ACCESS_KEY_ID
+    valueFrom: {secretKeyRef: {name: polaris-s3, key: accessKeyId}}
+  - name: AWS_SECRET_ACCESS_KEY
+    valueFrom: {secretKeyRef: {name: polaris-s3, key: secretAccessKey}}
+  - name: AWS_REGION
+    valueFrom: {secretKeyRef: {name: polaris-s3, key: region}}
+  - name: S3_ENDPOINT
+    valueFrom: {secretKeyRef: {name: polaris-s3, key: endpoint}}
+
 catalogs:
   polaris: |
     connector.name=iceberg
@@ -11,5 +21,10 @@ catalogs:
     iceberg.rest-catalog.oauth2.credential=${ENV:CLIENT_ID}:${ENV:CLIENT_SECRET}
     iceberg.rest-catalog.oauth2.scope=PRINCIPAL_ROLE:ALL
     iceberg.rest-catalog.warehouse=quickstart_catalog
-    iceberg.rest-catalog.vended-credentials-enabled=true
+    iceberg.rest-catalog.vended-credentials-enabled=false
     fs.native-s3.enabled=true
+    s3.endpoint=${ENV:S3_ENDPOINT}
+    s3.region=${ENV:AWS_REGION}
+    s3.path-style-access=true
+    s3.aws-access-key=${ENV:AWS_ACCESS_KEY_ID}
+    s3.aws-secret-key=${ENV:AWS_SECRET_ACCESS_KEY}
