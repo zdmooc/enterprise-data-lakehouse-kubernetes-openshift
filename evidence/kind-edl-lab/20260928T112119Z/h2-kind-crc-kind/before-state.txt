@@ -1,0 +1,315 @@
+
+UTC=2026-09-30T19:31:06.881526+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 59 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state
+
+UTC=2026-09-30T19:52:33.076695+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+[FAIL] before-state: Command failed (1): ['kubectl', '--context=kind-edl-lab', '-n', 'edl-data']
+
+UTC=2026-09-30T20:11:18.179900+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 59 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state
+
+UTC=2026-09-30T20:20:04.933475+00:00; GATE=before-state
+[FAIL] before-state: quickstart_catalog absent
+
+UTC=2026-09-30T20:23:35.233706+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 59 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state
+
+UTC=2026-09-30T20:36:32.560889+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[FAIL] Pod not healthy: argocd/argocd-server-5b845b4458-jfmmn Pending
+[FAIL] Pod not healthy: edl-data/edl-kafka-entity-operator-5f545b695d-rxbxd Pending
+[FAIL] Pod not healthy: edl-platform/strimzi-cluster-operator-6b5748dd7c-9w22n Pending
+[FAIL] Pod not healthy: kyverno/kyverno-reports-controller-65fb7bf664-92zmb Pending
+[FAIL] before-state: Command failed (1): ['C:\\Users\\HP 17 G3 Win 11 23H2\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe', 'scripts/kind/check-health.py']
+
+UTC=2026-09-30T20:42:40.929693+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state
+
+UTC=2026-09-30T20:45:55.267520+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state
+
+UTC=2026-10-01T06:52:52.823072+00:00; GATE=before-state
+{
+  "catalog": "quickstart_catalog",
+  "storage": {
+    "storageType": "S3",
+    "allowedLocations": [
+      "s3://edl-lab/curated/"
+    ],
+    "endpoint": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "endpointInternal": "http://edl-s3.edl-data.svc.cluster.local:9000",
+    "pathStyleAccess": true,
+    "stsUnavailable": true,
+    "region": "us-east-1"
+  },
+  "namespace": "analytics",
+  "table": "transactions",
+  "metadata-location": "s3://edl-lab/curated/analytics/transactions/metadata/00002-b6f6e4da-493e-4b60-a256-3724e784892b.metadata.json",
+  "location": "s3://edl-lab/curated/analytics/transactions",
+  "snapshot-id": 3607998935123899351,
+  "table-uuid": "8894029f-a135-4248-9464-8af1cd2f8966"
+}
+QUERY=SELECT eventId AS "eventId" FROM polaris.analytics.transactions ORDER BY eventId
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95"}
+{"eventId":"evt-0001"}
+{"eventId":"evt-0002"}
+{"eventId":"evt-0003"}
+{"eventId":"evt-0004"}
+{"eventId":"evt-0005"}
+ROW_COUNT=6
+H2_ICEBERG_TOTAL=6
+H2_I12_EVENT=E2E-I12-20260930T051236Z-a0adb24c8c95
+QUERY=SELECT eventId AS "eventId", amount FROM polaris.analytics.transactions WHERE eventId='E2E-I12-20260930T051236Z-a0adb24c8c95'
+{"eventId":"E2E-I12-20260930T051236Z-a0adb24c8c95","amount":17.42}
+ROW_COUNT=1
+H2_S3_METADATA_SNAPSHOT=3607998935123899351
+H2_S3_TABLE_UUID=8894029f-a135-4248-9464-8af1cd2f8966
+[PASS] 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+[PASS] before-state

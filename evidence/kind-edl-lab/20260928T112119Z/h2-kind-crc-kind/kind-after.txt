@@ -1,0 +1,24 @@
+UTC=2026-10-01T07:08:08Z
+context=kind-edl-lab
+NAME                    STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   2d19h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          2d19h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          2d19h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+NAMESPACE           NAME                                                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+edl-data            data-0-edl-kafka-dual-role-0                                                     Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 2d12h
+edl-data            edl-s3                                                                           Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 2d19h
+edl-data            jupyter-workspace                                                                Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 43h
+edl-data            kind-contract                                                                    Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 2d19h
+edl-observability   edl-monitoring-grafana                                                           Bound    pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            standard       <unset>                 41h
+edl-observability   prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   Bound    pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            standard       <unset>                 41h
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+NAME        READY   WARNINGS   KAFKA VERSION   METADATA VERSION
+edl-kafka   True               4.3.1           4.3-IV0
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+edl-s3                  1/1     1            1           2d19h
+edl-polaris             1/1     1            1           2d1h
+edl-trino-coordinator   1/1     1            1           2d1h
+edl-trino-worker        1/1     1            1           2d1h
+edl-jupyter             1/1     1            1           43h

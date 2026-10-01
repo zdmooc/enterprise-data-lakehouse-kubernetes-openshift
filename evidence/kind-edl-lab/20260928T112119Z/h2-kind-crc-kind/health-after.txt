@@ -1,0 +1,60 @@
+
+UTC=2026-10-01T07:07:57.108193+00:00; GATE=health-after
+[PASS] 3 Ready nodes, 39 healthy/completed pods, 6 Bound PVCs, 2 Synced/Healthy Argo applications
+NAME                    STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                     CONTAINER-RUNTIME
+edl-lab-control-plane   Ready    control-plane   2d19h   v1.33.1   172.18.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker          Ready    <none>          2d19h   v1.33.1   172.18.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+edl-lab-worker2         Ready    <none>          2d19h   v1.33.1   172.18.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.6.87.2-microsoft-standard-WSL2   containerd://2.1.1
+NAMESPACE            NAME                                                 READY   STATUS      RESTARTS         AGE
+argocd               argocd-application-controller-0                      1/1     Running     2 (3m38s ago)    10h
+argocd               argocd-applicationset-controller-7f77c467d8-gmt44    1/1     Running     3 (3m35s ago)    10h
+argocd               argocd-redis-5fb8cdb75b-slj8l                        1/1     Running     3 (3m35s ago)    10h
+argocd               argocd-repo-server-7c69999875-f4fmc                  1/1     Running     5 (3m35s ago)    10h
+argocd               argocd-server-5b845b4458-jfmmn                       1/1     Running     6 (2m31s ago)    10h
+edl-data             edl-jupyter-85f7d69f8d-625dk                         1/1     Running     2 (3m38s ago)    10h
+edl-data             edl-kafka-dual-role-0                                1/1     Running     7 (3m35s ago)    36h
+edl-data             edl-kafka-entity-operator-5f545b695d-rxbxd           2/2     Running     10 (2m20s ago)   10h
+edl-data             edl-kafka-kafka-exporter-6645f86f59-2xb6q            1/1     Running     9 (119s ago)     2d11h
+edl-data             edl-polaris-7f765cd5fc-6flw8                         1/1     Running     9 (115s ago)     10h
+edl-data             edl-s3-5d5bd667df-p99sd                              1/1     Running     7 (3m35s ago)    14h
+edl-data             edl-transaction-producer                             0/1     Completed   0                2d11h
+edl-data             edl-trino-coordinator-988976887-ls4v9                1/1     Running     7 (3m35s ago)    2d1h
+edl-data             edl-trino-worker-fd7d84897-4cfx2                     1/1     Running     3 (3m35s ago)    10h
+edl-data             kind-kafka-client                                    0/1     Completed   0                2d11h
+edl-data             kind-s3-reader                                       1/1     Running     0                85s
+edl-observability    edl-monitoring-grafana-588684d575-g5j7c              3/3     Running     6 (3m38s ago)    10h
+edl-observability    edl-monitoring-kube-state-metrics-5f86f7f857-d24nv   1/1     Running     12 (2m32s ago)   41h
+edl-observability    edl-monitoring-operator-6f98564695-v6rr2             1/1     Running     12 (2m36s ago)   41h
+edl-observability    prometheus-edl-monitoring-prometheus-0               2/2     Running     14 (3m35s ago)   41h
+edl-platform         strimzi-cluster-operator-6b5748dd7c-9w22n            1/1     Running     7 (3m35s ago)    10h
+kube-system          calico-kube-controllers-7959b6fcd8-nm2rp             1/1     Running     8 (3m35s ago)    2d19h
+kube-system          calico-node-9c92x                                    1/1     Running     4 (3m42s ago)    2d19h
+kube-system          calico-node-kxn5h                                    1/1     Running     7 (3m35s ago)    2d19h
+kube-system          calico-node-r2fjv                                    1/1     Running     12 (3m38s ago)   2d19h
+kube-system          coredns-674b8bbfcf-rlc6x                             1/1     Running     7 (3m35s ago)    2d19h
+kube-system          coredns-674b8bbfcf-z6qc6                             1/1     Running     7 (3m35s ago)    2d19h
+kube-system          etcd-edl-lab-control-plane                           1/1     Running     4 (3m42s ago)    2d19h
+kube-system          kube-apiserver-edl-lab-control-plane                 1/1     Running     4 (3m42s ago)    2d19h
+kube-system          kube-controller-manager-edl-lab-control-plane        1/1     Running     14 (3m42s ago)   2d19h
+kube-system          kube-proxy-ntlfp                                     1/1     Running     7 (3m35s ago)    2d19h
+kube-system          kube-proxy-t4mkz                                     1/1     Running     6 (3m38s ago)    2d19h
+kube-system          kube-proxy-vvwp5                                     1/1     Running     4 (3m42s ago)    2d19h
+kube-system          kube-scheduler-edl-lab-control-plane                 1/1     Running     14 (3m42s ago)   2d19h
+kyverno              kyverno-admission-controller-bc847675-bmkjv          1/1     Running     11 (3m35s ago)   42h
+kyverno              kyverno-background-controller-86cf668b6d-bn99f       1/1     Running     4 (3m35s ago)    10h
+kyverno              kyverno-cleanup-controller-8c7fc6cb7-wbmfv           1/1     Running     4 (3m35s ago)    10h
+kyverno              kyverno-reports-controller-65fb7bf664-92zmb          1/1     Running     4 (3m35s ago)    10h
+local-path-storage   local-path-provisioner-7dc846544d-rqnbn              1/1     Running     11 (2m18s ago)   2d19h
+NAMESPACE           NAME                                                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+edl-data            data-0-edl-kafka-dual-role-0                                                     Bound    pvc-7d687a1a-73b6-4edc-99e4-4a9563757721   2Gi        RWO            standard       <unset>                 2d12h
+edl-data            edl-s3                                                                           Bound    pvc-787fd0d9-32d7-4203-934c-90f08db55bf4   5Gi        RWO            standard       <unset>                 2d19h
+edl-data            jupyter-workspace                                                                Bound    pvc-afe35dcf-d683-47ce-8a02-7bd8be4e2ec2   1Gi        RWO            standard       <unset>                 43h
+edl-data            kind-contract                                                                    Bound    pvc-af8eeaff-0a43-4e17-b78a-f209721b06fb   256Mi      RWO            standard       <unset>                 2d19h
+edl-observability   edl-monitoring-grafana                                                           Bound    pvc-8dc3151c-40e2-4a01-a52b-78a1e53d1eb1   1Gi        RWO            standard       <unset>                 41h
+edl-observability   prometheus-edl-monitoring-prometheus-db-prometheus-edl-monitoring-prometheus-0   Bound    pvc-baf4f556-f8ff-4484-b662-90e4b7d38032   2Gi        RWO            standard       <unset>                 41h
+NAME                  SYNC STATUS   HEALTH STATUS
+kind-edl-baseline     Synced        Healthy
+kind-edl-networking   Synced        Healthy
+NAME        READY   WARNINGS   KAFKA VERSION   METADATA VERSION
+edl-kafka   True               4.3.1           4.3-IV0
+[PASS] health-after

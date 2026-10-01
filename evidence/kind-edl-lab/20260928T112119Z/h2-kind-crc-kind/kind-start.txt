@@ -1,0 +1,3 @@
+edl-lab-control-plane
+edl-lab-worker2
+edl-lab-worker

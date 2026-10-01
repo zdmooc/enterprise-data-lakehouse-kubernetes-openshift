@@ -1,0 +1,10 @@
+[INFO] stopping edl-lab-worker
+
+[WARN] docker stop rc=130 left edl-lab-worker running; using docker kill fallback
+edl-lab-worker
+[WARN] edl-lab-worker required forced container stop; container/filesystem/PVC objects were preserved
+[INFO] stopping edl-lab-worker2
+edl-lab-worker2
+[INFO] stopping edl-lab-control-plane
+edl-lab-control-plane
+[PASS] Kind node containers stopped; containers/images/volumes preserved
