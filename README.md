@@ -271,3 +271,30 @@ readiness.
 **Zidane Djamal**  
 Technical / Solution / Platform Architect  
 Kubernetes | OpenShift | GitOps | Data Platform | Cloud Native | Resilience
+
+
+---
+
+## Optional visual demo layer
+
+A browser-oriented demonstration layer is available under `platform/kind/visualization/`
+and `demo/`. It is deliberately an add-on to the already validated I1-I12 runtime,
+not a new production-readiness claim.
+
+It adds:
+
+- Redpanda Console for Kafka/Strimzi topics, partitions, messages and consumer groups;
+- Spark History Server backed by a local retained event-log PVC;
+- Apache Polaris Console built from a pinned official `apache/polaris-tools` source commit;
+- the embedded RustFS Console;
+- a Jupyter `ICEBERG_EXPLORER.ipynb` for Iceberg snapshots, history and physical files.
+
+Install on the retained Kind lab with:
+
+    CONFIRM_VISUALIZATION=yes bash scripts/kind/visualization.sh
+
+Then expose all browser surfaces with:
+
+    bash demo/scripts/04-start-interfaces.sh
+
+See [demo/README.md](demo/README.md) and [demo/RUNBOOK-A-Z.md](demo/RUNBOOK-A-Z.md).
