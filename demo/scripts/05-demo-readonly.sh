@@ -55,7 +55,14 @@ except Exception as exc:
     print("[INFO] Run: bash demo/scripts/04-start-interfaces.sh")
 PY
 
-echo "===== 8. TRUTH BOUNDARY ====="
+echo "===== 8. VISUALIZATION LAYER ====="
+k -n edl-data get deployment edl-kafka-console edl-spark-history edl-polaris-console 2>/dev/null ||   echo "[INFO] visualization layer not installed yet"
+k -n edl-data get service edl-kafka-console edl-spark-history edl-polaris-console 2>/dev/null || true
+
+echo "===== 9. ICEBERG METADATA ====="
+k -n edl-data exec deployment/edl-trino-coordinator --   trino --server http://localhost:8080 --user edl --execute   'SELECT committed_at, snapshot_id, operation FROM polaris.analytics."transactions$snapshots" ORDER BY committed_at'   || echo "[INFO] snapshot query unavailable; inspect Jupyter ICEBERG_EXPLORER.ipynb"
+
+echo "===== 10. TRUTH BOUNDARY ====="
 echo "Local three-node Kind functional proof."
 echo "No claim of multi-host HA, DR, durable Polaris catalog or production readiness."
 
