@@ -62,3 +62,44 @@ Pendant un entretien, ne pas lancer de chaos, de suppression de pods, de réinst
 
 - `CHECKLIST-5-MINUTES.md` : contrôle rapide juste avant l'appel.
 - `ACCESS.md` : accès aux interfaces et récupération privée des identifiants sans exposer de secrets.
+
+
+## Couche de visualisation complète
+
+La couche de démonstration ajoute quatre surfaces visuelles sans changer la vérité métier du POC :
+
+- **Redpanda Console** pour Kafka / Strimzi : topics, partitions, messages et consumer groups ;
+- **Spark History Server** pour les jobs, stages, tasks et executors terminés ;
+- **Apache Polaris Console** construit depuis le source officiel `apache/polaris-tools` au commit épinglé `9e6870075dce0cfe4da73f87d61a034545bbea19` ;
+- **RustFS Console** pour les buckets et objets S3 ;
+- **ICEBERG_EXPLORER.ipynb** dans Jupyter pour les snapshots, l'historique et les fichiers Parquet Iceberg.
+
+Installation locale contrôlée :
+
+    CONFIRM_VISUALIZATION=yes bash scripts/kind/visualization.sh
+
+Cette commande active la console RustFS, applique le CORS local Polaris, restaure le catalogue I12 par enregistrement metadata-only si nécessaire, déploie les trois UIs supplémentaires, copie le notebook Iceberg dans Jupyter et lance un job Spark smoke/Pi non destructif afin d'alimenter le History Server.
+
+Sous Windows/Git Bash, l'ouverture durable des tunnels se fait ensuite avec :
+
+    bash demo/scripts/04-start-interfaces.sh
+
+Le script délègue automatiquement à PowerShell pour éviter la disparition des `kubectl port-forward` observée avec les processus Git Bash détachés.
+
+### URLs de démonstration
+
+| Brique | URL locale |
+|---|---|
+| Argo CD | https://127.0.0.1:18081 |
+| Kafka / Redpanda Console | http://127.0.0.1:18082 |
+| Spark History Server | http://127.0.0.1:18083 |
+| Grafana | http://127.0.0.1:13001 |
+| Prometheus | http://127.0.0.1:19090 |
+| Jupyter | http://127.0.0.1:18888 |
+| Trino | http://127.0.0.1:18080 |
+| Polaris Console | http://127.0.0.1:18182 |
+| Polaris API | http://127.0.0.1:18181 |
+| RustFS Console | http://127.0.0.1:19001 |
+| RustFS / S3 API | http://127.0.0.1:19000 |
+
+La console Polaris est construite localement depuis le source Apache officiel car l'upstream ne publie pas encore une image officielle stable à consommer directement.
