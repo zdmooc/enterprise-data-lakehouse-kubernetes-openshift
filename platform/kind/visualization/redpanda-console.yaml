@@ -32,15 +32,22 @@ spec:
           ports:
             - {name: http, containerPort: 8080}
           readinessProbe:
-            httpGet: {path: /, port: http}
+            tcpSocket: {port: http}
             initialDelaySeconds: 5
             periodSeconds: 5
+            failureThreshold: 30
           livenessProbe:
-            httpGet: {path: /, port: http}
+            tcpSocket: {port: http}
             initialDelaySeconds: 20
             periodSeconds: 15
           securityContext:
+            # The upstream image declares USER redpandaconsole (a name, not a
+            # numeric UID). kubelet cannot prove that a named USER is non-root
+            # when runAsNonRoot=true, so pin a non-zero numeric UID explicitly
+            # for the restricted Pod Security profile used by edl-data.
             runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
             allowPrivilegeEscalation: false
             capabilities: {drop: [ALL]}
             seccompProfile: {type: RuntimeDefault}
