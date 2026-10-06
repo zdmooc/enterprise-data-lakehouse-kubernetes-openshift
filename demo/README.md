@@ -45,6 +45,32 @@ Polaris est volontairement in-memory. Après restart, la récupération réenreg
 8. Fermer les port-forwards avec `bash demo/scripts/06-stop-interfaces.sh`.
 9. Pour revenir à CRC, suivre `RUNBOOK-A-Z.md`.
 
+## D-098 — bascule vers CRC pour les preuves OpenShift
+
+Pour le programme SQY/D-098, le Lakehouse reste sur Kind mais la workstation peut être laissée sur CRC afin d'enchaîner les preuves OpenShift.
+
+Depuis Kind actif :
+
+    CONFIRM_DEMO_SWITCH=yes bash demo/scripts/00-switch-kind-to-crc.sh
+
+Le script :
+- vérifie le cluster Kind retenu ;
+- ferme les port-forwards de démo ;
+- arrête les trois conteneurs Kind sans les supprimer ;
+- démarre CRC ;
+- laisse le contexte `crc-admin` actif ;
+- ne modifie aucun workload CRC.
+
+Après les preuves SQY, retour vers Kind :
+
+    CONFIRM_DEMO_SWITCH=yes bash demo/scripts/01-switch-crc-to-kind.sh
+
+Puis :
+
+    bash demo/scripts/02-preflight.sh
+
+Cette bascule conserve les limites H2 : workstation locale, aucune preuve HA/DR/production.
+
 ## Démarrage rapide
 
     git fetch origin
