@@ -16,6 +16,7 @@ spec:
   selector: {app: edl-s3}
   ports:
     - {name: s3, port: 9000, targetPort: s3}
+    - {name: console, port: 9001, targetPort: console}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -43,10 +44,14 @@ spec:
           image: rustfs/rustfs:1.0.0
           ports:
             - {name: s3, containerPort: 9000}
+            - {name: console, containerPort: 9001}
           env:
             - {name: RUSTFS_VOLUMES, value: /data}
             - {name: RUSTFS_ADDRESS, value: '0.0.0.0:9000'}
-            - {name: RUSTFS_CONSOLE_ENABLE, value: 'false'}
+            - {name: RUSTFS_CONSOLE_ENABLE, value: 'true'}
+            - {name: RUSTFS_CONSOLE_ADDRESS, value: '0.0.0.0:9001'}
+            - {name: RUSTFS_CORS_ALLOWED_ORIGINS, value: 'http://127.0.0.1:19001,http://localhost:19001'}
+            - {name: RUSTFS_CONSOLE_CORS_ALLOWED_ORIGINS, value: '*'}
             - {name: RUSTFS_OBS_LOG_DIRECTORY, value: /logs}
             - {name: TMPDIR, value: /tmp}
             - name: RUSTFS_ACCESS_KEY
