@@ -99,3 +99,22 @@ Le provider Kind actuel expose le contrat S3 compatible. Ne pas afficher les cre
 ## Nettoyage
 
     bash demo/scripts/06-stop-interfaces.sh
+
+
+## Visual demo endpoints
+
+After installing the visualization layer and starting the port-forwards:
+
+    Kafka / Redpanda Console  http://127.0.0.1:18082
+    Spark History Server      http://127.0.0.1:18083
+    Polaris Console           http://127.0.0.1:18182
+    RustFS Console            http://127.0.0.1:19001
+
+The existing access rules still apply:
+
+- Kafka Console: no additional login in the local Kind profile.
+- Spark History Server: no additional login in the local Kind profile.
+- Polaris Console: use the Polaris client credentials already stored in Kubernetes and realm `POLARIS`.
+- RustFS Console: use the S3 access key / secret key already stored in Kubernetes.
+
+Do not expose credentials in screenshots or screen sharing.
