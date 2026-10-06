@@ -4,6 +4,10 @@ metadata:
   labels:
     edl.s3-client: 'true'
 spec:
+  # Local demo only: pin Spark driver/executor to the same Kind node as the
+  # ReadWriteOnce event-log PVC consumed by Spark History Server.
+  nodeSelector:
+    kubernetes.io/hostname: edl-lab-worker2
   securityContext:
     runAsNonRoot: true
     runAsUser: 185
@@ -22,6 +26,8 @@ spec:
           readOnly: true
         - name: tmp
           mountPath: /tmp
+        - name: spark-events
+          mountPath: /spark-events
       securityContext:
         readOnlyRootFilesystem: true
         allowPrivilegeEscalation: false
@@ -32,3 +38,6 @@ spec:
         name: kind-spark-templates
     - name: tmp
       emptyDir: {}
+    - name: spark-events
+      persistentVolumeClaim:
+        claimName: spark-event-logs
