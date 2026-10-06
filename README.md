@@ -277,6 +277,9 @@ Kubernetes | OpenShift | GitOps | Data Platform | Cloud Native | Resilience
 
 ## Optional visual demo layer
 
+**Visual demo layer — RUNTIME VALIDATED**
+
+
 A browser-oriented demonstration layer is available under `platform/kind/visualization/`
 and `demo/`. It is deliberately an add-on to the already validated I1-I12 runtime,
 not a new production-readiness claim.
@@ -296,5 +299,7 @@ Install on the retained Kind lab with:
 Then expose all browser surfaces with:
 
     bash demo/scripts/04-start-interfaces.sh
+
+Runtime deployment evidence: [evidence/kind-edl-lab/20261006-visualization/README.md](evidence/kind-edl-lab/20261006-visualization/README.md).
 
 See [demo/README.md](demo/README.md) and [demo/RUNBOOK-A-Z.md](demo/RUNBOOK-A-Z.md).
