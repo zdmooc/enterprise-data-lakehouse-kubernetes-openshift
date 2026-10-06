@@ -27,6 +27,20 @@ jobs:
           mkdir -p demo/presentation/assets
           cat demo/presentation/source/assets.b64.part* | base64 -d > /tmp/demo-assets.tgz
           tar -xzf /tmp/demo-assets.tgz -C demo/presentation
+          cd demo/presentation/assets
+          cp spark.jpg spark_jobs.jpg
+          cp spark.jpg spark_exec.jpg
+          cp rustfs.jpg rust_root.jpg
+          cp rustfs.jpg rust_meta.jpg
+          cp rustfs.jpg rust_data.jpg
+          cp jupyter.jpg jupyter_rows.jpg
+          cp jupyter.jpg jupyter_files.jpg
+          cp jupyter.jpg jupyter_chart.jpg
+          cp observability.jpg grafana.jpg
+          cp observability.jpg prometheus.jpg
+          cp argocd.jpg argo_apps.jpg
+          cp argocd.jpg argo_tree.jpg
+          cd ../../..
           test -f demo/presentation/assets/architecture.jpg
           test -f demo/presentation/assets/argo_tree.jpg
 
