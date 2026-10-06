@@ -1,0 +1,87 @@
+name: Build Enterprise Data Lakehouse demo pack
+
+on:
+  push:
+    branches:
+      - runtime/kind-edl-lab
+    paths:
+      - demo/presentation/BUILD_TRIGGER
+
+permissions:
+  contents: write
+
+jobs:
+  build-demo-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: runtime/kind-edl-lab
+          fetch-depth: 0
+
+      - name: Reconstruct runtime screenshots and diagrams
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p demo/presentation/assets
+          cat demo/presentation/source/assets.b64.part* | base64 -d > /tmp/demo-assets.tgz
+          tar -xzf /tmp/demo-assets.tgz -C demo/presentation
+          test -f demo/presentation/assets/architecture.jpg
+          test -f demo/presentation/assets/argo_tree.jpg
+
+      - name: Install presentation tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save pptxgenjs image-size
+          sudo apt-get update
+          sudo apt-get install -y libreoffice poppler-utils ffmpeg
+
+      - name: Build PowerPoint
+        run: node demo/presentation/build_demo_pack.js
+
+      - name: Export PDF and rendered slides
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p demo/presentation/dist/rendered
+          libreoffice --headless --convert-to pdf --outdir demo/presentation/dist \
+            demo/presentation/dist/Enterprise_Data_Lakehouse_Runtime_Demo_Zidane_Djamal.pptx
+          pdftoppm -png -r 120 \
+            demo/presentation/dist/Enterprise_Data_Lakehouse_Runtime_Demo_Zidane_Djamal.pdf \
+            demo/presentation/dist/rendered/slide
+
+      - name: Build silent preview video
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > /tmp/slides.txt
+          for f in demo/presentation/dist/rendered/slide-*.png; do
+            printf "file '%s/%s'\n" "$GITHUB_WORKSPACE" "$f" >> /tmp/slides.txt
+            printf 'duration 12\n' >> /tmp/slides.txt
+          done
+          last="$(ls demo/presentation/dist/rendered/slide-*.png | tail -1)"
+          printf "file '%s/%s'\n" "$GITHUB_WORKSPACE" "$last" >> /tmp/slides.txt
+          ffmpeg -y -f concat -safe 0 -i /tmp/slides.txt \
+            -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=white,format=yuv420p" \
+            -r 30 -c:v libx264 -preset fast -crf 22 -movflags +faststart \
+            demo/presentation/dist/Enterprise_Data_Lakehouse_Runtime_Demo_Zidane_Djamal.mp4
+
+      - name: Clean bootstrap chunks
+        shell: bash
+        run: rm -f demo/presentation/source/assets.b64.part*
+
+      - name: Commit generated pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add demo/presentation/assets demo/presentation/dist demo/presentation/source
+          if git diff --cached --quiet; then
+            echo 'Nothing to commit'
+            exit 0
+          fi
+          git commit -m 'build(demo): publish PowerPoint PDF video and runtime assets'
+          git push origin HEAD:runtime/kind-edl-lab
