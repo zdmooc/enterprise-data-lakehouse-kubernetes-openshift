@@ -61,3 +61,16 @@ extraEnv:
       secretKeyRef:
         name: polaris-s3
         key: secretAccessKey
+  # Browser-based Polaris Console (local demo port-forward).
+  - name: QUARKUS_HTTP_CORS_ENABLED
+    value: "true"
+  - name: QUARKUS_HTTP_CORS_ORIGINS
+    value: "http://127.0.0.1:18182,http://localhost:18182"
+  - name: QUARKUS_HTTP_CORS_METHODS
+    value: "GET,POST,PUT,DELETE,PATCH,OPTIONS"
+  - name: QUARKUS_HTTP_CORS_HEADERS
+    value: "Content-Type,Authorization,Polaris-Realm,X-Request-ID"
+  - name: QUARKUS_HTTP_CORS_EXPOSED_HEADERS
+    value: "*"
+  - name: QUARKUS_HTTP_CORS_ACCESS_CONTROL_ALLOW_CREDENTIALS
+    value: "true"
