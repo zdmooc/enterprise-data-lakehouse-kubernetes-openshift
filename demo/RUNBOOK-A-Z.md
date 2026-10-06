@@ -155,3 +155,115 @@ Ne jamais supprimer le cluster pour une simple bascule.
 - 6 transactions I12 visibles ;
 - interfaces préparées ;
 - aucune commande destructive prévue.
+
+
+## M. Installer la couche de visualisation
+
+À exécuter une fois après synchronisation Git :
+
+    CONFIRM_VISUALIZATION=yes bash scripts/kind/visualization.sh
+
+Effets attendus :
+
+1. RustFS redémarre sur le même PVC avec la Console activée sur 9001.
+2. Polaris est réappliqué avec le CORS nécessaire au navigateur local.
+3. Le catalogue I12 est réenregistré à partir de la metadata Iceberg existante, sans replay Kafka/Spark et sans réécriture S3.
+4. Redpanda Console est connecté au bootstrap Kafka Strimzi.
+5. Polaris Console est construit depuis le source Apache officiel épinglé puis chargé dans Kind.
+6. Spark History Server est déployé avec un PVC `spark-event-logs`.
+7. Un job Spark smoke/Pi crée une première trace History Server sans modifier les données Lakehouse.
+8. Le notebook `ICEBERG_EXPLORER.ipynb` est copié dans le workspace Jupyter.
+
+## N. Parcours visuel composant par composant
+
+### Kafka / Strimzi — Redpanda Console
+
+    http://127.0.0.1:18082
+
+À montrer :
+
+- `edl.smoke` ;
+- `transactions.raw` ;
+- `transactions.curated` ;
+- partitions ;
+- messages ;
+- consumer groups / offsets lorsqu'ils existent.
+
+### Spark — Spark History Server
+
+    http://127.0.0.1:18083
+
+À montrer :
+
+- application `kind-spark-smoke` ;
+- Jobs ;
+- Stages ;
+- Tasks ;
+- Executors ;
+- durée et métriques de l'application.
+
+Pour créer une nouvelle entrée sans toucher aux données métier :
+
+    bash demo/scripts/07-populate-spark-history.sh
+
+### RustFS / S3
+
+    http://127.0.0.1:19001
+
+La Console permet de voir physiquement le bucket et les objets. La couche S3 stocke les fichiers ; elle ne connaît pas à elle seule la sémantique de table Iceberg.
+
+### Iceberg — Jupyter
+
+Ouvrir :
+
+    http://127.0.0.1:18888
+
+puis le notebook :
+
+    /home/jovyan/work/ICEBERG_EXPLORER.ipynb
+
+Le notebook affiche :
+
+- les six lignes métier ;
+- `transactions$snapshots` ;
+- `transactions$history` ;
+- `transactions$files` ;
+- une vue des tailles de fichiers physiques.
+
+### Polaris — Polaris Console
+
+    http://127.0.0.1:18182
+
+Utiliser les credentials du secret `polaris-client` avec le realm `POLARIS`. Montrer :
+
+    quickstart_catalog
+      -> analytics
+         -> transactions
+
+La Console est une vue du catalogue ; les fichiers restent dans RustFS/S3.
+
+### Trino
+
+    http://127.0.0.1:18080
+
+Lancer une requête depuis un terminal pour voir `RUNNING QUERIES`, workers, drivers et mémoire évoluer.
+
+### Observabilité
+
+    Grafana    http://127.0.0.1:13001
+    Prometheus http://127.0.0.1:19090
+
+Grafana présente la vue synthétique. Prometheus permet d'aller jusqu'aux targets et au PromQL.
+
+## O. Lecture pédagogique finale
+
+    Kafka            = transporte les événements
+    Spark            = transforme / calcule
+    RustFS / S3      = stocke les fichiers
+    Iceberg          = structure la table et ses snapshots
+    Polaris          = catalogue la table
+    Trino            = exécute les requêtes SQL
+    Jupyter          = permet l'exploration Data
+    Prometheus       = collecte les métriques
+    Grafana          = visualise les métriques
+    Argo CD          = visualise l'état GitOps
