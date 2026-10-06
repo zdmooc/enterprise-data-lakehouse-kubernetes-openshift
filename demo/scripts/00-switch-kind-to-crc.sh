@@ -99,10 +99,65 @@ done
 
 echo "===== START CRC ====="
 CRC_STARTED=true
-crc start
+mkdir -p .audit/kind
+umask 077
+CRC_START_LOG=".audit/kind/d098-crc-start-private.log"
 
-kubectl config use-context crc-admin >/dev/null
-kubectl --context=crc-admin wait --for=condition=Ready nodes --all --timeout=600s
+echo "[INFO] crc start output is kept private in $CRC_START_LOG because it may contain local credentials."
+if ! crc start >"$CRC_START_LOG" 2>&1; then
+  tail -40 "$CRC_START_LOG" | sed -E 's/(Password:).*/\1 [REDACTED]/'
+  echo "[FAIL] crc start returned an error; private full output retained in $CRC_START_LOG"
+  exit 1
+fi
+
+echo "===== SELECT / RECOVER OPENSHIFT LOGIN ====="
+eval "$(crc oc-env)"
+
+if kubectl config get-contexts -o name 2>/dev/null | grep -Fxq "crc-admin"; then
+  kubectl config use-context crc-admin >/dev/null
+else
+  echo "[WARN] crc-admin context was not added by crc start; recovering an admin login without printing credentials."
+
+  CRC_CREDS="$(crc console --credentials 2>&1 || true)"
+  ADMIN_PASSWORD="$(printf '%s\n' "$CRC_CREDS" | awk '
+    /Username:[[:space:]]*kubeadmin/ {seen=1; next}
+    seen && /Password:/ {
+      sub(/^.*Password:[[:space:]]*/, "", $0)
+      print
+      exit
+    }
+  ')"
+
+  if [ -z "$ADMIN_PASSWORD" ]; then
+    ADMIN_PASSWORD="$(printf '%s\n' "$CRC_CREDS" | sed -nE 's/.*-u[[:space:]]+kubeadmin[[:space:]]+-p[[:space:]]+([^[:space:]]+).*/\1/p' | head -1)"
+  fi
+
+  [ -n "$ADMIN_PASSWORD" ] || {
+    echo "[FAIL] Unable to recover kubeadmin credential from 'crc console --credentials'."
+    exit 1
+  }
+
+  LOGIN_OK=false
+  for attempt in $(seq 1 18); do
+    if oc login -u kubeadmin -p "$ADMIN_PASSWORD" https://api.crc.testing:6443 >/dev/null 2>&1; then
+      LOGIN_OK=true
+      break
+    fi
+    echo "[INFO] OpenShift OAuth/API not ready for login yet ($attempt/18); retrying..."
+    sleep 10
+  done
+  unset ADMIN_PASSWORD CRC_CREDS
+
+  [ "$LOGIN_OK" = true ] || {
+    echo "[FAIL] CRC is running but admin login could not be established."
+    exit 1
+  }
+fi
+
+CURRENT_CRC_CONTEXT="$(kubectl config current-context)"
+echo "OpenShift context: $CURRENT_CRC_CONTEXT"
+
+oc wait --for=condition=Ready nodes --all --timeout=600s
 
 echo "===== CRC / OPENSHIFT ====="
 crc status
