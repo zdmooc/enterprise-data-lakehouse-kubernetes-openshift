@@ -102,6 +102,25 @@ Validated:
 Evidence:
 `evidence/kind-edl-lab/20260928T112119Z/h2-kind-crc-kind/`.
 
+## H3 — Browser visualization layer
+
+**Status: RUNTIME_VALIDATED**
+
+Validated locally on 2026-10-06:
+- Redpanda Console for Kafka/Strimzi;
+- Spark History Server with retained event-log PVC;
+- Apache Polaris Console built from pinned official source;
+- RustFS Web Console on the existing S3-compatible storage deployment;
+- Jupyter Iceberg Explorer notebook;
+- final platform gate: 3 Ready nodes, 45 healthy/completed pods, 7 Bound PVCs,
+  2 Synced/Healthy Argo applications.
+
+Evidence:
+`evidence/kind-edl-lab/20261006-visualization/README.md`.
+
+The Metrics API was unavailable during this run; this is non-blocking for the visual
+layer and remains distinct from Prometheus/Grafana availability.
+
 ## Residual / future engineering scope
 
 These are intentionally outside the completed local POC:
