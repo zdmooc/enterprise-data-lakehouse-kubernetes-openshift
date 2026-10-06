@@ -14,6 +14,8 @@ args=(
   --conf spark.kubernetes.driver.podTemplateContainerName=spark-kubernetes
   --conf spark.kubernetes.executor.podTemplateContainerName=spark-kubernetes
   --conf spark.driver.port=7078 --conf spark.blockManager.port=7079
+  --conf spark.eventLog.enabled=true
+  --conf spark.eventLog.dir=file:/spark-events
   --conf spark.executor.instances=1
   --conf spark.driver.memory=1024m --conf spark.executor.memory=1024m
   --conf spark.driver.memoryOverhead=384m --conf spark.executor.memoryOverhead=384m
